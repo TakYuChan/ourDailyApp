@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+
+import { Switch, Route } from "react-router-dom";
+
+import MainPage from "./Pages/mainPage/mainPage.component";
+import NoMatch from "./Pages/NoMatchPage/noMatchPage.component";
+
+import Header from "./Components/header/header.component";
+import FloatNav from "./Components/floatNav/floatNav.component";
+
+import "./App.css";
+
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isNavOpened: false,
+    };
+  }
+
+  //=============== Variables ===============
+
+  //=============== Unsubscriber ===============
+
+  //=============== Custom method ===============
+  handleSvgClick = () => {
+    const { isNavOpened } = this.state;
+
+    isNavOpened
+      ? this.setState({ isNavOpened: false })
+      : this.setState({ isNavOpened: true });
+
+    return;
+  };
+
+  //=============== Life Cycle Hooks ===============
+
+  render() {
+    const { isNavOpened } = this.state;
+
+    return [
+      <Header handleSvgClick={this.handleSvgClick} />,
+      <FloatNav isNavOpened={isNavOpened} />,
+      <Switch>
+        <Route exact path="/" component={MainPage} />
+        <Route path="/todolist" component={MainPage} />
+        <Route component={NoMatch} />
+      </Switch>,
+    ];
+  }
 }
 
 export default App;

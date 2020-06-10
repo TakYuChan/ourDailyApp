@@ -1,0 +1,102 @@
+.header {
+  height: var(--nav-height);
+
+  width: 100vw;
+
+  position: relative;
+  z-index: 5;
+}
+
+//=========== Nav ===========
+
+nav {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5vw;
+  background: var(--clr-nav);
+}
+
+.logo-wrapper {
+  width: 3rem;
+}
+
+.logo {
+  width: 100%;
+  object-fit: cover;
+}
+
+.list {
+  width: 10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  list-style: none;
+  //   border: 2px solid red;
+}
+
+.time {
+  color: var(--gray1);
+  //   font-weight: 700;
+}
+
+//=========== SVG ===========
+.svg-wrapper {
+  all: unset;
+  --size: 40px;
+  width: var(--size);
+  height: var(--size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 100%;
+  cursor: pointer;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover {
+    background: rgba($color: #b2becd, $alpha: 0.2);
+  }
+}
+
+svg {
+  fill: var(--gray1);
+
+  //   fill-opacity: 0.8;
+}
+
+//=========== profile icon ===========
+#dropdown-basic-button {
+  //   all: unset;
+  --size: 40px;
+  outline: 0;
+  width: var(--size);
+  height: var(--size);
+
+  border-radius: 100%;
+  background: pink;
+  //   border: 0;
+
+  &::after {
+    display: none;
+  }
+}
+
+//=========== Profile icon -> Drop Down ===========
+.dropdown-item:hover {
+  background: pink;
+}
+
+.auth-btn {
+  font-weight: 700;
+}
+
+.iconfont {
+  margin-right: 0.8rem;
+}
