@@ -4,18 +4,20 @@ import "./signInAndSignUp.style.scss";
 
 import { Modal, Button } from "react-bootstrap";
 
+import SignInForm from "../../ComponentsNotReuse/signInForm/signInForm.component";
+
 class SignInAndSignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       renderFor: "signIn",
-      //   modalHeader: <Modal.Title>Sign In</Modal.Title>,
-      //   modalBody: <p>Sign In Body</p>,
     };
   }
+
+  //   Custom Variables
   modalElements = {
     modalHeader: <Modal.Title>Sign In</Modal.Title>,
-    modalBody: <p>Sign In Body</p>,
+    modalBody: <SignInForm />,
     modalChangeRenderBtn: "Sign Up",
   };
 
@@ -37,7 +39,7 @@ class SignInAndSignUp extends React.Component {
         this.modalElements.modalChangeRenderBtn = "Sign In";
       } else if (renderFor === "signUp") {
         this.modalElements.modalHeader = <Modal.Title>Sign In</Modal.Title>;
-        this.modalElements.modalBody = <p>Sign In Body</p>;
+        this.modalElements.modalBody = <SignInForm />;
         this.modalElements.modalChangeRenderBtn = "Sign Up";
       }
     } catch (error) {
@@ -58,16 +60,16 @@ class SignInAndSignUp extends React.Component {
               variant="secondary"
               onClick={() => {
                 this.handleChangeRenderClick();
-                //!! SetState (inside above function) will be triggered after all the statement in this scope
-                // finish !!
+
+                //!! setState() has two actions [1: setState, 2: reRender], and it ias an async action
                 this.renderModal();
               }}
             >
               {modalChangeRenderBtn}
             </Button>
-            <Button variant="primary" onClick={this.props.handleClose}>
+            {/* <Button variant="primary" onClick={this.props.handleClose}>
               Save Changes
-            </Button>
+            </Button> */}
           </Modal.Footer>
         </Modal>
       </div>
