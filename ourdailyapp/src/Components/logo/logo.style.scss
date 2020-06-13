@@ -1,0 +1,22 @@
+.logo-wrapper {
+  width: 3rem;
+}
+
+.logo {
+  width: 100%;
+  object-fit: cover;
+}
+
+#header-logo,
+#header-logo-wrapper {
+  //   font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+  width: 3em;
+}
+
+#mainPage-logo,
+#mainPage-logo-wrapper {
+  font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+  width: 12em;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

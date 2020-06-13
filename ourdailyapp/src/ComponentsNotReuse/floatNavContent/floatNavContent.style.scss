@@ -1,0 +1,17 @@
+// ==================== Nav Right side =====================
+
+.float-nav-content {
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+  //   border: 2px solid;
+  align-self: center;
+
+  .nav-content-title {
+    font-size: clamp(1.5rem, 3.5vw, 3.5rem);
+  }
+  .nav-content-title,
+  .nav-content-text {
+    text-align: center;
+  }
+}

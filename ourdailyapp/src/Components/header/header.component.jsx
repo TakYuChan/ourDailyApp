@@ -2,83 +2,115 @@ import React from "react";
 import "./header.style.scss";
 import { ReactComponent as NavIcon } from "../../assets/nav.svg";
 
-import { useState, useEffect } from "react";
+import { Button, Dropdown, DropdownButton } from "react-bootstrap";
 
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import ReactToolTip from "react-tooltip";
 
-const Header = ({ handleSvgClick }) => {
-  const [currentTime, setCurrentTime] = useState(0);
+import Logo from "../logo/logo.component";
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const today = new Date();
+import SignInAndSignUp from "../../Pages/signInAndSignUp/signInAndSignUp.component";
 
-      const date =
-        today.getFullYear() +
-        "-" +
-        (today.getMonth() + 1) +
-        "-" +
-        today.getDate();
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showSignInSignUpModal: false,
+    };
+  }
 
-      let second = today.getSeconds();
-      let minute = today.getMinutes();
-      let hour = today.getHours();
+  // ========================= Custom Methods =========================
+  handleSignInSignUpShow = () => this.setState({ showSignInSignUpModal: true });
+  handleSignInSignUpClose = () =>
+    this.setState({ showSignInSignUpModal: false });
 
-      if (today.getSeconds() < 10) {
-        second = "0" + today.getSeconds().toString();
-      }
+  // ========================= Life Cycle Hooks =========================
+  render() {
+    const { showSignInSignUpModal } = this.state;
 
-      if (today.getMinutes() < 10) {
-        minute = "0" + today.getMinutes().toString();
-      }
-      if (today.getHours() < 10) {
-        hour = "0" + today.getHours().toString();
-      }
+    return (
+      <header className="header">
+        <nav>
+          {/* ====================== Logo ====================== */}
+          <Logo wrapperId="header-logo-wrapper" id="header-logo" />
 
-      const time = hour + ":" + minute + ":" + second;
+          {/* ====================== Change language Badge ====================== */}
+          <div className="list">
+            <Button
+              variant="primary"
+              className="badge badge-primary btn-lang"
+              onClick={this.props.handleLanguageClick}
+              data-tip
+              data-for="langTip"
+            >
+              <span>中文</span>
+            </Button>
+            <ReactToolTip
+              arrowColor="#454e56"
+              id="langTip"
+              place="bottom"
+              effect="solid"
+              className="tooltip"
+            >
+              Language
+            </ReactToolTip>
 
-      setCurrentTime(() => [date, time]);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+            {/* ====================== SVG btn -> Float Nav ====================== */}
 
-  return (
-    <header className="header">
-      <nav>
-        <div className="logo-wrapper">
-          <img
-            className="logo"
-            src="/images/assets/logo.png"
-            alt="FrankyVenus"
-          />
-        </div>
-        <div className="list">
-          <li className="time">{currentTime[1]}</li>
+            <button
+              className={`${
+                this.props.isNavOpened ? "active" : ""
+              } svg-wrapper`}
+              onClick={() => {
+                this.props.handleSvgClick();
+              }}
+              data-tip
+              data-for="navTip"
+            >
+              <NavIcon />
+            </button>
+            <ReactToolTip
+              arrowColor="#454e56"
+              id="navTip"
+              placement="bottom"
+              effect="solid"
+              className="tooltip"
+            >
+              Navigation Menu
+            </ReactToolTip>
 
-          {/* ====================== SVG btn -> Float Nav ====================== */}
-          <button className="svg-wrapper" onClick={handleSvgClick}>
-            <NavIcon />
-          </button>
+            {/* ====================== Profile Drop Down ====================== */}
+            <DropdownButton id="dropdown-basic-button" title="">
+              <Dropdown.Header>HI Good Morning</Dropdown.Header>
+              <Dropdown.Item
+                href="#/action-1"
+                className="auth-btn"
+                onClick={this.handleSignInSignUpShow}
+              >
+                Sign In
+              </Dropdown.Item>
 
-          <DropdownButton id="dropdown-basic-button" title="">
-            <Dropdown.Header>HI Good Morning</Dropdown.Header>
-            <Dropdown.Item href="#/action-1" className="auth-btn">
-              Sign In
-            </Dropdown.Item>
-            <Dropdown.Divider />
+              {/* Clicking the Sign In btn will open the SignInAndSignUp modal */}
+              {/* - Passing the "showSignInSignUpModal" to Open / Close Modal */}
+              <SignInAndSignUp
+                show={showSignInSignUpModal}
+                handleClose={this.handleSignInSignUpClose}
+              />
 
-            <Dropdown.Item href="#/action-2">
-              <i className="iconfont icon-profile"></i>Profile
-            </Dropdown.Item>
+              <Dropdown.Divider />
 
-            <Dropdown.Item href="#/action-3">
-              <i className="iconfont icon-Settingscontroloptions"></i>Setting
-            </Dropdown.Item>
-          </DropdownButton>
-        </div>
-      </nav>
-    </header>
-  );
-};
+              <Dropdown.Item href="#/action-2">
+                <i className="iconfont icon-profile"></i>Profile
+              </Dropdown.Item>
+
+              <Dropdown.Item href="#/action-3">
+                <i className="iconfont icon-Settingscontroloptions"></i>Setting
+              </Dropdown.Item>
+            </DropdownButton>
+          </div>
+        </nav>
+      </header>
+    );
+  }
+}
 
 export default Header;

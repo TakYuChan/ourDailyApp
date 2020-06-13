@@ -1,0 +1,33 @@
+// =================== Links ===================
+.link {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.application-item {
+  cursor: pointer;
+
+  display: grid;
+  place-items: center;
+  font-family: "Roboto", sans-serif;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  height: 100%;
+  width: 100%;
+
+  &:hover {
+    background: rgba(222, 222, 223, 0.3);
+
+    & .link-text {
+      text-decoration: none;
+    }
+  }
+}
+
+.link-text {
+  color: var(--gray4);
+  text-decoration: none;
+}
