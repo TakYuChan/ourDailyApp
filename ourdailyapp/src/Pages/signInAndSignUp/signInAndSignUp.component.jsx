@@ -40,10 +40,10 @@ class SignInAndSignUp extends React.Component {
         modalHeader = <Modal.Title className="signInSignUp-title">Sign In</Modal.Title>;
         break;
       case "signUp":
-        modalHeader = <Modal.Title className="signInSignUp-title">Sign Up</Modal.Title>;
+        modalHeader = <Modal.Title className="signUpSignUp-title">Sign Up</Modal.Title>;
         break;
       case "registerSuccess":
-        modalHeader = <Modal.Title className="signInSignUp-title">
+        modalHeader = <Modal.Title className="registerSuccess-title">
                       Successfully Registered
                       </Modal.Title>
         break;
@@ -66,7 +66,7 @@ class SignInAndSignUp extends React.Component {
         break;
       case "signUp":
         modalBody = <SignUpForm
-                handleToRegisterSuccess={this.handleRenderModal}
+                handleRenderModal={this.handleRenderModal}
                 />;
         break;
       case "registerSuccess":
@@ -124,7 +124,7 @@ class SignInAndSignUp extends React.Component {
               >
                 Sign In Now
               </Button>
-      break;
+        break;
       default: {
         modalFooter = <p>Modal footer Error</p>;
       }

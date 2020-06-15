@@ -5,6 +5,7 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 
 import MainPage from "./Pages/mainPage/mainPage.component";
+import ProfilePage from "./Pages/ProfilePage/profilePage.component";
 import NoMatch from "./Pages/NoMatchPage/noMatchPage.component";
 
 import Header from "./Components/header/header.component";
@@ -120,6 +121,7 @@ class App extends React.Component {
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route path="/todolist" component={MainPage} />
+        <Route path="/profile" component={ProfilePage} />
         <Route component={NoMatch} />
       </Switch>,
     ];

@@ -5,6 +5,8 @@ import { Form, Button } from "react-bootstrap";
 
 import FormInput from "../../Components/formInput/formInput.component";
 
+import { signUpForminputCheck } from "../../utils/errorChecking.js";
+
 import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 
 class SignUpForm extends React.Component {
@@ -15,7 +17,18 @@ class SignUpForm extends React.Component {
       email: "",
       password: "",
       confirmPassword: "",
+      errorDetected: false,
     };
+  }
+
+  //  ================================= Custom Variables =================================
+  displayError = {
+    shortDisplayName: false,
+    longDisplayName: false,
+  };
+
+  warningShortInput(target, length) {
+    return `The ${target} must be longer than ${length} keys.`;
   }
 
   //  ================================= Custom Methods =================================
@@ -24,9 +37,17 @@ class SignUpForm extends React.Component {
 
     const { displayName, email, password, confirmPassword } = this.state;
 
-    // Check Password
+    // 1. Check Password
     if (password !== confirmPassword) {
       alert(`Password doesn't match the Confirmed password, please try again.`);
+      return;
+    }
+
+    // 2. Form Input Inspection
+    let errorExist = signUpForminputCheck(displayName, this.displayError);
+
+    if (errorExist) {
+      this.setState({ errorDetected: true });
       return;
     }
 
@@ -36,8 +57,6 @@ class SignUpForm extends React.Component {
         email,
         password
       );
-
-      console.log("sign up");
 
       // Save user details to db
       await createUserProfileDocument(user, { displayName });
@@ -49,6 +68,12 @@ class SignUpForm extends React.Component {
         password: "",
         confirmPassword: "",
       });
+
+      //Reset error inspection variables
+      this.error = {
+        shortDisplayName: false,
+        longDisplayName: false,
+      };
 
       // Registration Successful will direct users to the "registerSuccessScene"
       this.props.handleRenderModal("registerSuccess");
@@ -76,9 +101,10 @@ class SignUpForm extends React.Component {
           name="displayName"
           placeholder="Display Name"
           handleInputChange={this.handleInputChange}
-          minLength="1"
-          maxLength="24"
+          // minLength="1"
+          // maxLength="24"
           value={displayName}
+          error={this.displayError}
         />
 
         <FormInput

@@ -6,12 +6,13 @@ import {Dropdown} from "react-bootstrap";
 const DropDownHeader = ({currentUser}) => {
 
     let userName = null;
-    if(currentUser) {
-        userName = currentUser.displayName.substr(0, 24);
-
+    if(!currentUser == null) {
         if(currentUser.displayName.length > 24) {
+            userName = currentUser.displayName.substr(0, 24);
             userName += "...";
         }
+    } else {
+        console.log("no current user");
     }
 
     return (

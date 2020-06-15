@@ -1,7 +1,7 @@
 import React from "react";
 import "./logo.style.scss";
 
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 // import LogoImg from "../../../public/images/assets/logo.png";
 
