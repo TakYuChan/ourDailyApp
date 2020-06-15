@@ -1,26 +1,25 @@
 import React from "react";
 import "./profileDropDownHeader.style.scss";
 
-import {Dropdown} from "react-bootstrap";
+import { displayNameLengthFilter } from "../../utils/dataFilter.js";
 
-const DropDownHeader = ({currentUser}) => {
+import { Dropdown } from "react-bootstrap";
 
-    let userName = null;
-    if(!currentUser == null) {
-        if(currentUser.displayName.length > 24) {
-            userName = currentUser.displayName.substr(0, 24);
-            userName += "...";
-        }
-    } else {
-        console.log("no current user");
-    }
+const DropDownHeader = ({ currentUser }) => {
+  let userName = null;
 
-    return (
-        currentUser ? [<Dropdown.Header key="1">Welcome back!</Dropdown.Header>, 
-                      <Dropdown.Item key="2" disabled className="userName"
-              >{userName}</Dropdown.Item>] : <Dropdown.Header>Hi, Good morning</Dropdown.Header>
-        
-    );
-}
+  userName = displayNameLengthFilter(currentUser);
+
+  return currentUser ? (
+    [
+      <Dropdown.Header key="1">Welcome back!</Dropdown.Header>,
+      <Dropdown.Item key="2" disabled className="userName">
+        {userName}
+      </Dropdown.Item>,
+    ]
+  ) : (
+    <Dropdown.Header>Hi, Good morning</Dropdown.Header>
+  );
+};
 
 export default DropDownHeader;

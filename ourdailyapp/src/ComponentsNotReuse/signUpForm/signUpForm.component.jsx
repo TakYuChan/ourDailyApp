@@ -37,13 +37,13 @@ class SignUpForm extends React.Component {
 
     const { displayName, email, password, confirmPassword } = this.state;
 
-    // 1. Check Password
+    // 1. ================== Check Password ==================
     if (password !== confirmPassword) {
       alert(`Password doesn't match the Confirmed password, please try again.`);
       return;
     }
 
-    // 2. Form Input Inspection
+    // 2. ============= Form Input Inspection ==================
     let errorExist = signUpForminputCheck(displayName, this.displayError);
 
     if (errorExist) {
@@ -75,8 +75,13 @@ class SignUpForm extends React.Component {
         longDisplayName: false,
       };
 
+      // 3. ================== Successfully Signed In ==================
+
       // Registration Successful will direct users to the "registerSuccessScene"
       this.props.handleRenderModal("registerSuccess");
+
+      // Immediately change the userLogged state in App.js to true;
+      this.props.userlogStateChanged();
     } catch (error) {
       console.log(`Error creating user with email and password`, error.message);
     }
@@ -101,8 +106,6 @@ class SignUpForm extends React.Component {
           name="displayName"
           placeholder="Display Name"
           handleInputChange={this.handleInputChange}
-          // minLength="1"
-          // maxLength="24"
           value={displayName}
           error={this.displayError}
         />
@@ -126,7 +129,6 @@ class SignUpForm extends React.Component {
           placeholder="Password"
           handleInputChange={this.handleInputChange}
           value={password}
-          minLength="8"
         />
 
         <FormInput
@@ -137,7 +139,6 @@ class SignUpForm extends React.Component {
           placeholder="Confirm Password"
           handleInputChange={this.handleInputChange}
           value={confirmPassword}
-          minLength="8"
         />
 
         <Button variant="primary" type="submit" onClick={this.handleSubmit}>

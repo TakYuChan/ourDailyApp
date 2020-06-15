@@ -32,7 +32,7 @@ export const createUserProfileDocument = async (user, additionalData) => {
   const userRef = firestore.doc(`user/${user.uid}`);
 
   const userSnapShot = await userRef.get();
-  console.log(user);
+  // console.log(user);
   if (!userSnapShot.exists) {
     const { displayName, photoURL, email } = user;
 

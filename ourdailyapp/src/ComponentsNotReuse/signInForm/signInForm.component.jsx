@@ -22,10 +22,14 @@ class SignInForm extends React.Component {
     const { email, password } = this.state;
 
     try {
+      console.log("hi");
       await auth.signInWithEmailAndPassword(email, password);
 
       //Clear email and password input after clicking sign in
       this.setState({ email: "", password: "" });
+
+      //Change userLogged State in App.js to true
+      this.props.userlogStateChanged();
     } catch (error) {
       console.log("ERROR: Email and Password Sign In", error.message);
     }
@@ -63,7 +67,11 @@ class SignInForm extends React.Component {
           value={password}
         />
 
-        <Button variant="primary" type="submit">
+        <Button
+          variant="primary"
+          type="submit"
+          onClick={this.handleEmailSignIn}
+        >
           Log In
         </Button>
       </Form>

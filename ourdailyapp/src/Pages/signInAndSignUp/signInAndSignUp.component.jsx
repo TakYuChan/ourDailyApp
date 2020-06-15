@@ -23,29 +23,33 @@ class SignInAndSignUp extends React.Component {
 
   //  ================================= Custom Methods =================================
   handleRenderModal = (renderTo) => {
-    this.setState({renderFor: renderTo});    
-  }
+    this.setState({ renderFor: renderTo });
+  };
 
-  renderModal = {
-    
-  }
+  renderModal = {};
 
   renderModalHeader() {
     const { renderFor } = this.state;
 
     let modalHeader = null;
 
-    switch(renderFor) {
+    switch (renderFor) {
       case "signIn":
-        modalHeader = <Modal.Title className="signInSignUp-title">Sign In</Modal.Title>;
+        modalHeader = (
+          <Modal.Title className="signInSignUp-title">Sign In</Modal.Title>
+        );
         break;
       case "signUp":
-        modalHeader = <Modal.Title className="signUpSignUp-title">Sign Up</Modal.Title>;
+        modalHeader = (
+          <Modal.Title className="signUpSignUp-title">Sign Up</Modal.Title>
+        );
         break;
       case "registerSuccess":
-        modalHeader = <Modal.Title className="registerSuccess-title">
-                      Successfully Registered
-                      </Modal.Title>
+        modalHeader = (
+          <Modal.Title className="registerSuccess-title">
+            Successfully Registered
+          </Modal.Title>
+        );
         break;
       default: {
         modalHeader = <h1>Modal Header Error</h1>;
@@ -60,17 +64,22 @@ class SignInAndSignUp extends React.Component {
 
     let modalBody = null;
 
-    switch(renderFor) {
+    switch (renderFor) {
       case "signIn":
-        modalBody = <SignInForm />;
+        modalBody = (
+          <SignInForm userlogStateChanged={this.props.userlogStateChanged} />
+        );
         break;
       case "signUp":
-        modalBody = <SignUpForm
-                handleRenderModal={this.handleRenderModal}
-                />;
+        modalBody = (
+          <SignUpForm
+            handleRenderModal={this.handleRenderModal}
+            userlogStateChanged={this.props.userlogStateChanged}
+          />
+        );
         break;
       case "registerSuccess":
-        modalBody = <RegisterSuccessScene />
+        modalBody = <RegisterSuccessScene />;
         break;
       default: {
         modalBody = <p>Modal body Error</p>;
@@ -81,49 +90,49 @@ class SignInAndSignUp extends React.Component {
   }
 
   renderModalFooter() {
-        const { renderFor } = this.state;
+    const { renderFor } = this.state;
 
     let modalFooter = null;
 
-    switch(renderFor) {
+    switch (renderFor) {
       case "signIn":
         modalFooter = [
-              <Button
-                key="1"
-                variant="secondary"
-                className="btn--toSignUp"
-                onClick={() => {this.handleRenderModal("signUp")}}
-              >
-                Create a new account
-              </Button>,
-              <Button
-                key="2"
-                variant="primary"
-                className="btn--googleAuth"
-                onClick={signInWithGoogle}
-              >
-                <i className="iconfont icon-google"></i>
-                Google Log In
-              </Button>,
-            ];
+          <Button
+            key="1"
+            variant="secondary"
+            className="btn--toSignUp"
+            onClick={() => {
+              this.handleRenderModal("signUp");
+            }}
+          >
+            Create a new account
+          </Button>,
+          <Button
+            key="2"
+            variant="primary"
+            className="btn--googleAuth"
+            onClick={signInWithGoogle}
+          >
+            <i className="iconfont icon-google"></i>
+            Google Log In
+          </Button>,
+        ];
         break;
       case "signUp":
-        modalFooter = <Button
-                variant="secondary"
-                className="btn--toSignIn"
-                onClick={() => {this.handleRenderModal("signIn")}}
-              >
-                I already have an account
-              </Button>;
+        modalFooter = (
+          <Button
+            variant="secondary"
+            className="btn--toSignIn"
+            onClick={() => {
+              this.handleRenderModal("signIn");
+            }}
+          >
+            I already have an account
+          </Button>
+        );
         break;
       case "registerSuccess":
-        modalFooter = <Button
-                variant="secondary"
-                className="btn--toSignIn"
-                onClick={() => {this.handleRenderModal("signIn")}}
-              >
-                Sign In Now
-              </Button>
+        modalFooter = null;
         break;
       default: {
         modalFooter = <p>Modal footer Error</p>;
@@ -133,27 +142,26 @@ class SignInAndSignUp extends React.Component {
     return modalFooter;
   }
 
-
   //   ================================= Life Cycle Hooks =================================
   render() {
     return (
       <div className="signInSignUpModal">
-        <Modal show={this.props.show} onHide={() => {
-          this.props.handleClose();
+        <Modal
+          show={this.props.show}
+          onHide={() => {
+            this.props.handleClose();
 
-          setTimeout(() => {
-            this.setState({renderFor: "signIn"});
-          }, 600);
-        }} centered>
+            setTimeout(() => {
+              this.setState({ renderFor: "signIn" });
+            }, 600);
+          }}
+          centered
+        >
           {/* =========== Modal Header ============ */}
-          <Modal.Header closeButton>
-            {this.renderModalHeader()}
-          </Modal.Header>
+          <Modal.Header closeButton>{this.renderModalHeader()}</Modal.Header>
 
           {/* =========== Modal Body ============ */}
-          <Modal.Body>
-            {this.renderModalBody()}
-          </Modal.Body>
+          <Modal.Body>{this.renderModalBody()}</Modal.Body>
 
           {/* =========== Modal Footer ============ */}
           <Modal.Footer className="footer">

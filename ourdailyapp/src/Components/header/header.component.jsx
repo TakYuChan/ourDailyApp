@@ -12,7 +12,7 @@ import Logo from "../logo/logo.component";
 
 import SignInAndSignUp from "../../Pages/signInAndSignUp/signInAndSignUp.component";
 
-import SignInSignOutButton from "../../ComponentsNotReuse/signInSignOutButton/signInSignOutButton.component"
+import SignInSignOutButton from "../../ComponentsNotReuse/signInSignOutButton/signInSignOutButton.component";
 
 import DropDownHeader from "../../ComponentsNotReuse/profileDropDownHeader/profileDropDownHeader.component";
 
@@ -29,22 +29,19 @@ class Header extends React.Component {
   // ========================= Custom Methods =========================
   handleSignInSignUpShow = () => this.setState({ showSignInSignUpModal: true });
   handleSignInSignUpClose = () =>
-    this.setState({ showSignInSignUpModal: false
-    });
+    this.setState({ showSignInSignUpModal: false });
 
   profileDropDownStyle() {
-    if(this.props.currentUser) {
-
-      return (this.props.currentUser.photoURL) ? 
-      {
-        backgroundImage: `url(${this.props.currentUser.photoURL})`,
-      } : {
-        background: 'white',
-      }
+    if (this.props.currentUser) {
+      return this.props.currentUser.photoURL
+        ? {
+            backgroundImage: `url(${this.props.currentUser.photoURL})`,
+          }
+        : {
+            background: "white",
+          };
     }
   }
-
-
 
   // ========================= Life Cycle Hooks =========================
   render() {
@@ -54,7 +51,12 @@ class Header extends React.Component {
       <header className="header">
         <nav>
           {/* ====================== Logo ====================== */}
-          <Logo wrapperId="header-logo-wrapper" id="header-logo" triggerClosingNav={this.props.triggerClosingNav} withLink={true} />
+          <Logo
+            wrapperId="header-logo-wrapper"
+            id="header-logo"
+            triggerClosingNav={this.props.triggerClosingNav}
+            withLink={true}
+          />
 
           {/* ====================== Change language Badge ====================== */}
           <div className="list">
@@ -104,50 +106,56 @@ class Header extends React.Component {
             {/* ====================== Profile Drop Down ====================== */}
 
             <Dropdown>
-            <Dropdown.Toggle id="dropdown-basic-button" title="" style={this.props.currentUser ? this.profileDropDownStyle() : null}>
+              <Dropdown.Toggle
+                id="dropdown-basic-button"
+                title=""
+                style={
+                  this.props.currentUser ? this.profileDropDownStyle() : null
+                }
+              ></Dropdown.Toggle>
 
-            </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <DropDownHeader currentUser={this.props.currentUser} />
 
-            <Dropdown.Menu>
-              <DropDownHeader currentUser={this.props.currentUser}/>
+                <Dropdown.Divider />
 
-              <Dropdown.Divider />
+                {/* =========== openSignInModal Btn ============= */}
+                <SignInSignOutButton
+                  userlogStateChanged={this.props.userlogStateChanged}
+                  handleSignInSignUpShow={this.handleSignInSignUpShow}
+                  userLogged={this.props.userLogged}
+                />
 
-              {/* =========== openSignInModal Btn ============= */}
-              <SignInSignOutButton currentUser={this.props.currentUser} handleSignInSignUpShow={this.handleSignInSignUpShow}/>
+                <Dropdown.Item
+                  className="btn--profile"
+                  onClick={() => {
+                    this.props.triggerClosingNav();
+                    this.props.history.push("/profile");
+                  }}
+                >
+                  <i className="iconfont icon-profile"></i>Profile
+                </Dropdown.Item>
 
-
-
-
-
-              <Dropdown.Item
-                className="btn--profile"
-                onClick={() => {
-                  this.props.triggerClosingNav();
-                  this.props.history.push("/profile");
-                }}
-              >
-                <i className="iconfont icon-profile"></i>Profile
-              </Dropdown.Item>
-
-              <Dropdown.Item
-                href="#/action-3"
-                onClick={() => {
-                  this.props.triggerClosingNav();
-                }}
-              >
-                <i className="iconfont icon-Settingscontroloptions"></i>Setting
-              </Dropdown.Item>
+                <Dropdown.Item
+                  href="#/action-3"
+                  onClick={() => {
+                    this.props.triggerClosingNav();
+                  }}
+                >
+                  <i className="iconfont icon-Settingscontroloptions"></i>
+                  Setting
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
 
-              {/* Clicking the Sign In btn will open the SignInAndSignUp modal */}
-              {/* - Passing the "showSignInSignUpModal" to Open / Close Modal */}
-              <SignInAndSignUp
-                show={showSignInSignUpModal}
-                handleClose={this.handleSignInSignUpClose}
-                triggerClosingNav={this.props.triggerClosingNav}
-              />
+            {/* Clicking the Sign In btn will open the SignInAndSignUp modal */}
+            {/* - Passing the "showSignInSignUpModal" to Open / Close Modal */}
+            <SignInAndSignUp
+              show={showSignInSignUpModal}
+              handleClose={this.handleSignInSignUpClose}
+              triggerClosingNav={this.props.triggerClosingNav}
+              userlogStateChanged={this.props.userlogStateChanged}
+            />
           </div>
         </nav>
       </header>

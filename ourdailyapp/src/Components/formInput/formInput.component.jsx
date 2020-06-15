@@ -13,10 +13,8 @@ const FormInput = ({
   handleInputChange,
   value,
   name,
-  minLength,
-  maxLength,
   formText,
-  error
+  error,
 }) => {
   return (
     <Form.Group controlId={id}>

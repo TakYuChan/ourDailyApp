@@ -25,6 +25,7 @@ class App extends React.Component {
       hoverNavItem: null,
 
       currentUser: null,
+      userLogged: false,
     };
   }
 
@@ -65,6 +66,11 @@ class App extends React.Component {
     this.setState({ isNavOpened: false });
   };
 
+  userlogStateChanged = () => {
+    this.state.userLogged === true
+      ? this.setState({ userLogged: false })
+      : this.setState({ userLogged: true });
+  };
 
   //=============== Life Cycle Hooks ===============
 
@@ -73,6 +79,7 @@ class App extends React.Component {
       if (user) {
         // Google Auth and basic email password log in have different data input ways.
         const userRef = await createUserProfileDocument(user);
+        console.log(user);
 
         this.unsubscribeFromUserSnapShot = await userRef.onSnapshot(
           (snapShot) => {
@@ -87,7 +94,6 @@ class App extends React.Component {
             );
           }
         );
-
       } else {
         // Rendewr with currentUser to null
         this.setState({ currentUser: user });
@@ -102,7 +108,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { isNavOpened, hoverNavItem, currentUser } = this.state;
+    const { isNavOpened, hoverNavItem, currentUser, userLogged } = this.state;
 
     return [
       <Header
@@ -111,6 +117,8 @@ class App extends React.Component {
         isNavOpened={isNavOpened}
         triggerClosingNav={this.handleNavLinkClick}
         currentUser={currentUser}
+        userlogStateChanged={this.userlogStateChanged}
+        userLogged={userLogged}
       />,
       <FloatNav
         isNavOpened={isNavOpened}
