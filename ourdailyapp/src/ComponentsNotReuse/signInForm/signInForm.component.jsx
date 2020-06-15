@@ -3,31 +3,72 @@ import "./signInForm.style.scss";
 
 import { Form, Button } from "react-bootstrap";
 
-const SignInForm = () => {
-  return (
-    <Form>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+import FormInput from "../../Components/formInput/formInput.component";
 
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group controlId="formConfirmPassword">
-        <Form.Label>Confirm Password</Form.Label>
-        <Form.Control type="password" placeholder="Confirm Password" />
-      </Form.Group>
+import { auth } from "../../firebase/firebase.utils";
 
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
-  );
-};
+class SignInForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+    };
+  }
+  //  ================================= Custom Methods =================================
+  handleEmailSignIn = async (event) => {
+    event.preventDefault();
+
+    const { email, password } = this.state;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+
+      //Clear email and password input after clicking sign in
+      this.setState({ email: "", password: "" });
+    } catch (error) {
+      console.log("ERROR: Email and Password Sign In", error.message);
+    }
+  };
+
+  handleInputChange = (event) => {
+    const { value, name } = event.target;
+
+    this.setState({ [name]: value });
+  };
+
+  //   ================================= Life Cycle Hooks =================================
+  render() {
+    const { email, password } = this.state;
+
+    return (
+      <Form className="signInForm">
+        <FormInput
+          id="signInEmail"
+          labelText="Email address"
+          type="email"
+          name="email"
+          placeholder="Enter email"
+          handleInputChange={this.handleInputChange}
+          value={email}
+        />
+
+        <FormInput
+          id="signInPassword"
+          labelText="Passwords"
+          type="password"
+          name="password"
+          placeholder="Password"
+          handleInputChange={this.handleInputChange}
+          value={password}
+        />
+
+        <Button variant="primary" type="submit">
+          Log In
+        </Button>
+      </Form>
+    );
+  }
+}
 
 export default SignInForm;

@@ -1,18 +1,21 @@
 import React from "react";
 import "./logo.style.scss";
 
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 // import LogoImg from "../../../public/images/assets/logo.png";
 
-const Logo = ({ id, wrapperId }) => {
+const Logo = ({ id, wrapperId, triggerClosingNav, withLink, history }) => {
   return (
-    <div className="logo-wrapper" id={wrapperId}>
-      <Link to="/">
+    <div className="logo-wrapper" id={wrapperId} onClick={() => {
+      if(withLink) {
+          triggerClosingNav();
+          withLink && history.push('/');
+      }
+    }}>
         <img src={"images/assets/logo.png"} id={id} alt="logo" />
-      </Link>
     </div>
   );
 };
 
-export default Logo;
+export default withRouter(Logo);

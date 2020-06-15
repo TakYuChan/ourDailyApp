@@ -10,6 +10,8 @@ import NoMatch from "./Pages/NoMatchPage/noMatchPage.component";
 import Header from "./Components/header/header.component";
 import FloatNav from "./Components/floatNav/floatNav.component";
 
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+
 import "./App.css";
 
 class App extends React.Component {
@@ -20,8 +22,14 @@ class App extends React.Component {
       engLanguage: true,
 
       hoverNavItem: null,
+
+      currentUser: null,
     };
   }
+
+  //=============== Custom Variables ===============
+  unsubscribeFromAuthState = null;
+  unsubscribeFromUserSnapShot = null;
 
   //=============== Custom method ===============
   handleSvgClick = () => {
@@ -56,16 +64,52 @@ class App extends React.Component {
     this.setState({ isNavOpened: false });
   };
 
+
   //=============== Life Cycle Hooks ===============
 
+  componentDidMount() {
+    this.unsubscribeFromAuthState = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        // Google Auth and basic email password log in have different data input ways.
+        const userRef = await createUserProfileDocument(user);
+
+        this.unsubscribeFromUserSnapShot = await userRef.onSnapshot(
+          (snapShot) => {
+            this.setState(
+              {
+                currentUser: {
+                  id: snapShot.id,
+                  ...snapShot.data(),
+                },
+              },
+              () => console.log(this.state.currentUser)
+            );
+          }
+        );
+
+      } else {
+        // Rendewr with currentUser to null
+        this.setState({ currentUser: user });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    // Unsubscribe listeners
+    this.unsubscribeFromAuthState();
+    this.unsubscribeFromUserSnapShot();
+  }
+
   render() {
-    const { isNavOpened, hoverNavItem } = this.state;
+    const { isNavOpened, hoverNavItem, currentUser } = this.state;
 
     return [
       <Header
         handleSvgClick={this.handleSvgClick}
         handleLanguageClick={this.handleLanguageClick}
         isNavOpened={isNavOpened}
+        triggerClosingNav={this.handleNavLinkClick}
+        currentUser={currentUser}
       />,
       <FloatNav
         isNavOpened={isNavOpened}
