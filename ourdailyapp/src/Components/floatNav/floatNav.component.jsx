@@ -1,6 +1,9 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectHidden } from "../../redux/nav/nav.selectors";
 
 import "./floatNav.style.scss";
 
@@ -8,7 +11,7 @@ import FloatNavContent from "../../ComponentsNotReuse/floatNavContent/floatNavCo
 
 const FloatNav = (props) => {
   return (
-    <div className={`${props.isNavOpened ? "active" : ""} float-nav`}>
+    <div className={`${!props.navHidden ? "active" : ""} float-nav`}>
       <ul className="float-nav-list">
         <Link
           onMouseOver={() => {
@@ -47,4 +50,8 @@ const FloatNav = (props) => {
   );
 };
 
-export default FloatNav;
+const mapStateToProps = createStructuredSelector({
+  navHidden: selectHidden,
+});
+
+export default connect(mapStateToProps)(FloatNav);

@@ -2,8 +2,8 @@ import React from "react";
 
 import "./signInAndSignUp.style.scss";
 
+import { connect } from "react-redux";
 import { Modal, Button } from "react-bootstrap";
-
 import { signInWithGoogle } from "../../firebase/firebase.utils";
 
 import SignInForm from "../../ComponentsNotReuse/signInForm/signInForm.component";
@@ -25,8 +25,6 @@ class SignInAndSignUp extends React.Component {
   handleRenderModal = (renderTo) => {
     this.setState({ renderFor: renderTo });
   };
-
-  renderModal = {};
 
   renderModalHeader() {
     const { renderFor } = this.state;
@@ -173,4 +171,4 @@ class SignInAndSignUp extends React.Component {
   }
 }
 
-export default SignInAndSignUp;
+export default connect()(SignInAndSignUp);

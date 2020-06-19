@@ -3,6 +3,7 @@ import React from "react";
 import "./App.css";
 
 import { Switch, Route } from "react-router-dom";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import MainPage from "./Pages/mainPage/mainPage.component";
 import ProfilePage from "./Pages/ProfilePage/profilePage.component";
@@ -11,15 +12,12 @@ import NoMatch from "./Pages/NoMatchPage/noMatchPage.component";
 import Header from "./Components/header/header.component";
 import FloatNav from "./Components/floatNav/floatNav.component";
 
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-
 import "./App.css";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      isNavOpened: false,
       engLanguage: true,
 
       hoverNavItem: null,
@@ -33,23 +31,7 @@ class App extends React.Component {
   unsubscribeFromAuthState = null;
   unsubscribeFromUserSnapShot = null;
 
-  //=============== Custom method ===============
-  handleSvgClick = () => {
-    const { isNavOpened } = this.state;
-
-    // If we are opening the float Nav by clicking the svg btn,
-    // then refresh the float nav content to "Welcome..."
-    !isNavOpened && this.setState({ hoverNavItem: null });
-
-    // Dynamically Changing the Float Nav Content
-    isNavOpened
-      ? this.setState({ isNavOpened: false })
-      : this.setState({ isNavOpened: true });
-
-    return;
-  };
-
-  handleLanguageClick = () => {
+  changeLanguage = () => {
     const { engLanguage } = this.state;
 
     engLanguage
@@ -61,16 +43,15 @@ class App extends React.Component {
     this.setState({ hoverNavItem: item });
   };
 
-  //Closing the Float Nav if we click on the Link inside it
-  handleNavLinkClick = () => {
-    this.setState({ isNavOpened: false });
-  };
-
   userlogStateChanged = () => {
-    this.state.userLogged === true
+    this.state.userLogged
       ? this.setState({ userLogged: false })
       : this.setState({ userLogged: true });
   };
+
+  // closeSignInSignUpModal = () => {
+  //   this.setState({ showSignInSignUpModal: false });
+  // };
 
   //=============== Life Cycle Hooks ===============
 
@@ -80,6 +61,11 @@ class App extends React.Component {
         // Google Auth and basic email password log in have different data input ways.
         const userRef = await createUserProfileDocument(user);
         console.log(user);
+
+        // Userlogged to true
+        this.setState({ userLogged: true });
+
+        // Close Floating Nav
 
         this.unsubscribeFromUserSnapShot = await userRef.onSnapshot(
           (snapShot) => {
@@ -96,7 +82,8 @@ class App extends React.Component {
         );
       } else {
         // Rendewr with currentUser to null
-        this.setState({ currentUser: user });
+        // And Userlogged to false
+        this.setState({ currentUser: user, userLogged: false });
       }
     });
   }
@@ -108,23 +95,19 @@ class App extends React.Component {
   }
 
   render() {
-    const { isNavOpened, hoverNavItem, currentUser, userLogged } = this.state;
+    const { hoverNavItem, currentUser, userLogged } = this.state;
 
     return [
       <Header
-        handleSvgClick={this.handleSvgClick}
-        handleLanguageClick={this.handleLanguageClick}
-        isNavOpened={isNavOpened}
-        triggerClosingNav={this.handleNavLinkClick}
+        handleLanguageClick={this.changeLanguage}
         currentUser={currentUser}
         userlogStateChanged={this.userlogStateChanged}
         userLogged={userLogged}
       />,
       <FloatNav
-        isNavOpened={isNavOpened}
         handleNavItemHover={this.handleNavItemHover}
         hoverNavItem={hoverNavItem}
-        handleNavLinkClick={this.handleNavLinkClick}
+        handleNavLinkClick={this.closeFloatingNav}
       />,
       <Switch>
         <Route exact path="/" component={MainPage} />

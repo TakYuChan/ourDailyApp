@@ -1,20 +1,21 @@
 import React from "react";
 import "./header.style.scss";
-import { ReactComponent as NavIcon } from "../../assets/nav.svg";
-
-import { Button, Dropdown } from "react-bootstrap";
 
 import { withRouter } from "react-router-dom";
-
-import ReactToolTip from "react-tooltip";
-
-import Logo from "../logo/logo.component";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectHidden } from "../../redux/nav/nav.selectors";
+import { toggleNavHidden } from "../../redux/nav/nav.actions";
 
 import SignInAndSignUp from "../../Pages/signInAndSignUp/signInAndSignUp.component";
 
-import SignInSignOutButton from "../../ComponentsNotReuse/signInSignOutButton/signInSignOutButton.component";
+import { Button } from "react-bootstrap";
+import Logo from "../logo/logo.component";
+import ReactToolTip from "react-tooltip";
+import { ReactComponent as NavIcon } from "../../assets/nav.svg";
 
-import DropDownHeader from "../../ComponentsNotReuse/profileDropDownHeader/profileDropDownHeader.component";
+import ProfileDropDownMenu from "../../ComponentsNotReuse/profileDropDownMenu/profileDropDownMenu.component";
+import CustomButton from "../customButton/customButton.component";
 
 class Header extends React.Component {
   constructor(props) {
@@ -24,26 +25,11 @@ class Header extends React.Component {
     };
   }
 
-  // ========================= Custom Variables =========================
-
   // ========================= Custom Methods =========================
   handleSignInSignUpShow = () => this.setState({ showSignInSignUpModal: true });
   handleSignInSignUpClose = () =>
     this.setState({ showSignInSignUpModal: false });
 
-  profileDropDownStyle() {
-    if (this.props.currentUser) {
-      return this.props.currentUser.photoURL
-        ? {
-            backgroundImage: `url(${this.props.currentUser.photoURL})`,
-          }
-        : {
-            background: "white",
-          };
-    }
-  }
-
-  // ========================= Life Cycle Hooks =========================
   render() {
     const { showSignInSignUpModal } = this.state;
 
@@ -54,7 +40,6 @@ class Header extends React.Component {
           <Logo
             wrapperId="header-logo-wrapper"
             id="header-logo"
-            triggerClosingNav={this.props.triggerClosingNav}
             withLink={true}
           />
 
@@ -81,79 +66,35 @@ class Header extends React.Component {
 
             {/* ====================== SVG btn -> Float Nav ====================== */}
 
-            <button
-              className={`${
-                this.props.isNavOpened ? "active" : ""
-              } svg-wrapper`}
+            <CustomButton
+              className={`${this.props.navHidden ? "" : "active"} svg-wrapper`}
               onClick={() => {
-                this.props.handleSvgClick();
+                this.props.toggleNav();
               }}
-              data-tip
-              data-for="navTip"
+              dataFor="navTip"
+              withToolTip={true}
+              toolTipId="navTip"
+              toolTipPlace="bottom"
+              toolTipEffect="solid"
+              toolTipClass="tooltip"
+              toolTipText="Navigation Menu"
             >
               <NavIcon />
-            </button>
-            <ReactToolTip
-              arrowColor="#454e56"
-              id="navTip"
-              placement="bottom"
-              effect="solid"
-              className="tooltip"
-            >
-              Navigation Menu
-            </ReactToolTip>
+            </CustomButton>
 
             {/* ====================== Profile Drop Down ====================== */}
 
-            <Dropdown>
-              <Dropdown.Toggle
-                id="dropdown-basic-button"
-                title=""
-                style={
-                  this.props.currentUser ? this.profileDropDownStyle() : null
-                }
-              ></Dropdown.Toggle>
+            <ProfileDropDownMenu
+              handleSignInSignUpShow={this.handleSignInSignUpShow}
+              currentUser={this.props.currentUser}
+              userLogged={this.props.userLogged}
+              userlogStateChanged={this.props.userlogStateChanged}
+            />
 
-              <Dropdown.Menu>
-                <DropDownHeader currentUser={this.props.currentUser} />
-
-                <Dropdown.Divider />
-
-                {/* =========== openSignInModal Btn ============= */}
-                <SignInSignOutButton
-                  userlogStateChanged={this.props.userlogStateChanged}
-                  handleSignInSignUpShow={this.handleSignInSignUpShow}
-                  userLogged={this.props.userLogged}
-                />
-
-                <Dropdown.Item
-                  className="btn--profile"
-                  onClick={() => {
-                    this.props.triggerClosingNav();
-                    this.props.history.push("/profile");
-                  }}
-                >
-                  <i className="iconfont icon-profile"></i>Profile
-                </Dropdown.Item>
-
-                <Dropdown.Item
-                  href="#/action-3"
-                  onClick={() => {
-                    this.props.triggerClosingNav();
-                  }}
-                >
-                  <i className="iconfont icon-Settingscontroloptions"></i>
-                  Setting
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-
-            {/* Clicking the Sign In btn will open the SignInAndSignUp modal */}
             {/* - Passing the "showSignInSignUpModal" to Open / Close Modal */}
             <SignInAndSignUp
               show={showSignInSignUpModal}
               handleClose={this.handleSignInSignUpClose}
-              triggerClosingNav={this.props.triggerClosingNav}
               userlogStateChanged={this.props.userlogStateChanged}
             />
           </div>
@@ -163,4 +104,12 @@ class Header extends React.Component {
   }
 }
 
-export default withRouter(Header);
+const mapStateToProps = createStructuredSelector({
+  navHidden: selectHidden,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleNav: () => dispatch(toggleNavHidden()),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
