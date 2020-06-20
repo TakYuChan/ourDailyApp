@@ -1,11 +1,12 @@
 import React from "react";
 import "./signInForm.style.scss";
 
-import { Form, Button } from "react-bootstrap";
-
-import FormInput from "../../Components/formInput/formInput.component";
-
 import { auth } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
+import { userLoggedOn } from "../../redux/user/user.actions";
+
+import { Form, Button } from "react-bootstrap";
+import FormInput from "../../Components/formInput/formInput.component";
 
 class SignInForm extends React.Component {
   constructor(props) {
@@ -22,14 +23,14 @@ class SignInForm extends React.Component {
     const { email, password } = this.state;
 
     try {
-      console.log("hi");
+      // 1. sign in
       await auth.signInWithEmailAndPassword(email, password);
 
-      //Clear email and password input after clicking sign in
+      // 2. Clear email and password input after clicking sign in
       this.setState({ email: "", password: "" });
 
-      //Change userLogged State in App.js to true
-      this.props.userlogStateChanged();
+      // 3. Change userLogged State in App.js to true
+      this.props.userLoggedOn();
     } catch (error) {
       console.log("ERROR: Email and Password Sign In", error.message);
     }
@@ -79,4 +80,8 @@ class SignInForm extends React.Component {
   }
 }
 
-export default SignInForm;
+const mapDispatchToProps = (dispatch) => ({
+  userLoggedOn: () => dispatch(userLoggedOn()),
+});
+
+export default connect(null, mapDispatchToProps)(SignInForm);

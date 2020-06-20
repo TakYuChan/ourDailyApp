@@ -3,7 +3,12 @@ import "./profileDropDownMenu.style.scss";
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import { closeNav } from "../../redux/nav/nav.actions";
+import {
+  selectCurrentUser,
+  selectUserLogged,
+} from "../../redux/user/user.selectors";
 
 import SignInSignOutButton from "../../ComponentsNotReuse/signInSignOutButton/signInSignOutButton.component";
 import DropDownHeader from "../../ComponentsNotReuse/profileDropDownHeader/profileDropDownHeader.component";
@@ -44,11 +49,7 @@ class ProfileDropDownMenu extends React.Component {
           <Dropdown.Divider />
 
           {/* =========== openSignInModal Btn ============= */}
-          <SignInSignOutButton
-            userlogStateChanged={this.props.userlogStateChanged}
-            handleSignInSignUpShow={this.props.handleSignInSignUpShow}
-            userLogged={this.props.userLogged}
-          />
+          <SignInSignOutButton />
 
           <Dropdown.Item
             className="btn--profile"
@@ -74,10 +75,15 @@ class ProfileDropDownMenu extends React.Component {
   }
 }
 
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  userLogged: selectUserLogged,
+});
+
 const mapDispatchToState = (dispatch) => ({
   closeNav: () => dispatch(closeNav()),
 });
 
 export default withRouter(
-  connect(null, mapDispatchToState)(ProfileDropDownMenu)
+  connect(mapStateToProps, mapDispatchToState)(ProfileDropDownMenu)
 );

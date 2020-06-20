@@ -3,32 +3,33 @@ import React from "react";
 import "./signInAndSignUp.style.scss";
 
 import { connect } from "react-redux";
-import { Modal, Button } from "react-bootstrap";
+import { createStructuredSelector } from "reselect";
 import { signInWithGoogle } from "../../firebase/firebase.utils";
+import {
+  selectRenderFor,
+  selectShowSignInUpModal,
+} from "../../redux/signInUp/signInUp.selector";
+import {
+  setRenderForSignIn,
+  setRenderForSignUp,
+  turnSignInUpOFF,
+} from "../../redux/signInUp/signInUp.actions";
 
+import { Modal, Button } from "react-bootstrap";
 import SignInForm from "../../ComponentsNotReuse/signInForm/signInForm.component";
 import SignUpForm from "../../ComponentsNotReuse/signUpForm/signUpForm.component";
 import RegisterSuccessScene from "../../ComponentsNotReuse/registerSuccess/registerSuccess.component";
 
-class SignInAndSignUp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      renderFor: "signIn",
-      toSignIn: true,
-    };
-  }
-
-  //   ================================= Custom Variables =================================
-
+const SignInAndSignUp = ({
+  renderFor,
+  showSignInUpModal,
+  renderForSignUp,
+  renderForSignIn,
+  turnSignInUpOFF,
+}) => {
   //  ================================= Custom Methods =================================
-  handleRenderModal = (renderTo) => {
-    this.setState({ renderFor: renderTo });
-  };
 
-  renderModalHeader() {
-    const { renderFor } = this.state;
-
+  const renderModalHeader = () => {
     let modalHeader = null;
 
     switch (renderFor) {
@@ -55,26 +56,17 @@ class SignInAndSignUp extends React.Component {
     }
 
     return modalHeader;
-  }
+  };
 
-  renderModalBody() {
-    const { renderFor } = this.state;
-
+  const renderModalBody = () => {
     let modalBody = null;
 
     switch (renderFor) {
       case "signIn":
-        modalBody = (
-          <SignInForm userlogStateChanged={this.props.userlogStateChanged} />
-        );
+        modalBody = <SignInForm />;
         break;
       case "signUp":
-        modalBody = (
-          <SignUpForm
-            handleRenderModal={this.handleRenderModal}
-            userlogStateChanged={this.props.userlogStateChanged}
-          />
-        );
+        modalBody = <SignUpForm />;
         break;
       case "registerSuccess":
         modalBody = <RegisterSuccessScene />;
@@ -85,11 +77,9 @@ class SignInAndSignUp extends React.Component {
     }
 
     return modalBody;
-  }
+  };
 
-  renderModalFooter() {
-    const { renderFor } = this.state;
-
+  const renderModalFooter = () => {
     let modalFooter = null;
 
     switch (renderFor) {
@@ -100,7 +90,7 @@ class SignInAndSignUp extends React.Component {
             variant="secondary"
             className="btn--toSignUp"
             onClick={() => {
-              this.handleRenderModal("signUp");
+              renderForSignUp();
             }}
           >
             Create a new account
@@ -122,7 +112,7 @@ class SignInAndSignUp extends React.Component {
             variant="secondary"
             className="btn--toSignIn"
             onClick={() => {
-              this.handleRenderModal("signIn");
+              renderForSignIn();
             }}
           >
             I already have an account
@@ -138,37 +128,45 @@ class SignInAndSignUp extends React.Component {
     }
 
     return modalFooter;
-  }
+  };
 
   //   ================================= Life Cycle Hooks =================================
-  render() {
-    return (
-      <div className="signInSignUpModal">
-        <Modal
-          show={this.props.show}
-          onHide={() => {
-            this.props.handleClose();
 
-            setTimeout(() => {
-              this.setState({ renderFor: "signIn" });
-            }, 600);
-          }}
-          centered
-        >
-          {/* =========== Modal Header ============ */}
-          <Modal.Header closeButton>{this.renderModalHeader()}</Modal.Header>
+  return (
+    <div className="signInSignUpModal">
+      <Modal
+        show={showSignInUpModal}
+        onHide={() => {
+          turnSignInUpOFF();
 
-          {/* =========== Modal Body ============ */}
-          <Modal.Body>{this.renderModalBody()}</Modal.Body>
+          setTimeout(() => {
+            renderForSignIn();
+          }, 600);
+        }}
+        centered
+      >
+        {/* =========== Modal Header ============ */}
+        <Modal.Header closeButton>{renderModalHeader()}</Modal.Header>
 
-          {/* =========== Modal Footer ============ */}
-          <Modal.Footer className="footer">
-            {this.renderModalFooter()}
-          </Modal.Footer>
-        </Modal>
-      </div>
-    );
-  }
-}
+        {/* =========== Modal Body ============ */}
+        <Modal.Body>{renderModalBody()}</Modal.Body>
 
-export default connect()(SignInAndSignUp);
+        {/* =========== Modal Footer ============ */}
+        <Modal.Footer className="footer">{renderModalFooter()}</Modal.Footer>
+      </Modal>
+    </div>
+  );
+};
+
+const mapStateToProps = createStructuredSelector({
+  renderFor: selectRenderFor,
+  showSignInUpModal: selectShowSignInUpModal,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  renderForSignIn: () => dispatch(setRenderForSignIn()),
+  renderForSignUp: () => dispatch(setRenderForSignUp()),
+  turnSignInUpOFF: () => dispatch(turnSignInUpOFF()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignInAndSignUp);

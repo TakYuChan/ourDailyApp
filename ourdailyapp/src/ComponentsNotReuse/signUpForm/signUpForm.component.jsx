@@ -5,9 +5,12 @@ import { Form, Button } from "react-bootstrap";
 
 import FormInput from "../../Components/formInput/formInput.component";
 
-import { signUpForminputCheck } from "../../utils/errorChecking.js";
-
 import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
+import { userLoggedOn } from "../../redux/user/user.actions";
+import { setRenderForRegisterSuccess } from "../../redux/signInUp/signInUp.actions";
+
+import { signUpForminputCheck } from "../../utils/errorChecking.js";
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -78,10 +81,10 @@ class SignUpForm extends React.Component {
       // 3. ================== Successfully Signed In ==================
 
       // Registration Successful will direct users to the "registerSuccessScene"
-      this.props.handleRenderModal("registerSuccess");
+      this.props.renderForRegisterSuccess();
 
       // Immediately change the userLogged state in App.js to true;
-      this.props.userlogStateChanged();
+      this.props.userLoggedOn();
     } catch (error) {
       console.log(`Error creating user with email and password`, error.message);
     }
@@ -149,4 +152,9 @@ class SignUpForm extends React.Component {
   }
 }
 
-export default SignUpForm;
+const mapDispatchToProps = (dispatch) => ({
+  userLoggedOn: () => dispatch(userLoggedOn()),
+  renderForRegisterSuccess: () => dispatch(setRenderForRegisterSuccess()),
+});
+
+export default connect(null, mapDispatchToProps)(SignUpForm);

@@ -4,54 +4,74 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectHidden } from "../../redux/nav/nav.selectors";
+import { closeNav } from "../../redux/nav/nav.actions";
 
 import "./floatNav.style.scss";
 
 import FloatNavContent from "../../ComponentsNotReuse/floatNavContent/floatNavContent.component";
 
-const FloatNav = (props) => {
-  return (
-    <div className={`${!props.navHidden ? "active" : ""} float-nav`}>
-      <ul className="float-nav-list">
-        <Link
-          onMouseOver={() => {
-            props.handleNavItemHover("todo");
-          }}
-          onClick={props.handleNavLinkClick}
-          to="/todolist"
-          className="float-nav-item"
-        >
-          ToDoList
-        </Link>
-        <Link
-          onMouseOver={() => {
-            props.handleNavItemHover("games");
-          }}
-          onClick={props.handleNavLinkClick}
-          to="/"
-          className="float-nav-item"
-        >
-          Games
-        </Link>
-        <Link
-          onMouseOver={() => {
-            props.handleNavItemHover("Github");
-          }}
-          onClick={props.handleNavLinkClick}
-          to="/"
-          className="float-nav-item"
-        >
-          Github
-        </Link>
-      </ul>
+class FloatNav extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hoverNavItem: null,
+    };
+  }
 
-      <FloatNavContent hoverNavItem={props.hoverNavItem}></FloatNavContent>
-    </div>
-  );
-};
+  handleNavItemHover = (item) => {
+    this.setState({ hoverNavItem: item });
+  };
+
+  render() {
+    const { hoverNavItem } = this.state;
+
+    return (
+      <div className={`${!this.props.navHidden ? "active" : ""} float-nav`}>
+        <ul className="float-nav-list">
+          <Link
+            onMouseOver={() => {
+              this.handleNavItemHover("todo");
+            }}
+            onClick={closeNav}
+            to="/todolist"
+            className="float-nav-item"
+          >
+            ToDoList
+          </Link>
+          <Link
+            onMouseOver={() => {
+              this.handleNavItemHover("games");
+            }}
+            onClick={closeNav}
+            to="/"
+            className="float-nav-item"
+          >
+            Games
+          </Link>
+          <Link
+            onMouseOver={() => {
+              this.handleNavItemHover("Github");
+            }}
+            onClick={this.props.closeNav}
+            to="/"
+            className="float-nav-item"
+          >
+            Github
+          </Link>
+        </ul>
+
+        <FloatNavContent hoverNavItem={hoverNavItem}></FloatNavContent>
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = createStructuredSelector({
   navHidden: selectHidden,
 });
 
-export default connect(mapStateToProps)(FloatNav);
+const mapDispatchToProps = (dispatch) => ({
+  closeNav: () => dispatch(closeNav()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FloatNav);

@@ -1,21 +1,26 @@
 import React from "react";
 import "./signInSignOutButton.style.scss";
 
+import { auth } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
+import { selectUserLogged } from "../../redux/user/user.selectors";
+import { createStructuredSelector } from "reselect";
+import { userLoggedOFF } from "../../redux/user/user.actions";
+import { toggleSignInUpModal } from "../../redux/signInUp/signInUp.actions";
+
 import { Dropdown } from "react-bootstrap";
 
-import { auth } from "../../firebase/firebase.utils";
-
 const SignInSignOutButton = ({
-  handleSignInSignUpShow,
-  userlogStateChanged,
   userLogged,
+  userLoggedOFF,
+  toggleSignInUpModal,
 }) => {
   return userLogged === true ? (
     <Dropdown.Item
       className="btn--openSignOutModal"
       onClick={() => {
         auth.signOut();
-        userlogStateChanged();
+        userLoggedOFF();
       }}
     >
       <i className="iconfont icon-signOut"></i>
@@ -24,7 +29,7 @@ const SignInSignOutButton = ({
   ) : (
     <Dropdown.Item
       className="btn--openSignInModal"
-      onClick={handleSignInSignUpShow}
+      onClick={toggleSignInUpModal}
     >
       <i className="iconfont icon-signIn"></i>
       Sign In
@@ -32,4 +37,16 @@ const SignInSignOutButton = ({
   );
 };
 
-export default SignInSignOutButton;
+const mapStateToProps = createStructuredSelector({
+  userLogged: selectUserLogged,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleSignInUpModal: () => dispatch(toggleSignInUpModal()),
+  userLoggedOFF: () => dispatch(userLoggedOFF()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignInSignOutButton);

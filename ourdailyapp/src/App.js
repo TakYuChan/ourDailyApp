@@ -4,6 +4,13 @@ import "./App.css";
 
 import { Switch, Route } from "react-router-dom";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { connect } from "react-redux";
+
+import {
+  setUser,
+  userLoggedOn,
+  userLoggedOFF,
+} from "./redux/user/user.actions";
 
 import MainPage from "./Pages/mainPage/mainPage.component";
 import ProfilePage from "./Pages/ProfilePage/profilePage.component";
@@ -15,15 +22,10 @@ import FloatNav from "./Components/floatNav/floatNav.component";
 import "./App.css";
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      engLanguage: true,
-
       hoverNavItem: null,
-
-      currentUser: null,
-      userLogged: false,
     };
   }
 
@@ -31,59 +33,27 @@ class App extends React.Component {
   unsubscribeFromAuthState = null;
   unsubscribeFromUserSnapShot = null;
 
-  changeLanguage = () => {
-    const { engLanguage } = this.state;
-
-    engLanguage
-      ? this.setState({ engLanguage: false })
-      : this.setState({ engLanguage: true });
-  };
-
-  handleNavItemHover = (item) => {
-    this.setState({ hoverNavItem: item });
-  };
-
-  userlogStateChanged = () => {
-    this.state.userLogged
-      ? this.setState({ userLogged: false })
-      : this.setState({ userLogged: true });
-  };
-
-  // closeSignInSignUpModal = () => {
-  //   this.setState({ showSignInSignUpModal: false });
-  // };
-
   //=============== Life Cycle Hooks ===============
 
   componentDidMount() {
     this.unsubscribeFromAuthState = auth.onAuthStateChanged(async (user) => {
       if (user) {
-        // Google Auth and basic email password log in have different data input ways.
+        // 1. Google Auth and basic email password log in have different data input ways.
         const userRef = await createUserProfileDocument(user);
         console.log(user);
 
-        // Userlogged to true
-        this.setState({ userLogged: true });
+        // 2. Turn user logged State On
+        this.props.userLoggedOn();
 
-        // Close Floating Nav
-
-        this.unsubscribeFromUserSnapShot = await userRef.onSnapshot(
-          (snapShot) => {
-            this.setState(
-              {
-                currentUser: {
-                  id: snapShot.id,
-                  ...snapShot.data(),
-                },
-              },
-              () => console.log(this.state.currentUser)
-            );
-          }
-        );
+        // 3. Keep Listening to user data changes and set user state
+        this.unsubscribeFromUserSnapShot = userRef.onSnapshot((snapShot) => {
+          this.props.setUser({ id: snapShot.id, ...snapShot.data() });
+        });
       } else {
         // Rendewr with currentUser to null
         // And Userlogged to false
-        this.setState({ currentUser: user, userLogged: false });
+        this.props.setUser(user);
+        this.props.userLoggedOFF();
       }
     });
   }
@@ -95,19 +65,13 @@ class App extends React.Component {
   }
 
   render() {
-    const { hoverNavItem, currentUser, userLogged } = this.state;
+    const { hoverNavItem } = this.state;
 
     return [
-      <Header
-        handleLanguageClick={this.changeLanguage}
-        currentUser={currentUser}
-        userlogStateChanged={this.userlogStateChanged}
-        userLogged={userLogged}
-      />,
+      <Header />,
       <FloatNav
         handleNavItemHover={this.handleNavItemHover}
         hoverNavItem={hoverNavItem}
-        handleNavLinkClick={this.closeFloatingNav}
       />,
       <Switch>
         <Route exact path="/" component={MainPage} />
@@ -119,4 +83,10 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  setUser: (user) => dispatch(setUser(user)),
+  userLoggedOn: () => dispatch(userLoggedOn()),
+  userLoggedOFF: () => dispatch(userLoggedOFF()),
+});
+
+export default connect(null, mapDispatchToProps)(App);
