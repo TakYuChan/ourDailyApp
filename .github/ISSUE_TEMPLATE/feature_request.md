@@ -7,10 +7,10 @@ assignees: TakYuChan
 
 ---
 
-**Feature**
+### Feature
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
-**Plan**
+### Plan
 A clear and concise description of what you want to happen.
 
 **Describe alternatives you've considered**
