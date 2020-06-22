@@ -13,6 +13,7 @@ import {
 } from "./redux/user/user.actions";
 
 import MainPage from "./Pages/mainPage/mainPage.component";
+import ShopPage from "./Pages/shopPage/shopPage.component";
 import ProfilePage from "./Pages/ProfilePage/profilePage.component";
 import NoMatch from "./Pages/NoMatchPage/noMatchPage.component";
 
@@ -75,7 +76,7 @@ class App extends React.Component {
       />,
       <Switch>
         <Route exact path="/" component={MainPage} />
-        <Route path="/todolist" component={MainPage} />
+        <Route path="/shop" component={ShopPage} />
         <Route path="/profile" component={ProfilePage} />
         <Route component={NoMatch} />
       </Switch>,

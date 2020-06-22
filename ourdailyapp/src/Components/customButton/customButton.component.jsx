@@ -7,7 +7,6 @@ const CustomButton = (props) => {
   return (
     <div className="customButton">
       <button
-        variant={props.variant}
         className={props.className}
         onClick={props.onClick}
         data-tip

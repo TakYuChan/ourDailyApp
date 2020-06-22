@@ -7,16 +7,17 @@ const FloatNavContent = ({ hoverNavItem }) => {
   let contentText = null;
 
   switch (hoverNavItem) {
-    case "todo":
-      contentTitle = "To do list";
-      contentText = "You can note down whatever you think its important here";
+    case "appstore":
+      contentTitle = "App Store";
+      contentText =
+        "Have a look of my mini-applications and buy whatever your like!";
       break;
-    case "games":
-      contentTitle = "Games";
-      contentText = "Have some fun with our friends with my games";
+    case "linkedin":
+      contentTitle = "LinkedIn";
+      contentText = "Click to check my professional profile on LinkedIn";
       break;
 
-    case "Github":
+    case "github":
       contentTitle = "Github";
       contentText = "Have a look at my other projects on Github";
       break;

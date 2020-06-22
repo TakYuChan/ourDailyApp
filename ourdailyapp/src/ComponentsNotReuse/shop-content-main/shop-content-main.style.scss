@@ -1,0 +1,27 @@
+.content-main {
+  display: grid;
+  width: 90%;
+  max-width: 900px;
+  margin-top: 50px;
+
+  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+
+  gap: 20px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1125px) {
+  .content-main {
+    grid-template-columns: 450px;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 550px) {
+  .content-main {
+    grid-template-columns: minmax(100px, 440px);
+    justify-content: center;
+  }
+}

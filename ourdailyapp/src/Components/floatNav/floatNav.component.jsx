@@ -30,27 +30,27 @@ class FloatNav extends React.Component {
         <ul className="float-nav-list">
           <Link
             onMouseOver={() => {
-              this.handleNavItemHover("todo");
+              this.handleNavItemHover("appstore");
             }}
-            onClick={closeNav}
-            to="/todolist"
+            onClick={this.props.closeNav}
+            to="/shop"
             className="float-nav-item"
           >
-            ToDoList
+            AppStore
           </Link>
           <Link
             onMouseOver={() => {
-              this.handleNavItemHover("games");
+              this.handleNavItemHover("linkedin");
             }}
-            onClick={closeNav}
+            onClick={this.props.closeNav}
             to="/"
             className="float-nav-item"
           >
-            Games
+            LinkedIn
           </Link>
           <Link
             onMouseOver={() => {
-              this.handleNavItemHover("Github");
+              this.handleNavItemHover("github");
             }}
             onClick={this.props.closeNav}
             to="/"

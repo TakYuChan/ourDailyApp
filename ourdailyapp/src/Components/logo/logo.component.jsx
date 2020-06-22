@@ -19,7 +19,7 @@ const Logo = ({ id, wrapperId, withLink, history, closeNav }) => {
         }
       }}
     >
-      <img src={"images/assets/logo.png"} id={id} alt="logo" />
+      <img src={"/images/assets/logo.png"} id={id} alt="logo" />
     </div>
   );
 };
