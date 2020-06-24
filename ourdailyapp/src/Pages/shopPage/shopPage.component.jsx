@@ -1,18 +1,20 @@
 import React from "react";
 import "./shopPage.style.scss";
 
-import ShopContentMain from "../../ComponentsNotReuse/shop-content-main/shop-content-main.component";
+import { Route } from "react-router-dom";
 
-const ShopPage = () => {
+import ApplicationOverview from "../../ComponentsNotReuse/applicationOverview/applicationOverview.component";
+import ApplicationDetailPage from "../../Pages/ApplicationDetailPage/applicationDetailPage.component";
+
+const ShopPage = ({ match }) => {
   return (
     <div className="shop-page">
-      <header>
-        <h1 id="applications" className="title">
-          Applications
-        </h1>
-      </header>
-
-      <ShopContentMain />
+      <Route exact path={`${match.path}`} component={ApplicationOverview} />
+      <Route
+        exact
+        path={`${match.path}/:applicationId`}
+        component={ApplicationDetailPage}
+      />
     </div>
   );
 };

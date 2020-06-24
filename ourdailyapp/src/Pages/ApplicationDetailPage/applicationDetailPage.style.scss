@@ -1,0 +1,62 @@
+.application-detail-page {
+  background: var(--mainpage-bg);
+  //   min-height: calc(100vh - var(--nav-height));
+  font-family: "Montserrat", sans-serif;
+  padding-top: 50px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  line-height: 1.8;
+
+  // ====================== Heading =====================
+
+  .heading {
+    border-bottom: 1px solid rgba($color: #535151, $alpha: 0.3);
+    width: 80vw;
+
+    .title {
+      margin-bottom: 50px;
+      text-align: center;
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 700;
+    }
+  }
+
+  // ====================== Content Main =====================
+
+  .app-content-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    padding: 0 5em;
+    font-size: clamp(0.4rem, 1.4vw, 1rem);
+
+    // ====================== Video =====================
+
+    .video-wrapper {
+      //   margin: 0 auto;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%;
+      position: relative;
+      overflow: hidden;
+      .video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  // ====================== Intro =====================
+  .intro {
+    font-weight: 700;
+    font-size: clamp(0.8rem, 1.4vw, 1rem);
+    margin: 1.2em 0;
+  }
+}

@@ -1,4 +1,4 @@
-.content-main {
+.shop-content-main {
   display: grid;
   width: 90%;
   max-width: 900px;
@@ -14,13 +14,13 @@
 }
 
 @media screen and (max-width: 1125px) {
-  .content-main {
+  .shop-content-main {
     grid-template-columns: 450px;
     justify-content: center;
   }
 }
 @media screen and (max-width: 550px) {
-  .content-main {
+  .shop-content-main {
     grid-template-columns: minmax(100px, 440px);
     justify-content: center;
   }
