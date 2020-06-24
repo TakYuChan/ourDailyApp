@@ -26,17 +26,22 @@ const ApplicationDetailPage = ({ appData }) => {
           ></iframe>
         </div>
 
-        <div className="intro">
-          {intros.map((intro) => (
-            <p>{intro}</p>
-          ))}
-        </div>
+        <div className="intro">{intros.map((intro) => intro)}</div>
 
         <div className="tags">
           {tags.map((tag, index) => (
-            <CustomTag background={tagsColor[index]}>{tag}</CustomTag>
+            <CustomTag key={index} background={tagsColor[index]}>
+              {tag}
+            </CustomTag>
           ))}
         </div>
+        {/* ================ Feature Part ================ */}
+        <h2 className="subtitle">⚡ What are the features?</h2>
+        <ul className="feature-list">
+          {features.map((feature) => (
+            <li>{feature}</li>
+          ))}
+        </ul>
       </section>
     </div>
   );

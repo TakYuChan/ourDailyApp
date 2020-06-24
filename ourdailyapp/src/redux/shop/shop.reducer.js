@@ -1,4 +1,4 @@
-import SHOP_DATA from "./shop.data";
+import SHOP_DATA from "./shop.data.jsx";
 
 const INITIAL_STATE = {
   applications: SHOP_DATA,

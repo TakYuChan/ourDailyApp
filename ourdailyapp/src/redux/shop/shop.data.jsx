@@ -1,3 +1,5 @@
+import React from "react";
+
 const SHOP_DATA = {
   todolist: {
     id: 1,
@@ -8,8 +10,19 @@ const SHOP_DATA = {
     appDetails: {
       videoSrc: "https://player.vimeo.com/video/416381401",
       intros: [
-        "The To do list App is built with vanilia Javascript, this is my first project I build after learning vanilia Javascript.",
-        "The goal is to practice my knowledge on manipulating the DOM elements direcly to provide a usable to do list.",
+        <p>
+          The <span className="text-focal">To do list App </span>is built with{" "}
+          <span className="text-focal">Vanilia Javascript</span>, this is my
+          first project I build after learning Vanilia Javascript.
+        </p>,
+        <p>
+          <span className="text-focal">The goal</span> 🎯 is to practice my
+          knowledge on{" "}
+          <span className="text-focal text-underline">
+            manipulating the DOM elements direcly
+          </span>{" "}
+          to provide a usable to do list.
+        </p>,
       ],
       tags: ["html", "css", "javascript"],
       tagsColor: ["orangered", "steelBlue", "limegreen"],
@@ -17,7 +30,7 @@ const SHOP_DATA = {
         "Make use of local storage to save user's to dos",
         "Add + Remove todos",
         "Mark todos as completed",
-        `Filter todos to "all", "completed", and "uncompleted"`,
+        `Filter todos to "all", "completed", and "uncompleted" categories`,
       ],
     },
   },
@@ -30,8 +43,16 @@ const SHOP_DATA = {
     appDetails: {
       videoSrc: "https://player.vimeo.com/video/416381401",
       intros: [
-        "The Coloors App is built with vanilia Javascript and make use of the chroma js library.",
-        "I built this for fun and to learn to utilize external js library.",
+        <p>
+          The <span className="text-focal">Coloors App </span>is built with
+          <span className="text-focal"> Vanilia Javascript </span>and make use
+          of the{" "}
+          <span className="text-focal text-underline">chroma js library.</span>
+        </p>,
+        <p>
+          I built this <span className="text-focal">for fun 🤗 </span>and to
+          learn to utilize external js library.
+        </p>,
       ],
       tags: ["html", "css", "javascript", "chroma.js"],
       tagsColor: ["orangered", "steelblue", "limegreen", "yellowgreen"],
