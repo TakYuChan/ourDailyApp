@@ -4,8 +4,8 @@ const APPLICATIONS_DATA = [
     iconSource: "todo",
   },
   {
-    name: "Todo list",
-    iconSource: "todo",
+    name: "Coloors",
+    iconSource: "coloors",
   },
 ];
 

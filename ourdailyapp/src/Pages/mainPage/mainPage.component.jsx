@@ -11,7 +11,6 @@ const MainPage = () => {
       <div className="logo-style-box">
         <Logo id="mainPage-logo" wrapperId="mainPage-logo-wrapper" />
       </div>
-      {/* <Time /> */}
       <ApplicationWrapper />
     </div>
   );

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { selectApp } from "../../redux/shop/shop.selector";
 
 import CustomTag from "../../Components/customTag/customTag.component";
+import CustomButton from "../../Components/customButton/customButton.component";
 
 const ApplicationDetailPage = ({ appData }) => {
   const { videoSrc, tags, intros, features, tagsColor } = appData.appDetails;
@@ -42,6 +43,11 @@ const ApplicationDetailPage = ({ appData }) => {
             <li>{feature}</li>
           ))}
         </ul>
+
+        {/* ================ Payment part ================ */}
+        <CustomButton className="btn--addToCart" onClick={null}>
+          Buy this app!
+        </CustomButton>
       </section>
     </div>
   );

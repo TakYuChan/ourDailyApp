@@ -4,7 +4,6 @@
   width: 60%;
   max-width: 500px;
   text-align: center;
-  //   border: 2px solid;
   align-self: center;
 
   .nav-content-title {
@@ -13,7 +12,7 @@
 
   .nav-content-text {
     font-size: clamp(1rem, 1.5vw, 1.5rem);
-    line-height: 1.6rem;
+    line-height: 1.5;
   }
 
   .nav-content-title,
