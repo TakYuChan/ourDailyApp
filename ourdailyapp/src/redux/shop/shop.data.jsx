@@ -72,11 +72,11 @@ const SHOP_DATA = {
       ],
     },
   },
-  coloors2: {
+  cmConverter: {
     id: 1,
-    title: "Coloors",
-    description: "Generate random colors",
-    imageSrc: "/images/assets/colors.webp",
+    title: "CM Converter",
+    description: "Convert Youtube comments into PNG",
+    imageSrc: "/images/assets/CM Converter.png",
     route: "coloors",
     appDetails: {
       videoSrc: "https://player.vimeo.com/video/416381401",
