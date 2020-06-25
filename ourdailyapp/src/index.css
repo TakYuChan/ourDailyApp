@@ -97,5 +97,9 @@ code {
   --h-border: 2px dashed var(--nav-bg);
   --nav-border: 2px dashed var(--text-color);
   --card-radius: 0.25em;
+
+  /* commentsConverter-page */
+  --ccp-h1-clr: var(--blue);
+
   transition: all 0.3s ease;
 }

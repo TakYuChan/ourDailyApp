@@ -37,7 +37,12 @@ const ApplicationDetailPage = ({ appData }) => {
           ))}
         </div>
         {/* ================ Feature Part ================ */}
-        <h2 className="subtitle">⚡ What are the features?</h2>
+        <h2 className="subtitle">
+          <span aria-label="thunder" role="img">
+            ⚡
+          </span>{" "}
+          What are the features?
+        </h2>
         <ul className="feature-list">
           {features.map((feature) => (
             <li>{feature}</li>
