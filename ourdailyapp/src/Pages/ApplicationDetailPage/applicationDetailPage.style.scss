@@ -1,0 +1,117 @@
+.application-detail-page {
+  background: var(--mainpage-bg);
+  font-family: "Montserrat", sans-serif;
+  padding-top: 50px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  //   border: 2px solid;
+  // ====================== Heading =====================
+
+  .heading {
+    border-bottom: 1px solid rgba($color: #535151, $alpha: 0.3);
+    width: 80vw;
+
+    .title {
+      margin-bottom: 50px;
+      text-align: center;
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 700;
+    }
+  }
+
+  // ====================== Content Main =====================
+
+  .app-content-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    padding: 0 5em;
+    font-size: clamp(0.4rem, 1.4vw, 1rem);
+
+    // ====================== Video =====================
+
+    .video-wrapper {
+      //   margin: 0 auto;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%;
+      position: relative;
+      overflow: hidden;
+      .video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  // ====================== Intro =====================
+  .intro {
+    font-weight: 700;
+    font-size: clamp(0.8rem, 1.4vw, 1rem);
+    margin: 1.2em 0 0;
+    color: var(--gray4);
+    line-height: 1.8;
+
+    p {
+      margin-bottom: 1em;
+    }
+  }
+
+  // ====================== tags =====================
+  .tags {
+    margin-top: 1em;
+  }
+
+  // ====================== Feature Part =====================
+
+  .subtitle {
+    font-weight: 700;
+    border-bottom: 1px solid rgba($color: #535151, $alpha: 0.3);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    padding: 1.2em 0;
+    margin-bottom: 1.2em;
+  }
+
+  .feature-list {
+    padding-left: 2em;
+    font-size: clamp(0.9rem, 1.5vw, 1.5rem);
+    color: var(--gray6);
+    margin-bottom: 5em;
+
+    li {
+      margin-bottom: 0.5em;
+    }
+  }
+
+  /* ================ Payment part ================ */
+  .btn--addToCart {
+    all: unset;
+    display: block;
+    background: limegreen;
+    color: white;
+    letter-spacing: 1.6px;
+    width: 100%;
+    text-align: center;
+    border-radius: 30px;
+    margin-bottom: 5rem;
+    padding: 0.8em 0;
+    cursor: pointer;
+
+    font-weight: 700;
+    font-size: clamp(0.8rem, 1.2vw, 1.4rem);
+
+    transition: all 300ms ease-in-out;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 2px 5px 8px rgba($color: #000000, $alpha: 0.3);
+    }
+  }
+}

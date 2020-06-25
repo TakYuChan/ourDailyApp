@@ -48,16 +48,18 @@ nav {
 }
 
 //=========== Profile icon -> Drop Down ===========
-.dropdown-item:hover {
-  background: pink;
-}
+.dropDownMenu--profile {
+  .dropdown-item:hover {
+    background: pink;
+  }
 
-.auth-btn {
-  font-weight: 700;
-}
+  .auth-btn {
+    font-weight: 700;
+  }
 
-.iconfont {
-  margin-right: 0.8rem;
+  .iconfont {
+    margin-right: 0.8rem;
+  }
 }
 
 //=========== Tooltips ===========

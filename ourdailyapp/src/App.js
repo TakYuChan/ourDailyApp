@@ -13,7 +13,9 @@ import {
 } from "./redux/user/user.actions";
 
 import MainPage from "./Pages/mainPage/mainPage.component";
+import ShopPage from "./Pages/shopPage/shopPage.component";
 import ProfilePage from "./Pages/ProfilePage/profilePage.component";
+import CommentsConverterPage from "./Pages/CommentsConverterPage/commentsConverterPage.component";
 import NoMatch from "./Pages/NoMatchPage/noMatchPage.component";
 
 import Header from "./Components/header/header.component";
@@ -75,8 +77,9 @@ class App extends React.Component {
       />,
       <Switch>
         <Route exact path="/" component={MainPage} />
-        <Route path="/todolist" component={MainPage} />
+        <Route path="/shop" component={ShopPage} />
         <Route path="/profile" component={ProfilePage} />
+        <Route path="/commentsConverter" component={CommentsConverterPage} />
         <Route component={NoMatch} />
       </Switch>,
     ];
