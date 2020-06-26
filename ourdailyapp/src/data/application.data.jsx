@@ -1,24 +1,38 @@
 import React from "react";
 
-import { ReactComponent as Todosvg } from "../assets/todolist.svg";
-import { ReactComponent as Coloorsvg } from "../assets/coloors-svg.svg";
-import { ReactComponent as CommentsConvertersvg } from "../assets/commentsConverter-svg.svg";
-
 const APPLICATIONS_DATA = [
   {
     name: "Todo list",
     route: "todo",
-    svg: <Todosvg />,
+    image: (
+      <img
+        className="img--todolist"
+        src="/images/assets/todolist2.jpg"
+        alt="to do list"
+      />
+    ),
   },
   {
     name: "Coloors",
     route: "todolist",
-    svg: <Coloorsvg />,
+    image: (
+      <img
+        className="img--coloors"
+        src="/images/assets/coloors.jpg"
+        alt="colors"
+      />
+    ),
   },
   {
     name: "CM Converter",
     route: "commentsConverter",
-    svg: <CommentsConvertersvg />,
+    image: (
+      <img
+        className="img--cmConverter"
+        src="/images/assets/CM Converter.png"
+        alt="to do list"
+      />
+    ),
   },
 ];
 

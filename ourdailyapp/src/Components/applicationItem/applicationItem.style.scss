@@ -25,6 +25,24 @@
       text-decoration: none;
     }
   }
+
+  .img--todolist,
+  .img--coloors,
+  .img--cmConverter {
+    --img-size: 50px;
+    @media screen and (min-width: 810px) {
+      --img-size: 60px;
+    }
+    width: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+    height: var(--img-size);
+    width: var(--img-size);
+  }
+
+  .img--cmConverter {
+    border: 1px solid var(--blue);
+  }
 }
 
 .link-text {

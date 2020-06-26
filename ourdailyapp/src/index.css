@@ -101,5 +101,8 @@ code {
   /* commentsConverter-page */
   --ccp-h1-clr: var(--blue);
 
+  /* shopNav */
+  --toggle-shopnav-clr: var(--blue-light);
+
   transition: all 0.3s ease;
 }

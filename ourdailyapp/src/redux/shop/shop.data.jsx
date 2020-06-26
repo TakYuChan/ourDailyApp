@@ -5,7 +5,7 @@ const SHOP_DATA = {
     id: 1,
     title: "To do list",
     description: "Make a note on everything",
-    imageSrc: "/images/assets/todolist.png",
+    imageSrc: "/images/assets/todolist2.jpg",
     route: "todolist",
     appDetails: {
       videoSrc: "https://player.vimeo.com/video/416381401",
@@ -41,7 +41,7 @@ const SHOP_DATA = {
     id: 1,
     title: "Coloors",
     description: "Generate random colors",
-    imageSrc: "/images/assets/colors.webp",
+    imageSrc: "/images/assets/coloors.jpg",
     route: "coloors",
     appDetails: {
       videoSrc: "https://player.vimeo.com/video/416381401",

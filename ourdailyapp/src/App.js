@@ -20,6 +20,7 @@ import NoMatch from "./Pages/NoMatchPage/noMatchPage.component";
 
 import Header from "./Components/header/header.component";
 import FloatNav from "./Components/floatNav/floatNav.component";
+import ShopNav from "./ComponentsNotReuse/shopNav/shopNav.component";
 
 import "./App.css";
 
@@ -75,6 +76,7 @@ class App extends React.Component {
         handleNavItemHover={this.handleNavItemHover}
         hoverNavItem={hoverNavItem}
       />,
+      <ShopNav />,
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route path="/shop" component={ShopPage} />
