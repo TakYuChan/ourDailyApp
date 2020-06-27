@@ -18,8 +18,8 @@ const ShopNav = ({ hidden, toggleHidden }) => (
           <p className="option-text">Cart</p>
         </div>
         <div className="option option--checkout">
-          <i className="iconfont icon-paymentmethod"></i>
-          <p className="option-text">Checkout</p>
+          <i className="iconfont icon-wish"></i>
+          <p className="option-text">Wishlist</p>
         </div>
       </div>
     </div>

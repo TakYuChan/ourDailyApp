@@ -30,11 +30,12 @@ const ApplicationDetailPage = ({ appData }) => {
         <div className="intro">{intros.map((intro) => intro)}</div>
 
         <div className="tags">
-          {tags.map((tag, index) => (
-            <CustomTag key={index} background={tagsColor[index]}>
-              {tag}
-            </CustomTag>
-          ))}
+          {tags !== null &&
+            tags.map((tag, index) => (
+              <CustomTag key={index} background={tagsColor[index]}>
+                {tag}
+              </CustomTag>
+            ))}
         </div>
         {/* ================ Feature Part ================ */}
         <h2 className="subtitle">

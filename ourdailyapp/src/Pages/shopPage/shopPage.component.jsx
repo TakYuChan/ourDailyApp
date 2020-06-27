@@ -2,13 +2,15 @@ import React from "react";
 import "./shopPage.style.scss";
 
 import { Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 
 import ApplicationOverview from "../../ComponentsNotReuse/applicationOverview/applicationOverview.component";
 import ApplicationDetailPage from "../../Pages/ApplicationDetailPage/applicationDetailPage.component";
 
-const ShopPage = ({ match }) => {
+const ShopPage = ({ match, closeShopNav }) => {
   return (
-    <div className="shop-page">
+    <div className="shop-page" onClick={closeShopNav}>
       <Route exact path={`${match.path}`} component={ApplicationOverview} />
       <Route
         exact
@@ -19,4 +21,8 @@ const ShopPage = ({ match }) => {
   );
 };
 
-export default ShopPage;
+const mapDispatchToProps = (dispatch) => ({
+  closeShopNav: () => dispatch(closeShopNav()),
+});
+
+export default connect(null, mapDispatchToProps)(ShopPage);

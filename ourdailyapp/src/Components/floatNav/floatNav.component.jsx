@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectHidden } from "../../redux/nav/nav.selectors";
 import { closeNav } from "../../redux/nav/nav.actions";
+import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 
 import "./floatNav.style.scss";
 
@@ -32,7 +33,10 @@ class FloatNav extends React.Component {
             onMouseOver={() => {
               this.handleNavItemHover("appstore");
             }}
-            onClick={this.props.closeNav}
+            onClick={() => {
+              this.props.closeNav();
+              this.props.closeShopNav();
+            }}
             to="/shop"
             className="float-nav-item"
           >
@@ -42,7 +46,10 @@ class FloatNav extends React.Component {
             onMouseOver={() => {
               this.handleNavItemHover("linkedin");
             }}
-            onClick={this.props.closeNav}
+            onClick={() => {
+              this.props.closeNav();
+              this.props.closeShopNav();
+            }}
             to="/"
             className="float-nav-item"
           >
@@ -52,7 +59,10 @@ class FloatNav extends React.Component {
             onMouseOver={() => {
               this.handleNavItemHover("github");
             }}
-            onClick={this.props.closeNav}
+            onClick={() => {
+              this.props.closeNav();
+              this.props.closeShopNav();
+            }}
             to="/"
             className="float-nav-item"
           >
@@ -72,6 +82,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   closeNav: () => dispatch(closeNav()),
+  closeShopNav: () => dispatch(closeShopNav()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FloatNav);
