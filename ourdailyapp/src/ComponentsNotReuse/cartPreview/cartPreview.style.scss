@@ -30,6 +30,22 @@
     font-size: clamp(1rem, 2vw, 1.6rem);
     align-self: center;
     margin: auto 0;
+
+    & ~ .btn--closePreview {
+      all: unset;
+      border-radius: 15px;
+      text-align: center;
+      font-weight: 700;
+      cursor: pointer;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border: 1px solid white;
+
+      transition: all 250ms;
+      &:hover {
+        transform: scale(1.04);
+      }
+    }
   }
   //   ======================= items-wrapper =======================
   .items-wrapper {
@@ -68,6 +84,7 @@
         }
 
         .icon-chax {
+          font-size: 0.8rem;
           margin-left: 1em;
           cursor: pointer;
           padding: 0.4em;
@@ -80,26 +97,42 @@
     }
   }
   //   ======================= more items text =======================
-  .more-items {
+  .more-items,
+  .total-items {
     font-weight: 700;
     margin: 0 auto;
   }
 
-  //   ======================= btn toCart =======================
-  .btn--toCart {
-    all: unset;
-    background: var(--blue-light);
-    border-radius: 15px;
-    text-align: center;
-    font-weight: 700;
-    transition: all 250ms;
-    color: var(--gray1);
-    cursor: pointer;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+  //   ======================= btns wrapper =======================
+  .buttons-wrapper {
+    display: flex;
+    justify-content: space-around;
 
-    &:hover {
-      transform: scale(1.04);
+    .btn--toCart,
+    .btn--closePreview {
+      all: unset;
+      border-radius: 15px;
+      text-align: center;
+      font-weight: 700;
+      cursor: pointer;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+
+      transition: all 250ms;
+      &:hover {
+        transform: scale(1.04);
+      }
+    }
+    .btn--toCart {
+      background: var(--blue-light);
+      color: var(--gray1);
+
+      flex-basis: 65%;
+    }
+
+    .btn--closePreview {
+      background: var(--red-light);
+      flex-basis: 30%;
     }
   }
 }

@@ -2,7 +2,7 @@ import React from "react";
 import "./cartPreview.style.scss";
 
 import { connect } from "react-redux";
-import { removeItem } from "../../redux/cart/cart.actions";
+import { removeItem, toggleCartPopUp } from "../../redux/cart/cart.actions";
 import {
   selectCartItemsQuantity,
   selectCartItems,
@@ -17,12 +17,18 @@ const CartPreview = ({
   moreItemText,
   removeItem,
   cartPopUpHidden,
+  toggleCartPopUp,
 }) => (
   <div className={`${!cartPopUpHidden && "active"} cart-preview`}>
-    {itemsQuantity === 0 && (
+    {itemsQuantity === 0 && [
       //   ======================= cart empty text =======================
-      <h2 className="empty-cart-text">Your cart is empty!</h2>
-    )}
+      <h2 key="1" className="empty-cart-text">
+        Your cart is empty!
+      </h2>,
+      <button key="2" className="btn--closePreview" onClick={toggleCartPopUp}>
+        Close
+      </button>,
+    ]}
     {itemsQuantity !== 0 && [
       //   ======================= items wrapper =======================
       <div className="items-wrapper" key="1">
@@ -53,16 +59,26 @@ const CartPreview = ({
               );
             })}
       </div>,
-      //   ======================= more-items text =======================
+      //   ======================= Render 1 - more-items text =======================
       itemsQuantity > 3 && (
         <span key="2" className="more-items">
           And {moreItemText} more items...
         </span>
       ),
-      //   ======================= btn--toCart =======================
-      <button key="3" className="btn--toCart">
-        Go To Cart
-      </button>,
+      //   ======================= Render 2 - more-items text =======================
+      itemsQuantity <= 3 && (
+        <span key="2" className="total-items">
+          You have {itemsQuantity} {itemsQuantity === 1 ? "item" : "items"} in
+          the cart
+        </span>
+      ),
+      //   ======================= btns--wrapper =======================
+      <div key="3" className="buttons-wrapper">
+        <button className="btn--toCart">Go To Cart</button>
+        <button className="btn--closePreview" onClick={toggleCartPopUp}>
+          Close
+        </button>
+      </div>,
     ]}
   </div>
 );
@@ -76,6 +92,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   removeItem: (item) => dispatch(removeItem(item)),
+  toggleCartPopUp: () => dispatch(toggleCartPopUp()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPreview);
