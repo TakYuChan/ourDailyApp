@@ -3,11 +3,12 @@ import "./applicationDetailPage.style.scss";
 
 import { connect } from "react-redux";
 import { selectApp } from "../../redux/shop/shop.selector";
+import { addItem } from "../../redux/cart/cart.actions";
 
 import CustomTag from "../../Components/customTag/customTag.component";
 import CustomButton from "../../Components/customButton/customButton.component";
 
-const ApplicationDetailPage = ({ appData }) => {
+const ApplicationDetailPage = ({ appData, addItem }) => {
   const { videoSrc, tags, intros, features, tagsColor } = appData.appDetails;
 
   return (
@@ -51,8 +52,13 @@ const ApplicationDetailPage = ({ appData }) => {
         </ul>
 
         {/* ================ Payment part ================ */}
-        <CustomButton className="btn--addToCart" onClick={null}>
-          Buy this app!
+        <CustomButton
+          className="btn--addToCart"
+          onClick={() => {
+            addItem(appData);
+          }}
+        >
+          Add to cart
         </CustomButton>
       </section>
     </div>
@@ -63,4 +69,11 @@ const mapStateToProps = (state, ownProps) => ({
   appData: selectApp(ownProps.match.params.applicationId)(state),
 });
 
-export default connect(mapStateToProps)(ApplicationDetailPage);
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItem(item)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ApplicationDetailPage);

@@ -1,0 +1,8 @@
+const CartActionTypes = {
+  ADD_ITEM_CART: "ADD_ITEM_CART",
+  REMOVE_ITEM_CART: "REMOVE_ITEM_CART",
+  CLEAR_CART: "CLEAN_CART",
+  TOGGLE_CART_POPUP_HIDDEN: "TOGGLE_CART_POPUP_HIDDEN",
+};
+
+export default CartActionTypes;

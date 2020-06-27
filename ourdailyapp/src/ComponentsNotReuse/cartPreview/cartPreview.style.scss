@@ -1,0 +1,105 @@
+.cart-preview {
+  position: fixed;
+  top: 10%;
+  right: 2%;
+  transform: translateX(450px);
+  transition: transform 500ms;
+  z-index: 1;
+  //   border: 1px solid var(--gray2);
+  border-radius: 10px;
+  height: 28em;
+  width: 20em;
+
+  font-size: clamp(0.8rem, 1vw, 1rem);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 0 1em 1em;
+
+  background: rgba($color: #000000, $alpha: 0.9);
+  color: white;
+
+  &.active {
+    transform: translateX(0);
+  }
+
+  //   ======================= empt cart text =======================
+  .empty-cart-text {
+    font-size: clamp(1rem, 2vw, 1.6rem);
+    align-self: center;
+    margin: auto 0;
+  }
+  //   ======================= items-wrapper =======================
+  .items-wrapper {
+    // border: 2px solid;
+    height: 80%;
+    width: 100%;
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid;
+      padding: 1em 0;
+      .left-side {
+        display: flex;
+        align-items: center;
+
+        .img-wrapper {
+          width: 50px;
+          height: 50px;
+          margin-right: 0.5em;
+          .item-img {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            border-radius: 100%;
+          }
+        }
+        .item-name {
+          font-weight: 700;
+        }
+      }
+      .right-side {
+        .item-price {
+        }
+
+        .icon-chax {
+          margin-left: 1em;
+          cursor: pointer;
+          padding: 0.4em;
+          &:hover {
+            background: var(--red);
+            border-radius: 100%;
+          }
+        }
+      }
+    }
+  }
+  //   ======================= more items text =======================
+  .more-items {
+    font-weight: 700;
+    margin: 0 auto;
+  }
+
+  //   ======================= btn toCart =======================
+  .btn--toCart {
+    all: unset;
+    background: var(--blue-light);
+    border-radius: 15px;
+    text-align: center;
+    font-weight: 700;
+    transition: all 250ms;
+    color: var(--gray1);
+    cursor: pointer;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    &:hover {
+      transform: scale(1.04);
+    }
+  }
+}

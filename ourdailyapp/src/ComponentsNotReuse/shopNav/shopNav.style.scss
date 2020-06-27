@@ -58,7 +58,7 @@
       width: var(--size);
       height: var(--size);
       border-radius: 100%;
-      box-shadow: 0px 0px 0 200px var(--blue);
+      box-shadow: 0px 0px 0 200px var(--clr-nav);
       transform: scale(0.05);
       position: relative;
       pointer-events: initial;
@@ -104,6 +104,13 @@
       .option--cart {
         left: -170%;
         bottom: 20%;
+
+        .cartItems-quantity {
+          font-size: 0.8rem;
+          position: absolute;
+          top: 22px;
+          left: 47px;
+        }
       }
 
       .option--checkout {

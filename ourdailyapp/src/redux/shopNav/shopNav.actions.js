@@ -1,9 +1,9 @@
-import ShopNavTypes from "./shopNav.types";
+import ShopNavActionTypes from "./shopNav.types";
 
 export const toggleShopNavHidden = () => ({
-  type: ShopNavTypes.TOGGLE_HIDDEN,
+  type: ShopNavActionTypes.TOGGLE_HIDDEN,
 });
 
 export const closeShopNav = () => ({
-  type: ShopNavTypes.SET_HIDDEN_TRUE,
+  type: ShopNavActionTypes.SET_HIDDEN_TRUE,
 });

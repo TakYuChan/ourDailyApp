@@ -2,7 +2,6 @@ import React from "react";
 import "./customCard.style.scss";
 
 import { withRouter, Link } from "react-router-dom";
-
 import CustomButton from "../../Components/customButton/customButton.component";
 
 const CustomCard = ({ match, app }) => {
@@ -26,7 +25,6 @@ const CustomCard = ({ match, app }) => {
           </div>
         </div>
       </Link>
-      
     </div>
   );
 };

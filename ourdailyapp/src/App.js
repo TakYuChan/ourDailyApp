@@ -21,6 +21,7 @@ import NoMatch from "./Pages/NoMatchPage/noMatchPage.component";
 import Header from "./Components/header/header.component";
 import FloatNav from "./Components/floatNav/floatNav.component";
 import ShopNav from "./ComponentsNotReuse/shopNav/shopNav.component";
+import CartPreview from "./ComponentsNotReuse/cartPreview/cartPreview.component";
 
 import "./App.css";
 
@@ -77,6 +78,7 @@ class App extends React.Component {
         hoverNavItem={hoverNavItem}
       />,
       <ShopNav />,
+      <CartPreview />,
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route path="/shop" component={ShopPage} />
