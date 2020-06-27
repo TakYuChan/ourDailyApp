@@ -3,7 +3,7 @@
 
   bottom: 10%;
   right: 14%;
-  z-index: 1;
+  z-index: 5;
 
   border: 2px solid red;
 
@@ -13,7 +13,7 @@
 
   .toggle-shopNav {
     position: absolute;
-    z-index: 2;
+    z-index: 5;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
