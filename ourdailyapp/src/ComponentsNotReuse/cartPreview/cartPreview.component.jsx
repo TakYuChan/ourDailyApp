@@ -65,7 +65,7 @@ const CartPreview = ({
           And {moreItemText} more items...
         </span>
       ),
-      //   ======================= Render 2 - more-items text =======================
+      //   ======================= Render 2 - total-items text =======================
       itemsQuantity <= 3 && (
         <span key="2" className="total-items">
           You have {itemsQuantity} {itemsQuantity === 1 ? "item" : "items"} in
