@@ -2,6 +2,7 @@ import React from "react";
 import "./cartPreview.style.scss";
 
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import {
   removeItem,
   toggleCartPopUp,
@@ -26,6 +27,7 @@ const CartPreview = ({
   toggleCartPopUp,
   cartItemsTotalPrice,
   minusItemPrice,
+  history,
 }) => (
   <div className={`${!cartPopUpHidden && "active"} cart-preview`}>
     {itemsQuantity === 0 && [
@@ -89,7 +91,15 @@ const CartPreview = ({
       </span>,
       //   ======================= btns--wrapper =======================
       <div key="4" className="buttons-wrapper">
-        <button className="btn--toCart">Go To Cart</button>
+        <button
+          className="btn--toCart"
+          onClick={() => {
+            history.push("/cart");
+            toggleCartPopUp();
+          }}
+        >
+          Go To Cart
+        </button>
         <button className="btn--closePreview" onClick={toggleCartPopUp}>
           Close
         </button>
@@ -112,4 +122,6 @@ const mapDispatchToProps = (dispatch) => ({
   minusItemPrice: (price) => dispatch(minusItemPriceToTotal(price)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartPreview);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CartPreview)
+);

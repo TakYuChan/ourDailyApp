@@ -17,6 +17,7 @@ import ShopPage from "./Pages/shopPage/shopPage.component";
 import ProfilePage from "./Pages/ProfilePage/profilePage.component";
 import CommentsConverterPage from "./Pages/CommentsConverterPage/commentsConverterPage.component";
 import NoMatch from "./Pages/NoMatchPage/noMatchPage.component";
+import CartPage from "./Pages/cartPage/cartPage.component";
 
 import Header from "./Components/header/header.component";
 import FloatNav from "./Components/floatNav/floatNav.component";
@@ -83,6 +84,7 @@ class App extends React.Component {
         <Route exact path="/" component={MainPage} />
         <Route path="/shop" component={ShopPage} />
         <Route path="/profile" component={ProfilePage} />
+        <Route path="/cart" component={CartPage} />
         <Route path="/commentsConverter" component={CommentsConverterPage} />
         <Route component={NoMatch} />
       </Switch>,
