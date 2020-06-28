@@ -8,7 +8,7 @@
   opacity: 0;
   transition: opacity 300ms;
   z-index: 3;
-  //   border: 1px solid var(--gray2);
+  // border: 1px solid var(--gray2);
   border-radius: 10px;
   height: 28em;
   width: 20em;
@@ -39,7 +39,7 @@
     transition: transform 300ms;
     &.active {
       transform: translateX(0);
-    } 
+    }
   }
 
   //   ======================= empt cart text =======================
@@ -118,6 +118,13 @@
   .total-items {
     font-weight: 700;
     margin: 0 auto;
+  }
+
+  //   ======================= total price =======================
+  .total-price {
+    font-weight: 700;
+    font-size: clamp(1.3rem, 1.5vw, 1.5rem);
+    margin: 0.5em 0;
   }
 
   //   ======================= btns wrapper =======================

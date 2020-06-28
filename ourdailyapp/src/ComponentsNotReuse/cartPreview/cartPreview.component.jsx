@@ -2,13 +2,19 @@ import React from "react";
 import "./cartPreview.style.scss";
 
 import { connect } from "react-redux";
-import { removeItem, toggleCartPopUp } from "../../redux/cart/cart.actions";
+import {
+  removeItem,
+  toggleCartPopUp,
+  minusItemPriceToTotal,
+} from "../../redux/cart/cart.actions";
 import {
   selectCartItemsQuantity,
   selectCartItems,
   selectCartMoreItems,
+  selectCartPopUpHidden,
+  selectCartItemsTotalPrice,
 } from "../../redux/cart/cart.selectors";
-import { selectCartPopUpHidden } from "../../redux/cart/cart.selectors";
+
 import { createStructuredSelector } from "reselect";
 
 const CartPreview = ({
@@ -18,6 +24,8 @@ const CartPreview = ({
   removeItem,
   cartPopUpHidden,
   toggleCartPopUp,
+  cartItemsTotalPrice,
+  minusItemPrice,
 }) => (
   <div className={`${!cartPopUpHidden && "active"} cart-preview`}>
     {itemsQuantity === 0 && [
@@ -52,7 +60,10 @@ const CartPreview = ({
                     <span className="item-price">{`$${cartItem.price}`}</span>
                     <i
                       className="iconfont icon-chax"
-                      onClick={() => removeItem(cartItem)}
+                      onClick={() => {
+                        removeItem(cartItem);
+                        minusItemPrice(cartItem.price);
+                      }}
                     ></i>
                   </div>
                 </div>
@@ -72,8 +83,12 @@ const CartPreview = ({
           the cart
         </span>
       ),
+      //   ======================= total price =======================
+      <span key="3" className="total-price">
+        Total: ${cartItemsTotalPrice}
+      </span>,
       //   ======================= btns--wrapper =======================
-      <div key="3" className="buttons-wrapper">
+      <div key="4" className="buttons-wrapper">
         <button className="btn--toCart">Go To Cart</button>
         <button className="btn--closePreview" onClick={toggleCartPopUp}>
           Close
@@ -88,11 +103,13 @@ const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   moreItemText: selectCartMoreItems,
   cartPopUpHidden: selectCartPopUpHidden,
+  cartItemsTotalPrice: selectCartItemsTotalPrice,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   removeItem: (item) => dispatch(removeItem(item)),
   toggleCartPopUp: () => dispatch(toggleCartPopUp()),
+  minusItemPrice: (price) => dispatch(minusItemPriceToTotal(price)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPreview);
