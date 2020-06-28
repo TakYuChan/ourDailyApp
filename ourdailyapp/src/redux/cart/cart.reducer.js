@@ -3,7 +3,6 @@ import { addItemToCart, removeItemFromCart } from "./cart.utils";
 
 const INITIATE_STATE = {
   cartItems: [],
-  cartPopUpHidden: true,
   itemTotalPrice: 0,
 };
 
@@ -15,11 +14,6 @@ const cartReducer = (state = INITIATE_STATE, action) => {
       return {
         ...state,
         cartItems: removeItemFromCart(state.cartItems, action.payload),
-      };
-    case CartActionTypes.TOGGLE_CART_POPUP_HIDDEN:
-      return {
-        ...state,
-        cartPopUpHidden: !state.cartPopUpHidden,
       };
     case CartActionTypes.ADD_ITEM_PRICE:
       return {

@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
 
 const selectCart = (state) => state.cart;
+const selectCartNP = (state) => state.cartNP;
 
 export const selectCartItems = createSelector(
   [selectCart],
@@ -22,7 +23,9 @@ export const selectCartItemsTotalPrice = createSelector(
   (cart) => cart.itemTotalPrice
 );
 
+// ==================== Cart No Persistent =================
+
 export const selectCartPopUpHidden = createSelector(
-  [selectCart],
+  [selectCartNP],
   (cart) => cart.cartPopUpHidden
 );

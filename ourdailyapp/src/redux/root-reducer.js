@@ -9,6 +9,7 @@ import signInUpReducer from "./signInUp/signInUp.reducer";
 import shopReducer from "./shop/shop.reducer";
 import commentsConverterReducer from "./commentsConverter/commentsConverter.reducer";
 import cartReducer from "./cart/cart.reducer";
+import cartNPReducer from "./cart/cartNP.reducer";
 
 const persistConfig = {
   key: "root",
@@ -24,8 +25,7 @@ const rootReducer = combineReducers({
   commentsConverter: commentsConverterReducer,
   shopNav: shopNavReducer,
   cart: cartReducer,
+  cartNP: cartNPReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
-// persistReducer(persistConfig, rootReducer);
-// export default rootReducer;
