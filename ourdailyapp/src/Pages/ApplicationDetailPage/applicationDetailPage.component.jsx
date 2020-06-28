@@ -3,12 +3,12 @@ import "./applicationDetailPage.style.scss";
 
 import { connect } from "react-redux";
 import { selectApp } from "../../redux/shop/shop.selector";
-import { addItem, addItemPriceToTotal } from "../../redux/cart/cart.actions";
+import { addItem } from "../../redux/cart/cart.actions";
 
 import CustomTag from "../../Components/customTag/customTag.component";
 import CustomButton from "../../Components/customButton/customButton.component";
 
-const ApplicationDetailPage = ({ appData, addItem, addItemPrice }) => {
+const ApplicationDetailPage = ({ appData, addItem }) => {
   const { videoSrc, tags, intros, features, tagsColor } = appData.appDetails;
 
   return (
@@ -56,7 +56,6 @@ const ApplicationDetailPage = ({ appData, addItem, addItemPrice }) => {
           className="btn--addToCart"
           onClick={() => {
             addItem(appData);
-            addItemPrice(appData.price);
           }}
         >
           Add to cart
@@ -72,7 +71,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
-  addItemPrice: (price) => dispatch(addItemPriceToTotal(price)),
 });
 
 export default connect(

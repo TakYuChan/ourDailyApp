@@ -85,7 +85,7 @@ const CartPreview = ({
       ),
       //   ======================= total price =======================
       <span key="3" className="total-price">
-        Total: ${cartItemsTotalPrice}
+        Total: ${cartItemsTotalPrice < 0 ? "0" : cartItemsTotalPrice}
       </span>,
       //   ======================= btns--wrapper =======================
       <div key="4" className="buttons-wrapper">
