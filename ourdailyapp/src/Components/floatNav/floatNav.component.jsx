@@ -42,7 +42,7 @@ class FloatNav extends React.Component {
           >
             AppStore
           </Link>
-          <Link
+          <a
             onMouseOver={() => {
               this.handleNavItemHover("linkedin");
             }}
@@ -50,12 +50,12 @@ class FloatNav extends React.Component {
               this.props.closeNav();
               this.props.closeShopNav();
             }}
-            to="/"
+            href="https://www.linkedin.com/in/franky-tak-yu-chan-18b51518b/"
             className="float-nav-item"
           >
             LinkedIn
-          </Link>
-          <Link
+          </a>
+          <a
             onMouseOver={() => {
               this.handleNavItemHover("github");
             }}
@@ -63,11 +63,11 @@ class FloatNav extends React.Component {
               this.props.closeNav();
               this.props.closeShopNav();
             }}
-            to="/"
+            href="https://github.com/TakYuChan"
             className="float-nav-item"
           >
             Github
-          </Link>
+          </a>
         </ul>
 
         <FloatNavContent hoverNavItem={hoverNavItem}></FloatNavContent>

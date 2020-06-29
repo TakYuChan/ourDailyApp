@@ -1,35 +1,41 @@
-//=========== Tooltips ===========
-#navTip {
-  background: var(--gray4);
-  font-family: "Roboto", sans-serif;
-}
-
-//=========== SVG ===========
-.svg-wrapper {
-  all: unset;
-  --size: 40px;
-  width: var(--size);
-  height: var(--size);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 100%;
-  cursor: pointer;
-
-  &:focus {
-    outline: 0;
+.customButton {
+  .button-text {
+    color: white;
   }
 
-  &:hover {
-    background: rgba($color: #b2becd, $alpha: 0.2);
+  //=========== Tooltips ===========
+  #navTip {
+    background: var(--gray4);
+    font-family: "Roboto", sans-serif;
   }
 
-  &.active {
-    background: rgba($color: #b2becd, $alpha: 0.2);
-  }
-}
+  //=========== SVG ===========
+  .svg-wrapper {
+    all: unset;
+    --size: 40px;
+    width: var(--size);
+    height: var(--size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-svg {
-  fill: var(--gray1);
+    border-radius: 100%;
+    cursor: pointer;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &:hover {
+      background: rgba($color: #b2becd, $alpha: 0.2);
+    }
+
+    &.active {
+      background: rgba($color: #b2becd, $alpha: 0.2);
+    }
+  }
+
+  svg {
+    fill: var(--gray1);
+  }
 }

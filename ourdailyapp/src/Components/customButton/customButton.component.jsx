@@ -12,7 +12,7 @@ const CustomButton = (props) => {
         data-tip
         data-for={props.dataFor}
       >
-        <span>{props.children}</span>
+        <span className="button-text">{props.children}</span>
       </button>
 
       {props.withToolTip && (

@@ -7,7 +7,6 @@ import { selectWishListItemExist } from "../../redux/cart/cart.selectors";
 import { addItem, toggleWishListItem } from "../../redux/cart/cart.actions";
 
 import CustomTag from "../../Components/customTag/customTag.component";
-import CustomButton from "../../Components/customButton/customButton.component";
 
 const ApplicationDetailPage = ({
   appData,
@@ -73,11 +72,11 @@ const ApplicationDetailPage = ({
           }}
         >
           Wishlist
-          <i className={`iconfont icon-love ${wishListed ? "active" : ""}`}></i>
+          <i className={`fas fa-heart ${wishListed ? "active" : ""}`}></i>
         </button>
 
         {/* ================ Payment part ================ */}
-        <CustomButton
+        <button
           className="btn--addToCart"
           onClick={() => {
             addItem({
@@ -91,7 +90,7 @@ const ApplicationDetailPage = ({
           }}
         >
           Add to cart
-        </CustomButton>
+        </button>
       </section>
     </div>
   );

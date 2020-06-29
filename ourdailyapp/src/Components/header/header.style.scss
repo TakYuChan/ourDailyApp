@@ -5,65 +5,97 @@
 
   position: relative;
   z-index: 10;
-}
 
-//=========== Nav ===========
+  //=========== Nav ===========
 
-nav {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 5vw;
-  background: var(--clr-nav);
-}
-
-//=========== List ===========
-
-.list {
-  width: 8rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0;
-}
-
-//=========== profile icon ===========
-#dropdown-basic-button {
-  //   all: unset;
-  --size: 40px;
-  outline: 0;
-  width: var(--size);
-  height: var(--size);
-
-  border-radius: 100%;
-  background-size: cover;
-  background-position: center;
-  //   border: 0;
-
-  &::after {
-    display: none;
-  }
-}
-
-//=========== Profile icon -> Drop Down ===========
-.dropDownMenu--profile {
-  .dropdown-item:hover {
-    background: pink;
+  nav {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5vw;
+    background: var(--clr-nav);
   }
 
-  .auth-btn {
-    font-weight: 700;
+  //=========== List ===========
+
+  .list {
+    width: 12rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+
+    /* ====================== Cart Icon ====================== */
+    .cart-icon-wrapper {
+      position: relative;
+      .icon-cart1 {
+        color: white;
+        opacity: 0.8;
+        font-size: 1.4rem;
+        cursor: pointer;
+      }
+
+      .cartItems-quantity-wrapper {
+        position: absolute;
+        top: -5px;
+        right: -12px;
+        background: red;
+
+        --size: 20px;
+        height: var(--size);
+        width: var(--size);
+        border-radius: 100%;
+
+        display: grid;
+        place-items: center;
+
+        .cartItems-quantity {
+          color: white;
+          font-weight: 700;
+          font-size: 0.8rem;
+        }
+      }
+    }
   }
 
-  .iconfont {
-    margin-right: 0.8rem;
-  }
-}
+  //=========== profile icon ===========
+  #dropdown-basic-button {
+    //   all: unset;
+    --size: 40px;
+    outline: 0;
+    width: var(--size);
+    height: var(--size);
 
-//=========== Tooltips ===========
-#langTip {
-  background: var(--gray4);
-  font-family: "Roboto", sans-serif;
+    border-radius: 100%;
+    background-size: cover;
+    background-position: center;
+    //   border: 0;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  //=========== Profile icon -> Drop Down ===========
+  .dropDownMenu--profile {
+    .dropdown-item:hover {
+      background: pink;
+    }
+
+    .auth-btn {
+      font-weight: 700;
+    }
+
+    .iconfont {
+      margin-right: 0.8rem;
+    }
+  }
+
+  //=========== Tooltips ===========
+  #langTip {
+    background: var(--gray4);
+    font-family: "Roboto", sans-serif;
+  }
 }

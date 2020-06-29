@@ -35,6 +35,7 @@
     }
     width: 100%;
     border-radius: 100%;
+    -o-object-fit: cover;
     object-fit: cover;
     height: var(--img-size);
     width: var(--img-size);

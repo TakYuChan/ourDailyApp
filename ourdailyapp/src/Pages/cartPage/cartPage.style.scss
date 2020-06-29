@@ -19,21 +19,21 @@
     @media screen and(min-width: 800px) {
       width: 75%;
       flex-direction: row;
-      column-gap: 2em;
+      -moz-column-gap: 2em;
+      // column-gap: 2em;
     }
 
     // ============== Left side ==============
     .left-side {
       @media screen and(min-width: 800px) {
         width: 70%;
+        margin-right: 2em;
       }
       .app-in-cart,
       .recently-whishlisted {
         font-size: 1.1rem;
       }
       // ============== cartItems-wrapper ==============
-      .app-in-cart {
-      }
 
       .cartItems-wrapper {
         border: 1px solid rgba(128, 128, 128, 0.13);
@@ -45,12 +45,10 @@
           align-items: center;
           justify-content: center;
           height: 300px;
+          padding: 0 1em;
 
           .icon-cart {
             font-size: 6rem;
-          }
-
-          .empty-cartItems-text {
           }
         }
       }

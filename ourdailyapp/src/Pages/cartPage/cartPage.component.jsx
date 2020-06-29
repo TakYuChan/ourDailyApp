@@ -37,7 +37,7 @@ const CartPage = ({
               <AppItem id={cartItem.id} cartItem={cartItem} itemType="cart" />
             ))}
 
-          {/* ============= Render 1: empty cartItems ============= */}
+          {/* ============= Render 2: empty cartItems ============= */}
           {cartItemsQuantity === 0 && (
             <div className="empty-cartItems-wrapper">
               <i className="iconfont icon-cart"></i>

@@ -7,8 +7,15 @@ import { toggleShopNavHidden } from "../../redux/shopNav/shopNav.actions";
 import { toggleCartPopUp } from "../../redux/cart/cart.actions";
 import { selectHidden } from "../../redux/shopNav/shopNav.selectors";
 import { selectCartItemsQuantity } from "../../redux/cart/cart.selectors";
+import { withRouter } from "react-router-dom";
 
-const ShopNav = ({ hidden, toggleHidden, itemQuantity, toggleCartPopUp }) => (
+const ShopNav = ({
+  hidden,
+  toggleHidden,
+  itemQuantity,
+  toggleCartPopUp,
+  history,
+}) => (
   <div className="shopNav">
     <div className="toggle-shopNav" onClick={toggleHidden}>
       <i className="iconfont icon-shop"></i>
@@ -27,7 +34,13 @@ const ShopNav = ({ hidden, toggleHidden, itemQuantity, toggleCartPopUp }) => (
           </i>
           <p className="option-text">Cart</p>
         </div>
-        <div className="option option--checkout">
+        <div
+          className="option option--checkout"
+          onClick={() => {
+            toggleHidden();
+            history.push("/wishlist");
+          }}
+        >
           <i className="iconfont icon-wish"></i>
           <p className="option-text">Wishlist</p>
         </div>
@@ -46,4 +59,6 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCartPopUp: () => dispatch(toggleCartPopUp()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShopNav);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ShopNav)
+);
