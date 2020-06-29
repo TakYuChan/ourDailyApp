@@ -16,6 +16,7 @@
     // ============== cartItems img ==============
     .img-wrapper {
       grid-area: img;
+      cursor: pointer;
 
       .img--item {
         width: 100%;
@@ -24,21 +25,24 @@
       }
     }
     // ============== cartItems info ==============
-    .item-title,
-    .item-price {
-      font-weight: 700;
-    }
+    .title-and-creator {
+      .item-title,
+      .item-price {
+        font-weight: 700;
+      }
 
-    .item-title {
-      grid-area: info;
-    }
+      .item-title {
+        grid-area: info;
+        cursor: pointer;
+      }
 
-    .item-creator {
-      grid-area: info;
-      font-size: 0.8rem;
-      display: block;
+      .item-creator {
+        grid-area: info;
+        font-size: 0.8rem;
+        display: block;
+        cursor: pointer;
+      }
     }
-
     .item-price {
       grid-area: price;
       color: var(--red-dark);

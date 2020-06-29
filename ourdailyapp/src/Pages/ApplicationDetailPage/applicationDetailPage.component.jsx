@@ -4,11 +4,7 @@ import "./applicationDetailPage.style.scss";
 import { connect } from "react-redux";
 import { selectApp } from "../../redux/shop/shop.selector";
 import { selectWishListItemExist } from "../../redux/cart/cart.selectors";
-import {
-  addItem,
-  addWishListItem,
-  toggleWishListItem,
-} from "../../redux/cart/cart.actions";
+import { addItem, toggleWishListItem } from "../../redux/cart/cart.actions";
 
 import CustomTag from "../../Components/customTag/customTag.component";
 import CustomButton from "../../Components/customButton/customButton.component";
@@ -16,7 +12,6 @@ import CustomButton from "../../Components/customButton/customButton.component";
 const ApplicationDetailPage = ({
   appData,
   addItem,
-  addWishListItem,
   wishListed,
   toggleWishListItem,
 }) => {
@@ -73,6 +68,7 @@ const ApplicationDetailPage = ({
               creator: appData.creator,
               imageSrc: appData.imageSrc,
               price: appData.price,
+              route: appData.route,
             });
           }}
         >
@@ -90,6 +86,7 @@ const ApplicationDetailPage = ({
               creator: appData.creator,
               imageSrc: appData.imageSrc,
               price: appData.price,
+              route: appData.route,
             });
           }}
         >
@@ -109,7 +106,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
-  addWishListItem: (item) => dispatch(addWishListItem(item)),
   toggleWishListItem: (item) => dispatch(toggleWishListItem(item)),
 });
 

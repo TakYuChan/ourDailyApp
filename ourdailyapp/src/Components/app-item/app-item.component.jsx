@@ -1,6 +1,7 @@
 import React from "react";
 import "./app-item.style.scss";
 
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   removeItem,
@@ -18,16 +19,30 @@ const AppItem = ({
   removeWishListItem,
   moveItemToWishList,
   moveItemToCartList,
+  history,
 }) => (
   <div className="cart-item">
     {/* ============= Items - img ============= */}
-    <div className="img-wrapper">
+    <div
+      className="img-wrapper"
+      onClick={() => history.push(`/shop/${cartItem.route}`)}
+    >
       <img src={cartItem.imageSrc} alt="cart item" className="img--item" />
     </div>
     {/* ============= Items - info ============= */}
     <div className="title-and-creator">
-      <span className="item-title">{cartItem.title}</span>
-      <span className="item-creator">By {cartItem.creator}</span>
+      <span
+        className="item-title"
+        onClick={() => history.push(`/shop/${cartItem.route}`)}
+      >
+        {cartItem.title}
+      </span>
+      <span
+        className="item-creator"
+        onClick={() => history.push(`/shop/${cartItem.route}`)}
+      >
+        By {cartItem.creator}
+      </span>
     </div>
     <span className="item-price">${cartItem.price}</span>
     {/* ============= Items - btns ============= */}
@@ -72,4 +87,4 @@ const mapDispatchToProps = (dispatch) => ({
   moveItemToCartList: (item) => dispatch(moveToCartList(item)),
 });
 
-export default connect(null, mapDispatchToProps)(AppItem);
+export default withRouter(connect(null, mapDispatchToProps)(AppItem));
