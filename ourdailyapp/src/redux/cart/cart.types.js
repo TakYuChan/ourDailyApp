@@ -9,6 +9,7 @@ const CartActionTypes = {
   //==================== Wish list item ==================
   ADD_ITEM_WISHLIST: "ADD_ITEM_WISHLIST",
   REMOVE_ITEM_WISHLIST: "REMOVE_ITEM_WISHLIST",
+  TOGGLE_ITEM_WISHLIST: "TOGGLE_ITEM_WISHLIST",
   MOVE_TO_CARTLIST: "MOVE_TO_CARTLIST",
 };
 

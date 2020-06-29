@@ -38,3 +38,12 @@ export const selectWishListItems = createSelector(
 export const selectWishListQuantity = createSelector([selectCart], (cart) => {
   return cart.wishListItems.length;
 });
+
+export const selectWishListItemExist = (itemIdToCheck) =>
+  createSelector([selectWishListItems], (wishList) => {
+    if (wishList.find((item) => item.id === itemIdToCheck) === undefined) {
+      return false;
+    } else {
+      return true;
+    }
+  });

@@ -3,12 +3,23 @@ import "./applicationDetailPage.style.scss";
 
 import { connect } from "react-redux";
 import { selectApp } from "../../redux/shop/shop.selector";
-import { addItem, addWishListItem } from "../../redux/cart/cart.actions";
+import { selectWishListItemExist } from "../../redux/cart/cart.selectors";
+import {
+  addItem,
+  addWishListItem,
+  toggleWishListItem,
+} from "../../redux/cart/cart.actions";
 
 import CustomTag from "../../Components/customTag/customTag.component";
 import CustomButton from "../../Components/customButton/customButton.component";
 
-const ApplicationDetailPage = ({ appData, addItem, addWishListItem }) => {
+const ApplicationDetailPage = ({
+  appData,
+  addItem,
+  addWishListItem,
+  wishListed,
+  toggleWishListItem,
+}) => {
   const { videoSrc, tags, intros, features, tagsColor } = appData.appDetails;
 
   return (
@@ -55,16 +66,31 @@ const ApplicationDetailPage = ({ appData, addItem, addWishListItem }) => {
         {/* ================ wishlist part ================ */}
         <button
           className="btn--addWishList"
-          onClick={() => addWishListItem(appData)}
+          onClick={() => {
+            toggleWishListItem({
+              id: appData.id,
+              title: appData.title,
+              creator: appData.creator,
+              imageSrc: appData.imageSrc,
+              price: appData.price,
+            });
+          }}
         >
-          Wishlist<i className="iconfont icon-wish"></i>
+          Wishlist
+          <i className={`iconfont icon-love ${wishListed ? "active" : ""}`}></i>
         </button>
 
         {/* ================ Payment part ================ */}
         <CustomButton
           className="btn--addToCart"
           onClick={() => {
-            addItem(appData);
+            addItem({
+              id: appData.id,
+              title: appData.title,
+              creator: appData.creator,
+              imageSrc: appData.imageSrc,
+              price: appData.price,
+            });
           }}
         >
           Add to cart
@@ -76,11 +102,15 @@ const ApplicationDetailPage = ({ appData, addItem, addWishListItem }) => {
 
 const mapStateToProps = (state, ownProps) => ({
   appData: selectApp(ownProps.match.params.applicationId)(state),
+  wishListed: selectWishListItemExist(
+    selectApp(ownProps.match.params.applicationId)(state).id
+  )(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
   addWishListItem: (item) => dispatch(addWishListItem(item)),
+  toggleWishListItem: (item) => dispatch(toggleWishListItem(item)),
 });
 
 export default connect(

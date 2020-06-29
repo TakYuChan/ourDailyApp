@@ -43,6 +43,11 @@ export const removeWishListItem = (item) => ({
   payload: item,
 });
 
+export const toggleWishListItem = (item) => ({
+  type: CartActionTypes.TOGGLE_ITEM_WISHLIST,
+  payload: item,
+});
+
 export const moveToCartList = (item) => ({
   type: CartActionTypes.MOVE_TO_CARTLIST,
   payload: item,

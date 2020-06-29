@@ -75,6 +75,19 @@ export const addWishListItem = (state, itemToAdd) => {
   }
 };
 
+export const toggleWishListItems = (state, itemToToggle) => {
+  const itemExist = state.wishListItems.find(
+    (item) => item.id === itemToToggle.id
+  );
+
+  return itemExist === undefined
+    ? addWishListItem(state, itemToToggle)
+    : {
+        ...state,
+        wishListItems: removeItemFromCart(state.wishListItems, itemToToggle),
+      };
+};
+
 export const moveItemToCartList = (state, wishListItemToMove) => {
   removeItemFromCart(state.wishListItems, wishListItemToMove);
   let newState = addItemToCart(state, wishListItemToMove);
