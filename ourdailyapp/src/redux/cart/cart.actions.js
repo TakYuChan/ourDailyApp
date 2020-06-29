@@ -26,3 +26,24 @@ export const minusItemPriceToTotal = (price) => ({
   type: CartActionTypes.MINUS_ITEM_PRICE,
   payload: price,
 });
+
+export const moveToWishList = (item) => ({
+  type: CartActionTypes.MOVE_TO_WISHLIST,
+  payload: item,
+});
+
+// ================= WishList Actions =================
+export const addWishListItem = (item) => ({
+  type: CartActionTypes.ADD_ITEM_WISHLIST,
+  payload: item,
+});
+
+export const removeWishListItem = (item) => ({
+  type: CartActionTypes.REMOVE_ITEM_WISHLIST,
+  payload: item,
+});
+
+export const moveToCartList = (item) => ({
+  type: CartActionTypes.MOVE_TO_CARTLIST,
+  payload: item,
+});

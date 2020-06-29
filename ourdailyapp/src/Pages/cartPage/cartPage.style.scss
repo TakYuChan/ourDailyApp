@@ -8,46 +8,91 @@
   flex-direction: column;
   align-items: center;
 
-  .heading {
-    border-bottom: 1px solid rgba($color: #535151, $alpha: 0.3);
-    width: 80vw;
-
-    .title {
-      margin-bottom: 50px;
-      text-align: center;
-      font-size: clamp(2rem, 3vw, 3rem);
-      font-weight: 700;
-    }
-  }
-
   // =============== cart content main ==================
   .cart-content-main {
     width: 90%;
-    border: 2px solid;
+    max-width: 1300px;
+    // border: 2px solid;
     display: flex;
     flex-direction: column;
 
+    @media screen and(min-width: 800px) {
+      width: 75%;
+      flex-direction: row;
+      column-gap: 2em;
+    }
+
     // ============== Left side ==============
     .left-side {
+      @media screen and(min-width: 800px) {
+        width: 70%;
+      }
+      .app-in-cart,
+      .recently-whishlisted {
+        font-size: 1.1rem;
+      }
       // ============== cartItems-wrapper ==============
+      .app-in-cart {
+      }
+
       .cartItems-wrapper {
-        border: 1px solid gray;
+        border: 1px solid rgba(128, 128, 128, 0.13);
+        margin-top: 1em;
+        margin-bottom: 1em;
+        .empty-cartItems-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 300px;
+
+          .icon-cart {
+            font-size: 6rem;
+          }
+
+          .empty-cartItems-text {
+          }
+        }
+      }
+
+      // ============== wishlist-wrapper ==============
+      .wishlist-wrapper {
+        border: 1px solid rgba(128, 128, 128, 0.13);
+        margin-top: 1em;
+        margin-bottom: 1em;
+      }
+      // ============== empty wishlist ==============
+      .empty-wishlist-text {
+        margin-top: 1em;
+        font-size: 0.9rem;
+        color: var(--gray3);
       }
     }
 
     // ============== Right side ==============
     .right-side {
       order: -1;
-      border: 2px solid gold;
+
+      @media screen and(min-width: 800px) {
+        order: initial;
+        width: 30%;
+      }
+      // border: 2px solid gold;
       // ============== Payment Block ==============
       .payment-info {
         display: flex;
         flex-direction: column;
         .total-price-text {
           margin-bottom: 1em;
-          .price-text {
+          .dollar-price-text {
             font-size: 2rem;
             font-weight: 700;
+            @media screen and(min-width: 800px) {
+              display: block;
+            }
+            .price-text {
+              padding-left: 0.1em;
+            }
           }
         }
         .btn--checkout {
@@ -63,11 +108,15 @@
           &:hover {
             background: var(--red);
           }
+
+          &.disabled {
+            background: var(--gray2);
+          }
         }
       }
 
       hr {
-        margin-bottom: 0.5em;
+        margin-bottom: 1em;
       }
     }
   }

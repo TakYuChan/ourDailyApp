@@ -3,12 +3,12 @@ import "./applicationDetailPage.style.scss";
 
 import { connect } from "react-redux";
 import { selectApp } from "../../redux/shop/shop.selector";
-import { addItem } from "../../redux/cart/cart.actions";
+import { addItem, addWishListItem } from "../../redux/cart/cart.actions";
 
 import CustomTag from "../../Components/customTag/customTag.component";
 import CustomButton from "../../Components/customButton/customButton.component";
 
-const ApplicationDetailPage = ({ appData, addItem }) => {
+const ApplicationDetailPage = ({ appData, addItem, addWishListItem }) => {
   const { videoSrc, tags, intros, features, tagsColor } = appData.appDetails;
 
   return (
@@ -51,6 +51,15 @@ const ApplicationDetailPage = ({ appData, addItem }) => {
           ))}
         </ul>
 
+        {/* ================================ Buttons ================================ */}
+        {/* ================ wishlist part ================ */}
+        <button
+          className="btn--addWishList"
+          onClick={() => addWishListItem(appData)}
+        >
+          Wishlist<i className="iconfont icon-wish"></i>
+        </button>
+
         {/* ================ Payment part ================ */}
         <CustomButton
           className="btn--addToCart"
@@ -71,6 +80,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
+  addWishListItem: (item) => dispatch(addWishListItem(item)),
 });
 
 export default connect(

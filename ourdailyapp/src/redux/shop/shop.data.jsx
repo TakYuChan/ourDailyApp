@@ -4,6 +4,7 @@ const SHOP_DATA = {
   todolist: {
     id: 1,
     title: "To do list",
+    creator: "Franky Chan",
     description: "Make a note on everything",
     imageSrc: "/images/assets/todolist2.jpg",
     route: "todolist",
@@ -41,6 +42,7 @@ const SHOP_DATA = {
   coloors: {
     id: 2,
     title: "Coloors",
+    creator: "Franky Chan",
     description: "Generate random colors",
     imageSrc: "/images/assets/coloors.jpg",
     route: "coloors",
@@ -77,6 +79,7 @@ const SHOP_DATA = {
   cmConverter: {
     id: 3,
     title: "CM Converter",
+    creator: "Franky Chan",
     description: "Convert Youtube comments into PNG",
     imageSrc: "/images/assets/CM Converter.png",
     route: "coloors",
@@ -113,6 +116,7 @@ const SHOP_DATA = {
   todolist2: {
     id: 4,
     title: "To do list",
+    creator: "Franky Chan",
     description: "Make a note on everything",
     imageSrc: "/images/assets/todolist2.jpg",
     route: "todolist2",

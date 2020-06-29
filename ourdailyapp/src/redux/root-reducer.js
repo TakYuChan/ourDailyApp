@@ -28,4 +28,6 @@ const rootReducer = combineReducers({
   cartNP: cartNPReducer,
 });
 
+// export default rootReducer;
+
 export default persistReducer(persistConfig, rootReducer);

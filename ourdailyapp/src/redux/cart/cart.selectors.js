@@ -8,10 +8,9 @@ export const selectCartItems = createSelector(
   (cart) => cart.cartItems
 );
 
-export const selectCartItemsQuantity = createSelector(
-  [selectCart],
-  (cart) => cart.cartItems.length
-);
+export const selectCartItemsQuantity = createSelector([selectCart], (cart) => {
+  return cart.cartItems.length;
+});
 
 export const selectCartMoreItems = createSelector(
   [selectCartItemsQuantity],
@@ -29,3 +28,13 @@ export const selectCartPopUpHidden = createSelector(
   [selectCartNP],
   (cart) => cart.cartPopUpHidden
 );
+
+// ==================== WishList =================
+export const selectWishListItems = createSelector(
+  [selectCart],
+  (cart) => cart.wishListItems
+);
+
+export const selectWishListQuantity = createSelector([selectCart], (cart) => {
+  return cart.wishListItems.length;
+});

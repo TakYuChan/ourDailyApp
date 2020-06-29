@@ -90,28 +90,46 @@
     }
   }
 
-  /* ================ Payment part ================ */
+  /* ================================ Buttons ================================ */
+  .btn--addWishList,
   .btn--addToCart {
     all: unset;
-    display: block;
-    background: limegreen;
-    color: white;
-    letter-spacing: 1.6px;
-    width: 100%;
-    text-align: center;
-    border-radius: 30px;
-    margin-bottom: 5rem;
-    padding: 0.8em 0;
     cursor: pointer;
-
+    text-align: center;
+    letter-spacing: 1.6px;
     font-weight: 700;
+    margin-bottom: 1rem;
+    border-radius: 30px;
+    color: white;
     font-size: clamp(0.8rem, 1.2vw, 1.4rem);
-
     transition: all 300ms ease-in-out;
 
     &:hover {
-      transform: translateY(-10px);
+      transform: translateY(-5px);
       box-shadow: 2px 5px 8px rgba($color: #000000, $alpha: 0.3);
     }
+  }
+
+  /* ================ wishlist part ================ */
+  .btn--addWishList {
+    background: var(--blue-dark);
+
+    padding: 0.8em 1.2em;
+    align-self: flex-start;
+
+    .icon-wish {
+      margin-left: 0.3rem;
+      font-size: 1em;
+    }
+  }
+
+  /* ================ Payment part ================ */
+  .btn--addToCart {
+    display: block;
+    background: limegreen;
+
+    width: 100%;
+    margin-bottom: 5rem;
+    padding: 0.8em 0;
   }
 }
