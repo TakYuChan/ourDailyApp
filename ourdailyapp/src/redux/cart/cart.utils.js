@@ -16,6 +16,7 @@ export const addItemToCart = (state, cartItemToAdd) => {
     }
     //Add item
     state.cartItems.unshift(cartItemToAdd);
+
     //Add price
     state.itemTotalPrice += cartItemToAdd.price;
     return {

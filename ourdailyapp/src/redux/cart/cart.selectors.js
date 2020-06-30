@@ -22,6 +22,15 @@ export const selectCartItemsTotalPrice = createSelector(
   (cart) => cart.itemTotalPrice
 );
 
+export const selectCartItemExist = (itemIdToCheck) =>
+  createSelector([selectCartItems], (cartItems) => {
+    if (cartItems.find((item) => item.id === itemIdToCheck) === undefined) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+
 // ==================== Cart No Persistent =================
 
 export const selectCartPopUpHidden = createSelector(

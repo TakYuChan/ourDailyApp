@@ -3,7 +3,10 @@ import "./applicationDetailPage.style.scss";
 
 import { connect } from "react-redux";
 import { selectApp } from "../../redux/shop/shop.selector";
-import { selectWishListItemExist } from "../../redux/cart/cart.selectors";
+import {
+  selectWishListItemExist,
+  selectCartItemExist,
+} from "../../redux/cart/cart.selectors";
 import { addItem, toggleWishListItem } from "../../redux/cart/cart.actions";
 
 import CustomTag from "../../Components/customTag/customTag.component";
@@ -13,6 +16,7 @@ const ApplicationDetailPage = ({
   addItem,
   wishListed,
   toggleWishListItem,
+  cartItemExist,
 }) => {
   const { videoSrc, tags, intros, features, tagsColor } = appData.appDetails;
 
@@ -87,6 +91,27 @@ const ApplicationDetailPage = ({
               price: appData.price,
               route: appData.route,
             });
+
+            /* ================ animations ================ */
+            if (!cartItemExist) {
+              // let icon = document.createElement("i");
+              // icon.classList.add("iconfont");
+              // icon.classList.add("icon-icon_yingyongguanli");
+              let addedApp = document.createElement("div");
+              addedApp.classList.add("addedApp");
+              addedApp.style.backgroundImage = `url(${appData.imageSrc})`;
+
+              let wrapper = document.createElement("div");
+              wrapper.classList.add("animation-parabola-wrapper");
+              wrapper.append(addedApp);
+              document
+                .querySelector(".application-detail-page")
+                .append(wrapper);
+
+              setTimeout(() => {
+                wrapper.outerHTML = "";
+              }, 700);
+            }
           }}
         >
           Add to cart
@@ -99,6 +124,9 @@ const ApplicationDetailPage = ({
 const mapStateToProps = (state, ownProps) => ({
   appData: selectApp(ownProps.match.params.applicationId)(state),
   wishListed: selectWishListItemExist(
+    selectApp(ownProps.match.params.applicationId)(state).id
+  )(state),
+  cartItemExist: selectCartItemExist(
     selectApp(ownProps.match.params.applicationId)(state).id
   )(state),
 });
