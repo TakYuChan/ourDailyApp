@@ -10,6 +10,7 @@ import {
   moveToWishList,
   moveToCartList,
 } from "../../redux/cart/cart.actions";
+import { addCartAnimation } from "../../utils/animation";
 
 const AppItem = ({
   cartItem,
@@ -70,7 +71,11 @@ const AppItem = ({
       ) : (
         <button
           className="btn--toCartList"
-          onClick={() => moveItemToCartList(cartItem)}
+          onClick={() => {
+            moveItemToCartList(cartItem);
+            /* ================ animations ================ */
+            addCartAnimation(cartItem.imageSrc, ".Wishlist-page");
+          }}
         >
           Add to cart
         </button>

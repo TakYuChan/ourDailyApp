@@ -9,6 +9,7 @@ import {
   selectCartItemExist,
 } from "../../redux/cart/cart.selectors";
 import { addItem, toggleWishListItem } from "../../redux/cart/cart.actions";
+import { addCartAnimation } from "../../utils/animation";
 
 import CustomTag from "../../Components/customTag/customTag.component";
 
@@ -101,23 +102,7 @@ const ApplicationDetailPage = ({
 
             /* ================ animations ================ */
             if (!cartItemExist) {
-              // let icon = document.createElement("i");
-              // icon.classList.add("iconfont");
-              // icon.classList.add("icon-icon_yingyongguanli");
-              let addedApp = document.createElement("div");
-              addedApp.classList.add("addedApp");
-              addedApp.style.backgroundImage = `url(${appData.imageSrc})`;
-
-              let wrapper = document.createElement("div");
-              wrapper.classList.add("animation-parabola-wrapper");
-              wrapper.append(addedApp);
-              document
-                .querySelector(".application-detail-page")
-                .append(wrapper);
-
-              setTimeout(() => {
-                wrapper.outerHTML = "";
-              }, 700);
+              addCartAnimation(appData.imageSrc, ".application-detail-page");
             }
           }}
         >

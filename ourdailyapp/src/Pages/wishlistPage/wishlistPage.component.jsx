@@ -9,6 +9,7 @@ import {
   moveToCartList,
 } from "../../redux/cart/cart.actions";
 import { withRouter } from "react-router-dom";
+import { addCartAnimation } from "../../utils/animation";
 
 import AppItem from "../../Components/app-item/app-item.component";
 
@@ -58,18 +59,7 @@ const WishlistPage = ({
                       moveItemToCartList(wishlistItem);
 
                       /* ================ animations ================ */
-                      let addedApp = document.createElement("div");
-                      addedApp.classList.add("addedApp");
-                      addedApp.style.backgroundImage = `url(${wishlistItem.imageSrc})`;
-
-                      let wrapper = document.createElement("div");
-                      wrapper.classList.add("animation-parabola-wrapper");
-                      wrapper.append(addedApp);
-                      document.querySelector(".Wishlist-page").append(wrapper);
-
-                      setTimeout(() => {
-                        wrapper.outerHTML = "";
-                      }, 700);
+                      addCartAnimation(wishlistItem.imageSrc, ".Wishlist-page");
                     }}
                   >
                     Add to cart
@@ -110,6 +100,10 @@ const WishlistPage = ({
               id={wishlistItem.id}
               cartItem={wishlistItem}
               itemType="wishlist"
+              // animation={addCartAnimation(
+              //   wishlistItem.imageSrc,
+              //   ".Wishlist-page"
+              // )}
             />
           ))}
       </div>
