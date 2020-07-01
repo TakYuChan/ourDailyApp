@@ -25,7 +25,7 @@ import FloatNav from "./Components/floatNav/floatNav.component";
 import ShopNav from "./ComponentsNotReuse/shopNav/shopNav.component";
 import CartPreview from "./ComponentsNotReuse/cartPreview/cartPreview.component";
 
-import "./App.css";
+import "./App.scss";
 
 class App extends React.Component {
   constructor(props) {

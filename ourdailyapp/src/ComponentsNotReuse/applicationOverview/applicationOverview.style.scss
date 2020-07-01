@@ -1,24 +1,17 @@
 // =============== application overview ==================
 
 .application-overview {
-  background: var(--mainpage-bg);
-  //   min-height: calc(100vh - var(--nav-height));
-  font-family: "Montserrat", sans-serif;
-  padding-top: 50px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .heading {
-    border-bottom: 1px solid rgba($color: #535151, $alpha: 0.3);
-    width: 80vw;
-
     .title {
-      margin-bottom: 50px;
-      text-align: center;
-      font-size: clamp(2rem, 3vw, 3rem);
-      font-weight: 700;
+      .icon-icon_yingyongguanli {
+        font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+        font-weight: 700;
+        margin-left: 0.2em;
+      }
     }
   }
 }
@@ -26,6 +19,7 @@
 // =============== shop content main ==================
 
 .shop-content-main {
+  padding-top: 50px;
   display: grid;
   width: 90%;
   max-width: 900px;

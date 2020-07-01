@@ -1,6 +1,7 @@
 import React from "react";
 import "./applicationDetailPage.style.scss";
 
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { selectApp } from "../../redux/shop/shop.selector";
 import {
@@ -17,13 +18,19 @@ const ApplicationDetailPage = ({
   wishListed,
   toggleWishListItem,
   cartItemExist,
+  history,
 }) => {
   const { videoSrc, tags, intros, features, tagsColor } = appData.appDetails;
 
   return (
-    <div className="application-detail-page">
+    <div className="application-detail-page pages">
       <div className="heading">
-        <h1 className="title">{appData.title}</h1>
+        <h1 className="title">
+          <span className="prev-link" onClick={() => history.push("/shop")}>
+            /shop<i className="iconfont icon-shop"></i>
+          </span>
+          /{appData.title}
+        </h1>
       </div>
 
       <section className="app-content-main">
@@ -136,7 +143,6 @@ const mapDispatchToProps = (dispatch) => ({
   toggleWishListItem: (item) => dispatch(toggleWishListItem(item)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ApplicationDetailPage);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ApplicationDetailPage)
+);

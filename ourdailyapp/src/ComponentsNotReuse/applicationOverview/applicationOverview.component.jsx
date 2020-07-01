@@ -8,10 +8,12 @@ import { connect } from "react-redux";
 import CustomCard from "../../Components/customCard/customCard.component";
 
 const ApplicationOverview = ({ applications }) => (
-  <div className="application-overview">
+  <div className="application-overview pages">
     {/* ============= heading ============= */}
     <div className="heading">
-      <h1 className="title">Applications</h1>
+      <h1 className="title">
+        App Store<i className="iconfont icon-icon_yingyongguanli"></i>
+      </h1>
     </div>
 
     {/* ============= content main ============= */}

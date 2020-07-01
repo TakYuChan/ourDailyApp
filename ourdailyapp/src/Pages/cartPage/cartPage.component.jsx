@@ -18,7 +18,10 @@ const CartPage = ({
   totalPrice,
   wishlistItems,
 }) => (
-  <div className="Cart-Page">
+  <div className="Cart-Page pages">
+    <div className="heading">
+      <h1 className="title">Cart</h1>
+    </div>
     {/* ========================== content main ========================== */}
     <div className="cart-content-main">
       {/* ========================== Left Side ========================== */}
@@ -29,7 +32,7 @@ const CartPage = ({
           {cartItemsQuantity === 1 ? "Application" : "Applications"} in Cart
         </span>
 
-        <div className="cartItems-wrapper">
+        <div className="appItem-wrapper cartItems-wrapper">
           {/* ============= Render 1: cartItems quantity >= 1 ============= */}
           {cartItemsQuantity !== 0 &&
             cartItems !== null &&
@@ -52,7 +55,7 @@ const CartPage = ({
         <span className="recently-wishlisted">Recently wishlisted</span>
         {/* ============= Render 1: wishlistItems quantity >= 1 ============= */}
         {wishlistItems.length !== 0 && (
-          <div className="wishlist-wrapper">
+          <div className="appItem-wrapper wishlist-wrapper">
             {wishlistItems !== null &&
               wishlistItems.map((wishlistItem) => (
                 <AppItem

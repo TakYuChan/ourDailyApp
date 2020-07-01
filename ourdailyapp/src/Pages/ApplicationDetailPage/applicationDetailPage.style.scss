@@ -1,28 +1,27 @@
 .application-detail-page {
-  background: var(--mainpage-bg);
-  font-family: "Montserrat", sans-serif;
-  padding-top: 50px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  //   border: 2px solid;
-  // ====================== Heading =====================
-
+  // ====================== Content Main =====================
   .heading {
-    border-bottom: 1px solid rgba($color: #535151, $alpha: 0.3);
-    width: 80vw;
-
     .title {
-      margin-bottom: 50px;
-      text-align: center;
-      font-size: clamp(2rem, 3vw, 3rem);
-      font-weight: 700;
+      .prev-link {
+        cursor: pointer;
+        font-size: 0.6em;
+        padding: 0.2em 0.4em;
+        &:hover {
+          background: white;
+          border-radius: 10px;
+        }
+
+        .icon-shop {
+          font-size: 1rem;
+          margin-left: 0.2em;
+        }
+      }
     }
   }
-
-  // ====================== Content Main =====================
 
   .app-content-main {
     width: 100%;
@@ -137,65 +136,5 @@
     width: 100%;
     margin-bottom: 5rem;
     padding: 0.8em 0;
-  }
-
-  /* ================ animations ================ */
-  .animation-parabola-wrapper {
-    --size: 100px;
-    height: var(--size);
-    width: var(--size);
-    background: rgba($color: #000000, $alpha: 0);
-    // background: rgba($color: blue, $alpha: 1);
-    position: fixed;
-    z-index: 5;
-    right: 14%;
-    bottom: 5%;
-    pointer-events: none;
-
-    @media screen and (min-width: 850px) {
-      right: 2.5%;
-    }
-
-    // .icon-icon_yingyongguanli {
-    //   position: absolute;
-    //   bottom: 50%;
-    //   left: 0;
-    //   font-size: 1.8rem;
-    // }
-
-    .addedApp {
-      position: absolute;
-      bottom: 50%;
-      left: 0;
-      --size: 40px;
-      width: var(--size);
-      height: var(--size);
-      border-radius: 100%;
-      background-size: cover;
-    }
-
-    animation: parabola 0.9s linear forwards;
-  }
-}
-
-@keyframes parabola {
-  0% {
-    transform: rotate(0);
-    opacity: 1;
-    // background: pink;
-  }
-
-  23% {
-    opacity: 1;
-  }
-
-  60% {
-    opacity: 0;
-  }
-
-  100% {
-    transform: rotate(270deg);
-    opacity: 0;
-    // background: steelblue;
   }
 }

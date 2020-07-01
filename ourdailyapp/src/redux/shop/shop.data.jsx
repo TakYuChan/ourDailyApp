@@ -154,6 +154,7 @@ const SHOP_DATA = {
   todolist3: {
     id: 5,
     title: "To do list",
+    creator: "Franky Chan",
     description: "Make a note on everything",
     imageSrc: "/images/assets/todolist2.jpg",
     route: "todolist3",
