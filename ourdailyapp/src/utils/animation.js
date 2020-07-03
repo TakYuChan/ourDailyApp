@@ -1,5 +1,5 @@
-export const addCartAnimation = (itemImageSrc, pageClass) => {
-  if (document.querySelector(pageClass) !== null) {
+export const addCartAnimation = (itemImageSrc, animationAppendTo) => {
+  if (document.querySelector(animationAppendTo) !== null) {
     let addedApp = document.createElement("div");
     addedApp.classList.add("addedApp");
     addedApp.style.backgroundImage = `url(${itemImageSrc})`;
@@ -7,7 +7,7 @@ export const addCartAnimation = (itemImageSrc, pageClass) => {
     let wrapper = document.createElement("div");
     wrapper.classList.add("animation-parabola-wrapper");
     wrapper.append(addedApp);
-    document.querySelector(pageClass).append(wrapper);
+    document.querySelector(animationAppendTo).append(wrapper);
 
     setTimeout(() => {
       wrapper.outerHTML = "";

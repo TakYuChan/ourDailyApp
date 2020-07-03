@@ -17,6 +17,7 @@ const AppItem = ({
   removeItem,
   minusItemPrice,
   itemType,
+  animationAppendTo,
   removeWishListItem,
   moveItemToWishList,
   moveItemToCartList,
@@ -74,7 +75,7 @@ const AppItem = ({
           onClick={() => {
             moveItemToCartList(cartItem);
             /* ================ animations ================ */
-            addCartAnimation(cartItem.imageSrc, ".Wishlist-page");
+            addCartAnimation(cartItem.imageSrc, animationAppendTo);
           }}
         >
           Add to cart

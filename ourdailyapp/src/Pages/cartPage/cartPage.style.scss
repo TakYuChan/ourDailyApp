@@ -91,7 +91,8 @@
         .btn--checkout {
           all: unset;
           text-align: center;
-          background: var(--red-dark);
+          background: var(--blue-light);
+
           color: white;
           font-weight: 700;
           padding: 0.7em 0;
@@ -99,7 +100,7 @@
           margin-bottom: 0.5em;
 
           &:hover {
-            background: var(--red);
+            background: var(--blue-dark);
           }
 
           &.disabled {

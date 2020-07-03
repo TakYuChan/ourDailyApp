@@ -50,6 +50,7 @@ export const selectWishListQuantity = createSelector([selectCart], (cart) => {
 
 export const selectWishListItemExist = (itemIdToCheck) =>
   createSelector([selectWishListItems], (wishList) => {
+    console.log(itemIdToCheck.appData);
     if (wishList.find((item) => item.id === itemIdToCheck) === undefined) {
       return false;
     } else {

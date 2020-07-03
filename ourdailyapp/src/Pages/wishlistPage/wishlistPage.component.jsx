@@ -100,10 +100,7 @@ const WishlistPage = ({
               id={wishlistItem.id}
               cartItem={wishlistItem}
               itemType="wishlist"
-              // animation={addCartAnimation(
-              //   wishlistItem.imageSrc,
-              //   ".Wishlist-page"
-              // )}
+              animationAppendTo=".Wishlist-page"
             />
           ))}
       </div>
