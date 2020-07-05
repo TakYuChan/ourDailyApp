@@ -11,6 +11,7 @@ import {
 import { createStructuredSelector } from "reselect";
 
 import AppItem from "../../Components/app-item/app-item.component";
+import StripeCheckoutButton from "../../ComponentsNotReuse/stripe-button/stripe-button.component";
 
 const CartPage = ({
   cartItems,
@@ -75,6 +76,7 @@ const CartPage = ({
       </div>
       {/* ========================== Right Side ========================== */}
       <div className="right-side">
+        {/* ============== Payment Block ============== */}
         <div className="payment-info">
           <span className="total-price-text">
             Total:{" "}
@@ -82,13 +84,23 @@ const CartPage = ({
               $<span className="price-text">{totalPrice}</span>
             </span>
           </span>
+          {/* ============== Checkout btns with Stripe ============= */}
           <button
-            className={`btn--checkout ${
-              cartItemsQuantity === 0 ? "disabled" : ""
-            }`}
+            className={`btn--checkout`}
+            onClick={() => {
+              const stripeCheckOutBtn = document.querySelector(
+                ".StripeCheckout"
+              );
+              // Triggering click to the stripe button
+              if (stripeCheckOutBtn !== null) {
+                stripeCheckOutBtn.click();
+              }
+            }}
+            disabled={cartItemsQuantity === 0}
           >
             Checkout
           </button>
+          <StripeCheckoutButton price={totalPrice} />
         </div>
         <hr />
       </div>

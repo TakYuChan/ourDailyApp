@@ -1,11 +1,8 @@
-// =================== Links ===================
-.link {
-  &:hover {
-    text-decoration: none;
-  }
-}
+import styled from "styled-components";
 
-.application-item {
+const S = {};
+
+S.ApplicationItemContainer = styled.div`
   cursor: pointer;
 
   display: grid;
@@ -19,12 +16,13 @@
   width: 100%;
 
   &:hover {
-    background: rgba(222, 222, 223, 0.3);
-
-    & .link-text {
+    background: ${(props) => props.theme.mainPage.app_Hover};
+    .link-text {
       text-decoration: none;
     }
   }
+
+  //   ==================== Inputed Image from backend =================
 
   .img--todolist,
   .img--coloors,
@@ -35,7 +33,6 @@
     }
     width: 100%;
     border-radius: 100%;
-    -o-object-fit: cover;
     object-fit: cover;
     height: var(--img-size);
     width: var(--img-size);
@@ -44,9 +41,11 @@
   .img--cmConverter {
     border: 1px solid var(--blue);
   }
-}
+`;
 
-.link-text {
-  color: var(--gray4);
+S.AppLinkText = styled.span`
+  color: ${(props) => props.theme.mainPage.appLinkText};
   text-decoration: none;
-}
+`;
+
+export default S;

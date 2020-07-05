@@ -3,6 +3,8 @@
   flex-direction: column;
   align-items: center;
 
+  user-select: none;
+
   // =============== cart content main ==================
   .cart-content-main {
     width: 90%;
@@ -88,6 +90,8 @@
             }
           }
         }
+
+        /* ============== Checkout btns with Stripe ============= */
         .btn--checkout {
           all: unset;
           text-align: center;
@@ -103,9 +107,12 @@
             background: var(--blue-dark);
           }
 
-          &.disabled {
+          &:disabled {
             background: var(--gray2);
           }
+        }
+        .StripeCheckout {
+          display: none !important;
         }
       }
 

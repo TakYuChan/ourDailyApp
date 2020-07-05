@@ -5,6 +5,9 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { connect } from "react-redux";
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "./styled/globalStyle";
+import { lightTheme, darkTheme } from "./styled/theme";
 
 import {
   setUser,
@@ -73,24 +76,28 @@ class App extends React.Component {
   render() {
     const { hoverNavItem } = this.state;
 
-    return [
-      <Header />,
-      <FloatNav
-        handleNavItemHover={this.handleNavItemHover}
-        hoverNavItem={hoverNavItem}
-      />,
-      <ShopNav />,
-      <CartPreview />,
-      <Switch>
-        <Route exact path="/" component={MainPage} />
-        <Route path="/shop" component={ShopPage} />
-        <Route path="/profile" component={ProfilePage} />
-        <Route path="/cart" component={CartPage} />
-        <Route path="/wishlist" component={WishlistPage} />
-        <Route path="/commentsConverter" component={CommentsConverterPage} />
-        <Route component={NoMatch} />
-      </Switch>,
-    ];
+    return (
+      <ThemeProvider theme={lightTheme}>
+        <GlobalStyle />
+        <Header />
+        <FloatNav
+          handleNavItemHover={this.handleNavItemHover}
+          hoverNavItem={hoverNavItem}
+        />
+
+        <ShopNav />
+        <CartPreview />
+        <Switch>
+          <Route exact path="/" component={MainPage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route path="/profile" component={ProfilePage} />
+          <Route path="/cart" component={CartPage} />
+          <Route path="/wishlist" component={WishlistPage} />
+          <Route path="/commentsConverter" component={CommentsConverterPage} />
+          <Route component={NoMatch} />
+        </Switch>
+      </ThemeProvider>
+    );
   }
 }
 

@@ -1,6 +1,5 @@
 import React from "react";
-
-import "./applicationItem.style.scss";
+import S from "./applicationItem.style";
 
 import { Link } from "react-router-dom";
 
@@ -9,10 +8,10 @@ const ApplicationItem = ({ app }) => {
 
   return (
     <Link to={`/${route}`} className={`link`}>
-      <div className="application-item">
+      <S.ApplicationItemContainer className="application-item">
         {image}
-        <span className="link-text">{name}</span>
-      </div>
+        <S.AppLinkText className="link-text">{name}</S.AppLinkText>
+      </S.ApplicationItemContainer>
     </Link>
   );
 };

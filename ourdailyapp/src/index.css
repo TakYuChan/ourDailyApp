@@ -59,7 +59,7 @@ code {
   --gray4: #454e56;
   --gray5: #2a2e35;
   --gray6: #12181b;
-  --nav-height: 4em;
+  /* --nav-height: 4em; */
   --font-body: "sofia-pro", sans-serif;
   --font-head: "sofia-pro", sans-serif;
   --font-code: "attribute-mono", monospace;

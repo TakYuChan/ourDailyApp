@@ -1,20 +1,20 @@
 import React from "react";
-import "./mainPage.style.scss";
+
+import S from "./mainPage.style";
 
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { connect } from "react-redux";
 
 import ApplicationWrapper from "../../Components/applicationWrapper/applicationWrapper.component";
-import Logo from "../../Components/logo/logo.component";
 
 const MainPage = ({ closeShopNav }) => {
   return (
-    <div className="MainPage" onClick={closeShopNav}>
+    <S.MainPageContainer className="MainPage pages" onClick={closeShopNav}>
       <div className="logo-style-box">
-        <Logo id="mainPage-logo" wrapperId="mainPage-logo-wrapper" />
+        <S.Logo id="mainPage-logo" wrapperId="mainPage-logo-wrapper" />
       </div>
       <ApplicationWrapper />
-    </div>
+    </S.MainPageContainer>
   );
 };
 

@@ -84,13 +84,19 @@ const ApplicationDetailPage = ({
           }}
         >
           Wishlist
-          <i className={`fas fa-heart ${wishListed ? "active" : ""}`}></i>
+          <i
+            className={`fas fa-heart ${wishListed(appData.id) ? "active" : ""}`}
+          ></i>
         </button>
 
         {/* ================ Payment part ================ */}
         <button
           className="btn--addToCart"
           onClick={() => {
+            /* ================ animations ================ */
+            if (!cartItemExist(appData.id)) {
+              addCartAnimation(appData.imageSrc, ".application-detail-page");
+            }
             addItem({
               id: appData.id,
               title: appData.title,
@@ -99,11 +105,6 @@ const ApplicationDetailPage = ({
               price: appData.price,
               route: appData.route,
             });
-
-            /* ================ animations ================ */
-            if (!cartItemExist) {
-              addCartAnimation(appData.imageSrc, ".application-detail-page");
-            }
           }}
         >
           Add to cart
@@ -115,12 +116,8 @@ const ApplicationDetailPage = ({
 
 const mapStateToProps = (state, ownProps) => ({
   appData: selectApp(ownProps.match.params.applicationId)(state),
-  wishListed: selectWishListItemExist(
-    selectApp(ownProps.match.params.applicationId)(state).id
-  )(state),
-  cartItemExist: selectCartItemExist(
-    selectApp(ownProps.match.params.applicationId)(state).id
-  )(state),
+  wishListed: (appId) => selectWishListItemExist(appId)(state),
+  cartItemExist: (appId) => selectCartItemExist(appId)(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

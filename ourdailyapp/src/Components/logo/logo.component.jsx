@@ -1,5 +1,6 @@
 import React from "react";
 import "./logo.style.scss";
+import S from "./logo.style";
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -10,7 +11,7 @@ import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 
 const Logo = ({ id, wrapperId, withLink, history, closeNav, closeShopNav }) => {
   return (
-    <div
+    <S.LogoWrapper
       className="logo-wrapper"
       id={wrapperId}
       onClick={() => {
@@ -21,8 +22,13 @@ const Logo = ({ id, wrapperId, withLink, history, closeNav, closeShopNav }) => {
         }
       }}
     >
-      <img src={"/images/assets/logo.png"} id={id} alt="logo" />
-    </div>
+      <S.LogoImage
+        className="logo"
+        src={"/images/assets/logo.png"}
+        id={id}
+        alt="logo"
+      />
+    </S.LogoWrapper>
   );
 };
 

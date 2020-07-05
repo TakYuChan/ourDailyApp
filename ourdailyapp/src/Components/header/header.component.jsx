@@ -1,5 +1,4 @@
 import React from "react";
-import "./header.style.scss";
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -9,16 +8,14 @@ import { toggleNavHidden, closeNav } from "../../redux/nav/nav.actions";
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { toggleCartPopUp } from "../../redux/cart/cart.actions";
 import { selectCartItemsQuantity } from "../../redux/cart/cart.selectors";
+import S from "./header.style";
 
 import SignInAndSignUp from "../../Pages/signInAndSignUp/signInAndSignUp.component";
 
 import { Button } from "react-bootstrap";
 import Logo from "../logo/logo.component";
-import ReactToolTip from "react-tooltip";
-import { ReactComponent as NavIcon } from "../../assets/nav.svg";
 
 import ProfileDropDownMenu from "../../ComponentsNotReuse/profileDropDownMenu/profileDropDownMenu.component";
-import CustomButton from "../customButton/customButton.component";
 
 const Header = ({
   navHidden,
@@ -29,8 +26,8 @@ const Header = ({
   cartItemsQuantity,
 }) => {
   return (
-    <header className="header">
-      <nav>
+    <S.HeaderContainer className="header">
+      <S.HeaderNavContainer>
         {/* ====================== Logo ====================== */}
         <Logo
           wrapperId="header-logo-wrapper"
@@ -38,8 +35,10 @@ const Header = ({
           withLink={true}
         />
 
-        {/* ====================== Change language Badge ====================== */}
-        <div className="list">
+        {/* ============================== Nav List ================================= */}
+
+        <S.NavListContainer className="list">
+          {/* ====================== Change language Badge ====================== */}
           <div className="btn-lang-wrapper">
             <Button
               variant="primary"
@@ -49,7 +48,7 @@ const Header = ({
             >
               <span>中文</span>
             </Button>
-            <ReactToolTip
+            <S.LanguageToolTip
               arrowColor="#454e56"
               id="langTip"
               place="bottom"
@@ -57,11 +56,11 @@ const Header = ({
               className="tooltip"
             >
               Language
-            </ReactToolTip>
+            </S.LanguageToolTip>
           </div>
 
           {/* ====================== Cart Icon ====================== */}
-          <div
+          <S.CartIconWrapper
             className="cart-icon-wrapper"
             onClick={() => {
               toggleCartPopUp();
@@ -69,18 +68,21 @@ const Header = ({
               closeNav();
             }}
           >
-            <i className="iconfont icon-cart1"></i>
+            <S.CartIcon className="iconfont icon-cart1"></S.CartIcon>
+            {/* ====================== Cart Icon -- > 1 notification ====================== */}
             {cartItemsQuantity !== 0 && (
-              <div className="cartItems-quantity-wrapper">
-                <span className="cartItems-quantity">{cartItemsQuantity}</span>
-              </div>
+              <S.CartItemsQuantityContainer className="cartItems-quantity-container">
+                <S.CartItemsQuantityText className="cartItems-quantity-text">
+                  {cartItemsQuantity}
+                </S.CartItemsQuantityText>
+              </S.CartItemsQuantityContainer>
             )}
-          </div>
+          </S.CartIconWrapper>
 
           {/* ====================== SVG btn -> Float Nav ====================== */}
 
-          <CustomButton
-            className={`${navHidden ? "" : "active"} svg-wrapper`}
+          <S.NavIconContainer
+            className={`${navHidden ? "" : "active"} svg-wrapper Component`}
             onClick={() => {
               toggleNav();
             }}
@@ -92,8 +94,8 @@ const Header = ({
             toolTipClass="tooltip"
             toolTipText="Navigation Menu"
           >
-            <NavIcon />
-          </CustomButton>
+            <S.NavIcon className="svg" />
+          </S.NavIconContainer>
 
           {/* ====================== Profile Drop Down ====================== */}
 
@@ -101,9 +103,9 @@ const Header = ({
 
           {/* - Passing the "showSignInSignUpModal" to Open / Close Modal */}
           <SignInAndSignUp />
-        </div>
-      </nav>
-    </header>
+        </S.NavListContainer>
+      </S.HeaderNavContainer>
+    </S.HeaderContainer>
   );
 };
 

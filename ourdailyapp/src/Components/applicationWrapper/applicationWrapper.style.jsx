@@ -1,5 +1,8 @@
-// ======================= application-wrapper =====================
-.application-wrapper {
+import styled from "styled-components";
+
+const S = {};
+
+S.ApplicationsContainer = styled.div`
   display: grid;
   width: 80%;
   max-width: 600px;
@@ -10,16 +13,11 @@
 
   grid-template-columns: repeat(auto-fit, var(--app-size));
   grid-auto-rows: var(--app-size);
-  // grid-auto-rows: 200px;
   row-gap: 1rem;
-}
 
-.app1 {
-  background: red;
-}
-
-@media screen and (max-width: 810px) {
-  .application-wrapper {
+  @media screen and (max-width: 810px) {
     --app-size: 100px;
   }
-}
+`;
+
+export default S;

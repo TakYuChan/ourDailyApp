@@ -1,7 +1,5 @@
 import React from "react";
-import "./customButton.style.scss";
-
-import ReactToolTip from "react-tooltip";
+import S from "./customButton.style";
 
 const CustomButton = (props) => {
   return (
@@ -16,7 +14,7 @@ const CustomButton = (props) => {
       </button>
 
       {props.withToolTip && (
-        <ReactToolTip
+        <S.ToolTip
           arrowColor="#454e56"
           id={props.toolTipId}
           place={props.toolTipPlace}
@@ -24,7 +22,7 @@ const CustomButton = (props) => {
           className={props.toolTipClass}
         >
           {props.toolTipText}
-        </ReactToolTip>
+        </S.ToolTip>
       )}
     </div>
   );
