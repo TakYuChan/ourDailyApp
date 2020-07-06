@@ -1,5 +1,5 @@
 import React from "react";
-
+import S from "./signInAndSignUp.style";
 import "./signInAndSignUp.style.scss";
 
 import { connect } from "react-redux";
@@ -101,7 +101,7 @@ const SignInAndSignUp = ({
             className="btn--googleAuth"
             onClick={signInWithGoogle}
           >
-            <i className="iconfont icon-google"></i>
+            <S.IconGoogle className="iconfont icon-google"></S.IconGoogle>
             Google Log In
           </Button>,
         ];

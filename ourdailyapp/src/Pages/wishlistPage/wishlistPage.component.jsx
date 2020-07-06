@@ -1,5 +1,5 @@
 import React from "react";
-import "./wishlistPage.style.scss";
+import S from "./wishlistPage.style";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -19,40 +19,44 @@ const WishlistPage = ({
   moveItemToCartList,
   history,
 }) => (
-  <div className="Wishlist-page pages">
+  <S.PageContainer className="Wishlist-page pages">
     {/* ========================== heading ========================== */}
     <div className="heading">
       <h1 className="title">Wishlist</h1>
     </div>
 
     {/* ========================== content main ========================== */}
-    <div className="wishlist-content-main">
+    <S.ContentContainer className="wishlist-content-main">
       {/* ========================== Render 1: {wishlist.length > 0 && } min-width 850px ========================== */}
       {wishlist !== null &&
         wishlist.length > 0 &&
         wishlist.map((wishlistItem) => (
-          <div className="wishlist-min850">
-            <div
-              className="card-wishlistItem"
+          <S.WishlistMIN850 className="wishlist-min850">
+            <S.CardWrapper
+              className="card-wishlistItem-wrapper"
               onClick={() => history.push(`/shop/${wishlistItem.route}`)}
             >
               {/* ========== wishlist item image =========== */}
-              <div className="img-wrapper">
-                <img
+              <S.ImageWrapper className="img-wrapper">
+                <S.Image
                   src={wishlistItem.imageSrc}
                   alt={`${wishlistItem.title}`}
                   className="img-app"
                 />
-              </div>
+              </S.ImageWrapper>
               {/* ====================== card-bottom-part ====================== */}
-              <div className="card-bottom-part">
+              <S.CardBottomWrapper className="card-bottom-part">
                 {/* ========== wishlist item info text =========== */}
-                <h3 className="wishlistItem-title">{wishlistItem.title}</h3>
-                <p className="wishlistItem-creator">{wishlistItem.creator}</p>
+                <S.ItemTitleText className="wishlistItem-title">
+                  {wishlistItem.title}
+                </S.ItemTitleText>
+                <S.ItemCreatorText className="wishlistItem-creator">
+                  {wishlistItem.creator}
+                </S.ItemCreatorText>
 
-                <div className="btn-and-price">
+                <S.BtnAndPriceContainer className="btn-and-price">
                   {/* ========== btn - to cart =========== */}
-                  <button
+                  <S.BtnAddToCart
                     className="btn-addToCart"
                     onClick={(event) => {
                       event.stopPropagation();
@@ -63,18 +67,21 @@ const WishlistPage = ({
                     }}
                   >
                     Add to cart
-                  </button>
+                  </S.BtnAddToCart>
                   {/* ========== price text =========== */}
-                  <span className="total-price-text">
+                  <S.TotalPriceText className="total-price-text">
                     <span className="dollar-price-text">
-                      $<span className="price-text">{wishlistItem.price}</span>
+                      $
+                      <S.PriceText className="price-text">
+                        {wishlistItem.price}
+                      </S.PriceText>
                     </span>
-                  </span>
-                </div>
-              </div>
+                  </S.TotalPriceText>
+                </S.BtnAndPriceContainer>
+              </S.CardBottomWrapper>
               {/* ====================== element - absolute ====================== */}
 
-              <i
+              <S.IconHeart
                 className={`fas fa-heart`}
                 onClick={(event) => {
                   event.stopPropagation();
@@ -87,13 +94,13 @@ const WishlistPage = ({
                     route: wishlistItem.route,
                   });
                 }}
-              ></i>
-            </div>
-          </div>
+              ></S.IconHeart>
+            </S.CardWrapper>
+          </S.WishlistMIN850>
         ))}
       {/* ========================== Render 2: {wishlist.length > 0 && } max-width 849px
       ========================== */}
-      <div className="appItem-wrapper appItem-for-wishlistPage wishlist-max849">
+      <S.WishlistMAX849 className="wishlist-max849">
         {wishlist !== null &&
           wishlist.map((wishlistItem) => (
             <AppItem
@@ -103,16 +110,16 @@ const WishlistPage = ({
               animationAppendTo=".Wishlist-page"
             />
           ))}
-      </div>
-    </div>
+      </S.WishlistMAX849>
+    </S.ContentContainer>
     {/* =============== Render 3: EMPTY wishlist ================= */}
     {wishlist.length === 0 && (
-      <div className="empty-wishlist-wrapper">
+      <S.EmptyWishlistContainer className="empty-wishlist-wrapper">
         <h1> You have an empty wishlist</h1>
         <i className="iconfont icon-Empty"></i>
-      </div>
+      </S.EmptyWishlistContainer>
     )}
-  </div>
+  </S.PageContainer>
 );
 
 const mapStateToProps = createStructuredSelector({
