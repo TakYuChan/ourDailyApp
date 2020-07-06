@@ -1,5 +1,5 @@
 import React from "react";
-import "./shopNav.style.scss";
+import S from "./shopNav.style";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -16,37 +16,40 @@ const ShopNav = ({
   toggleCartPopUp,
   history,
 }) => (
-  <div className="shopNav">
-    <div className="toggle-shopNav" onClick={toggleHidden}>
-      <i className="iconfont icon-shop"></i>
-    </div>
-    <div className="menu-wrapper">
-      <div className={`${!hidden && "active"} shopNav-menu`}>
-        <div
+  <S.ShopNavWrapper className="shopNav">
+    <S.ToggleContainer className="toggle-shopNav" onClick={toggleHidden}>
+      <S.IconShop className="iconfont icon-shop"></S.IconShop>
+    </S.ToggleContainer>
+    {/* // ====================== In Opened Shop Nav ====================== */}
+    <S.MenuContainer className="menu-wrapper">
+      <S.MenuWrapper className={`${!hidden && "active"} shopNav-menu`}>
+        <S.OptionCart
           className="option option--cart"
           onClick={() => {
             toggleCartPopUp();
             toggleHidden();
           }}
         >
-          <i className="iconfont icon-cart">
-            <span className="cartItems-quantity">{itemQuantity}</span>
-          </i>
-          <p className="option-text">Cart</p>
-        </div>
-        <div
+          <S.Icon className="iconfont icon-cart">
+            <S.CartItemsQuantityText className="cartItems-quantity">
+              {itemQuantity}
+            </S.CartItemsQuantityText>
+          </S.Icon>
+          <S.Text className="option-text">Cart</S.Text>
+        </S.OptionCart>
+        <S.OptionCheckout
           className="option option--checkout"
           onClick={() => {
             toggleHidden();
             history.push("/wishlist");
           }}
         >
-          <i className="iconfont icon-wish"></i>
-          <p className="option-text">Wishlist</p>
-        </div>
-      </div>
-    </div>
-  </div>
+          <S.Icon className="iconfont icon-wish"></S.Icon>
+          <S.Text className="option-text">Wishlist</S.Text>
+        </S.OptionCheckout>
+      </S.MenuWrapper>
+    </S.MenuContainer>
+  </S.ShopNavWrapper>
 );
 
 const mapStateToProps = createStructuredSelector({

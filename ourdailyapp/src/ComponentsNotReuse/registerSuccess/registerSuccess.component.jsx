@@ -1,13 +1,13 @@
 import React from "react";
-import "./registerSuccess.style.scss";
+import S from "./registerSuccess.style";
 
 const RegisterSuccessScene = () => {
   return (
-    <div className="registerSuccess-body">
-      <span className="registerSuccess-text">
+    <S.PageContainer className="registerSuccess-body">
+      <S.CongraText className="registerSuccess-text">
         Congratulations! You have successfully registered an account.
-      </span>
-    </div>
+      </S.CongraText>
+    </S.PageContainer>
   );
 };
 

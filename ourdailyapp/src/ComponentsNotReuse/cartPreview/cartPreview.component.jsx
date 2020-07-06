@@ -1,5 +1,5 @@
 import React from "react";
-import "./cartPreview.style.scss";
+import S from "./cartPreview.style";
 
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -29,69 +29,77 @@ const CartPreview = ({
   minusItemPrice,
   history,
 }) => (
-  <div className={`${!cartPopUpHidden && "active"} cart-preview`}>
+  <S.CartPreviewContainer
+    className={`${!cartPopUpHidden && "active"} cart-preview`}
+  >
     {itemsQuantity === 0 && [
       //   ======================= cart empty text =======================
-      <h2 key="1" className="empty-cart-text">
+      <S.EmptyCartText key="1" className="empty-cart-text">
         Your cart is empty!
-      </h2>,
-      <button key="2" className="btn--closePreview" onClick={toggleCartPopUp}>
+      </S.EmptyCartText>,
+      <S.BtnClosePreview
+        key="2"
+        className="btn--closePreview"
+        onClick={toggleCartPopUp}
+      >
         Close
-      </button>,
+      </S.BtnClosePreview>,
     ]}
     {itemsQuantity !== 0 && [
       //   ======================= items wrapper =======================
-      <div className="items-wrapper" key="1">
+      <S.CartItemsWrapper className="items-wrapper" key="1">
         {cartItems !== null &&
           cartItems
             .filter((cartItem, index) => index < 3)
             .map((cartItem) => {
               return (
-                <div className="cart-item" key={cartItem.id}>
-                  <div className="left-side">
-                    <div className="img-wrapper">
-                      <img
+                <S.CartItemContainer className="cart-item" key={cartItem.id}>
+                  <S.LeftContainer className="left-side">
+                    <S.ImageWrapper className="img-wrapper">
+                      <S.CartItemImage
                         src={cartItem.imageSrc}
                         alt="cart item"
-                        className="item-img"
+                        className="cartItem-img"
                       />
-                    </div>
-                    <span className="item-name">{cartItem.title}</span>
-                  </div>
+                    </S.ImageWrapper>
+                    <S.ItemNameText className="item-name">
+                      {cartItem.title}
+                    </S.ItemNameText>
+                  </S.LeftContainer>
                   <div className="right-side">
                     <span className="item-price">{`$${cartItem.price}`}</span>
-                    <i
+                    <S.IconRemoveItem
                       className="iconfont icon-chax"
                       onClick={() => {
                         removeItem(cartItem);
                         minusItemPrice(cartItem.price);
                       }}
-                    ></i>
+                    ></S.IconRemoveItem>
                   </div>
-                </div>
+                </S.CartItemContainer>
               );
             })}
-      </div>,
+      </S.CartItemsWrapper>,
       //   ======================= Render 1 - more-items text =======================
       itemsQuantity > 3 && (
-        <span key="2" className="more-items">
+        <S.MoreItemsText key="2" className="more-items">
           And {moreItemText} more items...
-        </span>
+        </S.MoreItemsText>
       ),
       //   ======================= Render 2 - total-items text =======================
       itemsQuantity <= 3 && (
-        <span key="2" className="total-items">
+        <S.TitleItemsText key="2" className="total-items">
           You have {itemsQuantity} {itemsQuantity === 1 ? "item" : "items"} in
           the cart
-        </span>
+        </S.TitleItemsText>
       ),
       //   ======================= total price =======================
-      <span key="3" className="total-price">
+      <S.TotalPriceText key="3" className="total-price">
         Total: ${cartItemsTotalPrice < 0 ? "0" : cartItemsTotalPrice}
-      </span>,
+      </S.TotalPriceText>,
       //   ======================= btns--wrapper =======================
-      <div key="4" className="buttons-wrapper">
-        <button
+      <S.ButtonsContainer key="4" className="buttons-wrapper">
+        <S.BtnToCart
           className="btn--toCart"
           onClick={() => {
             history.push("/cart");
@@ -99,13 +107,16 @@ const CartPreview = ({
           }}
         >
           Go To Cart
-        </button>
-        <button className="btn--closePreview" onClick={toggleCartPopUp}>
+        </S.BtnToCart>
+        <S.BtnClosePreview
+          className="btn--closePreview"
+          onClick={toggleCartPopUp}
+        >
           Close
-        </button>
-      </div>,
+        </S.BtnClosePreview>
+      </S.ButtonsContainer>,
     ]}
-  </div>
+  </S.CartPreviewContainer>
 );
 
 const mapStateToProps = createStructuredSelector({

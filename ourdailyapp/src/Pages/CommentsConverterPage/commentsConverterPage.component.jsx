@@ -1,5 +1,5 @@
 import React from "react";
-import "./commentsConverterPage.style.scss";
+import S from "./commentsConverterPage.style";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -24,64 +24,69 @@ const CommentsConverterPage = ({
   setStep2ToFalse,
   setStep2ToTrue,
 }) => (
-  <div className="commentsConverter-page">
+  <S.PageContainer className="commentsConverter-page pages">
     {/* ====================================== Introduction ====================================== */}
-    <section className="introduction">
+    <S.IntroContainer className="introduction">
       {/* ============= intro left ============= */}
-      <div className="intro-left">
-        <h1>YouTube Comments To PNG Converter</h1>
+      <S.IntroLeftWrapper className="intro-left">
+        <S.PageTitleText className="pageTitle">
+          YouTube Comments To PNG Converter
+        </S.PageTitleText>
         <div className="img-wrapper">
-          <img
+          <S.ImgCamera
             src="https://i.imgur.com/j9rSZOk.png"
             alt="a camera between the hands"
             className="img--camera"
           />
         </div>
         <h3>Features: </h3>
-        <ul className="feature-list">
+        <S.FeatureList className="feature-list">
           <li>Unlimited Comments allowed</li>
           <li>Customized border radius</li>
           <li>ZIP file for download</li>
           <li>Comments content is the PNG file name</li>
-        </ul>
-      </div>
+        </S.FeatureList>
+      </S.IntroLeftWrapper>
 
       {/* ============= intro right ============= */}
-      <div className="intro-right">
-        <div className="video-wrapper">
-          <iframe
+      <S.IntroRightWrapper className="intro-right">
+        <S.VideoWrapper className="video-wrapper">
+          <S.Video
             src="https://player.vimeo.com/video/416381401"
             frameBorder="0"
             className="youtubeVideo"
             title="youtube video"
             allowFullScreen
-          ></iframe>
-        </div>
-        <img
-          className="copy-example"
-          src="https://i.imgur.com/l0owWvo.gif"
-          alt=""
-        />
+          ></S.Video>
+        </S.VideoWrapper>
+        <S.ImgExampleWrapper>
+          <S.ImgExample
+            className="copy-example"
+            src="https://i.imgur.com/l0owWvo.gif"
+            alt=""
+          />
+        </S.ImgExampleWrapper>
+
         <p>
           This converter is developed by Franky Chan, it can capture all the
           comments of a youtube video and convert them into PNG file.
         </p>
-      </div>
-      <hr />
-    </section>
+      </S.IntroRightWrapper>
+      <S.hr />
+    </S.IntroContainer>
 
     {/* ====================================== implementation ====================================== */}
-    <section className="implementation">
+    <S.ImplementationWrapper className="implementation">
       <p>
         Example:{" "}
-        <button
+        <S.BtnExample
           className="exampleButton"
           onClick={() => setVideoIdInput("gCxsW2DXK0Y")}
         >
           gCxsW2DXK0Y
-        </button>
+        </S.BtnExample>
       </p>
-      <form>
+      <S.Form>
         <Form.Control
           className="input--videoId"
           type="text"
@@ -97,11 +102,13 @@ const CommentsConverterPage = ({
               setStep2ToTrue();
           }}
         />
-      </form>
+      </S.Form>
 
-      {step2Show && <button className="btn--step2">Step2: Get Comments</button>}
-    </section>
-  </div>
+      {step2Show && (
+        <S.BtnStep2 className="btn--step2">Step2: Get Comments</S.BtnStep2>
+      )}
+    </S.ImplementationWrapper>
+  </S.PageContainer>
 );
 
 const mapStateToProps = createStructuredSelector({

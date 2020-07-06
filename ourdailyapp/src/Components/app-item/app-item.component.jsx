@@ -1,5 +1,5 @@
 import React from "react";
-import "./app-item.style.scss";
+import S from "./app-item.style";
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -23,33 +23,33 @@ const AppItem = ({
   moveItemToCartList,
   history,
 }) => (
-  <div className="cart-item">
+  <S.CartItemContainer className="cart-item">
     {/* ============= Items - img ============= */}
-    <div
+    <S.ImgWrapper
       className="img-wrapper"
       onClick={() => history.push(`/shop/${cartItem.route}`)}
     >
       <img src={cartItem.imageSrc} alt="cart item" className="img--item" />
-    </div>
+    </S.ImgWrapper>
     {/* ============= Items - info ============= */}
     <div className="title-and-creator">
-      <span
+      <S.TitleText
         className="item-title"
         onClick={() => history.push(`/shop/${cartItem.route}`)}
       >
         {cartItem.title}
-      </span>
-      <span
+      </S.TitleText>
+      <S.CreatorText
         className="item-creator"
         onClick={() => history.push(`/shop/${cartItem.route}`)}
       >
         By {cartItem.creator}
-      </span>
+      </S.CreatorText>
     </div>
-    <span className="item-price">${cartItem.price}</span>
+    <S.PriceText className="item-price">${cartItem.price}</S.PriceText>
     {/* ============= Items - btns ============= */}
-    <div className="item-buttons">
-      <button
+    <S.ButtonsWrapper className="item-buttons-wrapper">
+      <S.BtnRemove
         className="btn--remove"
         onClick={() => {
           if (itemType === "cart") {
@@ -61,16 +61,16 @@ const AppItem = ({
         }}
       >
         Remove
-      </button>
+      </S.BtnRemove>
       {itemType === "cart" ? (
-        <button
+        <S.BtnToWishList
           className="btn--toWishList"
           onClick={() => moveItemToWishList(cartItem)}
         >
           Move to Wishlist
-        </button>
+        </S.BtnToWishList>
       ) : (
-        <button
+        <S.BtnToCartList
           className="btn--toCartList"
           onClick={() => {
             moveItemToCartList(cartItem);
@@ -79,10 +79,10 @@ const AppItem = ({
           }}
         >
           Add to cart
-        </button>
+        </S.BtnToCartList>
       )}
-    </div>
-  </div>
+    </S.ButtonsWrapper>
+  </S.CartItemContainer>
 );
 
 const mapDispatchToProps = (dispatch) => ({

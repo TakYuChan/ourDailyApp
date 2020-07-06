@@ -1,13 +1,12 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import S from "./floatNav.style";
+
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectHidden } from "../../redux/nav/nav.selectors";
 import { closeNav } from "../../redux/nav/nav.actions";
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
-
-import "./floatNav.style.scss";
 
 import FloatNavContent from "../../ComponentsNotReuse/floatNavContent/floatNavContent.component";
 
@@ -27,9 +26,11 @@ class FloatNav extends React.Component {
     const { hoverNavItem } = this.state;
 
     return (
-      <div className={`${!this.props.navHidden ? "active" : ""} float-nav`}>
-        <ul className="float-nav-list">
-          <Link
+      <S.FloatNavContainer
+        className={`${!this.props.navHidden ? "active" : ""} float-nav`}
+      >
+        <S.FloatNavList className="float-nav-list">
+          <S.FloatNavItems
             onMouseOver={() => {
               this.handleNavItemHover("appstore");
             }}
@@ -41,8 +42,8 @@ class FloatNav extends React.Component {
             className="float-nav-item"
           >
             AppStore
-          </Link>
-          <a
+          </S.FloatNavItems>
+          <S.FloatNavItems
             onMouseOver={() => {
               this.handleNavItemHover("linkedin");
             }}
@@ -54,8 +55,8 @@ class FloatNav extends React.Component {
             className="float-nav-item"
           >
             LinkedIn
-          </a>
-          <a
+          </S.FloatNavItems>
+          <S.FloatNavItems
             onMouseOver={() => {
               this.handleNavItemHover("github");
             }}
@@ -67,11 +68,11 @@ class FloatNav extends React.Component {
             className="float-nav-item"
           >
             Github
-          </a>
-        </ul>
+          </S.FloatNavItems>
+        </S.FloatNavList>
 
         <FloatNavContent hoverNavItem={hoverNavItem}></FloatNavContent>
-      </div>
+      </S.FloatNavContainer>
     );
   }
 }

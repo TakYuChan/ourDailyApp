@@ -10,6 +10,8 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+
+    user-select: none;
   }
   
   code {
@@ -23,6 +25,12 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .link {

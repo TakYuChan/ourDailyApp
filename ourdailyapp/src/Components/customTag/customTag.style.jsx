@@ -1,4 +1,8 @@
-.custom-tag {
+import styled from "styled-components";
+
+const S = {};
+
+S.CustomTagWrapper = styled.div`
   display: inline-block;
   padding: 0.5em 1em;
   border-radius: 4px;
@@ -10,4 +14,7 @@
 
   margin-right: 0.8em;
   margin-top: 0.6em;
-}
+  background: ${(props) => props.background};
+`;
+
+export default S;

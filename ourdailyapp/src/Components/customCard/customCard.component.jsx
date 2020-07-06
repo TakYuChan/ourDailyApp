@@ -1,31 +1,30 @@
 import React from "react";
-import "./customCard.style.scss";
+import S from "./customCart.style";
 
 import { withRouter, Link } from "react-router-dom";
-import CustomButton from "../../Components/customButton/customButton.component";
 
 const CustomCard = ({ match, app }) => {
   const { title, description, imageSrc, route } = app;
 
   return (
-    <div className="custom-card">
+    <S.CustomCardWrapper className="custom-card">
       <Link className="link" to={`${match.path}/${route}`}>
-        <div className="card-wrapper">
-          <div className="card card-app">
-            <div className="img-wrapper">
-              <img
-                src={imageSrc}
-                alt="to do list application"
-                className="app-img"
-              />
-            </div>
-            <h3 className="app-title">{title}</h3>
-            <h5 className="app-description">{description}</h5>
-            <CustomButton className="btn--start">Start</CustomButton>
-          </div>
-        </div>
+        <S.CardContainer className="card card-app">
+          <S.ImgWrapper className="img-wrapper">
+            <img
+              src={imageSrc}
+              alt="to do list application"
+              className="app-img"
+            />
+          </S.ImgWrapper>
+          <S.TitleText className="app-title">{title}</S.TitleText>
+          <S.DescriptionText className="app-description">
+            {description}
+          </S.DescriptionText>
+          <S.BtnStart className="btn--start">Start</S.BtnStart>
+        </S.CardContainer>
       </Link>
-    </div>
+    </S.CustomCardWrapper>
   );
 };
 

@@ -1,6 +1,5 @@
 import React from "react";
-
-import "./floatNavContent.style.scss";
+import S from "./floatNavContent.style";
 
 const FloatNavContent = ({ hoverNavItem }) => {
   let contentTitle = null;
@@ -27,10 +26,10 @@ const FloatNavContent = ({ hoverNavItem }) => {
   }
 
   return (
-    <div className="float-nav-content">
-      <h2 className="nav-content-title">{contentTitle}</h2>
-      <h3 className="nav-content-text">{contentText}</h3>
-    </div>
+    <S.FloatNavContentWrapper className="float-nav-content">
+      <S.TitleText className="nav-content-title">{contentTitle}</S.TitleText>
+      <S.Text className="nav-content-text">{contentText}</S.Text>
+    </S.FloatNavContentWrapper>
   );
 };
 

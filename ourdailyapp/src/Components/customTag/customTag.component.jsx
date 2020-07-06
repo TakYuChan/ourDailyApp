@@ -1,10 +1,10 @@
 import React from "react";
-import "./customTag.style.scss";
+import S from "./customTag.style";
 
 const CustomTag = ({ children, background }) => (
-  <span className="custom-tag" style={{ backgroundColor: `${background}` }}>
+  <S.CustomTagWrapper className="custom-tag" background={background}>
     {children}
-  </span>
+  </S.CustomTagWrapper>
 );
 
 export default CustomTag;

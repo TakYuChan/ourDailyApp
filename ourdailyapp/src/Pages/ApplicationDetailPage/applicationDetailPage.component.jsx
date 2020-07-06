@@ -1,5 +1,5 @@
 import React from "react";
-import "./applicationDetailPage.style.scss";
+import S from "./applicationDetailPage.style";
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -24,53 +24,58 @@ const ApplicationDetailPage = ({
   const { videoSrc, tags, intros, features, tagsColor } = appData.appDetails;
 
   return (
-    <div className="application-detail-page pages">
+    <S.PageContainer className="application-detail-page pages">
+      {/* // =================== Header ====================== */}
       <div className="heading">
         <h1 className="title">
-          <span className="prev-link" onClick={() => history.push("/shop")}>
-            /shop<i className="iconfont icon-shop"></i>
-          </span>
+          <S.PrevLink
+            className="prev-link"
+            onClick={() => history.push("/shop")}
+          >
+            /shop<S.IconApp className="iconfont icon-shop"></S.IconApp>
+          </S.PrevLink>
           /{appData.title}
         </h1>
       </div>
 
-      <section className="app-content-main">
-        <div className="video-wrapper">
-          <iframe
+      {/* ===================== Page Content Main ======================== */}
+      <S.PageContentContainer className="app-content-main">
+        <S.VideoWrapper className="video-wrapper">
+          <S.Video
             src={videoSrc}
             title="vimeo video"
             allowFullScreen
             frameBorder="0"
             className="video"
-          ></iframe>
-        </div>
+          ></S.Video>
+        </S.VideoWrapper>
 
-        <div className="intro">{intros.map((intro) => intro)}</div>
+        <S.Intro className="intro">{intros.map((intro) => intro)}</S.Intro>
 
-        <div className="tags">
+        <S.TagsWrapper className="tags">
           {tags !== null &&
             tags.map((tag, index) => (
               <CustomTag key={index} background={tagsColor[index]}>
                 {tag}
               </CustomTag>
             ))}
-        </div>
+        </S.TagsWrapper>
         {/* ================ Feature Part ================ */}
-        <h2 className="subtitle">
+        <S.SectionTitle className="subtitle">
           <span aria-label="thunder" role="img">
             ⚡
           </span>{" "}
           What are the features?
-        </h2>
-        <ul className="feature-list">
+        </S.SectionTitle>
+        <S.FeatureList className="feature-list">
           {features.map((feature) => (
             <li>{feature}</li>
           ))}
-        </ul>
+        </S.FeatureList>
 
         {/* ================================ Buttons ================================ */}
         {/* ================ wishlist part ================ */}
-        <button
+        <S.BtnAddToWishlist
           className="btn--addWishList"
           onClick={() => {
             toggleWishListItem({
@@ -84,13 +89,13 @@ const ApplicationDetailPage = ({
           }}
         >
           Wishlist
-          <i
+          <S.IconHeart
             className={`fas fa-heart ${wishListed(appData.id) ? "active" : ""}`}
-          ></i>
-        </button>
+          ></S.IconHeart>
+        </S.BtnAddToWishlist>
 
         {/* ================ Payment part ================ */}
-        <button
+        <S.BtnAddToCart
           className="btn--addToCart"
           onClick={() => {
             /* ================ animations ================ */
@@ -108,9 +113,9 @@ const ApplicationDetailPage = ({
           }}
         >
           Add to cart
-        </button>
-      </section>
-    </div>
+        </S.BtnAddToCart>
+      </S.PageContentContainer>
+    </S.PageContainer>
   );
 };
 
