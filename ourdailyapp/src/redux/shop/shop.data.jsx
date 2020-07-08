@@ -1,8 +1,5 @@
-import React from "react";
-
 const SHOP_DATA = {
   todolist: {
-    id: 1,
     title: "To do list",
     creator: "Franky Chan",
     description: "Make a note on everything",
@@ -11,24 +8,22 @@ const SHOP_DATA = {
     price: 1,
     appDetails: {
       videoSrc: "https://player.vimeo.com/video/416381401",
-      intros: [
-        <p>
-          The <span className="text-focal">To do list App </span>is built with{" "}
+      intros: `<p>
+          The <span className="text-focal">To do list App </span>is built with
           <span className="text-focal">Vanilia Javascript</span>, this is my
           first project I build after learning Vanilia Javascript.
-        </p>,
+        </p>
         <p>
-          <span className="text-focal">The goal</span>{" "}
+          <span className="text-focal">The goal</span>
           <span role="img" aria-label="goal">
             🎯
-          </span>{" "}
-          is to practice my knowledge on{" "}
+          </span>
+          is to practice my knowledge on
           <span className="text-focal text-underline">
             manipulating the DOM elements direcly
-          </span>{" "}
+          </span>
           to provide a usable to do list.
-        </p>,
-      ],
+        </p>`,
       tags: ["html", "css", "javascript"],
       tagsColor: ["orangered", "steelBlue", "limegreen"],
       features: [
@@ -40,7 +35,6 @@ const SHOP_DATA = {
     },
   },
   coloors: {
-    id: 2,
     title: "Coloors",
     creator: "Franky Chan",
     description: "Generate random colors",
@@ -49,24 +43,22 @@ const SHOP_DATA = {
     price: 1,
     appDetails: {
       videoSrc: "https://player.vimeo.com/video/416381401",
-      intros: [
-        <p>
+      intros: `<p>
           The <span className="text-focal">Coloors App </span>is built with
           <span className="text-focal"> Vanilia Javascript </span>and make use
-          of the{" "}
+          of the
           <span className="text-focal text-underline">chroma js library.</span>
-        </p>,
+        </p>
         <p>
-          I built this{" "}
+          I built this
           <span className="text-focal">
-            for fun{" "}
+            for fun
             <span aria-label="fun" role="img">
               🤗
-            </span>{" "}
+            </span>
           </span>
           and to learn to utilize external js library.
-        </p>,
-      ],
+        </p>`,
       tags: ["html", "css", "javascript", "chroma.js"],
       tagsColor: ["orangered", "steelblue", "limegreen", "yellowgreen"],
       features: [
@@ -77,33 +69,30 @@ const SHOP_DATA = {
     },
   },
   cmConverter: {
-    id: 3,
     title: "CM Converter",
     creator: "Franky Chan",
     description: "Convert Youtube comments into PNG",
     imageSrc: "/images/assets/CM Converter.png",
-    route: "coloors",
+    route: "coloors2",
     price: 1,
     appDetails: {
       videoSrc: "https://player.vimeo.com/video/416381401",
-      intros: [
-        <p>
+      intros: `<p>
           The <span className="text-focal">Coloors App </span>is built with
           <span className="text-focal"> Vanilia Javascript </span>and make use
-          of the{" "}
+          of the 
           <span className="text-focal text-underline">chroma js library.</span>
-        </p>,
+        </p>
         <p>
-          I built this{" "}
+          I built this
           <span className="text-focal">
-            for fun{" "}
+            for fun
             <span aria-label="fun" role="img">
               🤗
-            </span>{" "}
+            </span>
           </span>
           and to learn to utilize external js library.
-        </p>,
-      ],
+        </p>`,
       tags: ["html", "css", "javascript", "chroma.js"],
       tagsColor: ["orangered", "steelblue", "limegreen", "yellowgreen"],
       features: [
@@ -114,7 +103,6 @@ const SHOP_DATA = {
     },
   },
   todolist2: {
-    id: 4,
     title: "To do list",
     creator: "Franky Chan",
     description: "Make a note on everything",
@@ -123,24 +111,22 @@ const SHOP_DATA = {
     price: 1,
     appDetails: {
       videoSrc: "https://player.vimeo.com/video/416381401",
-      intros: [
-        <p>
-          The <span className="text-focal">To do list App </span>is built with{" "}
+      intros: `<p>
+          The <span className="text-focal">To do list App </span>is built with
           <span className="text-focal">Vanilia Javascript</span>, this is my
           first project I build after learning Vanilia Javascript.
-        </p>,
+        </p>
         <p>
-          <span className="text-focal">The goal</span>{" "}
+          <span className="text-focal">The goal</span>
           <span role="img" aria-label="goal">
             🎯
-          </span>{" "}
-          is to practice my knowledge on{" "}
+          </span>
+          is to practice my knowledge on
           <span className="text-focal text-underline">
             manipulating the DOM elements direcly
-          </span>{" "}
+          </span>
           to provide a usable to do list.
-        </p>,
-      ],
+        </p>`,
       tags: ["html", "css", "javascript"],
       tagsColor: ["orangered", "steelBlue", "limegreen"],
       features: [
@@ -152,7 +138,6 @@ const SHOP_DATA = {
     },
   },
   todolist3: {
-    id: 5,
     title: "To do list",
     creator: "Franky Chan",
     description: "Make a note on everything",
@@ -161,24 +146,22 @@ const SHOP_DATA = {
     price: 1,
     appDetails: {
       videoSrc: "https://player.vimeo.com/video/416381401",
-      intros: [
-        <p>
-          The <span className="text-focal">To do list App </span>is built with{" "}
+      intros: `<p>
+          The <span className="text-focal">To do list App </span>is built with
           <span className="text-focal">Vanilia Javascript</span>, this is my
           first project I build after learning Vanilia Javascript.
-        </p>,
+        </p>
         <p>
-          <span className="text-focal">The goal</span>{" "}
+          <span className="text-focal">The goal</span>
           <span role="img" aria-label="goal">
             🎯
-          </span>{" "}
-          is to practice my knowledge on{" "}
+          </span>
+          is to practice my knowledge on
           <span className="text-focal text-underline">
             manipulating the DOM elements direcly
-          </span>{" "}
+          </span>
           to provide a usable to do list.
-        </p>,
-      ],
+        </p>`,
       tags: ["html", "css", "javascript"],
       tagsColor: ["orangered", "steelBlue", "limegreen"],
       features: [

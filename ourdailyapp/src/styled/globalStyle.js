@@ -11,7 +11,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
 
-    user-select: none;
+
   }
   
   code {

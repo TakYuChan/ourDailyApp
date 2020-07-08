@@ -12,6 +12,10 @@ S.LogoWrapper = styled.div`
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
+
+  &#header-logo-wrapper {
+    cursor: pointer;
+  }
 `;
 
 S.LogoImage = styled.img`

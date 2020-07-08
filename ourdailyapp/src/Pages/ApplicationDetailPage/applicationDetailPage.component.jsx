@@ -50,7 +50,10 @@ const ApplicationDetailPage = ({
           ></S.Video>
         </S.VideoWrapper>
 
-        <S.Intro className="intro">{intros.map((intro) => intro)}</S.Intro>
+        <S.Intro
+          className="intro"
+          dangerouslySetInnerHTML={{ __html: intros }}
+        ></S.Intro>
 
         <S.TagsWrapper className="tags">
           {tags !== null &&

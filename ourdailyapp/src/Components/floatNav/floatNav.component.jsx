@@ -44,6 +44,7 @@ class FloatNav extends React.Component {
             AppStore
           </S.FloatNavItems>
           <S.FloatNavItems
+            as="a"
             onMouseOver={() => {
               this.handleNavItemHover("linkedin");
             }}
@@ -57,6 +58,7 @@ class FloatNav extends React.Component {
             LinkedIn
           </S.FloatNavItems>
           <S.FloatNavItems
+            as="a"
             onMouseOver={() => {
               this.handleNavItemHover("github");
             }}

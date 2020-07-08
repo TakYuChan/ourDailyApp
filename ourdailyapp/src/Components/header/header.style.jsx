@@ -3,7 +3,7 @@ import styled from "styled-components";
 import CustomButton from "../customButton/customButton.component";
 import ReactToolTip from "react-tooltip";
 import { ReactComponent as NavIcon } from "../../assets/nav.svg";
-import Logo from "../logo/logo.component";
+
 import { rgba } from "polished";
 const S = {};
 
@@ -26,17 +26,6 @@ S.HeaderNavContainer = styled.nav`
   align-items: center;
   padding: 0 5vw;
   background: var(--clr-nav);
-`;
-
-/* ====================== Logo ====================== */
-S.Logo = styled(Logo)`
-  width: 3em;
-  cursor: pointer;
-
-  & img {
-    width: 3em !important;
-    cursor: pointer;
-  }
 `;
 
 /* ============================== Nav List ================================= */

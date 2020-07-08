@@ -1,6 +1,5 @@
 import React from "react";
 import S from "./signInAndSignUp.style";
-import "./signInAndSignUp.style.scss";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -152,7 +151,7 @@ const SignInAndSignUp = ({
         <Modal.Body>{renderModalBody()}</Modal.Body>
 
         {/* =========== Modal Footer ============ */}
-        <Modal.Footer className="footer">{renderModalFooter()}</Modal.Footer>
+        <S.ModalFooter className="footer">{renderModalFooter()}</S.ModalFooter>
       </Modal>
     </div>
   );
