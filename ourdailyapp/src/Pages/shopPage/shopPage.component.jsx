@@ -4,10 +4,8 @@ import "./shopPage.style.scss";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
-import {
-  firestore,
-  convertApplicationsArrayToMap,
-} from "../../firebase/firebase.utils";
+import { firestore } from "../../firebase/firebase.utils";
+import { convertApplicationsArrayToMap } from "../../firebase/firestore/convertData.js";
 import { updateApplications } from "../../redux/shop/shop.actions";
 
 import ApplicationOverview from "../../ComponentsNotReuse/applicationOverview/applicationOverview.component";
