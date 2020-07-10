@@ -10,8 +10,17 @@ import { updateApplications } from "../../redux/shop/shop.actions";
 
 import ApplicationOverview from "../../ComponentsNotReuse/applicationOverview/applicationOverview.component";
 import ApplicationDetailPage from "../../Pages/ApplicationDetailPage/applicationDetailPage.component";
+import WithSpinner from "../../Components/with-spinner/with-spinner.component";
+
+// With Spinner
+const ApplicationOverviewWithSpinner = WithSpinner(ApplicationOverview);
+const ApplicationDetailPageWithSpinner = WithSpinner(ApplicationDetailPage);
 
 class ShopPage extends React.Component {
+  state = {
+    loading: true,
+  };
+
   unsubscribeFromSnapshot = null;
   componentDidMount() {
     const { updateApplications } = this.props;
@@ -26,6 +35,8 @@ class ShopPage extends React.Component {
 
         // Set redux state (shop)'s applications
         updateApplications(applicationsMap);
+
+        this.setState({ loading: false });
       });
   }
 
@@ -36,14 +47,23 @@ class ShopPage extends React.Component {
   }
 
   render() {
+    const { loading } = this.state;
     const { match, closeShopNav } = this.props;
     return (
       <div className="shop-page" onClick={closeShopNav}>
-        <Route exact path={`${match.path}`} component={ApplicationOverview} />
+        <Route
+          exact
+          path={`${match.path}`}
+          render={(props) => (
+            <ApplicationOverviewWithSpinner isLoading={loading} {...props} />
+          )}
+        />
         <Route
           exact
           path={`${match.path}/:applicationId`}
-          component={ApplicationDetailPage}
+          render={(props) => (
+            <ApplicationDetailPageWithSpinner isLoading={loading} {...props} />
+          )}
         />
       </div>
     );

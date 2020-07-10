@@ -1,8 +1,8 @@
-import SHOP_DATA from "./shop.data.jsx";
+// import SHOP_DATA from "./shop.data.jsx";
 import ShopActionTypes from "./shop.types";
 
 const INITIAL_STATE = {
-  applications: SHOP_DATA,
+  applications: null,
 };
 
 const shopReducer = (state = INITIAL_STATE, action) => {

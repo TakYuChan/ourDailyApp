@@ -7,12 +7,16 @@ export const selectApplications = createSelector(
   (shop) => shop.applications
 );
 
-export const selectApplicationsInArray = createSelector([selectShop], (shop) =>
-  Object.keys(shop.applications).map((key) => shop.applications[key])
+export const selectApplicationsInArray = createSelector(
+  [selectApplications],
+  (applications) => {
+    return applications
+      ? Object.keys(applications).map((key) => applications[key])
+      : [];
+  }
 );
 
 export const selectApp = (applicationUrlParam) =>
-  createSelector(
-    [selectApplications],
-    (applications) => applications[applicationUrlParam]
-  );
+  createSelector([selectApplications], (applications) => {
+    return applications ? applications[applicationUrlParam] : null;
+  });
