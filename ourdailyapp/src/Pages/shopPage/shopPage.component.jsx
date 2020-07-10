@@ -11,6 +11,7 @@ import { updateApplications } from "../../redux/shop/shop.actions";
 import ApplicationOverview from "../../ComponentsNotReuse/applicationOverview/applicationOverview.component";
 import ApplicationDetailPage from "../../Pages/ApplicationDetailPage/applicationDetailPage.component";
 import WithSpinner from "../../Components/with-spinner/with-spinner.component";
+import SectionHeader from "../../Components/sectionHeader/sectionHeader.component";
 
 // With Spinner
 const ApplicationOverviewWithSpinner = WithSpinner(ApplicationOverview);
@@ -51,6 +52,7 @@ class ShopPage extends React.Component {
     const { match, closeShopNav } = this.props;
     return (
       <div className="shop-page" onClick={closeShopNav}>
+        <SectionHeader />
         <Route
           exact
           path={`${match.path}`}

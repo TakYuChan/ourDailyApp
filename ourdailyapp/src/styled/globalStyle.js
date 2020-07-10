@@ -134,12 +134,13 @@ body {
 }
 
 /* ========================== heading ========================== */
-.heading {
+.section-header {
   width: 100vw;
   background: var(--gray1);
+
   font-size: clamp(0.6rem, 1.2vw, 1rem);
   padding: 4em;
-  margin-bottom: 50px;
+  // margin-bottom: 50px;
   position: relative;
 
   .title {

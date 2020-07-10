@@ -26,22 +26,6 @@ S.PageContainer = styled.div`
   align-items: center;
 `;
 
-// =================== Header ======================
-S.PrevLink = styled.span`
-  cursor: pointer;
-  font-size: 0.6em;
-  padding: 0.2em 0.4em;
-  &:hover {
-    background: white;
-    border-radius: 10px;
-  }
-`;
-
-S.IconApp = styled.i`
-  font-size: 1rem;
-  margin-left: 0.2em;
-`;
-
 // ===================== Page Content Main ========================
 S.PageContentContainer = styled.section`
   width: 100%;

@@ -8,6 +8,7 @@ S.SpinnerOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background: ${(props) => props.theme.body};
 `;
 
 S.SpinnerContainer = styled.div`
