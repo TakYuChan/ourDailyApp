@@ -35,6 +35,7 @@ S.ContentContainer = styled.div`
 
     ${S.WishlistMAX849} {
       display: flex;
+      flex-direction: column;
     }
 
     ${S.WishlistMIN850} {
@@ -49,6 +50,7 @@ S.CardWrapper = styled.div`
   position: relative;
   box-shadow: 2px 4px 40px rgba(19, 15, 235, 0.1);
   transition: box-shadow 0.4s ease-in-out;
+  height: 320px;
 
   cursor: pointer;
 
@@ -64,6 +66,7 @@ S.CardWrapper = styled.div`
 
 S.ImageWrapper = styled.div`
   width: 100%;
+  height: 150px;
 `;
 
 S.Image = styled.img`
@@ -73,7 +76,8 @@ S.Image = styled.img`
 
 // ========== card-bottom-part ============
 S.CardBottomWrapper = styled.div`
-  padding: 1em;
+  padding: 0 1em;
+  padding-top: 0.7em;
 `;
 
 S.ItemTitleText = styled.h3`
