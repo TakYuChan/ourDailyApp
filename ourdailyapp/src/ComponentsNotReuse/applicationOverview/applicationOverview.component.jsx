@@ -29,14 +29,6 @@ class ApplicationOverview extends React.Component {
     const { applications } = this.props;
     return (
       <S.ApplicationOverviewContainer className="application-overview pages">
-        {/* ============= heading ============= */}
-        {/* <div className="section-header">
-      <h1 className="title">
-        App Store
-        <S.IconApp className="iconfont icon-icon_yingyongguanli"></S.IconApp>
-      </h1>
-    </div> */}
-
         {/* ============= content main ============= */}
         <S.ShopContentContainer className="shop-content-main">
           {applications.map((app) => (

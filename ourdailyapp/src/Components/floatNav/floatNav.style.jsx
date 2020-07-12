@@ -35,7 +35,7 @@ S.FloatNavContainer = styled.div`
   transition: all 1s ease-in-out, opacity 100ms 1s;
 
   &.active {
-    clip-path: circle(150% at 100% -10%);
+    clip-path: circle(160% at 100% -10%);
     transition: all 1s ease-in-out, opacity 100ms;
     opacity: 1;
   }

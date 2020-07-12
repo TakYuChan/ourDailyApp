@@ -20,3 +20,13 @@ export const selectApp = (applicationUrlParam) =>
   createSelector([selectApplications], (applications) => {
     return applications ? applications[applicationUrlParam] : null;
   });
+
+export const selectIsFetching = createSelector(
+  [selectShop],
+  (shop) => shop.isFetching
+);
+
+export const selectIsApplicationsLoaded = createSelector(
+  [selectShop],
+  (shop) => !!shop.applications
+);
