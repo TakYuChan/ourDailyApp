@@ -11,6 +11,7 @@ import CustomCard from "../../Components/customCard/customCard.component";
 class ApplicationOverview extends React.Component {
   componentDidMount() {
     const { updatePage } = this.props;
+
     updatePage({
       page: "shop",
       details: {},

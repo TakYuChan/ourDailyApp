@@ -24,10 +24,8 @@ export const fetchApplicationsStartAsync = () => {
 
     collectionRef
       .then((snapshot) => {
-        console.log("here");
         const applicationsMap = convertApplicationsArrayToMap(snapshot);
         dispatch(fetchApplicationsSuccess(applicationsMap));
-        console.log("there");
       })
       .catch((error) => dispatch(fetchApplicationsFailure(error.msg)));
   };

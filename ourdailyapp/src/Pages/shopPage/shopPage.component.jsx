@@ -5,20 +5,10 @@ import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { fetchApplicationsStartAsync } from "../../redux/shop/shop.actions";
-import {
-  selectIsApplicationsLoaded,
-  selectIsFetching,
-} from "../../redux/shop/shop.selector";
-import { createStructuredSelector } from "reselect";
 
-import ApplicationOverview from "../../ComponentsNotReuse/applicationOverview/applicationOverview.component";
-import ApplicationDetailPage from "../../Pages/ApplicationDetailPage/applicationDetailPage.component";
-import WithSpinner from "../../Components/with-spinner/with-spinner.component";
 import SectionHeader from "../../Components/sectionHeader/sectionHeader.component";
-
-// With Spinner
-const ApplicationOverviewWithSpinner = WithSpinner(ApplicationOverview);
-const ApplicationDetailPageWithSpinner = WithSpinner(ApplicationDetailPage);
+import ApplicationOverviewContainer from "../../ComponentsNotReuse/applicationOverview/applicationOverview.container";
+import ApplicationDetailPageContainer from "../ApplicationDetailPage/applicationDetailPage.container";
 
 class ShopPage extends React.Component {
   unsubscribeFromSnapshot = null;
@@ -35,9 +25,7 @@ class ShopPage extends React.Component {
   }
 
   render() {
-    const { match, closeShopNav, isApplicationsLoaded } = this.props;
-
-    console.log("HI!!", selectIsFetching);
+    const { match, closeShopNav } = this.props;
 
     return (
       <div className="shop-page" onClick={closeShopNav}>
@@ -45,36 +33,21 @@ class ShopPage extends React.Component {
         <Route
           exact
           path={`${match.path}`}
-          render={(props) => (
-            <ApplicationOverviewWithSpinner
-              isLoading={!isApplicationsLoaded}
-              {...props}
-            />
-          )}
+          component={ApplicationOverviewContainer}
         />
         <Route
           exact
           path={`${match.path}/:applicationId`}
-          render={(props) => (
-            <ApplicationDetailPageWithSpinner
-              isLoading={!isApplicationsLoaded}
-              {...props}
-            />
-          )}
+          component={ApplicationDetailPageContainer}
         />
       </div>
     );
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  isApplicationsLoaded: selectIsApplicationsLoaded,
-  isFetching: selectIsFetching,
-});
-
 const mapDispatchToProps = (dispatch) => ({
   closeShopNav: () => dispatch(closeShopNav()),
   fetchApplicationsStartAsync: () => dispatch(fetchApplicationsStartAsync()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);
+export default connect(null, mapDispatchToProps)(ShopPage);
