@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import Logo from "../../Components/logo/logo.component";
-
 const S = {};
 
 S.MainPageContainer = styled.div`
@@ -16,7 +14,8 @@ S.MainPageContainer = styled.div`
   position: relative;
 `;
 
-S.Logo = styled(Logo)`
+// ======================= Logo ===========================
+S.LogoWrapper = styled.div`
   font-size: clamp(0.8rem, 1.5vw, 1.5rem);
   width: 12em;
   margin-top: 1rem;

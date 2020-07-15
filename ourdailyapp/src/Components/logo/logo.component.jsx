@@ -6,11 +6,12 @@ import { connect } from "react-redux";
 import { closeNav } from "../../redux/nav/nav.actions";
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 
-const Logo = ({ id, wrapperId, withLink, history, closeNav, closeShopNav }) => {
+const Logo = ({ withLink, history, closeNav, closeShopNav }) => {
   return (
-    <S.LogoWrapper
-      className="logo-wrapper"
-      id={wrapperId}
+    <S.LogoImage
+      className="logo"
+      src={"/images/assets/logo.png"}
+      alt="logo"
       onClick={() => {
         if (withLink) {
           closeNav();
@@ -18,14 +19,7 @@ const Logo = ({ id, wrapperId, withLink, history, closeNav, closeShopNav }) => {
           history.push("/");
         }
       }}
-    >
-      <S.LogoImage
-        className="logo"
-        src={"/images/assets/logo.png"}
-        id={id}
-        alt="logo"
-      />
-    </S.LogoWrapper>
+    />
   );
 };
 

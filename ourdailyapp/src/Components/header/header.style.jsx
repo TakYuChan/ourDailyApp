@@ -28,6 +28,12 @@ S.HeaderNavContainer = styled.nav`
   background: var(--clr-nav);
 `;
 
+/* ============================== Logo Wrapper ================================= */
+S.LogoWrapper = styled.div`
+  width: 3rem;
+  cursor: pointer;
+`;
+
 /* ============================== Nav List ================================= */
 
 S.NavListContainer = styled.div`

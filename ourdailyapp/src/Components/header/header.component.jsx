@@ -29,12 +29,13 @@ const Header = ({
     <S.HeaderContainer className="header">
       <S.HeaderNavContainer>
         {/* ====================== Logo ====================== */}
-        <Logo
-          wrapperId="header-logo-wrapper"
-          id="header-logo"
-          withLink={true}
-        />
-
+        <S.LogoWrapper>
+          <Logo
+            wrapperId="header-logo-wrapper"
+            id="header-logo"
+            withLink={true}
+          />
+        </S.LogoWrapper>
         {/* ============================== Nav List ================================= */}
 
         <S.NavListContainer className="list">
