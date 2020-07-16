@@ -25,8 +25,6 @@ const FormInput = ({
         type={type}
         placeholder={placeholder}
         onChange={handleInputChange}
-        // minLength={minLength}
-        // maxLength={maxLength}
         required
       />
       <FormErrorMessage error={error} />
