@@ -1,7 +1,7 @@
-// import styled from "styled-components";
-// import { Modal } from "react-bootstrap";
+import styled from "styled-components";
+import { Modal } from "react-bootstrap";
 
-// const S = {};
+const S = {};
 
 // S.IconGoogle = styled.i`
 //   margin-right: 0.4rem;
@@ -14,4 +14,8 @@
 //   }
 // `;
 
-// export default S;
+S.Modal = styled(Modal)`
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+`;
+
+export default S;

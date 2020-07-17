@@ -1,5 +1,4 @@
 import React from "react";
-// import "./formErrorMessage.style.scss";
 import S from "./formErrorMessage.style";
 
 const FormErrorMessage = ({ errorObj }) => {

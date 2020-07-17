@@ -7,9 +7,9 @@ const RegisterSuccessScene = () => {
   return (
     <div className="registerSuccessModal">
       <Modal.Header>
-        <Modal.Title className="registerSuccess-title">
+        <S.ModalTitle className="registerSuccess-title">
           Successfully Registered
-        </Modal.Title>
+        </S.ModalTitle>
       </Modal.Header>
       <Modal.Body>
         <S.PageContainer className="registerSuccess-body">

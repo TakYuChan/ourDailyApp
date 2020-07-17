@@ -1,7 +1,7 @@
 import React from "react";
-import "./signUpForm.style.scss";
+import S from "./signUpForm.style";
 
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 import FormInput from "../../Components/formInput/formInput.component";
 
@@ -36,6 +36,7 @@ class SignUpForm extends React.Component {
       const { displayName, email, password, confirmPassword } = this.state;
 
       // 1. Sign Up and error checking
+      // Source: signInUp.reducer.js
       const isSignUpSuccess = await errorCheckAndRedirect({
         displayName,
         email,
@@ -116,9 +117,9 @@ class SignUpForm extends React.Component {
           errorObj={signUpErrorObj.passwordError}
         />
 
-        <Button variant="primary" type="submit" onClick={this.handleSubmit}>
+        <S.Button variant="primary" type="submit" onClick={this.handleSubmit}>
           Submit
-        </Button>
+        </S.Button>
       </Form>
     );
   }

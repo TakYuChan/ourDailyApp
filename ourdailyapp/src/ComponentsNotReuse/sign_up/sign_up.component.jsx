@@ -1,6 +1,6 @@
 import React from "react";
+import S from "./sign_up.style";
 
-// import S from "./sign_up.style";
 import { connect } from "react-redux";
 import { setRenderForSignIn } from "../../redux/signInUp/signInUp.actions";
 
@@ -11,13 +11,13 @@ const SignUp = ({ renderForSignIn }) => {
   return (
     <div className="sign-up-modal">
       <Modal.Header closeButton>
-        <Modal.Title className="signUpSignUp-title">Sign Up</Modal.Title>
+        <S.ModalTitle className="signUpSignUp-title">Sign Up</S.ModalTitle>
       </Modal.Header>
       <Modal.Body>
         <SignUpForm />
       </Modal.Body>
       <Modal.Footer className="signInModal-footer">
-        <Button
+        <S.Button
           variant="secondary"
           className="btn--toSignIn"
           onClick={() => {
@@ -25,7 +25,7 @@ const SignUp = ({ renderForSignIn }) => {
           }}
         >
           I already have an account
-        </Button>
+        </S.Button>
       </Modal.Footer>
     </div>
   );

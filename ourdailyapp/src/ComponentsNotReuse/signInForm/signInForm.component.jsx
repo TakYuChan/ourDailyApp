@@ -1,5 +1,5 @@
 import React from "react";
-import "./signInForm.style.scss";
+import S from "./signInForm.style";
 
 import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
@@ -68,13 +68,13 @@ class SignInForm extends React.Component {
           value={password}
         />
 
-        <Button
+        <S.Button
           variant="primary"
           type="submit"
           onClick={this.handleEmailSignIn}
         >
           Log In
-        </Button>
+        </S.Button>
       </Form>
     );
   }

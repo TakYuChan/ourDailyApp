@@ -5,20 +5,20 @@ import { connect } from "react-redux";
 import { setRenderForSignUp } from "../../redux/signInUp/signInUp.actions";
 import { signInWithGoogle } from "../../firebase/firebase.utils";
 
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import SignInForm from "../../ComponentsNotReuse/signInForm/signInForm.component";
 
 const SignIn = ({ renderForSignUp }) => {
   return (
     <div className="sign-in-modal">
       <Modal.Header closeButton>
-        <Modal.Title className="signInSignUp-title">Sign In</Modal.Title>
+        <S.ModalTitle className="signInSignUp-title">Sign In</S.ModalTitle>
       </Modal.Header>
       <Modal.Body>
         <SignInForm />
       </Modal.Body>
       <S.ModalFooter className="signInModal-footer">
-        <Button
+        <S.Button
           variant="secondary"
           className="btn--toSignUp"
           onClick={() => {
@@ -26,15 +26,15 @@ const SignIn = ({ renderForSignUp }) => {
           }}
         >
           Create a new account
-        </Button>
-        <Button
+        </S.Button>
+        <S.Button
           variant="primary"
           className="btn--googleAuth"
           onClick={signInWithGoogle}
         >
           <S.IconGoogle className="iconfont icon-google"></S.IconGoogle>
           Google Log In
-        </Button>
+        </S.Button>
       </S.ModalFooter>
     </div>
   );

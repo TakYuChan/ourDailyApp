@@ -31,7 +31,7 @@ const SignInAndSignUp = ({
 
   return (
     <div className="signInSignUpModal">
-      <Modal
+      <S.Modal
         show={showSignInUpModal}
         onHide={() => {
           turnSignInUpOFF();
@@ -46,7 +46,7 @@ const SignInAndSignUp = ({
         {renderFor === "signIn" && <SignIn />}
         {renderFor === "signUp" && <SignUp />}
         {renderFor === "registerSuccess" && <RegisterSuccessScene />}
-      </Modal>
+      </S.Modal>
     </div>
   );
 };
