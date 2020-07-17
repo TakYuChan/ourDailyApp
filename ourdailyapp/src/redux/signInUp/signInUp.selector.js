@@ -11,3 +11,8 @@ export const selectShowSignInUpModal = createSelector(
   [selectSignInUp],
   (signInUp) => signInUp.showSignInUpModal
 );
+
+export const selectSignUpFormError = createSelector(
+  [selectSignInUp],
+  (signInUp) => signInUp.signUpFormError
+);

@@ -3,20 +3,18 @@ import S from "./signInAndSignUp.style";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { signInWithGoogle } from "../../firebase/firebase.utils";
+
 import {
   selectRenderFor,
   selectShowSignInUpModal,
 } from "../../redux/signInUp/signInUp.selector";
 import {
   setRenderForSignIn,
-  setRenderForSignUp,
   turnSignInUpOFF,
+  resetSignUpFormError,
 } from "../../redux/signInUp/signInUp.actions";
 
-import { Modal, Button } from "react-bootstrap";
-import SignInForm from "../../ComponentsNotReuse/signInForm/signInForm.component";
-import SignUpForm from "../../ComponentsNotReuse/signUpForm/signUpForm.component";
+import { Modal } from "react-bootstrap";
 
 import SignIn from "../../ComponentsNotReuse/sign_in/sign_in.component";
 import SignUp from "../../ComponentsNotReuse/sign_up/sign_up.component";
@@ -25,9 +23,9 @@ import RegisterSuccessScene from "../../ComponentsNotReuse/registerSuccess/regis
 const SignInAndSignUp = ({
   renderFor,
   showSignInUpModal,
-  renderForSignUp,
   renderForSignIn,
   turnSignInUpOFF,
+  resetSignUpFormError,
 }) => {
   //   ================================= Life Cycle Hooks =================================
 
@@ -39,6 +37,7 @@ const SignInAndSignUp = ({
           turnSignInUpOFF();
 
           setTimeout(() => {
+            resetSignUpFormError();
             renderForSignIn();
           }, 600);
         }}
@@ -59,8 +58,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   renderForSignIn: () => dispatch(setRenderForSignIn()),
-  renderForSignUp: () => dispatch(setRenderForSignUp()),
   turnSignInUpOFF: () => dispatch(turnSignInUpOFF()),
+  resetSignUpFormError: () => dispatch(resetSignUpFormError(0)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInAndSignUp);

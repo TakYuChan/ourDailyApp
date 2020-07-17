@@ -14,7 +14,7 @@ const FormInput = ({
   value,
   name,
   formText,
-  error,
+  errorObj,
 }) => {
   return (
     <Form.Group controlId={id}>
@@ -27,7 +27,7 @@ const FormInput = ({
         onChange={handleInputChange}
         required
       />
-      <FormErrorMessage error={error} />
+      {errorObj !== undefined && <FormErrorMessage errorObj={errorObj} />}
       {formText && <Form.Text className="text-muted">{formText}</Form.Text>}
     </Form.Group>
   );

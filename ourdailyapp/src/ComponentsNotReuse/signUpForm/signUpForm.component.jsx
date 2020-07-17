@@ -5,12 +5,16 @@ import { Form, Button } from "react-bootstrap";
 
 import FormInput from "../../Components/formInput/formInput.component";
 
-import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import { userLoggedOn } from "../../redux/user/user.actions";
-import { setRenderForRegisterSuccess } from "../../redux/signInUp/signInUp.actions";
+import {
+  setRenderForRegisterSuccess,
+  signUpSubmitFlow,
+} from "../../redux/signInUp/signInUp.actions";
+import { selectSignUpFormError } from "../../redux/signInUp/signInUp.selector";
 
-import { signUpForminputCheck } from "../../utils/errorChecking.js";
+// import { signUpForminputCheck } from "../../utils/errorChecking.js";
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -20,72 +24,37 @@ class SignUpForm extends React.Component {
       email: "",
       password: "",
       confirmPassword: "",
-      errorDetected: false,
     };
-  }
-
-  //  ================================= Custom Variables =================================
-  displayError = {
-    shortDisplayName: false,
-    longDisplayName: false,
-  };
-
-  warningShortInput(target, length) {
-    return `The ${target} must be longer than ${length} keys.`;
   }
 
   //  ================================= Custom Methods =================================
   handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const { displayName, email, password, confirmPassword } = this.state;
-
-    // 1. ================== Check Password ==================
-    if (password !== confirmPassword) {
-      alert(`Password doesn't match the Confirmed password, please try again.`);
-      return;
-    }
-
-    // 2. ============= Form Input Inspection ==================
-    let errorExist = signUpForminputCheck(displayName, this.displayError);
-
-    if (errorExist) {
-      this.setState({ errorDetected: true });
-      return;
-    }
-
     try {
-      // Create user account
-      console.log("hello");
-      const { user } = await auth.createUserWithEmailAndPassword(
+      event.preventDefault();
+
+      const { userLoggedOn, errorCheckAndRedirect } = this.props;
+      const { displayName, email, password, confirmPassword } = this.state;
+
+      // 1. Sign Up and error checking
+      const isSignUpSuccess = await errorCheckAndRedirect({
+        displayName,
         email,
-        password
-      );
-
-      // Save user details to db
-      await createUserProfileDocument(user, { displayName });
-
-      // Clear all input in the sign up form
-      this.setState({
-        displayName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
+        password,
+        confirmPassword,
       });
 
-      //Reset error inspection variables
-      this.error = {
-        shortDisplayName: false,
-        longDisplayName: false,
-      };
+      // 2. Optional ============ If Sign Up Successfully ===============
+      if (isSignUpSuccess) {
+        // Clear all input in the sign up form
+        this.setState({
+          displayName: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
 
-      // 3. ================== Successfully Signed In ==================
-
-      // Registration Successful will direct users to the "registerSuccessScene"
-      this.props.renderForRegisterSuccess();
-
-      // Immediately change the userLogged state in App.js to true;
-      this.props.userLoggedOn();
+        userLoggedOn();
+      }
     } catch (error) {
       console.log(`Error creating user with email and password`, error.message);
     }
@@ -100,6 +69,7 @@ class SignUpForm extends React.Component {
   //   ================================= Life Cycle Hooks =================================
   render() {
     const { displayName, email, password, confirmPassword } = this.state;
+    const { signUpErrorObj } = this.props;
 
     return (
       <Form className="signUpForm">
@@ -111,7 +81,7 @@ class SignUpForm extends React.Component {
           placeholder="Display Name"
           handleInputChange={this.handleInputChange}
           value={displayName}
-          error={this.displayError}
+          errorObj={signUpErrorObj.displayNameError}
         />
 
         <FormInput
@@ -143,6 +113,7 @@ class SignUpForm extends React.Component {
           placeholder="Confirm Password"
           handleInputChange={this.handleInputChange}
           value={confirmPassword}
+          errorObj={signUpErrorObj.passwordError}
         />
 
         <Button variant="primary" type="submit" onClick={this.handleSubmit}>
@@ -153,9 +124,14 @@ class SignUpForm extends React.Component {
   }
 }
 
+const mapStateToProps = createStructuredSelector({
+  signUpErrorObj: selectSignUpFormError,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   userLoggedOn: () => dispatch(userLoggedOn()),
   renderForRegisterSuccess: () => dispatch(setRenderForRegisterSuccess()),
+  errorCheckAndRedirect: (formInputs) => dispatch(signUpSubmitFlow(formInputs)),
 });
 
-export default connect(null, mapDispatchToProps)(SignUpForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
