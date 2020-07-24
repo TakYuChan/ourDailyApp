@@ -7,6 +7,7 @@ import { updatePage } from "../../redux/sectionHeader/sectionHeader.actions";
 import { connect } from "react-redux";
 
 import CustomCard from "../../Components/customCard/customCard.component";
+import WithPreloader from "./withPreloader.component";
 
 class ApplicationOverview extends React.Component {
   componentDidMount() {
@@ -29,14 +30,15 @@ class ApplicationOverview extends React.Component {
   render() {
     const { applications } = this.props;
     return (
-      <S.ApplicationOverviewContainer className="application-overview pages">
-        {/* ============= content main ============= */}
-        <S.ShopContentContainer className="shop-content-main">
-          {applications.map((app) => (
-            <CustomCard id={app.id} app={app} />
-          ))}
-        </S.ShopContentContainer>
-      </S.ApplicationOverviewContainer>
+      // <S.ApplicationOverviewContainer className="application-overview pages">
+      //   {/* ============= content main ============= */}
+      //   <S.ShopContentContainer className="shop-content-main">
+      //     {applications.map((app) => (
+      //       <CustomCard id={app.id} app={app} />
+      //     ))}
+      //   </S.ShopContentContainer>
+      // </S.ApplicationOverviewContainer>
+      <WithPreloader/>
     );
   }
 }

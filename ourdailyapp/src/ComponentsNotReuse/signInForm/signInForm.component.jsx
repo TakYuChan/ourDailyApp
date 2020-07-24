@@ -5,7 +5,7 @@ import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import { userLoggedOn } from "../../redux/user/user.actions";
 
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import FormInput from "../../Components/formInput/formInput.component";
 
 class SignInForm extends React.Component {

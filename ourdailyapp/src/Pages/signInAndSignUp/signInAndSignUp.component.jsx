@@ -14,7 +14,7 @@ import {
   resetSignUpFormError,
 } from "../../redux/signInUp/signInUp.actions";
 
-import { Modal } from "react-bootstrap";
+// import { Modal } from "react-bootstrap";
 
 import SignIn from "../../ComponentsNotReuse/sign_in/sign_in.component";
 import SignUp from "../../ComponentsNotReuse/sign_up/sign_up.component";
