@@ -21,8 +21,15 @@ const FormErrorMessage = ({ errorObj }) => {
       "Blank Space can not be put in the front or in the end of the name"
     );
   }
-  // ========= Password ===========
+  // ========= Email ===========
+  if (errorObj.NoAtSignError) {
+    errorTextArray.push("Your email must contain a @ sign");
+  }
+  if (errorObj.blackSpaceError) {
+    errorTextArray.push("Your email is not allowed to contain any spaces");
+  }
   if (errorObj.passwordNotMatch) {
+    // ========= Password ===========
     errorTextArray.push("Your password doesn't match the confirm password");
   }
   if (errorObj.passwordCapitalLetter) {

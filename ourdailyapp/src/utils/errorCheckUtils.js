@@ -37,8 +37,23 @@ export function signUpFormErrorCheck(
       blankSpaceAtFrontEnd: true,
     };
   }
+  //-- email --
+  if (!RegExp("@").test(email)) {
+    errorObj["emailError"] = {
+      ...errorObj["emailError"],
+      NoAtSignError: true,
+    };
+  }
+
+  if (RegExp("\\s").test(email)) {
+    errorObj["emailError"] = {
+      ...errorObj["emailError"],
+      blackSpaceError: true,
+    };
+  }
+
+  //-- password --
   if (password !== confirmPassword) {
-    //-- password --
     errorObj["passwordError"] = {
       ...errorObj["passwordError"],
       passwordNotMatch: true,

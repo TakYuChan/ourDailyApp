@@ -10,6 +10,10 @@ const INITIAL_STATE = {
       consistentBlankSpace: false,
       blankSpaceAtFrontEnd: false,
     },
+    emailError: {
+      NoAtSignError: false,
+      blackSpaceError: false,
+    },
     passwordError: {
       passwordNotMatch: false,
       passwordSpecialCharacter: false,

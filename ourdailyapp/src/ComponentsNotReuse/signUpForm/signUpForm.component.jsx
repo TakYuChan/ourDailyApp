@@ -94,6 +94,7 @@ class SignUpForm extends React.Component {
           handleInputChange={this.handleInputChange}
           value={email}
           formText="We'll never share your email with anyone else."
+          errorObj={signUpErrorObj.emailError}
         />
 
         <FormInput

@@ -8,6 +8,11 @@ S.PageContainer = styled.div`
   align-items: center;
 `;
 
+S.IFrame = styled.iframe`
+  height: 100vh;
+  width: 100vw;
+`;
+
 // ================= Introduction ======================
 S.IntroContainer = styled.section`
   width: 90%;
