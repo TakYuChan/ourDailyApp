@@ -3,13 +3,10 @@ import S from "./withPreloader.style";
 
 import "./withPreloader.style.scss";
 
+import CustomCard from "./customCard.component";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 
-const WithPreloader = (WrappedComponent) => ({
-  isLoading,
-  applications,
-  ...otherProps
-}) => {
+const WithPreloader = ({ isLoading, applications, ...otherProps }) => {
   return (
     <SwitchTransition mode="out-in">
       <CSSTransition
@@ -30,12 +27,7 @@ const WithPreloader = (WrappedComponent) => ({
                 </S.LoadingCardContainer>
               ))
             : applications.map((app, index) => (
-                <WrappedComponent
-                  key={index}
-                  {...otherProps}
-                  id={app.id}
-                  app={app}
-                />
+                <CustomCard key={index} {...otherProps} id={app.id} app={app} />
               ))}
         </S.CardSectionContainer>
       </CSSTransition>

@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { createStructuredSelector } from "reselect";
 
-import CustomCard from "./customCard.component";
+// import CustomCard from "./customCard.component";
 import WithPreloader from "./withPreloader.component";
 import {
   selectIsApplicationsLoaded,
@@ -14,9 +14,6 @@ const mapStateToProps = createStructuredSelector({
   applications: selectApplicationsInArray,
 });
 
-const CustomCardContainer = compose(
-  connect(mapStateToProps),
-  WithPreloader
-)(CustomCard);
+const CustomCardContainer = compose(connect(mapStateToProps))(WithPreloader);
 
 export default CustomCardContainer;

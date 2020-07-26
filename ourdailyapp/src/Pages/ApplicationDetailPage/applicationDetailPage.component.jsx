@@ -52,90 +52,85 @@ class ApplicationDetailPage extends React.Component {
     const { videoSrc, tags, intros, features, tagsColor } = appData.appDetails;
 
     return (
-      <S.PageContainer className="application-detail-page pages">
-        {/* ===================== Page Content Main ======================== */}
-        <S.PageContentContainer className="app-content-main">
-          <S.VideoWrapper className="video-wrapper">
-            <S.Video
-              src={videoSrc}
-              title="vimeo video"
-              allowFullScreen
-              frameBorder="0"
-              className="video"
-            ></S.Video>
-          </S.VideoWrapper>
+      <S.PageContentContainer className="app-content-main">
+        <S.VideoWrapper className="video-wrapper">
+          <S.Video
+            src={videoSrc}
+            title="vimeo video"
+            allowFullScreen
+            frameBorder="0"
+            className="video"
+          ></S.Video>
+        </S.VideoWrapper>
 
-          <S.Intro
-            className="intro"
-            dangerouslySetInnerHTML={{ __html: intros }}
-          ></S.Intro>
+        <S.Intro
+          className="intro"
+          dangerouslySetInnerHTML={{ __html: intros }}
+        ></S.Intro>
 
-          <S.TagsWrapper className="tags">
-            {tags !== null &&
-              tags.map((tag, index) => (
-                <CustomTag key={index} background={tagsColor[index]}>
-                  {tag}
-                </CustomTag>
-              ))}
-          </S.TagsWrapper>
-          {/* ================ Feature Part ================ */}
-          <S.SectionTitle className="subtitle">
-            <span aria-label="thunder" role="img">
-              ⚡
-            </span>{" "}
-            What are the features?
-          </S.SectionTitle>
-          <S.FeatureList className="feature-list">
-            {features.map((feature) => (
-              <li>{feature}</li>
+        <S.TagsWrapper className="tags">
+          {tags !== null &&
+            tags.map((tag, index) => (
+              <CustomTag key={index} background={tagsColor[index]}>
+                {tag}
+              </CustomTag>
             ))}
-          </S.FeatureList>
+        </S.TagsWrapper>
+        {/* ================ Feature Part ================ */}
+        <S.SectionTitle className="subtitle">
+          <span aria-label="thunder" role="img">
+            ⚡
+          </span>{" "}
+          What are the features?
+        </S.SectionTitle>
+        <S.FeatureList className="feature-list">
+          {features.map((feature, index) => (
+            <li key={index}>{feature}</li>
+          ))}
+        </S.FeatureList>
 
-          {/* ================================ Buttons ================================ */}
-          {/* ================ wishlist part ================ */}
-          <S.BtnAddToWishlist
-            className="btn--addWishList"
-            onClick={() => {
-              toggleWishListItem({
-                id: appData.id,
-                title: appData.title,
-                creator: appData.creator,
-                imageSrc: appData.imageSrc,
-                price: appData.price,
-                route: appData.route,
-              });
-            }}
-          >
-            Wishlist
-            <S.IconHeart
-              className={`fas fa-heart ${
-                wishListed(appData.id) ? "active" : ""
-              }`}
-            ></S.IconHeart>
-          </S.BtnAddToWishlist>
+        {/* ================================ Buttons ================================ */}
+        {/* ================ wishlist part ================ */}
+        <S.BtnAddToWishlist
+          className="btn--addWishList"
+          onClick={() => {
+            toggleWishListItem({
+              id: appData.id,
+              title: appData.title,
+              creator: appData.creator,
+              imageSrc: appData.imageSrc,
+              price: appData.price,
+              route: appData.route,
+            });
+          }}
+        >
+          Wishlist
+          <S.IconHeart
+            className={`fas fa-heart ${wishListed(appData.id) ? "active" : ""}`}
+          ></S.IconHeart>
+        </S.BtnAddToWishlist>
 
-          {/* ================ Payment part ================ */}
-          <S.BtnAddToCart
-            className="btn--addToCart"
-            onClick={() => {
-              /* ================ animations ================ */
-              if (!cartItemExist(appData.id)) {
-                addCartAnimation(appData.imageSrc, ".application-detail-page");
-              }
-              addItem({
-                id: appData.id,
-                title: appData.title,
-                creator: appData.creator,
-                imageSrc: appData.imageSrc,
-                price: appData.price,
-                route: appData.route,
-              });
-            }}
-          >
-            Add to cart
-          </S.BtnAddToCart>
-        </S.PageContentContainer>
-      </S.PageContainer>
+        {/* ================ Add to Cart ================ */}
+        <S.BtnAddToCart
+          className="btn--addToCart"
+          onClick={() => {
+            /* ================ animations ================ */
+            if (!cartItemExist(appData.id)) {
+              addCartAnimation(appData.imageSrc, ".application-detail-page");
+            }
+            addItem({
+              id: appData.id,
+              title: appData.title,
+              creator: appData.creator,
+              imageSrc: appData.imageSrc,
+              price: appData.price,
+              route: appData.route,
+            });
+          }}
+        >
+          Add to cart
+        </S.BtnAddToCart>
+      </S.PageContentContainer>
     );
   }
 }

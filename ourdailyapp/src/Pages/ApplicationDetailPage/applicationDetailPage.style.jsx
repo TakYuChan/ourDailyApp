@@ -20,12 +20,6 @@ const buttonStyles = css`
   }
 `;
 
-S.PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 // ===================== Page Content Main ========================
 S.PageContentContainer = styled.section`
   width: 100%;

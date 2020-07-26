@@ -17,10 +17,14 @@ to {
 }
 `;
 
-const loadingContentStyles = css`
+const preloaderContentStyles = css`
   background-color: ${(props) => props.theme.appStore.cardLoadingContentStart};
   animation: ${(props) => loading(props.theme.appStore.cardLoadingContentEnd)}
     2s infinite linear alternate;
+`;
+
+const textPreloaderStyles = css`
+  border-radius: 20px;
 `;
 
 // ================ Card Section Container - for transition ======================
@@ -82,34 +86,35 @@ S.LoadingCardContainer = styled.div`
 S.LoadingImgWrapper = styled.div`
   width: 90%;
   height: 200px;
-  ${loadingContentStyles}
+  ${preloaderContentStyles}
 `;
 
 // ========================= Text ============================
 S.LoadingTitleText = styled.div`
   margin: 20px 0;
 
-  border-radius: 20px;
   width: 30%;
   height: 1rem;
-  ${loadingContentStyles}
+  ${textPreloaderStyles}
+  ${preloaderContentStyles}
 `;
 
 S.LoadingDescriptionText = styled.div`
   color: ${(props) => props.theme.appStore.cardText};
   font-size: clamp(0.8rem, 1.1vw, 1.1rem);
   margin-bottom: 20px;
-  border-radius: 20px;
+
   width: 40%;
   height: 1rem;
-  ${loadingContentStyles}
+  ${textPreloaderStyles}
+  ${preloaderContentStyles}
 `;
 
 S.LoadingBtnStart = styled.div`
-  border-radius: 20px;
   width: 35%;
   height: 1rem;
-  ${loadingContentStyles}
+  ${textPreloaderStyles}
+  ${preloaderContentStyles}
 `;
 
 export default S;
