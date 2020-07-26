@@ -30,3 +30,8 @@ export const selectIsApplicationsLoaded = createSelector(
   [selectShop],
   (shop) => !!shop.applications
 );
+
+export const selectAppQuantity = createSelector(
+  [selectShop],
+  (shop) => shop.customAppLength
+);

@@ -19,14 +19,17 @@ export const fetchApplicationsFailure = (errorMsg) => ({
 // ========================== Fetching Thunk action ==========================
 export const fetchApplicationsStartAsync = () => {
   return (dispatch) => {
-    const collectionRef = firestore.collection("applications").get();
+    const collectionRef = firestore.collection("applications");
     // dispatch(fetchApplicationsStart());
 
-    collectionRef
-      .then((snapshot) => {
-        const applicationsMap = convertApplicationsArrayToMap(snapshot);
-        dispatch(fetchApplicationsSuccess(applicationsMap));
-      })
-      .catch((error) => dispatch(fetchApplicationsFailure(error.msg)));
+    setTimeout(() => {
+      collectionRef
+        .get()
+        .then((snapshot) => {
+          const applicationsMap = convertApplicationsArrayToMap(snapshot);
+          dispatch(fetchApplicationsSuccess(applicationsMap));
+        })
+        .catch((error) => dispatch(fetchApplicationsFailure(error.msg)));
+    }, 3000);
   };
 };

@@ -21,7 +21,7 @@ S.ShopContentContainer = styled.div`
   display: grid;
   width: 90%;
   max-width: 900px;
-  margin-top: 50px;
+  margin: 50px 0;
 
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
 

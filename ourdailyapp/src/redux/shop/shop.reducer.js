@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   applications: null,
   // isFetching: true,
   errorMsg: "",
+  // customAppLength: null,
 };
 
 const shopReducer = (state = INITIAL_STATE, action) => {

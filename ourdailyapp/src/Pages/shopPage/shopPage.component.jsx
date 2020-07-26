@@ -7,7 +7,7 @@ import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { fetchApplicationsStartAsync } from "../../redux/shop/shop.actions";
 
 import SectionHeader from "../../Components/sectionHeader/sectionHeader.component";
-import ApplicationOverviewContainer from "../../ComponentsNotReuse/applicationOverview/applicationOverview.container";
+import ApplicationOverview from "../../ComponentsNotReuse/applicationOverview/applicationOverview.component";
 import ApplicationDetailPageContainer from "../ApplicationDetailPage/applicationDetailPage.container";
 
 class ShopPage extends React.Component {
@@ -30,11 +30,7 @@ class ShopPage extends React.Component {
     return (
       <div className="shop-page" onClick={closeShopNav}>
         <SectionHeader />
-        <Route
-          exact
-          path={`${match.path}`}
-          component={ApplicationOverviewContainer}
-        />
+        <Route exact path={`${match.path}`} component={ApplicationOverview} />
         <Route
           exact
           path={`${match.path}/:applicationId`}

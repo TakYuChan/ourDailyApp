@@ -1,5 +1,5 @@
 import React from "react";
-import S from "./customCart.style";
+import S from "./customCard.style";
 
 import { withRouter, Link } from "react-router-dom";
 
@@ -11,11 +11,7 @@ const CustomCard = ({ match, app }) => {
       <Link className="link" to={`${match.path}/${route}`}>
         <S.CardContainer className="card card-app">
           <S.ImgWrapper className="img-wrapper">
-            <img
-              src={imageSrc}
-              alt="to do list application"
-              className="app-img"
-            />
+            <img src={imageSrc} alt="" className="app-img" />
           </S.ImgWrapper>
           <S.TitleText className="app-title">{title}</S.TitleText>
           <S.DescriptionText className="app-description">

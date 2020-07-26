@@ -25,14 +25,7 @@ const SectionHeader = ({ selectPage, selectDetails, history }) => (
         /{selectDetails.title}
       </h1>
     )}
-    {
-      selectPage === "preloader" && null
-      //   <S.AnimationWrapper className="animation-wrapper">
-      //     <S.AnimationDot className="dot1" />
-      //     <S.AnimationDot className="dot2" />
-      //     <S.AnimationDot className="dot3" />
-      //   </S.AnimationWrapper>
-    }
+    {selectPage === "preloader" && null}
   </div>
 );
 

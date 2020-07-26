@@ -1,21 +1,32 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { rgba } from "polished";
 
 const S = {};
 
+const cardPopsUp = keyframes`
+from {
+  opacity: 0;
+}
+to {
+  opacity: 1;
+}
+`;
+
 S.CustomCardWrapper = styled.div`
+  animation: ${cardPopsUp} 300ms ease-in-out forwards;
   &:hover .card-app {
     transform: translateY(-10px);
   }
 `;
 
 S.CardContainer = styled.div`
-  padding: 20px 0 40px;
+  padding: 20px 0 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: ${(props) => props.theme.appStore.cardBg};
-
+  width: 100%;
+  height: 100%;
   cursor: pointer;
 
   box-shadow: 0px 4px 8px rgba($color: #000000, $alpha: 0.12);

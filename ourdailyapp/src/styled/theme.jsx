@@ -46,6 +46,8 @@ export const lightTheme = {
   appStore: {
     cardBg: "white",
     cardText: rootStyles.gray4,
+    cardLoadingContentStart: rootStyles.gray1,
+    cardLoadingContentEnd: `#f0f2f5`,
   },
   cartPage: {
     cartItemTitleCreatorText: "black",

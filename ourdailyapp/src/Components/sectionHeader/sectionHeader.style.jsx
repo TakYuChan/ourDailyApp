@@ -25,45 +25,4 @@ S.IconShop = styled.i`
   margin-left: 0.2em;
 `;
 
-// =================== selectPage === "preloader" ======================
-// S.AnimationWrapper = styled.div`
-//   position: absolute;
-//   bottom: 10%;
-//   left: 8%;
-// `;
-
-// const jumpy = keyframes`
-//   0% {
-//     transform: translateY(0);
-//   }
-
-//   100% {
-//     transform: translateY(-8px);
-//   }
-// `;
-
-// S.AnimationDot = styled.span`
-//   display: inline-block;
-//   font-size: clamp(0.6rem, 1.4vw, 1.2rem);
-//   width: 1em;
-//   height: 1em;
-//   background: var(--gray3);
-//   margin-right: 5px;
-//   border-radius: 100%;
-//   // animation: ${jumpy} 1s infinite alternate;
-//   --stagger: 100ms;
-
-//   &.dot1 {
-//     animation: ${jumpy} 1s infinite alternate;
-//   }
-//   &.dot2 {
-//     animation: ${jumpy} 1s infinite alternate;
-//     animation-delay: calc(1 * var(--stagger));
-//   }
-//   &.dot3 {
-//     animation: ${jumpy} 1s infinite alternate;
-//     animation-delay: calc(2 * var(--stagger));
-//   }
-// `;
-
 export default S;
