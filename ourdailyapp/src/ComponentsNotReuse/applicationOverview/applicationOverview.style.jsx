@@ -18,24 +18,7 @@ S.IconApp = styled.i`
 
 // =============== App store content main ==================
 S.ShopContentContainer = styled.div`
-  display: grid;
-  width: 90%;
-  max-width: 900px;
-  margin: 50px 0;
-
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-
-  gap: 20px;
-
-  @media screen and (max-width: 1125px) {
-    grid-template-columns: 450px;
-    justify-content: center;
-  }
-
-  @media screen and (max-width: 550px) {
-    grid-template-columns: minmax(100px, 440px);
-    justify-content: center;
-  }
+  width: 100vw;
 `;
 
 export default S;

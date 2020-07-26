@@ -30,6 +30,6 @@ export const fetchApplicationsStartAsync = () => {
           dispatch(fetchApplicationsSuccess(applicationsMap));
         })
         .catch((error) => dispatch(fetchApplicationsFailure(error.msg)));
-    }, 3000);
+    }, 1000);
   };
 };
