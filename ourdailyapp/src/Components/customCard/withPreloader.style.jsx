@@ -23,6 +23,8 @@ const loadingContentStyles = css`
     2s infinite linear alternate;
 `;
 
+// ================ Card Section Container - for transition ======================
+
 S.CardSectionContainer = styled.div`
   display: grid;
   width: 90%;
@@ -43,6 +45,8 @@ S.CardSectionContainer = styled.div`
     justify-content: center;
   }
 `;
+
+// ================ Loading Card ======================
 
 S.LoadingCardContainer = styled.div`
   padding: 20px 0 40px;

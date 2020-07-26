@@ -1,16 +1,19 @@
 import { createSelector } from "reselect";
 
+const selectCart_P = (state) => state.cart_P;
 const selectCart = (state) => state.cart;
-const selectCartNP = (state) => state.cartNP;
 
 export const selectCartItems = createSelector(
-  [selectCart],
+  [selectCart_P],
   (cart) => cart.cartItems
 );
 
-export const selectCartItemsQuantity = createSelector([selectCart], (cart) => {
-  return cart.cartItems.length;
-});
+export const selectCartItemsQuantity = createSelector(
+  [selectCart_P],
+  (cart) => {
+    return cart.cartItems.length;
+  }
+);
 
 export const selectCartMoreItems = createSelector(
   [selectCartItemsQuantity],
@@ -18,7 +21,7 @@ export const selectCartMoreItems = createSelector(
 );
 
 export const selectCartItemsTotalPrice = createSelector(
-  [selectCart],
+  [selectCart_P],
   (cart) => cart.itemTotalPrice
 );
 
@@ -35,17 +38,17 @@ export const selectCartItemExist = (itemIdToCheck) =>
 // ==================== Cart No Persistent =================
 
 export const selectCartPopUpHidden = createSelector(
-  [selectCartNP],
+  [selectCart],
   (cart) => cart.cartPopUpHidden
 );
 
 // ==================== WishList =================
 export const selectWishListItems = createSelector(
-  [selectCart],
+  [selectCart_P],
   (cart) => cart.wishListItems
 );
 
-export const selectWishListQuantity = createSelector([selectCart], (cart) => {
+export const selectWishListQuantity = createSelector([selectCart_P], (cart) => {
   return cart.wishListItems.length;
 });
 
