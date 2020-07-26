@@ -33,6 +33,8 @@ const textPreloaderStyles = css`
   border-radius: 20px;
 `;
 
+// ======================= Page Container =======================
+
 S.PageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -103,7 +105,7 @@ S.BtnAddToWishlistPreloader = styled.div`
   margin-bottom: 1rem;
   border-radius: 30px;
   font-size: clamp(0.8rem, 1.2vw, 1.4rem);
-  height: 1em;
+  height: 2em;
   padding: 0.8em 0;
   width: 100px;
   ${preloaderContentStyles}
@@ -112,10 +114,10 @@ S.BtnAddToWishlistPreloader = styled.div`
 
 /* ================ Add to Cart ================ */
 S.BtnAddToCartPreloader = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 3em;
   border-radius: 30px;
   font-size: clamp(0.8rem, 1.2vw, 1.4rem);
-  height: 1em;
+  height: 2em;
   padding: 0.8em 0;
   width: 100%;
   ${preloaderContentStyles}

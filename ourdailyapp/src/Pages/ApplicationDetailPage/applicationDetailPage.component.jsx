@@ -8,7 +8,7 @@ import {
   selectCartItemExist,
 } from "../../redux/cart/cart.selectors";
 import { addItem, toggleWishListItem } from "../../redux/cart/cart.actions";
-import { updatePage } from "../../redux/sectionHeader/sectionHeader.actions";
+import { updateSectionHeader } from "../../redux/sectionHeader/sectionHeader.actions";
 import { addCartAnimation } from "../../utils/animation";
 
 import CustomTag from "../../Components/customTag/customTag.component";
@@ -17,12 +17,12 @@ class ApplicationDetailPage extends React.Component {
   //=========================== Life Cycle Hooks =========================
   componentDidMount() {
     const {
-      updatePage,
+      updateSectionHeader,
       appData: { title },
     } = this.props;
     console.log("Application Detail Page Mounted");
 
-    updatePage({
+    updateSectionHeader({
       page: "applicationDetails",
       details: {
         title: title,
@@ -31,9 +31,9 @@ class ApplicationDetailPage extends React.Component {
   }
 
   componentWillUnmount() {
-    const { updatePage } = this.props;
+    const { updateSectionHeader } = this.props;
 
-    updatePage({
+    updateSectionHeader({
       page: "preloader",
       details: {},
     });
@@ -144,7 +144,8 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
   toggleWishListItem: (item) => dispatch(toggleWishListItem(item)),
-  updatePage: (pageDetails) => dispatch(updatePage(pageDetails)),
+  updateSectionHeader: (sectionHeaderDetails) =>
+    dispatch(updateSectionHeader(sectionHeaderDetails)),
 });
 
 export default connect(

@@ -1,5 +1,5 @@
 import SectionHeaderActionTypes from "./sectionHeader.types";
-export const updatePage = (pageDetails) => ({
+export const updateSectionHeader = (sectionHeaderDetails) => ({
   type: SectionHeaderActionTypes.UPDATE_SECTION_HEADER,
-  payload: pageDetails,
+  payload: sectionHeaderDetails,
 });

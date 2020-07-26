@@ -129,8 +129,11 @@ body {
 .pages {
   background: ${(props) => props.theme.body};
   min-height: calc(100vh - var(--nav-height));
+  // height: 10vh;
   font-family: "Montserrat", sans-serif;
   width: 100%;
+
+  // overflow: hidden;
 }
 
 /* ========================== heading ========================== */

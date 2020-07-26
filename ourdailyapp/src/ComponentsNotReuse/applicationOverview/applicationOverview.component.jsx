@@ -1,24 +1,24 @@
 import React from "react";
 import S from "./applicationOverview.style";
 
-import { updatePage } from "../../redux/sectionHeader/sectionHeader.actions";
+import { updateSectionHeader } from "../../redux/sectionHeader/sectionHeader.actions";
 import { connect } from "react-redux";
 
 import CustomCardContainer from "../../Components/customCard/customCard.container";
 
 class ApplicationOverview extends React.Component {
   componentDidMount() {
-    const { updatePage } = this.props;
+    const { updateSectionHeader } = this.props;
 
-    updatePage({
+    updateSectionHeader({
       page: "shop",
       details: {},
     });
   }
 
   componentWillUnmount() {
-    const { updatePage } = this.props;
-    updatePage({
+    const { updateSectionHeader } = this.props;
+    updateSectionHeader({
       page: "preloader",
       details: {},
     });
@@ -37,7 +37,8 @@ class ApplicationOverview extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  updatePage: (pageDetails) => dispatch(updatePage(pageDetails)),
+  updateSectionHeader: (sectionHeaderDetails) =>
+    dispatch(updateSectionHeader(sectionHeaderDetails)),
 });
 
 export default connect(null, mapDispatchToProps)(ApplicationOverview);
