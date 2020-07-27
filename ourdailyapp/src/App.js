@@ -5,7 +5,7 @@ import "./App.css";
 
 import { Switch, Route } from "react-router-dom";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-import { addCollectionAndDocuments } from "./firebase/firestore/setData";
+// import { addCollectionAndDocuments } from "./firebase/firestore/setData";
 import { connect } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styled/globalStyle";
@@ -24,6 +24,7 @@ import CommentsConverterPage from "./Pages/CommentsConverterPage/commentsConvert
 import NoMatch from "./Pages/NoMatchPage/noMatchPage.component";
 import CartPage from "./Pages/cartPage/cartPage.component";
 import WishlistPage from "./Pages/wishlistPage/wishlistPage.component";
+import PigGamePage from "./games/Pig_game/pigGamePage.component";
 
 import Header from "./Components/header/header.component";
 import FloatNav from "./Components/floatNav/floatNav.component";
@@ -97,6 +98,7 @@ class App extends React.Component {
           <Route path="/cart" component={CartPage} />
           <Route path="/wishlist" component={WishlistPage} />
           <Route path="/commentsConverter" component={CommentsConverterPage} />
+          <Route path="/pigGame" component={PigGamePage} />
           <Route component={NoMatch} />
         </Switch>
       </ThemeProvider>

@@ -4,14 +4,14 @@ const S = {};
 
 // Animation
 const appear = keyframes`
-  from {
-    transform: scale(.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+0% {
+  transform: scale(.8);
+  opacity: 0;
+}
+100% {
+  transform: scale(1);
+  opacity: 1;
+}
 `;
 
 // ==================== Container ====================
@@ -36,7 +36,7 @@ S.ApplicationItemContainer = styled.div`
     }
   }
 
-  animation: ${appear} ${(props) => props.stagger}s ease-in-out forwards;
+  animation: 600ms ${appear} backwards ${(props) => props.stagger}s;
 `;
 
 S.Image = styled.img`

@@ -10,11 +10,11 @@ const ApplicationItem = ({ app, index }) => {
     <Link to={`/${route}`} className={`link`}>
       <S.ApplicationItemContainer
         className="application-item"
-        stagger={(index + 1) * 0.3}
+        stagger={(index + 1) * 0.1}
       >
         <S.Image src={imageUrl} className={`${border && "border"}`} />
         <S.AppLinkText className="link-text">{name}</S.AppLinkText>
-    </S.ApplicationItemContainer>
+      </S.ApplicationItemContainer>
     </Link>
   );
 };
