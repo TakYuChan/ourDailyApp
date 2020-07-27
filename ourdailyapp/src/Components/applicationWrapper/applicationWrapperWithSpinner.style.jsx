@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { rgba } from "polished";
 
 const S = {};
 
@@ -32,9 +33,14 @@ S.SpinnerContainer = styled.div`
   font-size: clamp(0.8rem, 1.2vw, 1vw);
   width: 3em;
   height: 3em;
-  border: 3px solid rgba(195, 195, 195, 0.6);
+
+  border: 3px solid
+    ${(props) => {
+      return rgba(props.theme.mainPage.spinner_applicationWrapper_primary, 0.4);
+    }};
   border-radius: 50%;
-  border-top-color: #636767;
+  border-top-color: ${(props) =>
+    props.theme.mainPage.spinner_applicationWrapper_secondary};
   animation: ${spin} 1s ease-in-out infinite;
 `;
 

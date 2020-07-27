@@ -29,7 +29,7 @@ S.CardContainer = styled.div`
   height: 100%;
   cursor: pointer;
 
-  box-shadow: 0px 4px 8px rgba($color: #000000, $alpha: 0.12);
+  box-shadow: 0px 4px 8px ${rgba("#000000", 0.12)};
 
   transition: transform 0.5s;
 `;

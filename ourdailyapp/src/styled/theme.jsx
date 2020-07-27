@@ -42,6 +42,8 @@ export const lightTheme = {
   mainPage: {
     app_Hover: `rgba(222, 222, 223, 0.3)`,
     appLinkText: rootStyles.gray4,
+    spinner_applicationWrapper_primary: rootStyles.blue_light,
+    spinner_applicationWrapper_secondary: rootStyles.blue,
   },
   appStore: {
     cardBg: "white",
