@@ -1,6 +1,20 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const S = {};
+
+// Animation
+const appear = keyframes`
+  from {
+    transform: scale(.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
+
+// ==================== Container ====================
 
 S.ApplicationItemContainer = styled.div`
   cursor: pointer;
@@ -22,8 +36,8 @@ S.ApplicationItemContainer = styled.div`
     }
   }
 
-  //   ==================== Inputed Image from backend =================
-
+  animation: ${appear} ${(props) => props.stagger}s ease-in-out forwards;
+  //   ==================== Inputed Image from backend ====================
   .img--todolist,
   .img--coloors,
   .img--cmConverter {

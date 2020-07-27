@@ -11,7 +11,7 @@ const Logo = ({ withLink, history, closeNav, closeShopNav }) => {
     <S.LogoImage
       className="logo"
       src={"/images/assets/logo.png"}
-      alt="logo"
+      alt=""
       onClick={() => {
         if (withLink) {
           closeNav();

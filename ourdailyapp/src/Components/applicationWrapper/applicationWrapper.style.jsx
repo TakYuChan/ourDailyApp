@@ -1,6 +1,18 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const S = {};
+
+// Animation
+// const appear = keyframes`
+//   from {
+//     transform: scale(.5);
+//   },
+//   to {
+//     transform: scale(1);
+//   }
+// `;
+
+// ========== Container =========
 
 S.ApplicationsContainer = styled.div`
   display: grid;

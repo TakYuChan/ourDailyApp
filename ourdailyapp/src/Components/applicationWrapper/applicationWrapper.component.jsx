@@ -9,7 +9,7 @@ const ApplicationWrapper = () => {
   return (
     <S.ApplicationsContainer className="application-container">
       {APPLICATIONS_DATA.map((app, index) => (
-        <ApplicationItem key={index} app={app} />
+        <ApplicationItem key={index} app={app} index={index} />
       ))}
     </S.ApplicationsContainer>
   );

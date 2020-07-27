@@ -1,6 +1,18 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const S = {};
+
+// Animation
+const appear = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+// ==================== Container ====================
 
 S.MainPageContainer = styled.div`
   width: 100%;
@@ -20,6 +32,8 @@ S.LogoWrapper = styled.div`
   width: 12em;
   margin-top: 1rem;
   margin-bottom: 1rem;
+
+  animation: ${appear} 250ms ease-in-out;
 `;
 
 export default S;
