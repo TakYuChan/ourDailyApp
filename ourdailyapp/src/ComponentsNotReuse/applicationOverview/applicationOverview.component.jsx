@@ -4,7 +4,7 @@ import S from "./applicationOverview.style";
 import { updateSectionHeader } from "../../redux/sectionHeader/sectionHeader.actions";
 import { connect } from "react-redux";
 
-import CustomCardContainer from "../../Components/customCard/customCard.container";
+import CustomCardWithPreloader from "../../Components/customCard/customCardWithPreloader.component";
 
 class ApplicationOverview extends React.Component {
   componentDidMount() {
@@ -29,7 +29,7 @@ class ApplicationOverview extends React.Component {
       <S.ApplicationOverviewContainer className="application-overview pages">
         {/* ============= content main ============= */}
         <S.ShopContentContainer className={`shop-content-main`}>
-          <CustomCardContainer />
+          <CustomCardWithPreloader />
         </S.ShopContentContainer>
       </S.ApplicationOverviewContainer>
     );

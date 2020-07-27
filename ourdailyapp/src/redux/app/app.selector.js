@@ -1,10 +1,10 @@
 import { createSelector } from "reselect";
 
-const selectShop = (state) => state.shop;
+const selectAppReducer = (state) => state.app;
 
 export const selectApplications = createSelector(
-  [selectShop],
-  (shop) => shop.applications
+  [selectAppReducer],
+  (app) => app.applications
 );
 
 export const selectApplicationsInArray = createSelector(
@@ -22,16 +22,25 @@ export const selectApp = (applicationUrlParam) =>
   });
 
 export const selectIsFetching = createSelector(
-  [selectShop],
-  (shop) => shop.isFetching
+  [selectAppReducer],
+  (app) => app.isFetching
 );
 
 export const selectIsApplicationsLoaded = createSelector(
-  [selectShop],
-  (shop) => !!shop.applications
+  [selectAppReducer],
+  (app) => !!app.applications
+);
+
+export const selectIsAppLogoItemsLoaded = createSelector(
+  [selectAppReducer],
+  (app) => !!app.appLogo_items
 );
 
 export const selectAppQuantity = createSelector(
-  [selectShop],
-  (shop) => shop.customAppLength
+  [selectAppReducer],
+  (app) => app.customAppLength
 );
+
+export const selectAppLogoItems = createSelector([selectAppReducer], (app) => {
+  return app.appLogo_items ? app.appLogo_items : [];
+});

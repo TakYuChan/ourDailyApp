@@ -6,7 +6,7 @@ import navReducer from "./nav/nav.reducer";
 import shopNavReducer from "./shopNav/shopNav.reducer";
 import userReducer from "./user/user.reducer";
 import signInUpReducer from "./signInUp/signInUp.reducer";
-import shopReducer from "./shop/shop.reducer";
+import appReducer from "./app/app.reducer";
 import commentsConverterReducer from "./commentsConverter/commentsConverter.reducer";
 import cart_P_Reducer from "./cart/cart_P.reducer";
 import cartReducer from "./cart/cart.reducer";
@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
   nav: navReducer,
   user: userReducer,
   signInUp: signInUpReducer,
-  shop: shopReducer,
+  app: appReducer,
   commentsConverter: commentsConverterReducer,
   shopNav: shopNavReducer,
   cart_P: cart_P_Reducer,

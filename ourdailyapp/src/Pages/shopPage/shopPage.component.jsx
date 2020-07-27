@@ -4,11 +4,11 @@ import "./shopPage.style.scss";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
-import { fetchApplicationsStartAsync } from "../../redux/shop/shop.actions";
+import { fetchApplicationsStartAsync } from "../../redux/app/app.actions";
 
 import SectionHeader from "../../Components/sectionHeader/sectionHeader.component";
 import ApplicationOverview from "../../ComponentsNotReuse/applicationOverview/applicationOverview.component";
-import ApplicationDetailPageContainer from "../ApplicationDetailPage/applicationDetailPage.container";
+import ApplicationDetailWithPreloader from "../ApplicationDetailPage/applicationDetailWithPreloader.component";
 
 class ShopPage extends React.Component {
   unsubscribeFromSnapshot = null;
@@ -34,7 +34,7 @@ class ShopPage extends React.Component {
         <Route
           exact
           path={`${match.path}/:applicationId`}
-          component={ApplicationDetailPageContainer}
+          component={ApplicationDetailWithPreloader}
         />
       </div>
     );

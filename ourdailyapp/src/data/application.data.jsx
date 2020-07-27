@@ -1,38 +1,24 @@
-import React from "react";
-
 const APPLICATIONS_DATA = [
   {
     name: "Todo list",
     route: "todo",
-    image: (
-      <img
-        className="img--todolist"
-        src="/images/assets/todolist2.jpg"
-        alt="to do list"
-      />
-    ),
+    imageUrl: "/images/assets/todolist2.jpg",
   },
   {
     name: "Coloors",
     route: "todolist",
-    image: (
-      <img
-        className="img--coloors"
-        src="/images/assets/coloors.jpg"
-        alt="colors"
-      />
-    ),
+    imageUrl: "/images/assets/coloors.jpg",
   },
   {
     name: "CM Converter",
     route: "commentsConverter",
-    image: (
-      <img
-        className="img--cmConverter"
-        src="/images/assets/CM Converter.png"
-        alt="to do list"
-      />
-    ),
+    imageUrl: "/images/assets/CM Converter.png",
+    border: true,
+  },
+  {
+    name: "Pig Game",
+    route: "pigGame",
+    imageUrl: "/images/assets/PigGameLogo.jpg",
   },
 ];
 

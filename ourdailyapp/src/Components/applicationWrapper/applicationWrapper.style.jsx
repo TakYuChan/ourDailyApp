@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 const S = {};
 
@@ -18,6 +18,7 @@ S.ApplicationsContainer = styled.div`
   display: grid;
   width: 80%;
   max-width: 600px;
+  margin: 0 auto;
 
   --app-size: 120px;
 

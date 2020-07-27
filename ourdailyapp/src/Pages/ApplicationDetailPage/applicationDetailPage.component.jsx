@@ -2,7 +2,7 @@ import React from "react";
 import S from "./applicationDetailPage.style";
 
 import { connect } from "react-redux";
-import { selectApp } from "../../redux/shop/shop.selector";
+import { selectApp } from "../../redux/app/app.selector";
 import {
   selectWishListItemExist,
   selectCartItemExist,

@@ -1,18 +1,15 @@
 import React from "react";
-
+// import SHOP_DATA from "./redux/shop/shop.data";
+// import APPLICATIONS_DATA from "./data/application.data";
 import "./App.css";
 
 import { Switch, Route } from "react-router-dom";
-import {
-  auth,
-  createUserProfileDocument,
-  // addCollectionAndDocuments,
-} from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { addCollectionAndDocuments } from "./firebase/firestore/setData";
 import { connect } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styled/globalStyle";
 import { lightTheme, darkTheme } from "./styled/theme";
-// import { selectApplicationsInArray } from "./redux/shop/shop.selector";
 
 import {
   setUser,
@@ -50,8 +47,6 @@ class App extends React.Component {
   //=============== Life Cycle Hooks ===============
 
   componentDidMount() {
-    // const { applicationsArray } = this.props;
-
     this.unsubscribeFromAuthState = auth.onAuthStateChanged(async (user) => {
       if (user) {
         // 1. Google Auth and basic email password log in have different data input ways.
@@ -71,7 +66,7 @@ class App extends React.Component {
         this.props.setUser(user);
         this.props.userLoggedOFF();
       }
-      // addCollectionAndDocuments("applications", applicationsArray);
+      // addCollectionAndDocuments("appLogoItems", APPLICATIONS_DATA);
     });
   }
 
@@ -114,9 +109,5 @@ const mapDispatchToProps = (dispatch) => ({
   userLoggedOn: () => dispatch(userLoggedOn()),
   userLoggedOFF: () => dispatch(userLoggedOFF()),
 });
-
-// const mapStateToProps = (state) => ({
-//   applicationsArray: selectApplicationsInArray(state),
-// });
 
 export default connect(null, mapDispatchToProps)(App);

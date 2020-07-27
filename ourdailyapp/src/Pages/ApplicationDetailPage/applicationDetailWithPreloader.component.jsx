@@ -1,10 +1,14 @@
 import React from "react";
-import S from "./withPreloader.style";
+import S from "./applicationDetailWithPreloader.style";
+import "./applicationDetailWithPreloader.style.scss";
 
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import ApplicationDetailPage from "./applicationDetailPage.component";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
+import { selectIsApplicationsLoaded } from "../../redux/app/app.selector";
 
-const WithPreloader = ({ isLoading, ...otherProps }) => {
+const ApplicationDetailWithPreloader = ({ isLoading, ...otherProps }) => {
   return (
     <SwitchTransition mode="out-in">
       <CSSTransition
@@ -43,4 +47,8 @@ const WithPreloader = ({ isLoading, ...otherProps }) => {
   );
 };
 
-export default WithPreloader;
+const mapStateToProps = createStructuredSelector({
+  isLoading: (state) => !selectIsApplicationsLoaded(state),
+});
+
+export default connect(mapStateToProps)(ApplicationDetailWithPreloader);

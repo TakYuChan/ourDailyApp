@@ -4,7 +4,7 @@ import S from "./applicationItem.style";
 import { Link } from "react-router-dom";
 
 const ApplicationItem = ({ app, index }) => {
-  const { name, route, image } = app;
+  const { name, route, imageUrl, border } = app;
 
   return (
     <Link to={`/${route}`} className={`link`}>
@@ -12,9 +12,9 @@ const ApplicationItem = ({ app, index }) => {
         className="application-item"
         stagger={(index + 1) * 0.3}
       >
-        {image}
+        <S.Image src={imageUrl} className={`${border && "border"}`} />
         <S.AppLinkText className="link-text">{name}</S.AppLinkText>
-      </S.ApplicationItemContainer>
+    </S.ApplicationItemContainer>
     </Link>
   );
 };

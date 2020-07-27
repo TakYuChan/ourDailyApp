@@ -1,6 +1,10 @@
+import { firestore } from "../firebase.utils";
+
 export const addCollectionAndDocuments = (collectionName, objToAdd) => {
   try {
     const collectionRef = firestore.collection(collectionName);
+
+    console.log("ADDING COLLECTION AND DOC");
 
     const batch = firestore.batch();
 

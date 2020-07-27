@@ -1,12 +1,21 @@
 import React from "react";
-import S from "./withPreloader.style";
+import S from "./customCardWithPreloader.style";
+import "./customCardWithPreloader.style.scss";
 
-import "./withPreloader.style.scss";
-
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import CustomCard from "./customCard.component";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
+import {
+  selectIsApplicationsLoaded,
+  selectApplicationsInArray,
+} from "../../redux/app/app.selector";
 
-const WithPreloader = ({ isLoading, applications, ...otherProps }) => {
+const CustomCardWithPreloader = ({
+  isLoading,
+  applications,
+  ...otherProps
+}) => {
   return (
     <SwitchTransition mode="out-in">
       <CSSTransition
@@ -35,4 +44,9 @@ const WithPreloader = ({ isLoading, applications, ...otherProps }) => {
   );
 };
 
-export default WithPreloader;
+const mapStateToProps = createStructuredSelector({
+  isLoading: (state) => !selectIsApplicationsLoaded(state),
+  applications: selectApplicationsInArray,
+});
+
+export default connect(mapStateToProps)(CustomCardWithPreloader);
