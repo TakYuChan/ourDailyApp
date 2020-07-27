@@ -1,0 +1,19 @@
+.time-block {
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 300;
+}
+
+.date {
+  font-size: clamp(0.6rem, 1.6vw, 1.6rem);
+  margin: 0;
+}
+
+.time {
+  font-size: clamp(0.6rem, 1.6vw, 1.6rem);
+  font-weight: 700;
+}
+/*# sourceMappingURL=time.style.css.map */

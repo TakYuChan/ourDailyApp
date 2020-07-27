@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,aAAa,CAAC;EACZ,UAAU,EAAE,+BAA+B;EAC3C,UAAU,EAAE,kBAAkB;EAC9B,WAAW,EAAE,wBAAwB;EACrC,KAAK,EAAE,KAAK;EAEZ,OAAO,EAAE,IAAI;EACb,aAAa,EAAE,MAAM;EACrB,WAAW,EAAE,MAAM;EACnB,UAAU,EAAE,MAAM;CACnB",
+    "sources": [
+        "noMatchPage.style.scss"
+    ],
+    "names": [],
+    "file": "noMatchPage.style.css"
+}

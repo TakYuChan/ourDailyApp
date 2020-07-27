@@ -1,0 +1,31 @@
+#dropdown-basic-button {
+  --size: 40px;
+  outline: 0;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+#dropdown-basic-button::after {
+  display: none;
+}
+
+.dropDownMenu--profile .dropdown-item:hover {
+  background: pink;
+}
+
+.dropDownMenu--profile .auth-btn {
+  font-weight: 700;
+}
+
+.dropDownMenu--profile .iconfont {
+  margin-right: 0.8rem;
+}
+
+.dropdown-menu {
+  -webkit-transform: translate(-150px, 42px) !important;
+          transform: translate(-150px, 42px) !important;
+}
+/*# sourceMappingURL=profileDropDownMenu.style.css.map */

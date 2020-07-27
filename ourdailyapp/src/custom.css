@@ -10817,44 +10817,4 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-
-.dark-theme {
-  --background: var(--gray6);
-  --text-color: var(--gray2);
-  --h-color: #fff;
-  --nav-shadow: 4px 0 10px -3px #010101;
-  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.38);
-  --toc-shadow: rgba(0, 0, 0, 0.7) 0px 10px 20px 0px;
-  --nav-bg: var(--gray5);
-  --tag-bg: var(--gray4);
-  --code-bg: #22262f;
-  --card-bg: var(--gray5);
-  --overlay-bg: rgba(0, 0, 0, 0.9);
-  --h-border: 2px dashed var(--nav-bg);
-  --card-radius: 0.25em;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.dark-theme,
-.light-theme {
-  --nav-border: 2px dashed var(--text-color);
-}
-
-.light-theme {
-  --background: var(--gray0);
-  --text-color: var(--gray4);
-  --h-color: var(--gray6);
-  --nav-shadow: 4px 0 10px -3px #c1c1c1;
-  --card-shadow: 0 4px 8px rgba(0, 30, 84, 0.12);
-  --toc-shadow: rgba(0, 0, 0, 0.2) 0px 10px 20px 0px;
-  --nav-bg: #fff;
-  --tag-bg: var(--gray2);
-  --code-bg: #fff;
-  --card-bg: #fff;
-  --overlay-bg: hsla(0, 0%, 100%, 0.9);
-  --h-border: 2px dashed var(--gray1);
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
 /*# sourceMappingURL=custom.css.map */
