@@ -2,9 +2,12 @@ import styled, { keyframes, css } from "styled-components";
 
 const S = {};
 
-const loading = (background) => keyframes`
-from {transition:none;}
-to {background: ${background};
+const loading = (ToBackground, FromBackground) => keyframes`
+0% {background: ${FromBackground}}
+30% {background: ${ToBackground};
+}
+100% {
+  background: ${FromBackground}
 }
 `;
 
@@ -19,8 +22,12 @@ to {
 
 const preloaderContentStyles = css`
   background-color: ${(props) => props.theme.appStore.cardLoadingContentStart};
-  animation: ${(props) => loading(props.theme.appStore.cardLoadingContentEnd)}
-    2s infinite linear alternate;
+  animation: ${(props) =>
+      loading(
+        props.theme.appStore.cardLoadingContentEnd,
+        props.theme.appStore.cardLoadingContentStart
+      )}
+    2s infinite linear;
 `;
 
 const textPreloaderStyles = css`
@@ -59,24 +66,6 @@ S.LoadingCardContainer = styled.div`
   align-items: center;
 
   background: ${(props) => props.theme.appStore.cartBg};
-
-  &.card-entering {
-    opacity: 0;
-  }
-
-  &.card-entered {
-    opacity: 1;
-    transition: all 500ms;
-  }
-
-  &.card-exiting {
-    opacity: 1;
-  }
-
-  &.card-exited {
-    opacity: 0;
-    transition: all 500ms;
-  }
 
   animation: ${loadingCardPopsUp} 250ms;
 `;

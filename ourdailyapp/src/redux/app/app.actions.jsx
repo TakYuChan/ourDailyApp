@@ -53,15 +53,15 @@ export const fetchAppLogoItemsStartAsync = () => {
   return (dispatch) => {
     const collectionRef = firestore.collection("appLogoItems");
 
-    setTimeout(() => {
-      collectionRef
-        .get()
-        .then((snapshot) => {
-          const appLogoItemsArray = transformAppLogoItemsArray(snapshot);
-          console.log(appLogoItemsArray);
-          dispatch(fetchAppLogoItemsSuccess(appLogoItemsArray));
-        })
-        .catch((error) => dispatch(fetchAppLogoItemsFailure(error.msg)));
-    }, 1000);
+    // setTimeout(() => {
+    collectionRef
+      .get()
+      .then((snapshot) => {
+        const appLogoItemsArray = transformAppLogoItemsArray(snapshot);
+        console.log(appLogoItemsArray);
+        dispatch(fetchAppLogoItemsSuccess(appLogoItemsArray));
+      })
+      .catch((error) => dispatch(fetchAppLogoItemsFailure(error.msg)));
+    // }, 0);
   };
 };

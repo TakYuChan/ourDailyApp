@@ -2,9 +2,12 @@ import styled, { css, keyframes } from "styled-components";
 
 const S = {};
 
-const loading = (background) => keyframes`
-from {transition:none;}
-to {background: ${background};
+const loading = (ToBackground, FromBackground) => keyframes`
+0% {background: ${FromBackground}}
+40% {background: ${ToBackground};
+}
+100% {
+  background: ${FromBackground}
 }
 `;
 
@@ -19,8 +22,12 @@ to {
 
 const preloaderContentStyles = css`
   background-color: ${(props) => props.theme.appStore.cardLoadingContentStart};
-  animation: ${(props) => loading(props.theme.appStore.cardLoadingContentEnd)}
-    2s infinite linear alternate;
+  animation: ${(props) =>
+      loading(
+        props.theme.appStore.cardLoadingContentEnd,
+        props.theme.appStore.cardLoadingContentStart
+      )}
+    2s infinite linear;
 `;
 
 const introPreloaderStyles = css`
