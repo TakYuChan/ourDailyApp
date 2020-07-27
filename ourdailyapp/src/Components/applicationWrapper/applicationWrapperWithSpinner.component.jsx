@@ -1,5 +1,7 @@
 import React from "react";
 import S from "./applicationWrapperWithSpinner.style";
+import "./applicationWrapperWithSpinner.style.scss";
+
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -17,10 +19,18 @@ const ApplicationWrapperWithSpinner = ({
 }) => {
   return (
     <SwitchTransition mode="out-in">
-      <CSSTransition key={isLoading} classNames="appear">
+      <CSSTransition
+        key={isLoading}
+        addEndListener={(node, done) =>
+          node.addEventListener("transitionend", done, false)
+        }
+        classNames="fade"
+      >
         <S.applicationWrapperWithSpinner_wrapper>
           {isLoading ? (
-            <h1>Spinner</h1>
+            <S.SpinnerOverlay>
+              <S.SpinnerContainer />
+            </S.SpinnerOverlay>
           ) : (
             <ApplicationWrapper appLogoItems={appLogoItems} {...otherProps} />
           )}
