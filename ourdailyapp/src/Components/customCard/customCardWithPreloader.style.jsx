@@ -1,14 +1,15 @@
 import styled, { keyframes, css } from "styled-components";
+import { rgba } from "polished";
 
 const S = {};
 
-const loading = (ToBackground, FromBackground) => keyframes`
-0% {background: ${FromBackground}}
-30% {background: ${ToBackground};
-}
-100% {
-  background: ${FromBackground}
-}
+const loading = keyframes`
+  from {
+    transform: translateX(-98%);
+  }
+  to {
+    transform: translateX(1000%)
+  }
 `;
 
 const loadingCardPopsUp = keyframes`
@@ -21,16 +22,26 @@ to {
 `;
 
 const preloaderContentStyles = css`
-  background-color: ${(props) => props.theme.appStore.cardLoadingContentStart};
-  animation: ${(props) =>
-      loading(
-        props.theme.appStore.cardLoadingContentEnd,
-        props.theme.appStore.cardLoadingContentStart
-      )}
-    2s infinite linear;
+  background-color: ${(props) =>
+    props.theme.appStore.cardLoadingContent_primary};
+
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    position: absolute;
+    width: 60%;
+    height: 100%;
+    background: ${(props) => props.theme.appStore.cardLoadingContent_secondary};
+    filter: blur(100px);
+    left: 0;
+    right: 0;
+    animation: ${loading} 2.8s infinite;
+  }
 `;
 
-const textPreloaderStyles = css`
+const borderRadiusPreloaderStyles = css`
   border-radius: 20px;
 `;
 
@@ -68,6 +79,8 @@ S.LoadingCardContainer = styled.div`
   background: ${(props) => props.theme.appStore.cartBg};
 
   animation: ${loadingCardPopsUp} 250ms;
+
+  box-shadow: 0px 4px 8px ${rgba("#000000", 0.12)};
 `;
 
 // ========================= Image ============================
@@ -84,8 +97,9 @@ S.LoadingTitleText = styled.div`
 
   width: 30%;
   height: 1rem;
-  ${textPreloaderStyles}
+  ${borderRadiusPreloaderStyles}
   ${preloaderContentStyles}
+  position: relative;
 `;
 
 S.LoadingDescriptionText = styled.div`
@@ -95,14 +109,14 @@ S.LoadingDescriptionText = styled.div`
 
   width: 40%;
   height: 1rem;
-  ${textPreloaderStyles}
+  ${borderRadiusPreloaderStyles}
   ${preloaderContentStyles}
 `;
 
 S.LoadingBtnStart = styled.div`
   width: 35%;
   height: 1rem;
-  ${textPreloaderStyles}
+  ${borderRadiusPreloaderStyles}
   ${preloaderContentStyles}
 `;
 

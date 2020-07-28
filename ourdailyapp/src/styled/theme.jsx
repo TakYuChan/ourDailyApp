@@ -43,13 +43,12 @@ export const lightTheme = {
     app_Hover: `rgba(222, 222, 223, 0.3)`,
     appLinkText: rootStyles.gray4,
     spinner_applicationWrapper: rootStyles.blue_light,
-    // spinner_applicationWrapper_secondary: rootStyles.blue,
   },
   appStore: {
     cardBg: "white",
     cardText: rootStyles.gray4,
-    cardLoadingContentStart: rootStyles.gray1,
-    cardLoadingContentEnd: `#f0f2f5`,
+    cardLoadingContent_primary: rootStyles.gray1,
+    cardLoadingContent_secondary: `#d1d8e1`,
   },
   cartPage: {
     cartItemTitleCreatorText: "black",
@@ -65,6 +64,8 @@ export const lightTheme = {
   },
   appDetailPage: {
     featureList: rootStyles.gray6,
+    preloader_primary: rootStyles.gray1,
+    preloader_secondary: rootStyles.gray3,
   },
   commentsConverterPage: {
     title: rootStyles.blue,

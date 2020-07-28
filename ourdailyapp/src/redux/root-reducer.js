@@ -12,6 +12,9 @@ import cart_P_Reducer from "./cart/cart_P.reducer";
 import cartReducer from "./cart/cart.reducer";
 import sectionHeaderReducer from "./sectionHeader/sectionHeader.reducer";
 
+// =========== Applications ===========
+import pigGameReducer from "./pigGame/pigGame.reducer";
+
 const persistConfig = {
   key: "root",
   storage,
@@ -28,6 +31,8 @@ const rootReducer = combineReducers({
   cart_P: cart_P_Reducer,
   cart: cartReducer,
   sectionHeader: sectionHeaderReducer,
+  // =========== Applications ===========
+  pigGame: pigGameReducer,
 });
 
 // export default rootReducer;

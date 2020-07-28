@@ -2,13 +2,13 @@ import styled, { css, keyframes } from "styled-components";
 
 const S = {};
 
-const loading = (ToBackground, FromBackground) => keyframes`
-0% {background: ${FromBackground}}
-40% {background: ${ToBackground};
-}
-100% {
-  background: ${FromBackground}
-}
+const loading = keyframes`
+  from {
+    transform: translateX(-95%);
+  }
+  to {
+    transform: translateX(1000%)
+  }
 `;
 
 const loadingCardPopsUp = keyframes`
@@ -20,23 +20,33 @@ to {
 }
 `;
 
-const preloaderContentStyles = css`
-  background-color: ${(props) => props.theme.appStore.cardLoadingContentStart};
-  animation: ${(props) =>
-      loading(
-        props.theme.appStore.cardLoadingContentEnd,
-        props.theme.appStore.cardLoadingContentStart
-      )}
-    2s infinite linear;
+const backgroundColorStyles = css`
+  background-color: ${(props) => props.theme.appDetailPage.preloader_primary};
 `;
 
-const introPreloaderStyles = css`
+const preloadAnimationStyles = css`
+  position: relative;
+  overflow: hidden;
+  &:before {
+    content: "";
+    position: absolute;
+    width: 60%;
+    height: 100%;
+    background: ${(props) => props.theme.appDetailPage.preloader_secondary};
+    filter: blur(100px);
+    left: 0;
+    right: 0;
+    animation: ${loading} 2.8s infinite;
+  }
+`;
+
+const textPreloaderStyles = css`
   margin: 1.2em 0 0;
   font-size: clamp(0.8rem, 1.4vw, 1rem);
   height: 1em;
 `;
 
-const textPreloaderStyles = css`
+const borderRadiusPreloaderStyles = css`
   border-radius: 20px;
 `;
 
@@ -64,25 +74,28 @@ S.VideoWrapperPreloader = styled.div`
   width: 100%;
   height: 0;
   padding-bottom: 56.25%;
-  ${preloaderContentStyles}
+  ${backgroundColorStyles}
 `;
 
 S.IntroPreloader1 = styled.div`
-  ${introPreloaderStyles}
-  ${preloaderContentStyles}
   ${textPreloaderStyles}
+  ${backgroundColorStyles}
+  ${borderRadiusPreloaderStyles}
+  ${preloadAnimationStyles}
   width: 20%;
 `;
 S.IntroPreloader2 = styled.div`
-  ${introPreloaderStyles}
-  ${preloaderContentStyles}
   ${textPreloaderStyles}
+  ${backgroundColorStyles}
+  ${borderRadiusPreloaderStyles}
+  ${preloadAnimationStyles}
   width: 28%;
 `;
 S.IntroPreloader3 = styled.div`
-  ${introPreloaderStyles}
-  ${preloaderContentStyles}
   ${textPreloaderStyles}
+  ${backgroundColorStyles}
+  ${borderRadiusPreloaderStyles}
+  ${preloadAnimationStyles}
   width: 35%;
 `;
 
@@ -102,7 +115,8 @@ S.TagDivPreloader = styled.div`
 
   margin-right: 0.8em;
   margin-top: 0.6em;
-  ${preloaderContentStyles}
+  ${backgroundColorStyles}
+  ${preloadAnimationStyles}
   border-radius: 4px;
 `;
 
@@ -115,8 +129,9 @@ S.BtnAddToWishlistPreloader = styled.div`
   height: 2em;
   padding: 0.8em 0;
   width: 100px;
-  ${preloaderContentStyles}
+  ${backgroundColorStyles}
   ${textPreloaderStyles}
+  ${preloadAnimationStyles}
 `;
 
 /* ================ Add to Cart ================ */
@@ -127,8 +142,9 @@ S.BtnAddToCartPreloader = styled.div`
   height: 2em;
   padding: 0.8em 0;
   width: 100%;
-  ${preloaderContentStyles}
+  ${backgroundColorStyles}
   ${textPreloaderStyles}
+  ${preloadAnimationStyles}
 `;
 
 export default S;
