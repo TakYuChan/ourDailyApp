@@ -62,6 +62,6 @@ export const fetchAppLogoItemsStartAsync = () => {
         dispatch(fetchAppLogoItemsSuccess(appLogoItemsArray));
       })
       .catch((error) => dispatch(fetchAppLogoItemsFailure(error.msg)));
-    // }, 0);
+    // }, 5000);
   };
 };
