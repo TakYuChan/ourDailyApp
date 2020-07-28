@@ -12,6 +12,14 @@ const loading = keyframes`
   }
 `;
 
+const loadingImg = keyframes`
+from {
+  transform: translateX(-1500%);
+}
+to {
+  transform: translateX(1500%)
+}`;
+
 const loadingCardPopsUp = keyframes`
 from {
     opacity: 0;
@@ -24,10 +32,15 @@ to {
 const preloaderContentStyles = css`
   background-color: ${(props) =>
     props.theme.appStore.cardLoadingContent_primary};
+`;
 
+const borderRadiusPreloaderStyles = css`
+  border-radius: 20px;
+`;
+
+const preloaderAnimationStyles = css`
   position: relative;
   overflow: hidden;
-
   &:before {
     content: "";
     position: absolute;
@@ -36,13 +49,8 @@ const preloaderContentStyles = css`
     background: ${(props) => props.theme.appStore.cardLoadingContent_secondary};
     filter: blur(100px);
     left: 0;
-    right: 0;
     animation: ${loading} 2.8s infinite;
   }
-`;
-
-const borderRadiusPreloaderStyles = css`
-  border-radius: 20px;
 `;
 
 // ================ Card Section Container - for transition ======================
@@ -88,7 +96,20 @@ S.LoadingCardContainer = styled.div`
 S.LoadingImgWrapper = styled.div`
   width: 90%;
   height: 200px;
+
   ${preloaderContentStyles}
+  position: relative;
+  overflow: hidden;
+  &:before {
+    content: "";
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    background: ${(props) => props.theme.appStore.cardLoadingContent_secondary};
+    filter: blur(100px);
+    left: 0;
+    animation: ${loadingImg} 2.4s infinite;
+  }
 `;
 
 // ========================= Text ============================
@@ -99,7 +120,7 @@ S.LoadingTitleText = styled.div`
   height: 1rem;
   ${borderRadiusPreloaderStyles}
   ${preloaderContentStyles}
-  position: relative;
+  ${preloaderAnimationStyles}
 `;
 
 S.LoadingDescriptionText = styled.div`
@@ -107,10 +128,11 @@ S.LoadingDescriptionText = styled.div`
   font-size: clamp(0.8rem, 1.1vw, 1.1rem);
   margin-bottom: 20px;
 
-  width: 40%;
+  width: 60%;
   height: 1rem;
   ${borderRadiusPreloaderStyles}
   ${preloaderContentStyles}
+  ${preloaderAnimationStyles}
 `;
 
 S.LoadingBtnStart = styled.div`
@@ -118,6 +140,7 @@ S.LoadingBtnStart = styled.div`
   height: 1rem;
   ${borderRadiusPreloaderStyles}
   ${preloaderContentStyles}
+  ${preloaderAnimationStyles}
 `;
 
 export default S;

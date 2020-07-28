@@ -48,7 +48,8 @@ export const lightTheme = {
     cardBg: "white",
     cardText: rootStyles.gray4,
     cardLoadingContent_primary: rootStyles.gray1,
-    cardLoadingContent_secondary: `#d1d8e1`,
+    // cardLoadingContent_secondary: `#d1d8e1`,
+    cardLoadingContent_secondary: rootStyles.gray6,
   },
   cartPage: {
     cartItemTitleCreatorText: "black",
@@ -65,7 +66,7 @@ export const lightTheme = {
   appDetailPage: {
     featureList: rootStyles.gray6,
     preloader_primary: rootStyles.gray1,
-    preloader_secondary: rootStyles.gray3,
+    preloader_secondary: rootStyles.gray6,
   },
   commentsConverterPage: {
     title: rootStyles.blue,
