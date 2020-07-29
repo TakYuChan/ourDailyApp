@@ -37,15 +37,15 @@ export const fetchApplicationsStartAsync = () => {
     const collectionRef = firestore.collection("applications");
     // dispatch(fetchApplicationsStart());
 
-    setTimeout(() => {
-      collectionRef
-        .get()
-        .then((snapshot) => {
-          const applicationsMap = convertApplicationsArrayToMap(snapshot);
-          dispatch(fetchApplicationsSuccess(applicationsMap));
-        })
-        .catch((error) => dispatch(fetchApplicationsFailure(error.msg)));
-    }, 100000);
+    // setTimeout(() => {
+    collectionRef
+      .get()
+      .then((snapshot) => {
+        const applicationsMap = convertApplicationsArrayToMap(snapshot);
+        dispatch(fetchApplicationsSuccess(applicationsMap));
+      })
+      .catch((error) => dispatch(fetchApplicationsFailure(error.msg)));
+    // }, 10000);
   };
 };
 

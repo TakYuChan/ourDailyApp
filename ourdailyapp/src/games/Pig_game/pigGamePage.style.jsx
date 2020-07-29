@@ -76,7 +76,7 @@ S.PlayerName = styled.h2`
 
   font-size: clamp(1.2rem, 2vw, 2rem);
 `;
-S.TotalScole = styled.h2`
+S.TotalScore = styled.h2`
   margin-bottom: 150px;
   font-size: clamp(1.2rem, 2vw, 2rem);
 `;

@@ -6,38 +6,57 @@ import { createStructuredSelector } from "reselect";
 import {
   selectDiceNumber,
   selectActivePlayer,
+  selectPlayer1Obj,
+  selectPlayer2Obj,
+  selectWinner,
 } from "../../redux/pigGame/pigGame.selectors";
 import {
   rollDice,
-  switchActivePlayer,
+  holdDice,
+  startNewGame,
 } from "../../redux/pigGame/pigGame.actions";
 
 const PigGamePage = ({
   diceNumber,
   rollDice,
+  holdDice,
+  startNewGame,
   activePlayer,
-  switchActivePlayer,
+  selectPlayer1Obj,
+  selectPlayer2Obj,
+  selectWinner,
 }) => {
   return (
     <S.PigGameContainer className="PigGame-Page pages">
       <S.GameConsoleContainer className="game-console-container">
+        {/* ================= Player One Panel ================= */}
         <S.PlayerOnePanel className={activePlayer === 1 && "active"}>
-          <S.PlayerName className="player-name">Player 1</S.PlayerName>
-          <S.TotalScole>0</S.TotalScole>
+          <S.PlayerName className="player-name">
+            {selectWinner === "player1" ? "WINNER" : "Player 1"}
+          </S.PlayerName>
+          <S.TotalScore>{selectPlayer1Obj.totalScore}</S.TotalScore>
           <S.CurrentScoreContainer>
             <span>CURRENT</span>
-            <S.CurrentScore>0</S.CurrentScore>
+            <S.CurrentScore id="currentScore-player1">
+              {selectPlayer1Obj.currentScore}
+            </S.CurrentScore>
           </S.CurrentScoreContainer>
         </S.PlayerOnePanel>
+        {/* ================= Player Two Panel ================= */}
         <S.PlayerTwoPanel className={activePlayer === 2 && "active"}>
-          <S.PlayerName className="player-name">Player 2</S.PlayerName>
-          <S.TotalScole>0</S.TotalScole>
+          <S.PlayerName className="player-name">
+            {selectWinner === "player2" ? "WINNER" : "Player 2"}
+          </S.PlayerName>
+          <S.TotalScore>{selectPlayer2Obj.totalScore}</S.TotalScore>
           <S.CurrentScoreContainer>
             <span>CURRENT</span>
-            <S.CurrentScore>0</S.CurrentScore>
+            <S.CurrentScore id="currentScore-player2">
+              {selectPlayer2Obj.currentScore}
+            </S.CurrentScore>
           </S.CurrentScoreContainer>
         </S.PlayerTwoPanel>
-        <S.NewGameBtn>NEW GAME</S.NewGameBtn>
+        {/* ================= Controls ================= */}
+        <S.NewGameBtn onClick={startNewGame}>NEW GAME</S.NewGameBtn>
         <S.RollDiceBtn
           onClick={() => {
             rollDice();
@@ -45,7 +64,17 @@ const PigGamePage = ({
         >
           ROLL DICE
         </S.RollDiceBtn>
-        <S.HoldBtn onClick={switchActivePlayer}>HOLD</S.HoldBtn>
+        <S.HoldBtn
+          onClick={() => {
+            const oldCurrentScore = document.querySelector(
+              `#currentScore-player${activePlayer}`
+            ).innerText;
+
+            holdDice(oldCurrentScore);
+          }}
+        >
+          HOLD
+        </S.HoldBtn>
         <S.TargetInput placeholder="FINAL SCORE" />
         {diceNumber !== null && (
           <S.Dice
@@ -61,11 +90,15 @@ const PigGamePage = ({
 const mapStateToProps = createStructuredSelector({
   diceNumber: selectDiceNumber,
   activePlayer: selectActivePlayer,
+  selectPlayer1Obj: selectPlayer1Obj,
+  selectPlayer2Obj: selectPlayer2Obj,
+  selectWinner: selectWinner,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   rollDice: () => dispatch(rollDice()),
-  switchActivePlayer: () => dispatch(switchActivePlayer()),
+  holdDice: (oldCurrentScore) => dispatch(holdDice(oldCurrentScore)),
+  startNewGame: () => dispatch(startNewGame()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PigGamePage);
