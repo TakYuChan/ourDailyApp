@@ -25,7 +25,7 @@ const INITIAL_STATE = {
   finalScore: 100,
   // prev_scores stores 2 values.
   // the prev value of player 1 and player 2
-  prev_scores: [],
+  prev_scores: [0, 0],
 };
 
 const pigGameReducer = (state = INITIAL_STATE, action) => {
@@ -65,6 +65,8 @@ const pigGameReducer = (state = INITIAL_STATE, action) => {
         ...state,
         prev_scores: changePrevScores(state, action.payload),
       };
+    case PigGameActionTypes.LOAD_GAME_STATE:
+      return action.payload;
     default:
       return state;
   }

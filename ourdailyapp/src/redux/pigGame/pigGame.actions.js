@@ -1,4 +1,5 @@
 import PigGameActionTypes from "./pigGame.types";
+import { saveGameState } from "../../firebase/firestore/setData";
 
 export const changeDiceNumber = (newDiceNum) => ({
   type: PigGameActionTypes.CHANGE_DICE_NUM,
@@ -49,6 +50,11 @@ export const changePrevScores = (score) => ({
   payload: score,
 });
 
+export const loadGameState = (gameState) => ({
+  type: PigGameActionTypes.LOAD_GAME_STATE,
+  payload: gameState,
+});
+
 // ========= Thunk action flow =========
 export const rollDice = () => {
   return (dispatch, getState) => {
@@ -78,8 +84,12 @@ export const rollDice = () => {
         dispatch(playerClearCurrentScore());
         dispatch(switchActivePlayer());
       }
-      // 3. IF dice is not 6 -> START applying game logic
+      // 3. IF prev dice + current dice !== 8 START applying game logic
       dispatch(playerAddCurrentScore(newDiceNum));
+
+      // 4. Save Data to firestore
+      const pigGameStateObj = getState().pigGame;
+      saveGameState(pigGameStateObj);
     }
   };
 };
@@ -108,7 +118,14 @@ export const holdDice = () => {
 
       if (getState().pigGame.winner === "none") {
         dispatch(switchActivePlayer());
+        // Save Data to firestore
+        const pigGameStateObj = getState().pigGame;
+        saveGameState(pigGameStateObj);
       }
+
+      // Save Data to firestore
+      const pigGameStateObj = getState().pigGame;
+      saveGameState(pigGameStateObj);
     }
   };
 };

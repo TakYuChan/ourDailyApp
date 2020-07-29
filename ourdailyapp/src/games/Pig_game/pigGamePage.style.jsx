@@ -15,6 +15,8 @@ const panelStyles = css`
   align-items: center;
   justify-content: space-between;
 
+  touch-action: manipulation;
+
   background: ${(props) => props.theme.pigGamePage.panel_bg};
 
   &.active {
@@ -59,6 +61,8 @@ S.PigGameContainer = styled.div`
   place-items: center;
 
   user-select: none;
+
+  touch-action: manipulation;
 `;
 
 S.GameConsoleContainer = styled.div`
@@ -72,6 +76,8 @@ S.GameConsoleContainer = styled.div`
   display: flex;
 
   position: relative;
+
+  touch-action: manipulation;
 `;
 
 S.PlayerOnePanel = styled.div`
@@ -130,14 +136,14 @@ S.RollDiceBtn = styled.button`
   ${btnStyles}
   transform: translateX(-51%);
   top: 65%;
-  font-size: clamp(0.7rem, 1.2vw, 1.2rem);
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
 `;
 
 S.HoldBtn = styled.button`
   ${btnStyles}
   transform: translateX(-51%);
   top: 75%;
-  font-size: clamp(0.7rem, 1.2vw, 1.2rem);
+  font-size: clamp(0.9rem, 1.2vw, 1.2rem);
 `;
 
 // ================== Others =====================

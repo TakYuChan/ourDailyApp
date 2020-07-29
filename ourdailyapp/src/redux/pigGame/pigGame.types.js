@@ -9,6 +9,7 @@ const PigGameActionTypes = {
   START_NEW_GAME: "START_NEW_GAME",
   CHANGE_FINAL_SCORE: "CHANGE_FINAL_SCORE",
   CHANGE_PREV_SCORES: "CHANGE_PREV_SCORES",
+  LOAD_GAME_STATE: "LOAD_GAME_STATE",
 };
 
 export default PigGameActionTypes;
