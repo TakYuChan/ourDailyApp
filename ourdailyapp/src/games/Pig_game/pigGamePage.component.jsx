@@ -17,19 +17,9 @@ import {
   holdDice,
   startNewGame,
   changeFinalScore,
-  loadGameState,
 } from "../../redux/pigGame/pigGame.actions";
 
 class PigGamePage extends React.Component {
-  async componentDidMount() {
-    // Load Game State
-    const { loadGameState } = this.props;
-    const gameState = await getPigGameState();
-    if (gameState !== null) {
-      loadGameState(gameState);
-    }
-  }
-
   render() {
     const {
       diceNumber,
@@ -138,7 +128,6 @@ const mapDispatchToProps = (dispatch) => ({
   startNewGame: () => dispatch(startNewGame()),
   changeFinalScore: (newFinalScore) =>
     dispatch(changeFinalScore(newFinalScore)),
-  loadGameState: (gameState) => dispatch(loadGameState(gameState)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PigGamePage);

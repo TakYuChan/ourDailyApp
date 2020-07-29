@@ -55,6 +55,10 @@ export const loadGameState = (gameState) => ({
   payload: gameState,
 });
 
+export const loadingIsFinished = () => ({
+  type: PigGameActionTypes.LOADING_FINISHED,
+});
+
 // ========= Thunk action flow =========
 export const rollDice = () => {
   return (dispatch, getState) => {

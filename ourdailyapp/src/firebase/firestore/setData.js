@@ -24,7 +24,12 @@ export const saveGameState = (objToAdd) => {
     const collectionRef = firestore.collection("pigGame");
     console.log("Ready to add Single Document");
     const newDocRef = collectionRef.doc("game01");
-    newDocRef.set(objToAdd);
+    newDocRef.set({
+      ...objToAdd,
+      // This will be always true,
+      // because we want the spinner to be render first
+      isLoading: true,
+    });
     console.log("Added Single Document");
   } catch (error) {
     console.log(error);

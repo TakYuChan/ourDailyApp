@@ -31,3 +31,8 @@ export const selectFinalScore = createSelector(
   [selectPigGameReducer],
   (pigGame) => pigGame.finalScore
 );
+
+export const selectIsLoading = createSelector(
+  [selectPigGameReducer],
+  (pigGame) => pigGame.isLoading
+);

@@ -24,7 +24,7 @@ import CommentsConverterPage from "./Pages/CommentsConverterPage/commentsConvert
 import NoMatch from "./Pages/NoMatchPage/noMatchPage.component";
 import CartPage from "./Pages/cartPage/cartPage.component";
 import WishlistPage from "./Pages/wishlistPage/wishlistPage.component";
-import PigGamePage from "./games/Pig_game/pigGamePage.component";
+import PigGamePageWithSpinner from "./games/Pig_game/pigGamePageWithSpinner.component";
 
 import Header from "./Components/header/header.component";
 import FloatNav from "./Components/floatNav/floatNav.component";
@@ -98,7 +98,7 @@ class App extends React.Component {
           <Route path="/cart" component={CartPage} />
           <Route path="/wishlist" component={WishlistPage} />
           <Route path="/commentsConverter" component={CommentsConverterPage} />
-          <Route path="/pigGame" component={PigGamePage} />
+          <Route path="/pigGame" component={PigGamePageWithSpinner} />
           <Route component={NoMatch} />
         </Switch>
       </ThemeProvider>
