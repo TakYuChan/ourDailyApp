@@ -72,6 +72,10 @@ export const lightTheme = {
     title: rootStyles.blue,
     btnExample: rootStyles.blue,
   },
+  pigGamePage: {
+    targetInput_border: rootStyles.blue_light,
+    activePanel_bg: rootStyles.gray0,
+  },
 };
 
 export const darkTheme = {};

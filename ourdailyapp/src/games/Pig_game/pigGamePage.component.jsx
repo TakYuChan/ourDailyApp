@@ -9,11 +9,13 @@ import {
   selectPlayer1Obj,
   selectPlayer2Obj,
   selectWinner,
+  selectFinalScore,
 } from "../../redux/pigGame/pigGame.selectors";
 import {
   rollDice,
   holdDice,
   startNewGame,
+  changeFinalScore,
 } from "../../redux/pigGame/pigGame.actions";
 
 const PigGamePage = ({
@@ -25,6 +27,8 @@ const PigGamePage = ({
   selectPlayer1Obj,
   selectPlayer2Obj,
   selectWinner,
+  finalScore,
+  changeFinalScore,
 }) => {
   return (
     <S.PigGameContainer className="PigGame-Page pages">
@@ -34,9 +38,14 @@ const PigGamePage = ({
           <S.PlayerName className="player-name">
             {selectWinner === "player1" ? "WINNER" : "Player 1"}
           </S.PlayerName>
+          {selectWinner === "player1" && (
+            <S.Fireworks className="fireworks">
+              <i className="iconfont icon-crown"></i>
+            </S.Fireworks>
+          )}
           <S.TotalScore>{selectPlayer1Obj.totalScore}</S.TotalScore>
           <S.CurrentScoreContainer>
-            <span>CURRENT</span>
+            <S.CurrentSpan>CURRENT</S.CurrentSpan>
             <S.CurrentScore id="currentScore-player1">
               {selectPlayer1Obj.currentScore}
             </S.CurrentScore>
@@ -49,7 +58,7 @@ const PigGamePage = ({
           </S.PlayerName>
           <S.TotalScore>{selectPlayer2Obj.totalScore}</S.TotalScore>
           <S.CurrentScoreContainer>
-            <span>CURRENT</span>
+            <S.CurrentSpan>CURRENT</S.CurrentSpan>
             <S.CurrentScore id="currentScore-player2">
               {selectPlayer2Obj.currentScore}
             </S.CurrentScore>
@@ -64,18 +73,16 @@ const PigGamePage = ({
         >
           ROLL DICE
         </S.RollDiceBtn>
-        <S.HoldBtn
-          onClick={() => {
-            const oldCurrentScore = document.querySelector(
-              `#currentScore-player${activePlayer}`
-            ).innerText;
-
-            holdDice(oldCurrentScore);
+        <S.HoldBtn onClick={holdDice}>HOLD</S.HoldBtn>
+        <S.TargetInput
+          type="number"
+          placeholder="FINAL SCORE"
+          value={finalScore}
+          onChange={(event) => {
+            const value = parseInt(event.target.value, 10);
+            changeFinalScore(value);
           }}
-        >
-          HOLD
-        </S.HoldBtn>
-        <S.TargetInput placeholder="FINAL SCORE" />
+        />
         {diceNumber !== null && (
           <S.Dice
             src={`/images/assets/thePigGame/dice-${diceNumber}.png`}
@@ -93,12 +100,15 @@ const mapStateToProps = createStructuredSelector({
   selectPlayer1Obj: selectPlayer1Obj,
   selectPlayer2Obj: selectPlayer2Obj,
   selectWinner: selectWinner,
+  finalScore: selectFinalScore,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   rollDice: () => dispatch(rollDice()),
-  holdDice: (oldCurrentScore) => dispatch(holdDice(oldCurrentScore)),
+  holdDice: () => dispatch(holdDice()),
   startNewGame: () => dispatch(startNewGame()),
+  changeFinalScore: (newFinalScore) =>
+    dispatch(changeFinalScore(newFinalScore)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PigGamePage);

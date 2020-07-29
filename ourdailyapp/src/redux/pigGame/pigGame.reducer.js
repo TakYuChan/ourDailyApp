@@ -5,7 +5,7 @@ import {
   clearPlayerCurrentScore,
   addPlayerTotalScore,
   clearPlayerTotalScore,
-  changeWinner,
+  checkWinner,
 } from "./pigGame.utils";
 
 const INITIAL_STATE = {
@@ -21,6 +21,7 @@ const INITIAL_STATE = {
   },
   //winner -> none, player1, player2
   winner: "none",
+  finalScore: 100,
 };
 
 const pigGameReducer = (state = INITIAL_STATE, action) => {
@@ -43,10 +44,18 @@ const pigGameReducer = (state = INITIAL_STATE, action) => {
       return addPlayerTotalScore(state, action.payload);
     case PigGameActionTypes.PLAYER_CLEAR_TOTAL_SCORE:
       return clearPlayerTotalScore(state);
-    case PigGameActionTypes.CHANGE_WINNER:
-      return changeWinner(state);
+    case PigGameActionTypes.CHECK_WINNER:
+      return checkWinner(state);
     case PigGameActionTypes.START_NEW_GAME:
-      return INITIAL_STATE;
+      return {
+        ...INITIAL_STATE,
+        finalScore: state.finalScore,
+      };
+    case PigGameActionTypes.CHANGE_FINAL_SCORE:
+      return {
+        ...state,
+        finalScore: action.payload,
+      };
     default:
       return state;
   }

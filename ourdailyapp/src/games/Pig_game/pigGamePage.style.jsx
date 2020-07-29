@@ -9,6 +9,15 @@ const panelStyles = css`
   padding: 10%;
   text-align: center;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  &.active {
+    background: ${(props) => props.theme.pigGamePage.activePanel_bg};
+  }
+
   &.active > .player-name {
     &:after {
       content: "";
@@ -65,20 +74,18 @@ S.PlayerOnePanel = styled.div`
 `;
 S.PlayerTwoPanel = styled.div`
   ${panelStyles}
-  background: pink;
 `;
 
 // ================== Panel Common =====================
 S.PlayerName = styled.h2`
-  margin-bottom: 20px;
   position: relative;
   display: inline-block;
 
   font-size: clamp(1.2rem, 2vw, 2rem);
 `;
 S.TotalScore = styled.h2`
-  margin-bottom: 150px;
   font-size: clamp(1.2rem, 2vw, 2rem);
+  color: red;
 `;
 S.CurrentScoreContainer = styled.div`
   background: orangered;
@@ -86,6 +93,11 @@ S.CurrentScoreContainer = styled.div`
   font-size: clamp(0.7rem, 1.2vw, 1.2rem);
   padding: 1em;
 `;
+
+S.CurrentSpan = styled.span`
+  font-size: clamp(0.5rem, 0.7vw, 0.7rem);
+`;
+
 S.CurrentScore = styled.h3`
   font-size: clamp(0.7rem, 1.2vw, 1.2rem);
   color: white;
@@ -116,6 +128,23 @@ S.HoldBtn = styled.button`
 
 // ================== Others =====================
 
+S.Fireworks = styled.div`
+  position: absolute;
+  top: 4%;
+  left: 4%;
+  animation: firework 1.5s forwards;
+  color: orangered;
+
+  @keyframes firework {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+`;
+
 S.TargetInput = styled.input`
   position: absolute;
   font-size: clamp(0.7rem, 1.5vw, 1.3rem);
@@ -124,8 +153,17 @@ S.TargetInput = styled.input`
   top: 85%;
   padding: 0.2em 0.5em;
   width: 8em;
+  border: 1px solid ${(props) => props.theme.pigGamePage.targetInput_border};
 
   text-align: center;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
+  -moz-appearance: textfield;
 `;
 
 S.Dice = styled.img`

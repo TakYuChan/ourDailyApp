@@ -52,12 +52,12 @@ export const clearPlayerTotalScore = (state) => {
   };
 };
 
-export const changeWinner = (state) => {
+export const checkWinner = (state) => {
   // 1. Check if active player has enough totalScore
   const target = `player${state.activePlayer}`;
 
   // Target's TotalScore >= 100
-  if (state[target].totalScore >= 10) {
+  if (state[target].totalScore >= state.finalScore) {
     return {
       ...state,
       player1: {

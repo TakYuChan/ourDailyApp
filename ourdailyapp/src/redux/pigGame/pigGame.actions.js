@@ -31,12 +31,17 @@ export const playerClearCurrentScore = () => ({
   // this logic will be handled in utils within reducer
 });
 
-export const changeWinner = () => ({
-  type: PigGameActionTypes.CHANGE_WINNER,
+export const checkWinner = () => ({
+  type: PigGameActionTypes.CHECK_WINNER,
 });
 
 export const startNewGame = () => ({
   type: PigGameActionTypes.START_NEW_GAME,
+});
+
+export const changeFinalScore = (newFinalScore) => ({
+  type: PigGameActionTypes.CHANGE_FINAL_SCORE,
+  payload: newFinalScore,
 });
 
 // ========= Thunk action flow =========
@@ -62,17 +67,31 @@ export const rollDice = () => {
   };
 };
 
-export const holdDice = (oldCurrentScore) => {
+export const holdDice = () => {
   return (dispatch, getState) => {
     if (getState().pigGame.winner === "none") {
       console.log("Player held dice!");
+      const pigGameReducer = getState().pigGame;
+      const activePlayer = pigGameReducer.activePlayer;
 
-      dispatch(playerAddTotalScore(parseInt(oldCurrentScore, 10)));
+      console.log(
+        "TOTAL SCORE: ",
+        pigGameReducer[`player${activePlayer}`].currentScore
+      );
+
+      dispatch(
+        playerAddTotalScore(
+          pigGameReducer[`player${activePlayer}`].currentScore
+        )
+      );
       dispatch(playerClearCurrentScore());
 
       // Check if someone has won
-      dispatch(changeWinner());
-      dispatch(switchActivePlayer());
+      dispatch(checkWinner());
+
+      if (getState().pigGame.winner === "none") {
+        dispatch(switchActivePlayer());
+      }
     }
   };
 };
