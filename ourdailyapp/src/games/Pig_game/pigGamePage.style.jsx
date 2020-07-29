@@ -4,6 +4,7 @@ const S = {};
 
 // =============== CSS ================
 const panelStyles = css`
+  position: relative;
   height: 100%;
   width: 50%;
   padding: 10%;
@@ -13,6 +14,8 @@ const panelStyles = css`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  background: ${(props) => props.theme.pigGamePage.panel_bg};
 
   &.active {
     background: ${(props) => props.theme.pigGamePage.activePanel_bg};
@@ -139,12 +142,35 @@ S.HoldBtn = styled.button`
 
 // ================== Others =====================
 
-S.Fireworks = styled.div`
+S.CrownLeft = styled.div`
   position: absolute;
   top: 4%;
   left: 4%;
-  animation: firework 1.5s forwards;
-  color: orangered;
+  animation: firework 1s forwards;
+
+  & svg {
+    font-size: clamp(1.4rem, 2.5vw, 2.5rem);
+  }
+
+  @keyframes firework {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+`;
+
+S.CrownRight = styled.div`
+  position: absolute;
+  top: 4%;
+  right: 4%;
+  animation: firework 1s forwards;
+
+  & svg {
+    font-size: clamp(1.4rem, 2.5vw, 2.5rem);
+  }
 
   @keyframes firework {
     from {

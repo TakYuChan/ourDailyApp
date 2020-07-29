@@ -73,6 +73,7 @@ export const lightTheme = {
     btnExample: rootStyles.blue,
   },
   pigGamePage: {
+    panel_bg: "white",
     targetInput_border: rootStyles.blue_light,
     activePanel_bg: rootStyles.gray0,
     dot_color: `#eb4d4d`,

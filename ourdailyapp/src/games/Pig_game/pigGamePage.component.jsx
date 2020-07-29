@@ -41,9 +41,12 @@ const PigGamePage = ({
             {selectWinner === "player1" ? "WINNER" : "PLAYER 1"}
           </S.PlayerName>
           {selectWinner === "player1" && (
-            <S.Fireworks className="fireworks">
-              <i className="iconfont icon-crown"></i>
-            </S.Fireworks>
+            <S.CrownLeft className="fireworks">
+              {/* <i className="iconfont icon-crown"></i> */}
+              <svg className="icon" aria-hidden="true">
+                <use xlinkHref="#icon-crown"></use>
+              </svg>
+            </S.CrownLeft>
           )}
           <S.TotalScore>{selectPlayer1Obj.totalScore}</S.TotalScore>
           <S.CurrentScoreContainer>
@@ -60,6 +63,14 @@ const PigGamePage = ({
           >
             {selectWinner === "player2" ? "WINNER" : "PLAYER 2"}
           </S.PlayerName>
+          {selectWinner === "player2" && (
+            <S.CrownRight className="fireworks">
+              {/* <i className="iconfont icon-crown"></i> */}
+              <svg className="icon" aria-hidden="true">
+                <use xlinkHref="#icon-crown"></use>
+              </svg>
+            </S.CrownRight>
+          )}
           <S.TotalScore>{selectPlayer2Obj.totalScore}</S.TotalScore>
           <S.CurrentScoreContainer>
             <S.CurrentSpan>CURRENT</S.CurrentSpan>

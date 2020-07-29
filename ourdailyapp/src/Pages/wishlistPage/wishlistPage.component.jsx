@@ -115,8 +115,8 @@ const WishlistPage = ({
     {/* =============== Render 3: EMPTY wishlist ================= */}
     {wishlist.length === 0 && (
       <S.EmptyWishlistContainer className="empty-wishlist-wrapper">
-        <h1> You have an empty wishlist</h1>
-        <i className="iconfont icon-Empty"></i>
+        <h1 className="animate-bounce"> You have an empty wishlist</h1>
+        <i className="iconfont icon-Empty animate-bounce"></i>
       </S.EmptyWishlistContainer>
     )}
   </S.PageContainer>
