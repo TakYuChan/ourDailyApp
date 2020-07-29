@@ -44,24 +44,41 @@ export const changeFinalScore = (newFinalScore) => ({
   payload: newFinalScore,
 });
 
+export const changePrevScores = (score) => ({
+  type: PigGameActionTypes.CHANGE_PREV_SCORES,
+  payload: score,
+});
+
 // ========= Thunk action flow =========
 export const rollDice = () => {
   return (dispatch, getState) => {
     if (getState().pigGame.winner === "none") {
       console.log("rolling dice...");
       const newDiceNum = Math.floor(Math.random() * 6) + 1;
+      const pigGameReducer = getState().pigGame;
+      const activePlayer = pigGameReducer.activePlayer;
+
       dispatch(changeDiceNumber(newDiceNum));
+      // Save the number
+      dispatch(changePrevScores(newDiceNum));
 
       // Game Rules applied
       // 1. IF dice === 6 -> STOP following action
-      if (newDiceNum === 6) {
+      // if (newDiceNum === 6) {
+      //   dispatch(playerClearTotalScore());
+      //   dispatch(playerClearCurrentScore());
+      //   dispatch(switchActivePlayer());
+      //   return;
+      // }
+
+      // 2. IF prev dice + current dice === 8 -> STOP
+      const prev_scores = pigGameReducer.prev_scores;
+      if (newDiceNum + prev_scores[activePlayer - 1] === 8) {
         dispatch(playerClearTotalScore());
         dispatch(playerClearCurrentScore());
         dispatch(switchActivePlayer());
-        return;
       }
-
-      // 2. IF dice is not 6 -> START applying game logic
+      // 3. IF dice is not 6 -> START applying game logic
       dispatch(playerAddCurrentScore(newDiceNum));
     }
   };

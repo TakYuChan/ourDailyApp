@@ -74,3 +74,14 @@ export const checkWinner = (state) => {
     return state;
   }
 };
+
+export const changePrevScores = (state, score) => {
+  const activePlayer = state.activePlayer;
+  const oldPrev_scores = state.prev_scores;
+
+  if (activePlayer === 1) {
+    return [score, oldPrev_scores[1]];
+  } else if (activePlayer === 2) {
+    return [oldPrev_scores[0], score];
+  }
+};

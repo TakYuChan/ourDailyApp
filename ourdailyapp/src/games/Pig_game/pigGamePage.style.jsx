@@ -32,7 +32,7 @@ const panelStyles = css`
       --size: 0.4em;
       width: var(--size);
       height: var(--size);
-      background: red;
+      background: ${(props) => props.theme.pigGamePage.dot_color};
     }
   }
 `;
@@ -64,6 +64,8 @@ S.GameConsoleContainer = styled.div`
   height: 60vh;
   background: white;
 
+  font-family: Lato;
+
   display: flex;
 
   position: relative;
@@ -81,17 +83,26 @@ S.PlayerName = styled.h2`
   position: relative;
   display: inline-block;
 
+  font-weight: 100;
+
   font-size: clamp(1.2rem, 2vw, 2rem);
+
+  letter-spacing: 2px;
+
+  &.active {
+    font-weight: 300;
+  }
 `;
 S.TotalScore = styled.h2`
-  font-size: clamp(1.2rem, 2vw, 2rem);
-  color: red;
+  font-weight: 200;
+  font-size: clamp(2rem, 4vw, 4rem);
+  color: ${(props) => props.theme.pigGamePage.totalScore};
 `;
 S.CurrentScoreContainer = styled.div`
-  background: orangered;
+  background: ${(props) => props.theme.pigGamePage.current_container};
   display: inline-block;
   font-size: clamp(0.7rem, 1.2vw, 1.2rem);
-  padding: 1em;
+  padding: 1em 1.6em;
 `;
 
 S.CurrentSpan = styled.span`

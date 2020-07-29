@@ -35,8 +35,10 @@ const PigGamePage = ({
       <S.GameConsoleContainer className="game-console-container">
         {/* ================= Player One Panel ================= */}
         <S.PlayerOnePanel className={activePlayer === 1 && "active"}>
-          <S.PlayerName className="player-name">
-            {selectWinner === "player1" ? "WINNER" : "Player 1"}
+          <S.PlayerName
+            className={`${activePlayer === 1 && "active"} player-name`}
+          >
+            {selectWinner === "player1" ? "WINNER" : "PLAYER 1"}
           </S.PlayerName>
           {selectWinner === "player1" && (
             <S.Fireworks className="fireworks">
@@ -53,8 +55,10 @@ const PigGamePage = ({
         </S.PlayerOnePanel>
         {/* ================= Player Two Panel ================= */}
         <S.PlayerTwoPanel className={activePlayer === 2 && "active"}>
-          <S.PlayerName className="player-name">
-            {selectWinner === "player2" ? "WINNER" : "Player 2"}
+          <S.PlayerName
+            className={`${activePlayer === 2 && "active"} player-name`}
+          >
+            {selectWinner === "player2" ? "WINNER" : "PLAYER 2"}
           </S.PlayerName>
           <S.TotalScore>{selectPlayer2Obj.totalScore}</S.TotalScore>
           <S.CurrentScoreContainer>

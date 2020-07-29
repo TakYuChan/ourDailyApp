@@ -8,6 +8,7 @@ const PigGameActionTypes = {
   CHECK_WINNER: "CHECK_WINNER",
   START_NEW_GAME: "START_NEW_GAME",
   CHANGE_FINAL_SCORE: "CHANGE_FINAL_SCORE",
+  CHANGE_PREV_SCORES: "CHANGE_PREV_SCORES",
 };
 
 export default PigGameActionTypes;

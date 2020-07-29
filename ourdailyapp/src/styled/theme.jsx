@@ -75,6 +75,9 @@ export const lightTheme = {
   pigGamePage: {
     targetInput_border: rootStyles.blue_light,
     activePanel_bg: rootStyles.gray0,
+    dot_color: `#eb4d4d`,
+    current_container: `#eb4d4d`,
+    totalScore: `#eb4d4d`,
   },
 };
 

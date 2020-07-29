@@ -6,6 +6,7 @@ import {
   addPlayerTotalScore,
   clearPlayerTotalScore,
   checkWinner,
+  changePrevScores,
 } from "./pigGame.utils";
 
 const INITIAL_STATE = {
@@ -22,6 +23,9 @@ const INITIAL_STATE = {
   //winner -> none, player1, player2
   winner: "none",
   finalScore: 100,
+  // prev_scores stores 2 values.
+  // the prev value of player 1 and player 2
+  prev_scores: [],
 };
 
 const pigGameReducer = (state = INITIAL_STATE, action) => {
@@ -55,6 +59,11 @@ const pigGameReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         finalScore: action.payload,
+      };
+    case PigGameActionTypes.CHANGE_PREV_SCORES:
+      return {
+        ...state,
+        prev_scores: changePrevScores(state, action.payload),
       };
     default:
       return state;
