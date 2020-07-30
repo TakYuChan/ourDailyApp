@@ -1,7 +1,7 @@
 import React from "react";
 import S from "./pigGamePage.style";
 
-import { getPigGameState } from "../../firebase/firestore/getData";
+// import { getPigGameState } from "../../firebase/firestore/getData";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
