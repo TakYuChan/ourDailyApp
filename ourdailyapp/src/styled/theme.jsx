@@ -27,11 +27,13 @@ const rootStyles = {
   gray4: `#454e56`,
   gray5: `#2a2e35`,
   gray6: `#12181b`,
+
+  header_clr: `#6ca0fc`,
 };
 
 export const lightTheme = {
   body: rootStyles.gray0,
-  header: rootStyles.blue_light,
+  header: rootStyles.header_clr,
   headerToolTip: rootStyles.gray2,
   shopNav: rootStyles.blue_light,
   text: rootStyles.gray4,
@@ -74,11 +76,12 @@ export const lightTheme = {
   },
   pigGamePage: {
     panel_bg: "white",
-    targetInput_border: rootStyles.blue_light,
+    targetInput_border: rootStyles.header_clr,
     activePanel_bg: rootStyles.gray0,
     dot_color: `#eb4d4d`,
     current_container: `#eb4d4d`,
     totalScore: `#eb4d4d`,
+    preloader_bg: rootStyles.header_clr,
   },
 };
 
