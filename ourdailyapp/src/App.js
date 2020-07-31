@@ -7,10 +7,7 @@ import { Switch, Route } from "react-router-dom";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 // import { addCollectionAndDocuments } from "./firebase/firestore/setData";
 import { connect } from "react-redux";
-import {
-  localStorageSetItem,
-  localStorageClearItem,
-} from "./utils/localStorage";
+
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styled/globalStyle";
 import { lightTheme, darkTheme } from "./styled/theme";
@@ -65,14 +62,12 @@ class App extends React.Component {
 
         // 3. Keep Listening to user data changes and set user state
         this.unsubscribeFromUserSnapShot = userRef.onSnapshot((snapShot) => {
-          localStorageSetItem("user", { id: snapShot.id, ...snapShot.data() });
           this.props.setUser({ id: snapShot.id, ...snapShot.data() });
           console.log("USER", this.props.selectCurrentUser);
         });
       } else {
         // Render with currentUser to null
         // And Userlogged to false
-        localStorageClearItem("user");
         this.props.setUser(user);
         console.log("LOGGING OUT");
         // this.props.userLoggedOFF();

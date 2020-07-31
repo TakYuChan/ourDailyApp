@@ -4,10 +4,7 @@ import "./profileDropDownMenu.style.scss";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import {
-  localStorageGetItem,
-  localStorageIsItemExist,
-} from "../../utils/localStorage";
+
 import { closeNav } from "../../redux/nav/nav.actions";
 import {
   selectCurrentUser,
@@ -25,10 +22,10 @@ class ProfileDropDownMenu extends React.Component {
   }
 
   profileDropDownStyle() {
-    if (localStorageIsItemExist("user")) {
-      return localStorageGetItem("user").photoURL
+    if (this.props.currentUser !== null) {
+      return this.props.currentUser.photoURL
         ? {
-            backgroundImage: `url(${localStorageGetItem("user").photoURL})`,
+            backgroundImage: `url(${this.props.currentUser.photoURL})`,
           }
         : {
             background: "white",
@@ -45,7 +42,7 @@ class ProfileDropDownMenu extends React.Component {
           id="dropdown-basic-button"
           title=""
           style={
-            localStorageIsItemExist("user") ? this.profileDropDownStyle() : null
+            this.props.currentUser !== null ? this.profileDropDownStyle() : null
           }
         ></Dropdown.Toggle>
 

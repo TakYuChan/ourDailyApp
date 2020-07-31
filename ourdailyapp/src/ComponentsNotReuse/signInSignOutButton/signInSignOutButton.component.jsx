@@ -7,11 +7,7 @@ import { selectUserLogged } from "../../redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
 import { userLoggedOFF } from "../../redux/user/user.actions";
 import { toggleSignInUpModal } from "../../redux/signInUp/signInUp.actions";
-import {
-  localStorageGetItem,
-  localStorageIsItemExist,
-  localStorageClearItem,
-} from "../../utils/localStorage";
+import { localStorageClearItem } from "../../utils/localStorage";
 
 import { Dropdown } from "react-bootstrap";
 

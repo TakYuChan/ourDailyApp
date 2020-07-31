@@ -2,10 +2,7 @@ import React from "react";
 import S from "./pigGamePage.style";
 
 import { displayNameLengthFilter } from "../../utils/dataFilter";
-import {
-  localStorageGetItem,
-  localStorageIsItemExist,
-} from "../../utils/localStorage";
+
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
@@ -16,6 +13,7 @@ import {
   selectWinner,
   selectFinalScore,
 } from "../../redux/pigGame/pigGame.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 import {
   rollDice,
   holdDice,
@@ -36,6 +34,7 @@ class PigGamePage extends React.Component {
       selectWinner,
       finalScore,
       changeFinalScore,
+      selectCurrentUser,
     } = this.props;
 
     return (
@@ -46,11 +45,8 @@ class PigGamePage extends React.Component {
             <S.PlayerName
               className={`${activePlayer === 1 && "active"} player-name`}
             >
-              {localStorageIsItemExist("user")
-                ? displayNameLengthFilter(
-                    localStorageGetItem("user").displayName,
-                    8
-                  )
+              {selectCurrentUser !== null
+                ? displayNameLengthFilter(selectCurrentUser.displayName, 8)
                 : "Player 1"}
             </S.PlayerName>
             {selectWinner === "player1" && (
@@ -129,6 +125,7 @@ const mapStateToProps = createStructuredSelector({
   selectPlayer2Obj: selectPlayer2Obj,
   selectWinner: selectWinner,
   finalScore: selectFinalScore,
+  selectCurrentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({
