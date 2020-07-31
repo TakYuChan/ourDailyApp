@@ -1,10 +1,10 @@
-export function displayNameLengthFilter(currentUser) {
+export function displayNameLengthFilter(currentUser, maxLength) {
   try {
     let userName = null;
 
     if (currentUser) {
-      if (currentUser.displayName.length > 24) {
-        userName = currentUser.displayName.substr(0, 24);
+      if (currentUser.displayName.length > maxLength) {
+        userName = currentUser.displayName.substr(0, maxLength);
         userName += "...";
       } else {
         userName = currentUser.displayName;

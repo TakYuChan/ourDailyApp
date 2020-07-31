@@ -1,7 +1,7 @@
 import React from "react";
 import S from "./pigGamePage.style";
 
-// import { getPigGameState } from "../../firebase/firestore/getData";
+import { displayNameLengthFilter } from "../../utils/dataFilter";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
@@ -12,6 +12,7 @@ import {
   selectWinner,
   selectFinalScore,
 } from "../../redux/pigGame/pigGame.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 import {
   rollDice,
   holdDice,
@@ -32,7 +33,10 @@ class PigGamePage extends React.Component {
       selectWinner,
       finalScore,
       changeFinalScore,
+      selectCurrentUser,
     } = this.props;
+
+    // const { displayName, photoURL } = selectCurrentUser;
     return (
       <S.PigGameContainer className="PigGame-Page pages">
         <S.GameConsoleContainer className="game-console-container">
@@ -41,7 +45,10 @@ class PigGamePage extends React.Component {
             <S.PlayerName
               className={`${activePlayer === 1 && "active"} player-name`}
             >
-              {selectWinner === "player1" ? "WINNER" : "PLAYER 1"}
+              {/* {selectWinner === "player1" ? "WINNER" : "PLAYER 1"} */}
+              {selectCurrentUser !== null
+                ? displayNameLengthFilter(selectCurrentUser, 8)
+                : "Player 1"}
             </S.PlayerName>
             {selectWinner === "player1" && (
               <S.CrownLeft className="fireworks">
@@ -120,6 +127,7 @@ const mapStateToProps = createStructuredSelector({
   selectPlayer2Obj: selectPlayer2Obj,
   selectWinner: selectWinner,
   finalScore: selectFinalScore,
+  selectCurrentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({

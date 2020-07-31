@@ -59,6 +59,14 @@ export const loadingIsFinished = () => ({
   type: PigGameActionTypes.LOADING_FINISHED,
 });
 
+export const setIsLoadingToTrue = () => ({
+  type: PigGameActionTypes.SET_ISLOADING_TRUE,
+});
+
+export const resetPrevScore = () => ({
+  type: PigGameActionTypes.RESET_PREV_SCORE,
+});
+
 // ========= Thunk action flow =========
 export const rollDice = () => {
   return (dispatch, getState) => {
@@ -71,15 +79,6 @@ export const rollDice = () => {
       dispatch(changeDiceNumber(newDiceNum));
       // Save the number
       dispatch(changePrevScores(newDiceNum));
-
-      // Game Rules applied
-      // 1. IF dice === 6 -> STOP following action
-      // if (newDiceNum === 6) {
-      //   dispatch(playerClearTotalScore());
-      //   dispatch(playerClearCurrentScore());
-      //   dispatch(switchActivePlayer());
-      //   return;
-      // }
 
       // 2. IF prev dice + current dice === 8 -> STOP
       const prev_scores = pigGameReducer.prev_scores;
@@ -102,32 +101,33 @@ export const holdDice = () => {
   return (dispatch, getState) => {
     if (getState().pigGame.winner === "none") {
       console.log("Player held dice!");
-      const pigGameReducer = getState().pigGame;
-      const activePlayer = pigGameReducer.activePlayer;
+      const activePlayer = getState().pigGame.activePlayer;
 
-      console.log(
-        "TOTAL SCORE: ",
-        pigGameReducer[`player${activePlayer}`].currentScore
-      );
-
+      // 1. Add current score to total score
       dispatch(
         playerAddTotalScore(
-          pigGameReducer[`player${activePlayer}`].currentScore
+          getState().pigGame[`player${activePlayer}`].currentScore
         )
       );
+      // Clear current score
       dispatch(playerClearCurrentScore());
 
-      // Check if someone has won
+      // 2. Check if someone has won
       dispatch(checkWinner());
 
+      // 3. IF no one has won, game continue and switch player
       if (getState().pigGame.winner === "none") {
+        // Reset prev score
+        dispatch(resetPrevScore());
+        // Switch Player
         dispatch(switchActivePlayer());
+
         // Save Data to firestore
         const pigGameStateObj = getState().pigGame;
         saveGameState(pigGameStateObj);
       }
 
-      // Save Data to firestore
+      // 4. Save Data to firestore
       const pigGameStateObj = getState().pigGame;
       saveGameState(pigGameStateObj);
     }

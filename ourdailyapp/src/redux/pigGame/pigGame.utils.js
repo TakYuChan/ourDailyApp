@@ -85,3 +85,7 @@ export const changePrevScores = (state, score) => {
     return [oldPrev_scores[0], score];
   }
 };
+
+export const resetPlayerPrevScore = (activePlayer, prev_scores) => {
+  return activePlayer === 1 ? [0, prev_scores[1]] : [prev_scores[0], 0];
+};

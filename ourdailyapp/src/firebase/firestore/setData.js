@@ -26,9 +26,6 @@ export const saveGameState = (objToAdd) => {
     const newDocRef = collectionRef.doc("game01");
     newDocRef.set({
       ...objToAdd,
-      // This will be always true,
-      // because we want the spinner to be render first
-      isLoading: true,
     });
     console.log("Added Single Document");
   } catch (error) {

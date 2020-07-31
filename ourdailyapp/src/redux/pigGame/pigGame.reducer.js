@@ -7,6 +7,7 @@ import {
   clearPlayerTotalScore,
   checkWinner,
   changePrevScores,
+  resetPlayerPrevScore,
 } from "./pigGame.utils";
 
 const INITIAL_STATE = {
@@ -74,6 +75,19 @@ const pigGameReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isLoading: false,
+      };
+    case PigGameActionTypes.SET_ISLOADING_TRUE:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case PigGameActionTypes.RESET_PREV_SCORE:
+      return {
+        ...state,
+        prev_scores: resetPlayerPrevScore(
+          state.activePlayer,
+          state.prev_scores
+        ),
       };
     default:
       return state;

@@ -17,6 +17,8 @@ import {
   userLoggedOFF,
 } from "./redux/user/user.actions";
 
+import { selectCurrentUser } from "./redux/user/user.selectors";
+
 import MainPage from "./Pages/mainPage/mainPage.component";
 import ShopPage from "./Pages/shopPage/shopPage.component";
 import ProfilePage from "./Pages/ProfilePage/profilePage.component";
@@ -60,12 +62,19 @@ class App extends React.Component {
         // 3. Keep Listening to user data changes and set user state
         this.unsubscribeFromUserSnapShot = userRef.onSnapshot((snapShot) => {
           this.props.setUser({ id: snapShot.id, ...snapShot.data() });
+          console.log("USER", this.props.selectCurrentUser);
+
+          localStorage.setItem(
+            "user",
+            JSON.stringify({ id: snapShot.id, ...snapShot.data() })
+          );
         });
       } else {
-        // Rendewr with currentUser to null
+        // Render with currentUser to null
         // And Userlogged to false
         this.props.setUser(user);
-        this.props.userLoggedOFF();
+        console.log("LOGGING OUT");
+        // this.props.userLoggedOFF();
       }
       // addCollectionAndDocuments("appLogoItems", APPLICATIONS_DATA);
     });
@@ -112,4 +121,8 @@ const mapDispatchToProps = (dispatch) => ({
   userLoggedOFF: () => dispatch(userLoggedOFF()),
 });
 
-export default connect(null, mapDispatchToProps)(App);
+const mapStateToProps = (state) => ({
+  selectCurrentUser: selectCurrentUser(state),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
