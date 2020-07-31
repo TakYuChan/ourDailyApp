@@ -1,20 +1,23 @@
-export function displayNameLengthFilter(currentUser, maxLength) {
-  try {
-    let userName = null;
+export function displayNameLengthFilter(displayName, maxLength) {
+  if (displayName !== null) {
+    try {
+      let userName = null;
 
-    if (currentUser) {
-      if (currentUser.displayName.length > maxLength) {
-        userName = currentUser.displayName.substr(0, maxLength);
-        userName += "...";
+      if (displayName) {
+        if (displayName.length > maxLength) {
+          userName = displayName.substr(0, maxLength);
+          userName += "...";
+        } else {
+          userName = displayName;
+        }
+        return userName;
       } else {
-        userName = currentUser.displayName;
+        console.log("no current user");
+        return null;
       }
-      return userName;
-    } else {
-      console.log("no current user");
-      return null;
+    } catch (error) {
+      console.log("Header Display Name filter Error", error.message);
     }
-  } catch (error) {
-    console.log("Header Display Name filter Error", error.message);
   }
+  return;
 }

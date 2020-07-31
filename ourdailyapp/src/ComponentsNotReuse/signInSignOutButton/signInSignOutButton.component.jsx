@@ -7,6 +7,11 @@ import { selectUserLogged } from "../../redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
 import { userLoggedOFF } from "../../redux/user/user.actions";
 import { toggleSignInUpModal } from "../../redux/signInUp/signInUp.actions";
+import {
+  localStorageGetItem,
+  localStorageIsItemExist,
+  localStorageClearItem,
+} from "../../utils/localStorage";
 
 import { Dropdown } from "react-bootstrap";
 
@@ -15,11 +20,12 @@ const SignInSignOutButton = ({
   userLoggedOFF,
   toggleSignInUpModal,
 }) => {
-  return userLogged === true ? (
+  return userLogged ? (
     <Dropdown.Item
       className="btn--openSignOutModal"
       onClick={() => {
         auth.signOut();
+        localStorageClearItem("user");
         userLoggedOFF();
       }}
     >
@@ -29,7 +35,9 @@ const SignInSignOutButton = ({
   ) : (
     <Dropdown.Item
       className="btn--openSignInModal"
-      onClick={toggleSignInUpModal}
+      onClick={() => {
+        toggleSignInUpModal();
+      }}
     >
       <i className="iconfont icon-signIn"></i>
       Sign In
@@ -44,6 +52,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   toggleSignInUpModal: () => dispatch(toggleSignInUpModal()),
   userLoggedOFF: () => dispatch(userLoggedOFF()),
+  // userLoggedOn: () => dispatch(userLoggedOn()),
 });
 
 export default connect(
