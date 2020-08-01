@@ -1,10 +1,11 @@
 import React from "react";
+import S from "./profileDropDownMenu.style";
 import "./profileDropDownMenu.style.scss";
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-
+import { renderProfilePicture } from "../../utils/conditional.js";
 import { closeNav } from "../../redux/nav/nav.actions";
 import {
   selectCurrentUser,
@@ -21,33 +22,20 @@ class ProfileDropDownMenu extends React.Component {
     this.state = {};
   }
 
-  profileDropDownStyle() {
-    if (this.props.currentUser !== null) {
-      return this.props.currentUser.photoURL
-        ? {
-            backgroundImage: `url(${this.props.currentUser.photoURL})`,
-          }
-        : {
-            background: "white",
-          };
-    }
-  }
-
   // ========================= Life Cycle Hooks =========================
 
   render() {
+    const { currentUser, closeNav, history } = this.props;
     return (
       <Dropdown className="dropDownMenu--profile">
-        <Dropdown.Toggle
+        <S.DropDownToggle
           id="dropdown-basic-button"
           title=""
-          style={
-            this.props.currentUser !== null ? this.profileDropDownStyle() : null
-          }
-        ></Dropdown.Toggle>
+          imgSrc={() => renderProfilePicture(currentUser)}
+        ></S.DropDownToggle>
 
         <Dropdown.Menu>
-          <DropDownHeader currentUser={this.props.currentUser} />
+          <DropDownHeader currentUser={currentUser} />
 
           <Dropdown.Divider />
 
@@ -57,8 +45,8 @@ class ProfileDropDownMenu extends React.Component {
           <Dropdown.Item
             className="btn--profile"
             onClick={() => {
-              this.props.closeNav();
-              this.props.history.push("/profile");
+              closeNav();
+              history.push("/profile");
             }}
           >
             <i className="iconfont icon-profile"></i>Profile
@@ -66,7 +54,7 @@ class ProfileDropDownMenu extends React.Component {
 
           <Dropdown.Item
             onClick={() => {
-              this.props.closeNav();
+              closeNav();
             }}
           >
             <i className="iconfont icon-Settingscontroloptions"></i>
