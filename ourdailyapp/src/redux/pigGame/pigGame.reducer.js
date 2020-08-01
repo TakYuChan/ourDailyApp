@@ -20,6 +20,8 @@ const INITIAL_STATE = {
   player2: {
     totalScore: 0,
     currentScore: 0,
+    displayName: null,
+    photoURL: null,
   },
   //winner -> none, player1, player2
   winner: "none",

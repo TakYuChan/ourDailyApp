@@ -2,7 +2,8 @@ import React from "react";
 import S from "./pigGamePage.style";
 
 import { displayNameLengthFilter } from "../../utils/dataFilter";
-
+import { renderProfilePicture } from "../../utils/conditional";
+import { playerNameFontSize } from "./pigGameUtils";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
@@ -42,13 +43,22 @@ class PigGamePage extends React.Component {
         <S.GameConsoleContainer className="game-console-container">
           {/* ================= Player One Panel ================= */}
           <S.PlayerOnePanel className={activePlayer === 1 && "active"}>
-            <S.PlayerName
-              className={`${activePlayer === 1 && "active"} player-name`}
-            >
-              {selectCurrentUser !== null
-                ? displayNameLengthFilter(selectCurrentUser.displayName, 8)
-                : "Player 1"}
-            </S.PlayerName>
+            <S.PlayerInfoContainer>
+              <S.PlayerPic
+                imgSrc={renderProfilePicture(selectCurrentUser)}
+              ></S.PlayerPic>
+              <S.PlayerName
+                className={`${activePlayer === 1 && "active"} player-name`}
+                fontSize={
+                  selectCurrentUser !== null &&
+                  playerNameFontSize(selectCurrentUser.displayName.length)
+                }
+              >
+                {selectCurrentUser !== null
+                  ? displayNameLengthFilter(selectCurrentUser.displayName, 8)
+                  : "Player 1"}
+              </S.PlayerName>
+            </S.PlayerInfoContainer>
             {selectWinner === "player1" && (
               <S.CrownLeft className="fireworks">
                 <svg className="icon" aria-hidden="true">
@@ -66,11 +76,20 @@ class PigGamePage extends React.Component {
           </S.PlayerOnePanel>
           {/* ================= Player Two Panel ================= */}
           <S.PlayerTwoPanel className={activePlayer === 2 && "active"}>
-            <S.PlayerName
-              className={`${activePlayer === 2 && "active"} player-name`}
-            >
-              {selectWinner === "player2" ? "WINNER" : "PLAYER 2"}
-            </S.PlayerName>
+            <S.PlayerInfoContainer>
+              <S.PlayerPic
+                imgSrc={renderProfilePicture(selectCurrentUser)}
+              ></S.PlayerPic>
+              <S.PlayerName
+                className={`${activePlayer === 2 && "active"} player-name`}
+                fontSize={
+                  selectCurrentUser !== null &&
+                  playerNameFontSize(selectCurrentUser.displayName.length)
+                }
+              >
+                {selectWinner === "player2" ? "WINNER" : "PLAYER 2"}
+              </S.PlayerName>
+            </S.PlayerInfoContainer>
             {selectWinner === "player2" && (
               <S.CrownRight className="fireworks">
                 {/* <i className="iconfont icon-crown"></i> */}

@@ -7,7 +7,7 @@ const panelStyles = css`
   position: relative;
   height: 100%;
   width: 50%;
-  padding: 10%;
+  padding: 10% 0;
   text-align: center;
 
   display: flex;
@@ -87,14 +87,31 @@ S.PlayerTwoPanel = styled.div`
   ${panelStyles}
 `;
 
-// ================== Panel Common =====================
+// ================= PlayerInfoWrapper =================
+
+S.PlayerInfoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+S.PlayerPic = styled.div`
+  font-size: clamp(1.4rem, 2.3vw, 2.3rem);
+  width: 1em;
+  height: 1em;
+  border-radius: 100%;
+  background: ${(props) => `url(${props.imgSrc})`};
+  background-position: center;
+  background-size: cover;
+  margin-right: 0.4em;
+  cursor: pointer;
+`;
 S.PlayerName = styled.h2`
   position: relative;
   display: inline-block;
-
   font-weight: 100;
 
-  font-size: clamp(1.2rem, 2vw, 2rem);
+  font-size: ${(props) => `clamp(${props.fontSize}rem, 2vw, 2rem);`}
 
   letter-spacing: 2px;
 
@@ -102,6 +119,9 @@ S.PlayerName = styled.h2`
     font-weight: 300;
   }
 `;
+
+// ================== Panel Common =====================
+
 S.TotalScore = styled.h2`
   font-weight: 200;
   font-size: clamp(2rem, 4vw, 4rem);
