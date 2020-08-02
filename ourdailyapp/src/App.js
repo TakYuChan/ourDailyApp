@@ -63,7 +63,6 @@ class App extends React.Component {
         // 3. Keep Listening to user data changes and set user state
         this.unsubscribeFromUserSnapShot = userRef.onSnapshot((snapShot) => {
           this.props.setUser({ id: snapShot.id, ...snapShot.data() });
-          console.log("USER", this.props.selectCurrentUser);
         });
       } else {
         // Render with currentUser to null

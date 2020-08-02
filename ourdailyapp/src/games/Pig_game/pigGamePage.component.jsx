@@ -13,14 +13,19 @@ import {
   selectPlayer2Obj,
   selectWinner,
   selectFinalScore,
+  selectPlayer2UserInfo,
 } from "../../redux/pigGame/pigGame.selectors";
+import { toggleSignInModal } from "../../redux/pigGameModals/pigGameModals.actions";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import {
   rollDice,
   holdDice,
   startNewGame,
   changeFinalScore,
+  player2SignOutFlow,
 } from "../../redux/pigGame/pigGame.actions";
+
+import Player2SignInModal from "./Components/player2SignInModal.component";
 
 class PigGamePage extends React.Component {
   render() {
@@ -36,22 +41,42 @@ class PigGamePage extends React.Component {
       finalScore,
       changeFinalScore,
       selectCurrentUser,
+      toggleSignInModal,
+      player2Obj,
+      player2SignOutFlow,
     } = this.props;
 
     return (
       <S.PigGameContainer className="PigGame-Page pages">
+        {/* ================= Player TWO Sign In BTN and MODAL ================= */}
+        <Player2SignInModal />
+        {player2Obj !== null ? (
+          <S.Player2SignOutBtn onClick={player2SignOutFlow}>
+            <S.playerIcon className="iconfont icon-player" />
+            Player2 Log Out
+          </S.Player2SignOutBtn>
+        ) : (
+          <S.Player2SignInBtn onClick={toggleSignInModal}>
+            <S.playerIcon className="iconfont icon-player" />
+            Player2 Log In
+          </S.Player2SignInBtn>
+        )}
+
         <S.GameConsoleContainer className="game-console-container">
           {/* ================= Player One Panel ================= */}
           <S.PlayerOnePanel className={activePlayer === 1 && "active"}>
+            {/* ================= Player One Info Container ================= */}
             <S.PlayerInfoContainer>
               <S.PlayerPic
-                imgSrc={renderProfilePicture(selectCurrentUser)}
+                imgsrc={renderProfilePicture(selectCurrentUser)}
               ></S.PlayerPic>
               <S.PlayerName
                 className={`${activePlayer === 1 && "active"} player-name`}
                 fontSize={
                   selectCurrentUser !== null &&
-                  playerNameFontSize(selectCurrentUser.displayName.length)
+                  selectCurrentUser.displayName !== null
+                    ? playerNameFontSize(selectCurrentUser.displayName.length)
+                    : 1
                 }
               >
                 {selectCurrentUser !== null
@@ -76,23 +101,26 @@ class PigGamePage extends React.Component {
           </S.PlayerOnePanel>
           {/* ================= Player Two Panel ================= */}
           <S.PlayerTwoPanel className={activePlayer === 2 && "active"}>
+            {/* ================= Player Two Info Container ================= */}
             <S.PlayerInfoContainer>
               <S.PlayerPic
-                imgSrc={renderProfilePicture(selectCurrentUser)}
+                imgsrc={renderProfilePicture(player2Obj)}
               ></S.PlayerPic>
               <S.PlayerName
                 className={`${activePlayer === 2 && "active"} player-name`}
                 fontSize={
-                  selectCurrentUser !== null &&
-                  playerNameFontSize(selectCurrentUser.displayName.length)
+                  player2Obj !== undefined && player2Obj !== null
+                    ? playerNameFontSize(player2Obj.displayName.length)
+                    : 1
                 }
               >
-                {selectWinner === "player2" ? "WINNER" : "PLAYER 2"}
+                {player2Obj !== undefined && player2Obj !== null
+                  ? displayNameLengthFilter(player2Obj.displayName, 12)
+                  : "Player 2"}
               </S.PlayerName>
             </S.PlayerInfoContainer>
             {selectWinner === "player2" && (
               <S.CrownRight className="fireworks">
-                {/* <i className="iconfont icon-crown"></i> */}
                 <svg className="icon" aria-hidden="true">
                   <use xlinkHref="#icon-crown"></use>
                 </svg>
@@ -145,6 +173,7 @@ const mapStateToProps = createStructuredSelector({
   selectWinner: selectWinner,
   finalScore: selectFinalScore,
   selectCurrentUser: selectCurrentUser,
+  player2Obj: selectPlayer2UserInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -153,6 +182,8 @@ const mapDispatchToProps = (dispatch) => ({
   startNewGame: () => dispatch(startNewGame()),
   changeFinalScore: (newFinalScore) =>
     dispatch(changeFinalScore(newFinalScore)),
+  toggleSignInModal: () => dispatch(toggleSignInModal()),
+  player2SignOutFlow: () => dispatch(player2SignOutFlow()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PigGamePage);

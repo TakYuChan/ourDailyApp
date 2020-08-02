@@ -14,7 +14,7 @@ const DropDownHeader = ({ userLogged, currentUser }) => {
     [
       <Dropdown.Header key="1">Welcome Back!</Dropdown.Header>,
       <Dropdown.Item key="2" disabled className="userName">
-        {currentUser !== null
+        {currentUser !== null && currentUser.displayName !== null
           ? displayNameLengthFilter(currentUser.displayName, 20)
           : null}
       </Dropdown.Item>,

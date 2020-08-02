@@ -20,9 +20,8 @@ const INITIAL_STATE = {
   player2: {
     totalScore: 0,
     currentScore: 0,
-    displayName: null,
-    photoURL: null,
   },
+  player2UserInfo: null,
   //winner -> none, player1, player2
   winner: "none",
   finalScore: 100,
@@ -59,6 +58,7 @@ const pigGameReducer = (state = INITIAL_STATE, action) => {
       return {
         ...INITIAL_STATE,
         finalScore: state.finalScore,
+        player2UserInfo: state.player2UserInfo,
         isLoading: false,
       };
     case PigGameActionTypes.CHANGE_FINAL_SCORE:
@@ -90,6 +90,16 @@ const pigGameReducer = (state = INITIAL_STATE, action) => {
           state.activePlayer,
           state.prev_scores
         ),
+      };
+    case PigGameActionTypes.SET_PLAYER2_USER_INFO:
+      return {
+        ...state,
+        player2UserInfo: action.payload,
+      };
+    case PigGameActionTypes.PLAYER2_USER_LOGOUT:
+      return {
+        ...state,
+        player2UserInfo: INITIAL_STATE.player2UserInfo,
       };
     default:
       return state;

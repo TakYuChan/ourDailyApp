@@ -6,7 +6,7 @@ const S = {};
 
 //=========== Profile icon -> Drop Down ===========
 S.DropDownToggle = styled(Dropdown.Toggle)`
-  background: ${(props) => `url(${props.imgSrc})`};
+  background: ${(props) => `url(${props.imgsrc})`};
   background-size: cover;
   background-position: center;
 `;

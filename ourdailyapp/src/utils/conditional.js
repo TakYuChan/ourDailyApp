@@ -1,6 +1,6 @@
 export const renderProfilePicture = (currentUser) => {
   // User logged in
-  if (currentUser !== null) {
+  if (currentUser !== undefined && currentUser !== null) {
     // IF user has setted the picture
     return currentUser.photoURL !== null
       ? currentUser.photoURL

@@ -59,7 +59,7 @@ export const signUpSubmitFlow = ({
       );
 
       // Create User profile in firestore
-      await createUserProfileDocument(user, { displayName });
+      await createUserProfileDocument(user, { displayName, password });
 
       // Registration Successful will direct users to the "registerSuccessScene"
       dispatch(setRenderForRegisterSuccess());

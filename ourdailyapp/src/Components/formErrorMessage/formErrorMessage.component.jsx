@@ -45,7 +45,16 @@ const FormErrorMessage = ({ errorObj }) => {
   if (errorObj.shortPassword) {
     errorTextArray.push("Your password must have a minimum length of 8");
   }
-  console.log("errorTextArray", errorTextArray.length);
+
+  // ======== PigGameModals - signIn Form ========
+  if (errorObj.passwordIncorrect) {
+    errorTextArray.push("Your password is incorrect");
+  }
+
+  if (errorObj.emailNotExist) {
+    errorTextArray.push("This email has not been registered");
+  }
+
   return errorTextArray.map((errorText, index) => {
     return (
       <S.FormText key={index} className="form-error">

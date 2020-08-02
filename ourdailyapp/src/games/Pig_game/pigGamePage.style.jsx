@@ -7,7 +7,7 @@ const panelStyles = css`
   position: relative;
   height: 100%;
   width: 50%;
-  padding: 10% 0;
+  padding: 5% 0;
   text-align: center;
 
   display: flex;
@@ -23,12 +23,12 @@ const panelStyles = css`
     background: ${(props) => props.theme.pigGamePage.activePanel_bg};
   }
 
-  &.active > .player-name {
+  &.active .player-name {
     &:after {
       content: "";
       display: block;
       position: absolute;
-      right: -25%;
+      right: -20%;
       top: 50%;
       transform: translateY(-50%);
       border-radius: 100%;
@@ -57,12 +57,47 @@ S.PigGameContainer = styled.div`
   background-size: cover !important;
   background-position: center !important;
 
-  display: grid;
-  place-items: center;
+  position: relative;
+
+  // display: grid;
+  // place-items: center;
 
   user-select: none;
 
   touch-action: manipulation;
+`;
+
+// ================ Player 2 sign in + out button ================
+S.Player2SignInBtn = styled.button`
+  all: unset;
+  font-size: clamp(0.6rem, 1vw, 1rem);
+  background: ${(props) => props.theme.pigGamePage.playerLogInBtn_primary};
+  position: absolute;
+  right: 5%;
+  top: 10%;
+  padding: 0.3em 0.6em;
+  color: ${(props) => props.theme.pigGamePage.PlayerLogInBtn_secondary};
+  border: 1px solid
+    ${(props) => props.theme.pigGamePage.PlayerLogInBtn_secondary};
+  border-radius: 20px;
+`;
+
+S.Player2SignOutBtn = styled.button`
+  all: unset;
+  font-size: clamp(0.6rem, 1vw, 1rem);
+  background: ${(props) => props.theme.pigGamePage.playerLogInBtn_primary};
+  position: absolute;
+  right: 5%;
+  top: 10%;
+  padding: 0.3em 0.6em;
+  color: ${(props) => props.theme.pigGamePage.PlayerLogInBtn_secondary};
+  border: 1px solid
+    ${(props) => props.theme.pigGamePage.PlayerLogInBtn_secondary};
+  border-radius: 20px;
+`;
+
+S.playerIcon = styled.i`
+  font-size: 1em;
 `;
 
 S.GameConsoleContainer = styled.div`
@@ -75,7 +110,10 @@ S.GameConsoleContainer = styled.div`
 
   display: flex;
 
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   touch-action: manipulation;
 `;
@@ -93,6 +131,7 @@ S.PlayerInfoContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  // border: 2px solid pink;
 `;
 
 S.PlayerPic = styled.div`
@@ -100,7 +139,7 @@ S.PlayerPic = styled.div`
   width: 1em;
   height: 1em;
   border-radius: 100%;
-  background: ${(props) => `url(${props.imgSrc})`};
+  background: ${(props) => `url(${props.imgsrc})`};
   background-position: center;
   background-size: cover;
   margin-right: 0.4em;
@@ -114,6 +153,8 @@ S.PlayerName = styled.h2`
   font-size: ${(props) => `clamp(${props.fontSize}rem, 2vw, 2rem);`}
 
   letter-spacing: 2px;
+
+  transform: translateX(-6%);
 
   &.active {
     font-weight: 300;

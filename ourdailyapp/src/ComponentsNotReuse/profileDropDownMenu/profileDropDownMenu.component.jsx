@@ -31,7 +31,7 @@ class ProfileDropDownMenu extends React.Component {
         <S.DropDownToggle
           id="dropdown-basic-button"
           title=""
-          imgSrc={renderProfilePicture(currentUser)}
+          imgsrc={renderProfilePicture(currentUser)}
         ></S.DropDownToggle>
 
         <Dropdown.Menu>

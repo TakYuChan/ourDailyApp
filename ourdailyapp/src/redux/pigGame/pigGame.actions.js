@@ -67,6 +67,29 @@ export const resetPrevScore = () => ({
   type: PigGameActionTypes.RESET_PREV_SCORE,
 });
 
+export const setPlayer2UserInfo = (userObj) => ({
+  type: PigGameActionTypes.SET_PLAYER2_USER_INFO,
+  payload: userObj,
+});
+
+export const player2LogOut = () => ({
+  type: PigGameActionTypes.PLAYER2_USER_LOGOUT,
+});
+
+export const saveReducerStateToFirestore = (userObj) => {
+  return (dispatch, getState) => {
+    const pigGameState = getState().pigGame;
+
+    // Save user details to firestore
+    saveGameState({
+      ...pigGameState,
+      player2UserInfo: {
+        displayName: userObj.displayName,
+        photoURL: userObj.photoURL,
+      },
+    });
+  };
+};
 // ========= Thunk action flow =========
 export const rollDice = () => {
   return (dispatch, getState) => {
@@ -131,5 +154,15 @@ export const holdDice = () => {
       const pigGameStateObj = getState().pigGame;
       saveGameState(pigGameStateObj);
     }
+  };
+};
+
+export const player2SignOutFlow = () => {
+  return (dispatch, getState) => {
+    dispatch(player2LogOut());
+    const pigGameStateObj = getState().pigGame;
+
+    // Save everything after log out
+    saveGameState(pigGameStateObj);
   };
 };

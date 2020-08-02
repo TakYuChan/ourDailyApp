@@ -82,6 +82,8 @@ export const lightTheme = {
     current_container: `#eb4d4d`,
     totalScore: `#eb4d4d`,
     preloader_bg: rootStyles.header_clr,
+    playerLogInBtn_primary: `#eb4d4d`,
+    PlayerLogInBtn_secondary: "white",
   },
 };
 
