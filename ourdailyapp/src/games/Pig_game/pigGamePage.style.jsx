@@ -51,6 +51,20 @@ const btnStyles = css`
   }
 `;
 
+const signInOutBtnStyles = css`
+  all: unset;
+  font-size: clamp(0.6rem, 1vw, 1rem);
+  background: ${(props) => props.theme.pigGamePage.playerLogInBtn_primary};
+
+  padding: 0.3em 0.6em;
+  color: ${(props) => props.theme.pigGamePage.PlayerLogInBtn_secondary};
+  border: 1px solid
+    ${(props) => props.theme.pigGamePage.PlayerLogInBtn_secondary};
+  border-radius: 20px;
+
+  margin-right: 0.5em;
+`;
+
 S.PigGameContainer = styled.div`
   background: linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4)),
     url("/images/assets/thePigGame/back.jpg") !important;
@@ -67,33 +81,35 @@ S.PigGameContainer = styled.div`
   touch-action: manipulation;
 `;
 
+// =================== Modals Container ======================
+S.ModalsContainer = styled.div`
+  position: absolute;
+  right: 7%;
+  top: 10%;
+`;
+
 // ================ Player 2 sign in + out button ================
 S.Player2SignInBtn = styled.button`
-  all: unset;
-  font-size: clamp(0.6rem, 1vw, 1rem);
-  background: ${(props) => props.theme.pigGamePage.playerLogInBtn_primary};
-  position: absolute;
-  right: 5%;
-  top: 10%;
-  padding: 0.3em 0.6em;
-  color: ${(props) => props.theme.pigGamePage.PlayerLogInBtn_secondary};
-  border: 1px solid
-    ${(props) => props.theme.pigGamePage.PlayerLogInBtn_secondary};
-  border-radius: 20px;
+  ${signInOutBtnStyles}
 `;
 
 S.Player2SignOutBtn = styled.button`
+  ${signInOutBtnStyles}
+`;
+
+// ================ Information icon ================
+S.InfoBtn = styled.button`
   all: unset;
   font-size: clamp(0.6rem, 1vw, 1rem);
+  width: 2em;
+  height: 2em;
   background: ${(props) => props.theme.pigGamePage.playerLogInBtn_primary};
-  position: absolute;
-  right: 5%;
-  top: 10%;
-  padding: 0.3em 0.6em;
+  // padding: 0.3em 0.6em;
   color: ${(props) => props.theme.pigGamePage.PlayerLogInBtn_secondary};
   border: 1px solid
     ${(props) => props.theme.pigGamePage.PlayerLogInBtn_secondary};
-  border-radius: 20px;
+  border-radius: 100%;
+  text-align: center;
 `;
 
 S.playerIcon = styled.i`
@@ -131,7 +147,8 @@ S.PlayerInfoContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  // border: 2px solid pink;
+
+  border-radius: 200px;
 `;
 
 S.PlayerPic = styled.div`

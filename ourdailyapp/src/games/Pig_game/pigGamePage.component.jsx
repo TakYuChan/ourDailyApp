@@ -15,7 +15,10 @@ import {
   selectFinalScore,
   selectPlayer2UserInfo,
 } from "../../redux/pigGame/pigGame.selectors";
-import { toggleSignInModal } from "../../redux/pigGameModals/pigGameModals.actions";
+import {
+  toggleSignInModal,
+  toggleInfoModal,
+} from "../../redux/pigGameModals/pigGameModals.actions";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import {
   rollDice,
@@ -26,6 +29,7 @@ import {
 } from "../../redux/pigGame/pigGame.actions";
 
 import Player2SignInModal from "./Components/player2SignInModal.component";
+import InfoModal from "./Components/infoModal.component";
 
 class PigGamePage extends React.Component {
   render() {
@@ -44,23 +48,28 @@ class PigGamePage extends React.Component {
       toggleSignInModal,
       player2Obj,
       player2SignOutFlow,
+      toggleInfoModal,
     } = this.props;
 
     return (
       <S.PigGameContainer className="PigGame-Page pages">
         {/* ================= Player TWO Sign In BTN and MODAL ================= */}
         <Player2SignInModal />
-        {player2Obj !== null ? (
-          <S.Player2SignOutBtn onClick={player2SignOutFlow}>
-            <S.playerIcon className="iconfont icon-player" />
-            Player2 Log Out
-          </S.Player2SignOutBtn>
-        ) : (
-          <S.Player2SignInBtn onClick={toggleSignInModal}>
-            <S.playerIcon className="iconfont icon-player" />
-            Player2 Log In
-          </S.Player2SignInBtn>
-        )}
+        <InfoModal />
+        <S.ModalsContainer>
+          {player2Obj !== null ? (
+            <S.Player2SignOutBtn onClick={player2SignOutFlow}>
+              <S.playerIcon className="iconfont icon-player" />
+              Player2 Log Out
+            </S.Player2SignOutBtn>
+          ) : (
+            <S.Player2SignInBtn onClick={toggleSignInModal}>
+              <S.playerIcon className="iconfont icon-player" />
+              Player2 Log In
+            </S.Player2SignInBtn>
+          )}
+          <S.InfoBtn onClick={toggleInfoModal}>?</S.InfoBtn>
+        </S.ModalsContainer>
 
         <S.GameConsoleContainer className="game-console-container">
           {/* ================= Player One Panel ================= */}
@@ -184,6 +193,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeFinalScore(newFinalScore)),
   toggleSignInModal: () => dispatch(toggleSignInModal()),
   player2SignOutFlow: () => dispatch(player2SignOutFlow()),
+  toggleInfoModal: () => dispatch(toggleInfoModal()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PigGamePage);

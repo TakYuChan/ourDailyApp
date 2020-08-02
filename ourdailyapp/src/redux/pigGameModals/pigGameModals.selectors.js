@@ -16,3 +16,8 @@ export const selectIsProcessingSignIn = createSelector(
   [selectPigGameModalsReducer],
   (pigGameModals) => pigGameModals.isProcessingSignIn
 );
+
+export const selectShowInfoModal = createSelector(
+  [selectPigGameModalsReducer],
+  (pigGameModals) => pigGameModals.showInfoModal
+);

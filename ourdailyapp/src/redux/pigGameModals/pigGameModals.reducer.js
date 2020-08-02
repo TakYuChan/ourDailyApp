@@ -2,6 +2,7 @@ import PigGameModalsActionTypes from "./pigGameModals.types";
 
 const INITIAL_STATE = {
   showSignInModal: false,
+  showInfoModal: false,
   isProcessingSignIn: false,
   signInError: {
     emailError: {
@@ -24,6 +25,16 @@ const pigGameModalsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         showSignInModal: false,
+      };
+    case PigGameModalsActionTypes.TOGGLE_INFO_MODAL:
+      return {
+        ...state,
+        showInfoModal: !state.showInfoModal,
+      };
+    case PigGameModalsActionTypes.TURN_INFO_MODAL_OFF:
+      return {
+        ...state,
+        showInfoModal: false,
       };
     case PigGameModalsActionTypes.PASSWORD_INCORRECT_TRUE:
       return {

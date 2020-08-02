@@ -11,6 +11,14 @@ export const turnSignInModalOff = () => ({
   type: PigGameModalsActionTypes.TURN_SIGNIN_OFF,
 });
 
+export const toggleInfoModal = () => ({
+  type: PigGameModalsActionTypes.TOGGLE_INFO_MODAL,
+});
+
+export const turnInfoModalOff = () => ({
+  type: PigGameModalsActionTypes.TURN_INFO_MODAL_OFF,
+});
+
 export const setPasswordIncorrectTRUE = () => ({
   type: PigGameModalsActionTypes.PASSWORD_INCORRECT_TRUE,
 });
