@@ -4,12 +4,15 @@ import S from "./infoModal.style";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
-import { toggleInfoModal } from "../../../redux/pigGameModals/pigGameModals.actions";
+import {
+  toggleInfoModal,
+  turnInfoModalOff,
+} from "../../../redux/pigGameModals/pigGameModals.actions";
 import { selectShowInfoModal } from "../../../redux/pigGameModals/pigGameModals.selectors";
 
 import { Modal } from "react-bootstrap";
 
-const InfoModal = ({ showInfoModal, toggleInfoModal }) => {
+const InfoModal = ({ showInfoModal, toggleInfoModal, turnInfoModalOff }) => {
   return (
     <S.InfoModal
       show={showInfoModal}
@@ -22,7 +25,9 @@ const InfoModal = ({ showInfoModal, toggleInfoModal }) => {
         <S.ModalTitle>Pig Game</S.ModalTitle>
       </Modal.Header>
       <Modal.Body>
-        <S.Button variant="primary">Nailed it</S.Button>
+        <S.Button variant="primary" onClick={turnInfoModalOff}>
+          Nailed it
+        </S.Button>
       </Modal.Body>
     </S.InfoModal>
   );
@@ -33,7 +38,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleInfoModal: () => dispatch(toggleInfoModal),
+  toggleInfoModal: () => dispatch(toggleInfoModal()),
+  turnInfoModalOff: () => dispatch(turnInfoModalOff()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InfoModal);
