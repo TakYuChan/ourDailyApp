@@ -16,3 +16,13 @@ export const selectSignUpFormError = createSelector(
   [selectSignInUp],
   (signInUp) => signInUp.signUpFormError
 );
+
+export const selectIsProcessingSignIn = createSelector(
+  [selectSignInUp],
+  (signInUp) => signInUp.isProcessingSignIn
+);
+
+export const selectSignInFormError = createSelector(
+  [selectSignInUp],
+  (signInUp) => signInUp.signInFormError
+);

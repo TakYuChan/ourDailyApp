@@ -74,7 +74,9 @@ class PigGamePage extends React.Component {
               Player2 Log In
             </S.Player2SignInBtn>
           )}
-          <S.InfoBtn onClick={toggleInfoModal}>?</S.InfoBtn>
+          <S.InfoBtn onClick={toggleInfoModal}>
+            <S.InfoIcon className="iconfont icon-FontAwesomeinfo" />
+          </S.InfoBtn>
         </S.ModalsContainer>
 
         <S.GameConsoleContainer className="game-console-container">
@@ -84,7 +86,7 @@ class PigGamePage extends React.Component {
             {strikesNum !== 0 && activePlayer === 1 && (
               <S.Player1Strikes>
                 {strikesNum} STRIKES
-                <S.StrikeIcon className="iconfont icon-attack_16" />
+                <S.StrikeIcon className="iconfont icon-dice" />
               </S.Player1Strikes>
             )}
             {/* ================= Player One Info Container ================= */}
@@ -127,7 +129,7 @@ class PigGamePage extends React.Component {
             {strikesNum !== 0 && activePlayer === 2 && (
               <S.Player2Strikes>
                 {strikesNum} STRIKES
-                <S.StrikeIcon className="iconfont icon-attack_16" />
+                <S.StrikeIcon className="iconfont icon-dice" />
               </S.Player2Strikes>
             )}
             {/* ================= Player Two Info Container ================= */}

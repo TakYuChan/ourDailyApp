@@ -29,7 +29,56 @@ export const resetSignUpFormError = () => ({
   type: SignInUpActionTypes.RESET_SIGNUPFORM_ERROR,
 });
 
+export const setIsProcessingSignInTRUE = () => ({
+  type: SignInUpActionTypes.SET_PROCESSING_SIGNIN_TRUE,
+});
+
+export const setIsProcessingSignInFALSE = () => ({
+  type: SignInUpActionTypes.SET_PROCESSING_SIGNIN_FALSE,
+});
+
+export const setPasswordIncorrectTRUE = () => ({
+  type: SignInUpActionTypes.PASSWORD_INCORRECT_TRUE,
+});
+
+export const setPasswordIncorrectFALSE = () => ({
+  type: SignInUpActionTypes.PASSWORD_INCORRECT_FALSE,
+});
+
+export const setEmailNotRegisteredTRUE = () => ({
+  type: SignInUpActionTypes.EMAIL_NOTREGISTERED_TRUE,
+});
+
+export const setEmailNotRegisteredFALSE = () => ({
+  type: SignInUpActionTypes.EMAIL_NOTREGISTERED_FALSE,
+});
+
+export const resetSignInFormError = () => ({
+  type: SignInUpActionTypes.RESET_SIGNINFORM_ERROR,
+});
+
+export const setEmailAlreadyInUserTRUE = () => ({
+  type: SignInUpActionTypes.EMAIL_ALREADY_IN_USE_TRUE,
+});
+
+export const setEmailAlreadyInUserFALSE = () => ({
+  type: SignInUpActionTypes.setEmailAlreadyInUserFALSE,
+});
+
 // ========== Redux Thunk (Action Flow) ============
+
+export const signInUpOnHide = () => {
+  return (dispatch) => {
+    dispatch(turnSignInUpOFF());
+
+    setTimeout(() => {
+      dispatch(resetSignInFormError());
+      dispatch(resetSignUpFormError());
+      dispatch(setRenderForSignIn());
+    }, 300);
+  };
+};
+
 export const signUpSubmitFlow = ({
   displayName,
   email,
@@ -37,8 +86,6 @@ export const signUpSubmitFlow = ({
   confirmPassword,
 }) => {
   return async (dispatch) => {
-    console.log("Sign Up Submit Flow start");
-
     //1. Error Checking
     const errorObj = signUpFormErrorCheck(
       displayName,

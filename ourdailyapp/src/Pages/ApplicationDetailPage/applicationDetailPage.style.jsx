@@ -3,14 +3,14 @@ import styled, { css } from "styled-components";
 const S = {};
 
 const buttonStyles = css`
-  all: unset;
   cursor: pointer;
+  border: 0;
   text-align: center;
   letter-spacing: 1.6px;
   font-weight: 700;
   margin-bottom: 1rem;
   border-radius: 30px;
-  color: white;
+  color: ${(props) => props.theme.appDetailPage.btn_font_clr};
   font-size: clamp(0.8rem, 1.2vw, 1.4rem);
   transition: all 300ms ease-in-out;
 
@@ -99,11 +99,11 @@ S.BtnAddToWishlist = styled.button`
 S.IconHeart = styled.i`
   margin-left: 0.3rem;
   font-size: 1em;
-  color: rgba($color: #000000, $alpha: 0.2);
+  color: ${(props) => props.theme.appDetailPage.heartIcon}
   transition: all 100ms;
 
   &.active {
-    color: var(--red);
+    color: ${(props) => props.theme.appDetailPage.heartIcon_active}
   }
 `;
 

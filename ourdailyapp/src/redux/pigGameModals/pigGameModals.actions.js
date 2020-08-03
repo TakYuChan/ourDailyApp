@@ -48,6 +48,15 @@ export const setIsProcessingSignInFALSE = () => ({
 });
 
 // ================ Reduce Thunk Flow ================
+export const signInFormOnHide = () => {
+  return (dispatch) => {
+    dispatch(turnSignInModalOff());
+    setTimeout(() => {
+      dispatch(resetSignInError());
+    }, 300);
+  };
+};
+
 export const player2SignInFlow = (email, password) => {
   return async (dispatch) => {
     const targetUserArray = await getMatchedUserArray(email, password);

@@ -14,7 +14,7 @@ const INITIATE_STATE = {
   wishListItems: [],
 };
 
-const cartReducer = (state = INITIATE_STATE, action) => {
+const cartReducer_P = (state = INITIATE_STATE, action) => {
   switch (action.type) {
     case CartActionTypes.ADD_ITEM_CART:
       return addItemToCart(state, action.payload);
@@ -52,4 +52,4 @@ const cartReducer = (state = INITIATE_STATE, action) => {
   }
 };
 
-export default cartReducer;
+export default cartReducer_P;

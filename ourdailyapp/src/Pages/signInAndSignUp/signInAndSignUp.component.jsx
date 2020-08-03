@@ -8,11 +8,7 @@ import {
   selectRenderFor,
   selectShowSignInUpModal,
 } from "../../redux/signInUp/signInUp.selector";
-import {
-  setRenderForSignIn,
-  turnSignInUpOFF,
-  resetSignUpFormError,
-} from "../../redux/signInUp/signInUp.actions";
+import { signInUpOnHide } from "../../redux/signInUp/signInUp.actions";
 
 // import { Modal } from "react-bootstrap";
 
@@ -20,13 +16,7 @@ import SignIn from "../../ComponentsNotReuse/sign_in/sign_in.component";
 import SignUp from "../../ComponentsNotReuse/sign_up/sign_up.component";
 import RegisterSuccessScene from "../../ComponentsNotReuse/registerSuccess/registerSuccess.component";
 
-const SignInAndSignUp = ({
-  renderFor,
-  showSignInUpModal,
-  renderForSignIn,
-  turnSignInUpOFF,
-  resetSignUpFormError,
-}) => {
+const SignInAndSignUp = ({ renderFor, showSignInUpModal, signInUpOnHide }) => {
   //   ================================= Life Cycle Hooks =================================
 
   return (
@@ -34,12 +24,7 @@ const SignInAndSignUp = ({
       <S.Modal
         show={showSignInUpModal}
         onHide={() => {
-          turnSignInUpOFF();
-
-          setTimeout(() => {
-            resetSignUpFormError();
-            renderForSignIn();
-          }, 600);
+          signInUpOnHide();
         }}
         centered
       >
@@ -57,9 +42,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  renderForSignIn: () => dispatch(setRenderForSignIn()),
-  turnSignInUpOFF: () => dispatch(turnSignInUpOFF()),
-  resetSignUpFormError: () => dispatch(resetSignUpFormError(0)),
+  signInUpOnHide: () => dispatch(signInUpOnHide()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInAndSignUp);

@@ -69,6 +69,9 @@ export const lightTheme = {
     featureList: rootStyles.gray6,
     preloader_primary: rootStyles.gray1,
     preloader_secondary: rootStyles.gray6,
+    btn_font_clr: "white",
+    heartIcon: "white",
+    heartIcon_active: "red",
   },
   commentsConverterPage: {
     title: rootStyles.blue,

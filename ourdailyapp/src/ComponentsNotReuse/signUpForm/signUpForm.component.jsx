@@ -11,10 +11,10 @@ import { userLoggedOn } from "../../redux/user/user.actions";
 import {
   setRenderForRegisterSuccess,
   signUpSubmitFlow,
+  setEmailAlreadyInUserTRUE,
+  setEmailNotRegisteredFALSE,
 } from "../../redux/signInUp/signInUp.actions";
 import { selectSignUpFormError } from "../../redux/signInUp/signInUp.selector";
-
-// import { signUpForminputCheck } from "../../utils/errorChecking.js";
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -29,11 +29,14 @@ class SignUpForm extends React.Component {
 
   //  ================================= Custom Methods =================================
   handleSubmit = async (event) => {
+    const {
+      errorCheckAndRedirect,
+      setEmailAlreadyInUserTRUE,
+      setEmailNotRegisteredFALSE,
+    } = this.props;
+    const { displayName, email, password, confirmPassword } = this.state;
     try {
       event.preventDefault();
-
-      const { userLoggedOn, errorCheckAndRedirect } = this.props;
-      const { displayName, email, password, confirmPassword } = this.state;
 
       // 1. Sign Up and error checking
       // Source: signInUp.reducer.js
@@ -53,11 +56,13 @@ class SignUpForm extends React.Component {
           password: "",
           confirmPassword: "",
         });
-
-        userLoggedOn();
       }
     } catch (error) {
-      console.log(`Error creating user with email and password`, error.message);
+      error.code === "auth/email-already-in-use"
+        ? setEmailAlreadyInUserTRUE()
+        : setEmailNotRegisteredFALSE();
+
+      console.log(`Error creating user with email and password`, error.code);
     }
   };
 
@@ -134,6 +139,8 @@ const mapDispatchToProps = (dispatch) => ({
   userLoggedOn: () => dispatch(userLoggedOn()),
   renderForRegisterSuccess: () => dispatch(setRenderForRegisterSuccess()),
   errorCheckAndRedirect: (formInputs) => dispatch(signUpSubmitFlow(formInputs)),
+  setEmailAlreadyInUserTRUE: () => dispatch(setEmailAlreadyInUserTRUE()),
+  setEmailNotRegisteredFALSE: () => dispatch(setEmailNotRegisteredFALSE()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);

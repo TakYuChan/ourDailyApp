@@ -56,7 +56,7 @@ S.DescriptionText = styled.h5`
 `;
 
 S.BtnStart = styled.button`
-  all: unset;
+  border: 0;
   background: var(--blue-light);
   border-radius: 3px;
   color: white !important;

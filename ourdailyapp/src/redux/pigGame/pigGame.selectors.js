@@ -1,48 +1,48 @@
 import { createSelector } from "reselect";
 
-const selectPigGameReducer = (state) => state.pigGame;
+const selectPigGameReducer = (state) => state.pigGame_P;
 
 export const selectDiceNumber = createSelector(
   [selectPigGameReducer],
-  (pigGame) => pigGame.diceNumber
+  (pigGame_P) => pigGame_P.diceNumber
 );
 
 export const selectActivePlayer = createSelector(
   [selectPigGameReducer],
-  (pigGame) => pigGame.activePlayer
+  (pigGame_P) => pigGame_P.activePlayer
 );
 
 export const selectPlayer1Obj = createSelector(
   [selectPigGameReducer],
-  (pigGame) => pigGame.player1
+  (pigGame_P) => pigGame_P.player1
 );
 
 export const selectPlayer2Obj = createSelector(
   [selectPigGameReducer],
-  (pigGame) => pigGame.player2
+  (pigGame_P) => pigGame_P.player2
 );
 
 export const selectWinner = createSelector(
   [selectPigGameReducer],
-  (pigGame) => pigGame.winner
+  (pigGame_P) => pigGame_P.winner
 );
 
 export const selectFinalScore = createSelector(
   [selectPigGameReducer],
-  (pigGame) => pigGame.finalScore
+  (pigGame_P) => pigGame_P.finalScore
 );
 
 export const selectIsLoading = createSelector(
   [selectPigGameReducer],
-  (pigGame) => pigGame.isLoading
+  (pigGame_P) => pigGame_P.isLoading
 );
 
 export const selectPlayer2UserInfo = createSelector(
   [selectPigGameReducer],
-  (pigGame) => pigGame.player2UserInfo
+  (pigGame_P) => pigGame_P.player2UserInfo
 );
 
 export const selectStrikes = createSelector(
   [selectPigGameReducer],
-  (pigGame) => pigGame.strikes
+  (pigGame_P) => pigGame_P.strikes
 );

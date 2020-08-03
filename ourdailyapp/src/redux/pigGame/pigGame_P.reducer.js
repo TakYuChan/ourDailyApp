@@ -33,7 +33,7 @@ const INITIAL_STATE = {
   isLoading: true,
 };
 
-const pigGameReducer = (state = INITIAL_STATE, action) => {
+const pigGameReducer_P = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case PigGameActionTypes.CHANGE_DICE_NUM:
       return {
@@ -74,11 +74,11 @@ const pigGameReducer = (state = INITIAL_STATE, action) => {
       };
     case PigGameActionTypes.LOAD_GAME_STATE:
       return action.payload;
-    case PigGameActionTypes.LOADING_FINISHED:
-      return {
-        ...state,
-        isLoading: false,
-      };
+    // case PigGameActionTypes.LOADING_FINISHED:
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //   };
     case PigGameActionTypes.SET_ISLOADING_TRUE:
       return {
         ...state,
@@ -117,4 +117,4 @@ const pigGameReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default pigGameReducer;
+export default pigGameReducer_P;

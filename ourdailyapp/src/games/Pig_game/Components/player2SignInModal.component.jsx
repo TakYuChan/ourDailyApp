@@ -9,11 +9,10 @@ import {
   selectIsProcessingSignIn,
 } from "../../../redux/pigGameModals/pigGameModals.selectors";
 import {
-  turnSignInModalOff,
-  resetSignInError,
   player2SignInFlow,
   setIsProcessingSignInTRUE,
   setIsProcessingSignInFALSE,
+  signInFormOnHide,
 } from "../../../redux/pigGameModals/pigGameModals.actions";
 
 import {
@@ -42,6 +41,7 @@ class Player2SignInModal extends React.Component {
         setIsProcessingSignInFALSE,
         saveReducerStateToFirestore,
         startNewGame,
+        signInFormOnHide,
       } = this.props;
       // * Start spinner
       setIsProcessingSignInTRUE();
@@ -57,12 +57,14 @@ class Player2SignInModal extends React.Component {
         setPlayer2UserInfo(userObj);
         // 5. Save user info to firestore
         saveReducerStateToFirestore(userObj);
+        // 6. Hide Sign In Modal
+        signInFormOnHide();
       }
 
       // * Stop spinner
       setIsProcessingSignInFALSE();
     } catch (error) {
-      console.log("ERROR: Email and Password Sign In", error.message);
+      console.log("ERROR: PigGame Player 2 Email and Password Sign In", error);
     }
   };
 
@@ -74,31 +76,21 @@ class Player2SignInModal extends React.Component {
 
   render() {
     const {
-      turnSignInModalOff,
       showSignInModal,
       signInErrorObj,
-      resetSignInError,
       IsProcessingSignIn,
+      signInFormOnHide,
     } = this.props;
     const { email, password } = this.state;
     return (
-      <S.SignInModal
-        show={showSignInModal}
-        onHide={() => {
-          turnSignInModalOff();
-          setTimeout(() => {
-            resetSignInError();
-          }, 300);
-        }}
-        centered
-      >
+      <S.SignInModal show={showSignInModal} onHide={signInFormOnHide} centered>
         <Modal.Header closeButton>
           <S.ModalTitle>Player 2 Sign In</S.ModalTitle>
         </Modal.Header>
         <Modal.Body>
           <Form className="signInForm">
             <FormInput
-              id="signInEmail"
+              id="pigGameSignInEmail"
               labelText="Email address"
               type="email"
               name="email"
@@ -109,7 +101,7 @@ class Player2SignInModal extends React.Component {
             />
 
             <FormInput
-              id="signInPassword"
+              id="pigGameSignInPassword"
               labelText="Passwords"
               type="password"
               name="password"
@@ -137,8 +129,6 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  turnSignInModalOff: () => dispatch(turnSignInModalOff()),
-  resetSignInError: () => dispatch(resetSignInError()),
   player2SignInFlow: (email, password) =>
     dispatch(player2SignInFlow(email, password)),
   setPlayer2UserInfo: (userObj) => dispatch(setPlayer2UserInfo(userObj)),
@@ -147,6 +137,7 @@ const mapDispatchToProps = (dispatch) => ({
   saveReducerStateToFirestore: (userObj) =>
     dispatch(saveReducerStateToFirestore(userObj)),
   startNewGame: () => dispatch(startNewGame()),
+  signInFormOnHide: () => dispatch(signInFormOnHide()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player2SignInModal);

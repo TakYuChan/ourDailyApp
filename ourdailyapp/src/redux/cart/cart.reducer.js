@@ -4,7 +4,7 @@ const INITIATE_STATE = {
   cartPopUpHidden: true,
 };
 
-const cartNPReducer = (state = INITIATE_STATE, action) => {
+const cartReducer = (state = INITIATE_STATE, action) => {
   switch (action.type) {
     case CartActionTypes.TOGGLE_CART_POPUP_HIDDEN:
       return {
@@ -16,4 +16,4 @@ const cartNPReducer = (state = INITIATE_STATE, action) => {
   }
 };
 
-export default cartNPReducer;
+export default cartReducer;

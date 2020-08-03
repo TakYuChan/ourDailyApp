@@ -43,7 +43,8 @@ const panelStyles = css`
 `;
 
 const btnStyles = css`
-  all: unset;
+  border: 0;
+  background: 0;
   position: absolute;
   left: 50%;
   &:hover {
@@ -52,8 +53,7 @@ const btnStyles = css`
 `;
 
 const signInOutBtnStyles = css`
-  all: unset;
-  font-size: clamp(0.6rem, 1vw, 1rem);
+  font-size: clamp(0.8rem, 1vw, 1rem);
   background: ${(props) => props.theme.pigGamePage.playerLogInBtn_primary};
 
   padding: 0.3em 0.6em;
@@ -114,17 +114,19 @@ S.Player2SignOutBtn = styled.button`
 
 // ================ Information icon ================
 S.InfoBtn = styled.button`
-  all: unset;
-  font-size: clamp(0.6rem, 1vw, 1rem);
+  font-size: clamp(0.8rem, 1vw, 1rem);
   width: 2em;
   height: 2em;
   background: ${(props) => props.theme.pigGamePage.playerLogInBtn_primary};
-  // padding: 0.3em 0.6em;
   color: ${(props) => props.theme.pigGamePage.PlayerLogInBtn_secondary};
   border: 1px solid
     ${(props) => props.theme.pigGamePage.PlayerLogInBtn_secondary};
   border-radius: 100%;
   text-align: center;
+`;
+
+S.InfoIcon = styled.i`
+  font-size: 1em;
 `;
 
 S.playerIcon = styled.i`
@@ -166,7 +168,7 @@ S.Player1Strikes = styled.h2`
   ${strikesStyles}
   top: 30%;
   left: 15%;
-  animation: ${(props) => strikeAnimation(-22)} 300ms forwards;
+  animation: ${(props) => strikeAnimation(-22)} 200ms forwards;
 `;
 
 /* ================= Player 2 Strikes effect ================= */
@@ -174,7 +176,7 @@ S.Player2Strikes = styled.h2`
   ${strikesStyles}
   top: 30%;
   right: 15%;
-  animation: ${(props) => strikeAnimation(22)} 300ms forwards;
+  animation: ${(props) => strikeAnimation(22)} 200ms forwards;
 `;
 
 // ================= PlayerInfoWrapper =================

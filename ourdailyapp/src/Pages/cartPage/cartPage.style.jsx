@@ -104,7 +104,7 @@ S.PriceText = styled.span`
 
 /* ============== Checkout btns with Stripe ============= */
 S.BtnCheckout = styled.button`
-  all: unset;
+  border: 0;
   text-align: center;
   background: var(--blue-light);
 

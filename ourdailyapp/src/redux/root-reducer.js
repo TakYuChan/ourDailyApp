@@ -19,7 +19,7 @@ import pigGameModalsReducer from "./pigGameModals/pigGameModals.reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["cart", "user", "pigGame"],
+  whitelist: ["cart_P", "user", "pigGame"],
 };
 
 const rootReducer = combineReducers({
@@ -33,7 +33,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   sectionHeader: sectionHeaderReducer,
   // =========== Applications ===========
-  pigGame: pigGameReducer,
+  pigGame_P: pigGameReducer,
   pigGameModals: pigGameModalsReducer,
 });
 

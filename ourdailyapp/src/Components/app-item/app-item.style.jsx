@@ -9,7 +9,8 @@ const textStyles = css`
 `;
 
 const btnStyles = css`
-  all: unset;
+  border: 0;
+  background: 0;
   cursor: pointer;
   color: ${(props) => props.theme.cartPage.cartItemBtns};
   font-size: 0.8rem;

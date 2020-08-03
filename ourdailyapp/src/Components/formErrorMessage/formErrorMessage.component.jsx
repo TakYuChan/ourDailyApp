@@ -45,6 +45,9 @@ const FormErrorMessage = ({ errorObj }) => {
   if (errorObj.shortPassword) {
     errorTextArray.push("Your password must have a minimum length of 8");
   }
+  if (errorObj.emailInUseAlready) {
+    errorTextArray.push("This email has been registered, please try another one");
+  }
 
   // ======== PigGameModals - signIn Form ========
   if (errorObj.passwordIncorrect) {

@@ -125,7 +125,7 @@ S.BtnAndPriceContainer = styled.div`
 `;
 
 S.BtnAddToCart = styled.button`
-  all: unset;
+  border: 0;
   font-size: 0.8rem;
   padding: 0.4em 1em;
   background: var(--blue);
