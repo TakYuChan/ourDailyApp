@@ -14,6 +14,7 @@ import {
   selectWinner,
   selectFinalScore,
   selectPlayer2UserInfo,
+  selectStrikes,
 } from "../../redux/pigGame/pigGame.selectors";
 import {
   toggleSignInModal,
@@ -49,10 +50,15 @@ class PigGamePage extends React.Component {
       player2Obj,
       player2SignOutFlow,
       toggleInfoModal,
+      strikesNum,
     } = this.props;
 
     return (
       <S.PigGameContainer className="PigGame-Page pages">
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        </style>
         {/* ================= Player TWO Sign In BTN and MODAL ================= */}
         <Player2SignInModal />
         <InfoModal />
@@ -74,6 +80,13 @@ class PigGamePage extends React.Component {
         <S.GameConsoleContainer className="game-console-container">
           {/* ================= Player One Panel ================= */}
           <S.PlayerOnePanel className={activePlayer === 1 && "active"}>
+            {/* ================= Player 1 Strikes effect ================= */}
+            {strikesNum !== 0 && activePlayer === 1 && (
+              <S.Player1Strikes>
+                {strikesNum} STRIKES
+                <S.StrikeIcon className="iconfont icon-attack_16" />
+              </S.Player1Strikes>
+            )}
             {/* ================= Player One Info Container ================= */}
             <S.PlayerInfoContainer>
               <S.PlayerPic
@@ -110,6 +123,13 @@ class PigGamePage extends React.Component {
           </S.PlayerOnePanel>
           {/* ================= Player Two Panel ================= */}
           <S.PlayerTwoPanel className={activePlayer === 2 && "active"}>
+            {/* ================= Player 2 Strikes effect ================= */}
+            {strikesNum !== 0 && activePlayer === 2 && (
+              <S.Player2Strikes>
+                {strikesNum} STRIKES
+                <S.StrikeIcon className="iconfont icon-attack_16" />
+              </S.Player2Strikes>
+            )}
             {/* ================= Player Two Info Container ================= */}
             <S.PlayerInfoContainer>
               <S.PlayerPic
@@ -183,6 +203,7 @@ const mapStateToProps = createStructuredSelector({
   finalScore: selectFinalScore,
   selectCurrentUser: selectCurrentUser,
   player2Obj: selectPlayer2UserInfo,
+  strikesNum: selectStrikes,
 });
 
 const mapDispatchToProps = (dispatch) => ({

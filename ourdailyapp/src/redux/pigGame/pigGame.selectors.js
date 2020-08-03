@@ -41,3 +41,8 @@ export const selectPlayer2UserInfo = createSelector(
   [selectPigGameReducer],
   (pigGame) => pigGame.player2UserInfo
 );
+
+export const selectStrikes = createSelector(
+  [selectPigGameReducer],
+  (pigGame) => pigGame.strikes
+);

@@ -13,6 +13,7 @@ import {
 const INITIAL_STATE = {
   diceNumber: null,
   activePlayer: 1,
+  strikes: 0,
   player1: {
     totalScore: 0,
     currentScore: 0,
@@ -100,6 +101,16 @@ const pigGameReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         player2UserInfo: INITIAL_STATE.player2UserInfo,
+      };
+    case PigGameActionTypes.ADD_STRIKES:
+      return {
+        ...state,
+        strikes: ++state.strikes,
+      };
+    case PigGameActionTypes.CLEAR_STRIKES:
+      return {
+        ...state,
+        strikes: 0,
       };
     default:
       return state;

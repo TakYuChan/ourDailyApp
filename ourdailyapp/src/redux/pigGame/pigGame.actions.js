@@ -76,6 +76,14 @@ export const player2LogOut = () => ({
   type: PigGameActionTypes.PLAYER2_USER_LOGOUT,
 });
 
+export const addStrikes = () => ({
+  type: PigGameActionTypes.ADD_STRIKES,
+});
+
+export const clearStrikes = () => ({
+  type: PigGameActionTypes.CLEAR_STRIKES,
+});
+
 export const saveReducerStateToFirestore = (userObj) => {
   return (dispatch, getState) => {
     const pigGameState = getState().pigGame;
@@ -113,7 +121,14 @@ export const rollDice = () => {
       // 3. IF prev dice + current dice !== 8 START applying game logic
       dispatch(playerAddCurrentScore(newDiceNum));
 
-      // 4. Save Data to firestore
+      // 4. IF prev dice and the current dice are the same === strikes++
+      if (newDiceNum === prev_scores[activePlayer - 1]) {
+        dispatch(addStrikes());
+      } else {
+        dispatch(clearStrikes());
+      }
+
+      // 5. Save Data to firestore
       const pigGameStateObj = getState().pigGame;
       saveGameState(pigGameStateObj);
     }
@@ -123,8 +138,10 @@ export const rollDice = () => {
 export const holdDice = () => {
   return (dispatch, getState) => {
     if (getState().pigGame.winner === "none") {
-      console.log("Player held dice!");
       const activePlayer = getState().pigGame.activePlayer;
+
+      // Clear strikes
+      dispatch(clearStrikes());
 
       // 1. Add current score to total score
       dispatch(
@@ -160,9 +177,12 @@ export const holdDice = () => {
 export const player2SignOutFlow = () => {
   return (dispatch, getState) => {
     dispatch(player2LogOut());
-    const pigGameStateObj = getState().pigGame;
+
+    // CLEAR UP every game data
+    dispatch(startNewGame());
 
     // Save everything after log out
+    const pigGameStateObj = getState().pigGame;
     saveGameState(pigGameStateObj);
   };
 };

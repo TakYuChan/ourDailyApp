@@ -19,6 +19,7 @@ import {
 import {
   setPlayer2UserInfo,
   saveReducerStateToFirestore,
+  startNewGame,
 } from "../../../redux/pigGame/pigGame.actions";
 
 import { Modal } from "react-bootstrap";
@@ -40,6 +41,7 @@ class Player2SignInModal extends React.Component {
         setIsProcessingSignInTRUE,
         setIsProcessingSignInFALSE,
         saveReducerStateToFirestore,
+        startNewGame,
       } = this.props;
       // * Start spinner
       setIsProcessingSignInTRUE();
@@ -49,9 +51,11 @@ class Player2SignInModal extends React.Component {
       if (userObj) {
         // 2. Clear email and password input after clicking sign in
         this.setState({ email: "", password: "" });
-        // 3. Save user info to reducer
+        // 3. Clear previous game data
+        startNewGame();
+        // 4. Save user info to reducer
         setPlayer2UserInfo(userObj);
-        // 4. Save user info to firestore
+        // 5. Save user info to firestore
         saveReducerStateToFirestore(userObj);
       }
 
@@ -142,6 +146,7 @@ const mapDispatchToProps = (dispatch) => ({
   setIsProcessingSignInFALSE: () => dispatch(setIsProcessingSignInFALSE()),
   saveReducerStateToFirestore: (userObj) =>
     dispatch(saveReducerStateToFirestore(userObj)),
+  startNewGame: () => dispatch(startNewGame()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player2SignInModal);

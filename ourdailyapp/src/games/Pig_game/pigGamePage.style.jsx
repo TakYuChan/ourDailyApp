@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 const S = {};
 
@@ -63,6 +63,21 @@ const signInOutBtnStyles = css`
   border-radius: 20px;
 
   margin-right: 0.5em;
+`;
+
+const strikesStyles = css`
+  font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+  position: absolute;
+  font-family: "Press Start 2P", cursive;
+`;
+
+const strikeAnimation = (rotateDeg) => keyframes`
+  from {
+    transform: scale(.4) rotate(${rotateDeg}deg);
+  }
+  to {
+    transform: scale(1) rotate(${rotateDeg}deg);
+  }
 `;
 
 S.PigGameContainer = styled.div`
@@ -139,6 +154,27 @@ S.PlayerOnePanel = styled.div`
 `;
 S.PlayerTwoPanel = styled.div`
   ${panelStyles}
+`;
+
+S.StrikeIcon = styled.i`
+  font-size: 1.3em;
+  color: red;
+`;
+
+/* ================= Player 1 Strikes effect ================= */
+S.Player1Strikes = styled.h2`
+  ${strikesStyles}
+  top: 30%;
+  left: 15%;
+  animation: ${(props) => strikeAnimation(-22)} 300ms forwards;
+`;
+
+/* ================= Player 2 Strikes effect ================= */
+S.Player2Strikes = styled.h2`
+  ${strikesStyles}
+  top: 30%;
+  right: 15%;
+  animation: ${(props) => strikeAnimation(22)} 300ms forwards;
 `;
 
 // ================= PlayerInfoWrapper =================
