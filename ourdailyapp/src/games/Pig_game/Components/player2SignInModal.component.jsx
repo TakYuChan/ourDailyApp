@@ -8,8 +8,9 @@ import {
   selectSignInError,
   selectIsProcessingSignIn,
 } from "../../../redux/pigGameModals/pigGameModals.selectors";
-
+import { signInFormOnHide } from "../../../redux/pigGameModals/pigGameModals.actions";
 import { signInStart } from "../../../redux/pigGame/pigGame.actions";
+import { selectPlayer2UserInfo } from "../../../redux/pigGame/pigGame.selectors";
 
 import { Modal, Form } from "react-bootstrap";
 import FormInput from "../../../Components/formInput/formInput.component";
@@ -32,6 +33,7 @@ class Player2SignInModal extends React.Component {
       IsProcessingSignIn,
       signInFormOnHide,
       signInStart,
+      player2UserInfo,
     } = this.props;
     const { email, password } = this.state;
     return (
@@ -69,7 +71,8 @@ class Player2SignInModal extends React.Component {
                 e.preventDefault();
                 console.log("Ready to signInStart");
                 signInStart(email, password);
-                this.setState({ email: "", password: "" });
+                player2UserInfo !== null &&
+                  this.setState({ email: "", password: "" });
               }}
             >
               Player2 Log In
@@ -86,10 +89,12 @@ const mapStateToProps = createStructuredSelector({
   showSignInModal: selectShowSignInModal,
   signInErrorObj: selectSignInError,
   IsProcessingSignIn: selectIsProcessingSignIn,
+  player2UserInfo: selectPlayer2UserInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   signInStart: (email, password) => dispatch(signInStart(email, password)),
+  signInFormOnHide: () => dispatch(signInFormOnHide()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player2SignInModal);

@@ -93,11 +93,6 @@ const pigGameReducer_P = (state = INITIAL_STATE, action) => {
         player2UserInfo: action.payload,
         error: null,
       };
-    case PigGameActionTypes.PLAYER2_USER_LOGOUT:
-      return {
-        ...state,
-        player2UserInfo: INITIAL_STATE.player2UserInfo,
-      };
     case PigGameActionTypes.ADD_STRIKES:
       return {
         ...state,
@@ -108,10 +103,16 @@ const pigGameReducer_P = (state = INITIAL_STATE, action) => {
         ...state,
         strikes: 0,
       };
+    case PigGameActionTypes.SIGN_OUT_FAILURE:
     case PigGameActionTypes.SIGN_IN_FAILURE:
       return {
         ...state,
         error: action.payload,
+      };
+    case PigGameActionTypes.SIGN_OUT_SUCCESS:
+      return {
+        ...state,
+        player2UserInfo: INITIAL_STATE.player2UserInfo,
       };
     default:
       return state;

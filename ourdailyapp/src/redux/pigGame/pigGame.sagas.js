@@ -4,6 +4,8 @@ import {
   startNewGame,
   setPlayer2UserInfo,
   signInFailure,
+  signOutSuccess,
+  signOutFailure,
 } from "./pigGame.actions";
 import {
   setIsProcessingSignInTRUE,
@@ -17,9 +19,15 @@ function* onSignInStart() {
   yield takeLatest(PigGameActionTypes.SIGN_IN_START, signIn);
 }
 
-export default function* pigGameSaga() {
-  yield all([call(onSignInStart)]);
+function* onSignOutStart() {
+  yield takeLatest(PigGameActionTypes.SIGN_OUT_START, signOut);
 }
+
+export default function* pigGameSaga() {
+  yield all([call(onSignInStart), call(onSignOutStart)]);
+}
+
+// ================= More generator functions =================
 
 function* signIn({ email, password }) {
   try {
@@ -35,13 +43,7 @@ function* signIn({ email, password }) {
 
       const pigGameState = yield select((state) => state.pigGame_P);
       yield put(signInFormOnHide());
-      yield call(saveGameState, {
-        ...pigGameState,
-        player2UserInfo: {
-          displayName: user.displayName,
-          photoURL: user.photoURL,
-        },
-      });
+      yield call(saveGameState, pigGameState);
     }
 
     // * Stop spinner
@@ -50,5 +52,17 @@ function* signIn({ email, password }) {
     // * Stop spinner
     yield put(setIsProcessingSignInFALSE());
     yield put(signInFailure(error.message));
+  }
+}
+
+function* signOut() {
+  try {
+    yield put(signOutSuccess());
+    yield put(startNewGame());
+    // Save state to firestore
+    const pigGameState = yield select((state) => state.pigGame_P);
+    yield call(saveGameState, pigGameState);
+  } catch (error) {
+    yield put(signOutFailure(error.message));
   }
 }

@@ -95,6 +95,19 @@ export const signInFailure = (error) => ({
   payload: error,
 });
 
+export const signOutStart = () => ({
+  type: PigGameActionTypes.SIGN_OUT_START,
+});
+
+export const signOutSuccess = () => ({
+  type: PigGameActionTypes.SIGN_OUT_SUCCESS,
+});
+
+export const signOutFailure = (error) => ({
+  type: PigGameActionTypes.SIGN_OUT_FAILURE,
+  payload: error,
+});
+
 // ========= Thunk action flow =========
 export const rollDice = () => {
   return (dispatch, getState) => {

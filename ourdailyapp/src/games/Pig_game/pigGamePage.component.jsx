@@ -27,6 +27,7 @@ import {
   startNewGame,
   changeFinalScore,
   player2SignOutFlow,
+  signOutStart,
 } from "../../redux/pigGame/pigGame.actions";
 
 import Player2SignInModal from "./Components/player2SignInModal.component";
@@ -51,6 +52,7 @@ class PigGamePage extends React.Component {
       player2SignOutFlow,
       toggleInfoModal,
       strikesNum,
+      signOutStart,
     } = this.props;
 
     return (
@@ -64,7 +66,7 @@ class PigGamePage extends React.Component {
         <InfoModal />
         <S.ModalsContainer>
           {player2Obj !== null ? (
-            <S.Player2SignOutBtn onClick={player2SignOutFlow}>
+            <S.Player2SignOutBtn onClick={signOutStart}>
               <S.playerIcon className="iconfont icon-player" />
               Player2 Log Out
             </S.Player2SignOutBtn>
@@ -217,6 +219,7 @@ const mapDispatchToProps = (dispatch) => ({
   toggleSignInModal: () => dispatch(toggleSignInModal()),
   player2SignOutFlow: () => dispatch(player2SignOutFlow()),
   toggleInfoModal: () => dispatch(toggleInfoModal()),
+  signOutStart: () => dispatch(signOutStart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PigGamePage);
