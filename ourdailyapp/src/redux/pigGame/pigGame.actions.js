@@ -84,29 +84,16 @@ export const clearStrikes = () => ({
   type: PigGameActionTypes.CLEAR_STRIKES,
 });
 
-export const signInSuccess = () => ({
-  type: PigGameActionTypes.PIGGAME_SIGN_In_SUCCESS,
+export const signInStart = (email, password) => ({
+  type: PigGameActionTypes.SIGN_IN_START,
+  email,
+  password,
 });
 
 export const signInFailure = (error) => ({
-  type: PigGameActionTypes.PIGGAME_SIGN_In_FAILURE,
+  type: PigGameActionTypes.SIGN_In_FAILURE,
   payload: error,
 });
-
-export const saveReducerStateToFirestore = (userObj) => {
-  return (dispatch, getState) => {
-    const pigGameState = getState().pigGame_P;
-
-    // Save user details to firestore
-    saveGameState({
-      ...pigGameState,
-      player2UserInfo: {
-        displayName: userObj.displayName,
-        photoURL: userObj.photoURL,
-      },
-    });
-  };
-};
 
 // ========= Thunk action flow =========
 export const rollDice = () => {

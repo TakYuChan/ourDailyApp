@@ -29,7 +29,7 @@ const INITIAL_STATE = {
   // prev_scores stores 2 values.
   // the prev value of player 1 and player 2
   prev_scores: [0, 0],
-  userError: null,
+  error: null,
   isLoading: true,
 };
 
@@ -91,6 +91,7 @@ const pigGameReducer_P = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         player2UserInfo: action.payload,
+        error: null,
       };
     case PigGameActionTypes.PLAYER2_USER_LOGOUT:
       return {
@@ -107,16 +108,10 @@ const pigGameReducer_P = (state = INITIAL_STATE, action) => {
         ...state,
         strikes: 0,
       };
-    case PigGameActionTypes.PIGGAME_SIGN_IN_SUCCESS:
+    case PigGameActionTypes.SIGN_IN_FAILURE:
       return {
         ...state,
-        player2UserInfo: action.payload,
-        userError: null,
-      };
-    case PigGameActionTypes.PIGGAME_SIGN_IN_FAILURE:
-      return {
-        ...state,
-        userError: action.payload,
+        error: action.payload,
       };
     default:
       return state;

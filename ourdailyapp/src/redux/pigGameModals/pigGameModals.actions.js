@@ -1,7 +1,7 @@
 import PigGameModalsActionTypes from "./pigGameModals.types";
 
 // import { saveGameState } from "../../firebase/firestore/setData";
-import { getMatchedUserArray } from "../../firebase/firestore/getData";
+// import { getMatchedUserArray } from "../../firebase/firestore/getData";
 
 export const toggleSignInModal = () => ({
   type: PigGameModalsActionTypes.TOGGLE_SIGNIN_MODAL,
@@ -65,28 +65,28 @@ export const signInFormOnHide = () => {
   };
 };
 
-export const player2SignInFlow = (email, password) => {
-  return async (dispatch) => {
-    const targetUserArray = await getMatchedUserArray(email, password);
+// export const player2SignInFlow = (email, password) => {
+//   return async (dispatch) => {
+//     const targetUserArray = await getMatchedUserArray(email, password);
 
-    // Email not registered error
-    if (targetUserArray.length === 0) {
-      dispatch(setEmailNotRegisteredTRUE());
-      return false;
-    } else {
-      dispatch(setEmailNotRegisteredFALSE());
-    }
+//     // 1. Email not registered error
+//     if (targetUserArray.length === 0) {
+//       dispatch(setEmailNotRegisteredTRUE());
+//       return false;
+//     } else {
+//       dispatch(setEmailNotRegisteredFALSE());
+//     }
 
-    // 2. Authentication check
-    const userObj = targetUserArray[0].data();
-    if (userObj.password === password) {
-      dispatch(setPasswordIncorrectFALSE());
-    } else {
-      dispatch(setPasswordIncorrectTRUE());
-      return false;
-    }
+//     // 2. Authentication check
+//     const userObj = targetUserArray[0].data();
+//     if (userObj.password === password) {
+//       dispatch(setPasswordIncorrectFALSE());
+//     } else {
+//       dispatch(setPasswordIncorrectTRUE());
+//       return false;
+//     }
 
-    // Ready to -> Save user info to reducer
-    return { displayName: userObj.displayName, photoURL: userObj.photoURL };
-  };
-};
+//     // Ready to -> Save user info to reducer
+//     return { displayName: userObj.displayName, photoURL: userObj.photoURL };
+//   };
+// };
