@@ -26,7 +26,6 @@ import {
   holdDice,
   startNewGame,
   changeFinalScore,
-  player2SignOutFlow,
   signOutStart,
 } from "../../redux/pigGame/pigGame.actions";
 
@@ -49,7 +48,6 @@ class PigGamePage extends React.Component {
       selectCurrentUser,
       toggleSignInModal,
       player2Obj,
-      player2SignOutFlow,
       toggleInfoModal,
       strikesNum,
       signOutStart,
@@ -217,7 +215,6 @@ const mapDispatchToProps = (dispatch) => ({
   changeFinalScore: (newFinalScore) =>
     dispatch(changeFinalScore(newFinalScore)),
   toggleSignInModal: () => dispatch(toggleSignInModal()),
-  player2SignOutFlow: () => dispatch(player2SignOutFlow()),
   toggleInfoModal: () => dispatch(toggleInfoModal()),
   signOutStart: () => dispatch(signOutStart()),
 });

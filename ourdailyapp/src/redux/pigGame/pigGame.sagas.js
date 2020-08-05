@@ -31,6 +31,7 @@ export default function* pigGameSaga() {
 
 function* signIn({ email, password }) {
   try {
+    yield;
     // * Start spinner
     yield put(setIsProcessingSignInTRUE());
     const user = yield call(getUserAuthInfo, email, password);
