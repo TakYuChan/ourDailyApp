@@ -4,24 +4,17 @@ import "./shopPage.style.scss";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
-import { fetchApplicationsStartAsync } from "../../redux/app/app.actions";
+import { fetchApplicationsStart } from "../../redux/app/app.actions";
 
 import SectionHeader from "../../Components/sectionHeader/sectionHeader.component";
 import ApplicationOverview from "../../ComponentsNotReuse/applicationOverview/applicationOverview.component";
 import ApplicationDetailWithPreloader from "../ApplicationDetailPage/applicationDetailWithPreloader.component";
 
 class ShopPage extends React.Component {
-  unsubscribeFromSnapshot = null;
   componentDidMount() {
-    const { fetchApplicationsStartAsync } = this.props;
+    const { fetchApplicationsStart } = this.props;
 
-    console.log("Mounted Shop Page");
-
-    fetchApplicationsStartAsync();
-  }
-
-  componentWillUnmount() {
-    console.log("Unmounted Shop Page");
+    fetchApplicationsStart();
   }
 
   render() {
@@ -43,7 +36,7 @@ class ShopPage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   closeShopNav: () => dispatch(closeShopNav()),
-  fetchApplicationsStartAsync: () => dispatch(fetchApplicationsStartAsync()),
+  fetchApplicationsStart: () => dispatch(fetchApplicationsStart()),
 });
 
 export default connect(null, mapDispatchToProps)(ShopPage);

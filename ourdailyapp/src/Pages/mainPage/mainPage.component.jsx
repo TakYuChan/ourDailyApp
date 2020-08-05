@@ -4,7 +4,7 @@ import S from "./mainPage.style";
 
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { connect } from "react-redux";
-import { fetchAppLogoItemsStartAsync } from "../../redux/app/app.actions";
+import { fetchAppLogoItemsStart } from "../../redux/app/app.actions";
 
 import ApplicationWrapperWithSpinner from "../../Components/applicationWrapper/applicationWrapperWithSpinner.component";
 import Logo from "../../Components/logo/logo.component";
@@ -14,8 +14,8 @@ class MainPage extends React.Component {
   componentDidMount() {
     console.log("Main Page Mounted");
 
-    const { fetchAppLogoItemsStartAsync } = this.props;
-    fetchAppLogoItemsStartAsync();
+    const { fetchAppLogoItemsStart } = this.props;
+    fetchAppLogoItemsStart();
   }
 
   componentWillUnmount() {
@@ -37,7 +37,7 @@ class MainPage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   closeShopNav: () => dispatch(closeShopNav()),
-  fetchAppLogoItemsStartAsync: () => dispatch(fetchAppLogoItemsStartAsync()),
+  fetchAppLogoItemsStart: () => dispatch(fetchAppLogoItemsStart()),
 });
 
 export default connect(null, mapDispatchToProps)(MainPage);

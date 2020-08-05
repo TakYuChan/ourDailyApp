@@ -19,9 +19,9 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 // Google Authentication
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: "select_account" });
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 // =============== Custom functions =================
 
@@ -33,9 +33,12 @@ export const createUserProfileDocument = async (user, additionalData) => {
     return;
   }
 
+  console.log(user.uid);
   const userRef = firestore.doc(`user/${user.uid}`);
 
   const userSnapShot = await userRef.get();
+
+  console.log("here");
   // console.log(user);
   if (!userSnapShot.exists) {
     const { displayName, photoURL, email } = user;
@@ -56,7 +59,7 @@ export const createUserProfileDocument = async (user, additionalData) => {
       console.log(`error creating user`, error.message);
     }
   }
-
+  console.log("returning");
   return userRef;
 };
 

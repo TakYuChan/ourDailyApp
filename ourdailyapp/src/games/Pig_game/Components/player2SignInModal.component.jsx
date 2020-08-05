@@ -21,8 +21,7 @@ import {
   startNewGame,
 } from "../../../redux/pigGame/pigGame.actions";
 
-import { Modal } from "react-bootstrap";
-import { Form } from "react-bootstrap";
+import { Modal, Form } from "react-bootstrap";
 import FormInput from "../../../Components/formInput/formInput.component";
 
 class Player2SignInModal extends React.Component {
