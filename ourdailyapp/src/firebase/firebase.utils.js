@@ -12,18 +12,6 @@ const config = {
   appId: "1:802609740539:web:ad5066d9ce22714a10ce5e",
   measurementId: "G-XKBNYDPQ1F",
 };
-// Initialize Firebase
-firebase.initializeApp(config);
-
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
-
-// Google Authentication
-export const googleProvider = new firebase.auth.GoogleAuthProvider();
-googleProvider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
-
-// =============== Custom functions =================
 
 //===== firestore =====
 
@@ -33,13 +21,11 @@ export const createUserProfileDocument = async (user, additionalData) => {
     return;
   }
 
-  console.log(user.uid);
   const userRef = firestore.doc(`user/${user.uid}`);
 
   const userSnapShot = await userRef.get();
 
   console.log("here");
-  // console.log(user);
   if (!userSnapShot.exists) {
     const { displayName, photoURL, email } = user;
 
@@ -59,8 +45,29 @@ export const createUserProfileDocument = async (user, additionalData) => {
       console.log(`error creating user`, error.message);
     }
   }
-  console.log("returning");
   return userRef;
 };
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
+
+// Initialize Firebase
+firebase.initializeApp(config);
+
+export const auth = firebase.auth();
+export const firestore = firebase.firestore();
+
+// Google Authentication
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: "select_account" });
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
+
+// =============== Custom functions =================
 
 export default firebase;

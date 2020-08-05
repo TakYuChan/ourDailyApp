@@ -19,6 +19,7 @@ import {
   selectIsProcessingSignIn,
   selectSignInFormError,
 } from "../../redux/signInUp/signInUp.selector";
+import { emailSignIn } from "../../redux/user/user.actions";
 
 import { Form } from "react-bootstrap";
 import FormInput from "../../Components/formInput/formInput.component";
@@ -82,7 +83,7 @@ class SignInForm extends React.Component {
   //   ================================= Life Cycle Hooks =================================
   render() {
     const { email, password } = this.state;
-    const { isProcessingSignIn, signInFormError } = this.props;
+    const { isProcessingSignIn, signInFormError, emailSignIn } = this.props;
 
     return (
       <Form className="signInForm">
@@ -111,7 +112,11 @@ class SignInForm extends React.Component {
         <S.Button
           variant="primary"
           type="submit"
-          onClick={this.handleEmailSignIn}
+          // onClick={this.handleEmailSignIn}
+          onClick={(event) => {
+            event.preventDefault();
+            emailSignIn({ email, password });
+          }}
         >
           Log In{isProcessingSignIn && <S.Spinner></S.Spinner>}
         </S.Button>
@@ -135,6 +140,8 @@ const mapDispatchToProps = (dispatch) => ({
   setPasswordIncorrectFALSE: () => dispatch(setPasswordIncorrectFALSE()),
   setEmailNotRegisteredFALSE: () => dispatch(setEmailNotRegisteredFALSE()),
   signInUpOnHide: () => dispatch(signInUpOnHide()),
+  emailSignIn: ({ email, password }) =>
+    dispatch(emailSignIn({ email, password })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);
