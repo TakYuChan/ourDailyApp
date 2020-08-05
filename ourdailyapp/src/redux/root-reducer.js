@@ -19,7 +19,7 @@ import pigGameModalsReducer from "./pigGameModals/pigGameModals.reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["cart_P", "user", "pigGame_P"],
+  whitelist: ["cart_P", "user", "pigGame"],
   // whitelist: ["cart_P", "pigGame"],
 };
 

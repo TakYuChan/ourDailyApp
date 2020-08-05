@@ -84,7 +84,6 @@ export const clearStrikes = () => ({
   type: PigGameActionTypes.CLEAR_STRIKES,
 });
 
-<<<<<<< HEAD
 export const signInStart = (email, password) => ({
   type: PigGameActionTypes.SIGN_IN_START,
   email,
@@ -93,15 +92,6 @@ export const signInStart = (email, password) => ({
 
 export const signInFailure = (error) => ({
   type: PigGameActionTypes.SIGN_In_FAILURE,
-=======
-export const signInSuccess = (user) => ({
-  type: PigGameActionTypes.PIGGAME_SIGN_IN_SUCCESS,
-  payload: user,
-});
-
-export const signInFailure = (error) => ({
-  type: PigGameActionTypes.PIGGAME_SIGN_IN_FAILURE,
->>>>>>> 53da1c25287e345bd66203e8d428cf24d327f672
   payload: error,
 });
 

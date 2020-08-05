@@ -51,9 +51,8 @@ export const googleSignInStart = () => ({
   type: PigGameModalsActionTypes.PIGGAME_GOOGLE_SIGN_IN_START,
 });
 
-export const emailSignInStart = (emailAndPassword) => ({
+export const emailSignInStart = () => ({
   type: PigGameModalsActionTypes.PIGGAME_EMAIL_SIGN_IN_START,
-  payload: emailAndPassword,
 });
 
 // ================ Reduce Thunk Flow ================
