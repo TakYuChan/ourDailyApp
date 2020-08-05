@@ -84,12 +84,13 @@ export const clearStrikes = () => ({
   type: PigGameActionTypes.CLEAR_STRIKES,
 });
 
-export const signInSuccess = () => ({
-  type: PigGameActionTypes.PIGGAME_SIGN_In_SUCCESS,
+export const signInSuccess = (user) => ({
+  type: PigGameActionTypes.PIGGAME_SIGN_IN_SUCCESS,
+  payload: user,
 });
 
 export const signInFailure = (error) => ({
-  type: PigGameActionTypes.PIGGAME_SIGN_In_FAILURE,
+  type: PigGameActionTypes.PIGGAME_SIGN_IN_FAILURE,
   payload: error,
 });
 

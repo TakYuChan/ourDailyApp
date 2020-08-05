@@ -13,6 +13,7 @@ import {
   setIsProcessingSignInTRUE,
   setIsProcessingSignInFALSE,
   signInFormOnHide,
+  emailSignInStart,
 } from "../../../redux/pigGameModals/pigGameModals.actions";
 
 import {
@@ -79,6 +80,7 @@ class Player2SignInModal extends React.Component {
       signInErrorObj,
       IsProcessingSignIn,
       signInFormOnHide,
+      emailSignInStart,
     } = this.props;
     const { email, password } = this.state;
     return (
@@ -110,7 +112,13 @@ class Player2SignInModal extends React.Component {
               errorObj={signInErrorObj.passwordError}
             />
 
-            <S.Button variant="primary" onClick={this.handleSignIn}>
+            <S.Button
+              variant="primary"
+              onClick={(e) => {
+                e.preventDefault();
+                emailSignInStart({ email, password });
+              }}
+            >
               Player2 Log In
               {IsProcessingSignIn && <S.Spinner></S.Spinner>}
             </S.Button>
@@ -137,6 +145,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(saveReducerStateToFirestore(userObj)),
   startNewGame: () => dispatch(startNewGame()),
   signInFormOnHide: () => dispatch(signInFormOnHide()),
+  emailSignInStart: (emailAndPassword) =>
+    dispatch(emailSignInStart(emailAndPassword)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player2SignInModal);
