@@ -38,7 +38,7 @@ class App extends React.Component {
 
   //=============== Life Cycle Hooks ===============
   componentDidMount() {
-    const { checkAuthSession } = this.props;
+    // const { checkAuthSession } = this.props;
     checkAuthSession();
   }
 

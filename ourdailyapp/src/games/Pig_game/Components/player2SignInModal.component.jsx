@@ -8,9 +8,25 @@ import {
   selectSignInError,
   selectIsProcessingSignIn,
 } from "../../../redux/pigGameModals/pigGameModals.selectors";
+<<<<<<< HEAD
 import { signInFormOnHide } from "../../../redux/pigGameModals/pigGameModals.actions";
 import { signInStart } from "../../../redux/pigGame/pigGame.actions";
 import { selectPlayer2UserInfo } from "../../../redux/pigGame/pigGame.selectors";
+=======
+import {
+  player2SignInFlow,
+  setIsProcessingSignInTRUE,
+  setIsProcessingSignInFALSE,
+  signInFormOnHide,
+  emailSignInStart,
+} from "../../../redux/pigGameModals/pigGameModals.actions";
+
+import {
+  setPlayer2UserInfo,
+  saveReducerStateToFirestore,
+  startNewGame,
+} from "../../../redux/pigGame/pigGame.actions";
+>>>>>>> 53da1c25287e345bd66203e8d428cf24d327f672
 
 import { Modal, Form } from "react-bootstrap";
 import FormInput from "../../../Components/formInput/formInput.component";
@@ -32,8 +48,12 @@ class Player2SignInModal extends React.Component {
       signInErrorObj,
       IsProcessingSignIn,
       signInFormOnHide,
+<<<<<<< HEAD
       signInStart,
       player2UserInfo,
+=======
+      emailSignInStart,
+>>>>>>> 53da1c25287e345bd66203e8d428cf24d327f672
     } = this.props;
     const { email, password } = this.state;
     return (
@@ -69,10 +89,14 @@ class Player2SignInModal extends React.Component {
               variant="primary"
               onClick={(e) => {
                 e.preventDefault();
+<<<<<<< HEAD
                 console.log("Ready to signInStart");
                 signInStart(email, password);
                 player2UserInfo !== null &&
                   this.setState({ email: "", password: "" });
+=======
+                emailSignInStart({ email, password });
+>>>>>>> 53da1c25287e345bd66203e8d428cf24d327f672
               }}
             >
               Player2 Log In
@@ -95,6 +119,8 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   signInStart: (email, password) => dispatch(signInStart(email, password)),
   signInFormOnHide: () => dispatch(signInFormOnHide()),
+  emailSignInStart: (emailAndPassword) =>
+    dispatch(emailSignInStart(emailAndPassword)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player2SignInModal);
