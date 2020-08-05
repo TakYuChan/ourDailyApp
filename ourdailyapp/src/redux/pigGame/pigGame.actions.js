@@ -84,6 +84,15 @@ export const clearStrikes = () => ({
   type: PigGameActionTypes.CLEAR_STRIKES,
 });
 
+export const signInSuccess = () => ({
+  type: PigGameActionTypes.PIGGAME_SIGN_In_SUCCESS,
+});
+
+export const signInFailure = (error) => ({
+  type: PigGameActionTypes.PIGGAME_SIGN_In_FAILURE,
+  payload: error,
+});
+
 export const saveReducerStateToFirestore = (userObj) => {
   return (dispatch, getState) => {
     const pigGameState = getState().pigGame_P;
@@ -98,6 +107,7 @@ export const saveReducerStateToFirestore = (userObj) => {
     });
   };
 };
+
 // ========= Thunk action flow =========
 export const rollDice = () => {
   return (dispatch, getState) => {

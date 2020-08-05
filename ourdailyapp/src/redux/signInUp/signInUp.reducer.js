@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   renderFor: "signIn",
   showSignInUpModal: false,
   isProcessingSignIn: false,
+  isProcessingSignUp: false,
   signInFormError: {
     emailError: {
       emailNotExist: false,
@@ -61,7 +62,7 @@ const signInUpReducer = (state = INITIAL_STATE, action) => {
         showSignInUpModal: false,
       };
     // ========= Sign Up Form error =============
-    case SignInUpActionTypes.RESET_SIGNUPFORM_ERROR:
+    case SignInUpActionTypes.RESET_SIGNIN_SIGNUP_ERROR:
       return {
         ...state,
         signInFormError: { ...INITIAL_STATE.signInFormError },
@@ -95,16 +96,6 @@ const signInUpReducer = (state = INITIAL_STATE, action) => {
         },
       };
     // ========= Sign Up Form error =============
-    case SignInUpActionTypes.SET_PROCESSING_SIGNIN_TRUE:
-      return {
-        ...state,
-        isProcessingSignIn: true,
-      };
-    case SignInUpActionTypes.SET_PROCESSING_SIGNIN_FALSE:
-      return {
-        ...state,
-        isProcessingSignIn: false,
-      };
     case SignInUpActionTypes.PASSWORD_INCORRECT_TRUE:
       return {
         ...state,
@@ -145,12 +136,26 @@ const signInUpReducer = (state = INITIAL_STATE, action) => {
           },
         },
       };
-    case SignInUpActionTypes.RESET_SIGNINFORM_ERROR:
+    // ==================== // Processing spinner ====================
+    case SignInUpActionTypes.SET_PROCESSING_SIGNIN_TRUE:
       return {
         ...state,
-        signInFormError: {
-          ...INITIAL_STATE.signInFormError,
-        },
+        isProcessingSignIn: true,
+      };
+    case SignInUpActionTypes.SET_PROCESSING_SIGNIN_FALSE:
+      return {
+        ...state,
+        isProcessingSignIn: false,
+      };
+    case SignInUpActionTypes.SET_PROCESSING_SIGNUP_TRUE:
+      return {
+        ...state,
+        isProcessingSignUp: true,
+      };
+    case SignInUpActionTypes.SET_PROCESSING_SIGNUP_FALSE:
+      return {
+        ...state,
+        isProcessingSignUp: false,
       };
     default:
       return state;

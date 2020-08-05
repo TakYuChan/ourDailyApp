@@ -1,6 +1,4 @@
 import SignInUpActionTypes from "../signInUp/signInUp.types";
-import { signUpFormErrorCheck } from "../../utils/errorCheckUtils";
-import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 
 export const setRenderForSignIn = () => ({
   type: SignInUpActionTypes.SET_RENDER_FOR_SIGNIN,
@@ -25,16 +23,20 @@ export const updateSignUpError = (errorObj) => ({
   payload: errorObj,
 });
 
-export const resetSignUpFormError = () => ({
-  type: SignInUpActionTypes.RESET_SIGNUPFORM_ERROR,
-});
-
 export const setIsProcessingSignInTRUE = () => ({
   type: SignInUpActionTypes.SET_PROCESSING_SIGNIN_TRUE,
 });
 
 export const setIsProcessingSignInFALSE = () => ({
   type: SignInUpActionTypes.SET_PROCESSING_SIGNIN_FALSE,
+});
+
+export const setIsProcessingSignUpTRUE = () => ({
+  type: SignInUpActionTypes.SET_PROCESSING_SIGNUP_TRUE,
+});
+
+export const setIsProcessingSignUpFALSE = () => ({
+  type: SignInUpActionTypes.SET_PROCESSING_SIGNUP_FALSE,
 });
 
 export const setPasswordIncorrectTRUE = () => ({
@@ -53,8 +55,8 @@ export const setEmailNotRegisteredFALSE = () => ({
   type: SignInUpActionTypes.EMAIL_NOTREGISTERED_FALSE,
 });
 
-export const resetSignInFormError = () => ({
-  type: SignInUpActionTypes.RESET_SIGNINFORM_ERROR,
+export const resetSignInSignUpError = () => ({
+  type: SignInUpActionTypes.RESET_SIGNIN_SIGNUP_ERROR,
 });
 
 export const setEmailAlreadyInUserTRUE = () => ({
@@ -72,48 +74,8 @@ export const signInUpOnHide = () => {
     dispatch(turnSignInUpOFF());
 
     setTimeout(() => {
-      dispatch(resetSignInFormError());
-      dispatch(resetSignUpFormError());
+      dispatch(resetSignInSignUpError());
       dispatch(setRenderForSignIn());
     }, 300);
-  };
-};
-
-export const signUpSubmitFlow = ({
-  displayName,
-  email,
-  password,
-  confirmPassword,
-}) => {
-  return async (dispatch) => {
-    //1. Error Checking
-    const errorObj = signUpFormErrorCheck(
-      displayName,
-      email,
-      password,
-      confirmPassword
-    );
-
-    dispatch(updateSignUpError(errorObj));
-
-    //2. if NO error is detected, start creating new user in firebase.
-    if (Object.keys(errorObj).length === 0) {
-      // Create user account
-      console.log("errorObj is CLEAN");
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-
-      // Create User profile in firestore
-      await createUserProfileDocument(user, { displayName, password });
-
-      // Registration Successful will direct users to the "registerSuccessScene"
-      dispatch(setRenderForRegisterSuccess());
-
-      return true;
-    }
-
-    return false;
   };
 };

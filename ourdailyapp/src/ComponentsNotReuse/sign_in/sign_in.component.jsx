@@ -3,12 +3,12 @@ import React from "react";
 import S from "./sign_in.style";
 import { connect } from "react-redux";
 import { setRenderForSignUp } from "../../redux/signInUp/signInUp.actions";
-import { googleSignIn } from "../../redux/user/user.actions";
+import { googleSignInStart } from "../../redux/user/user.actions";
 
 import { Modal } from "react-bootstrap";
 import SignInForm from "../../ComponentsNotReuse/signInForm/signInForm.component";
 
-const SignIn = ({ renderForSignUp, googleSignIn }) => {
+const SignIn = ({ renderForSignUp, googleSignInStart }) => {
   return (
     <div className="sign-in-modal">
       <Modal.Header closeButton>
@@ -32,7 +32,7 @@ const SignIn = ({ renderForSignUp, googleSignIn }) => {
           className="btn--googleAuth"
           onClick={(event) => {
             event.preventDefault();
-            googleSignIn();
+            googleSignInStart();
           }}
         >
           <S.IconGoogle className="iconfont icon-google"></S.IconGoogle>
@@ -45,7 +45,7 @@ const SignIn = ({ renderForSignUp, googleSignIn }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   renderForSignUp: () => dispatch(setRenderForSignUp()),
-  googleSignIn: () => dispatch(googleSignIn()),
+  googleSignInStart: () => dispatch(googleSignInStart()),
 });
 
 export default connect(null, mapDispatchToProps)(SignIn);

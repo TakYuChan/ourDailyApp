@@ -5,12 +5,12 @@ import { displayNameLengthFilter } from "../../utils/dataFilter.js";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectUserLogged } from "../../redux/user/user.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import { Dropdown } from "react-bootstrap";
 
-const DropDownHeader = ({ userLogged, currentUser }) => {
-  return userLogged ? (
+const DropDownHeader = ({ currentUser }) => {
+  return currentUser ? (
     [
       <Dropdown.Header key="1">Welcome Back!</Dropdown.Header>,
       <Dropdown.Item key="2" disabled className="userName">
@@ -25,7 +25,7 @@ const DropDownHeader = ({ userLogged, currentUser }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  userLogged: selectUserLogged,
+  currentUser: selectCurrentUser,
 });
 
 export default connect(mapStateToProps)(DropDownHeader);

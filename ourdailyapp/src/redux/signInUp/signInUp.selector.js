@@ -22,6 +22,11 @@ export const selectIsProcessingSignIn = createSelector(
   (signInUp) => signInUp.isProcessingSignIn
 );
 
+export const selectIsProcessingSignUp = createSelector(
+  [selectSignInUp],
+  (signInUp) => signInUp.isProcessingSignUp
+);
+
 export const selectSignInFormError = createSelector(
   [selectSignInUp],
   (signInUp) => signInUp.signInFormError

@@ -47,6 +47,14 @@ export const setIsProcessingSignInFALSE = () => ({
   type: PigGameModalsActionTypes.SET_PROCESSING_SIGNIN_FALSE,
 });
 
+export const googleSignInStart = () => ({
+  type: PigGameModalsActionTypes.PIGGAME_GOOGLE_SIGN_IN_START,
+});
+
+export const emailSignInStart = () => ({
+  type: PigGameModalsActionTypes.PIGGAME_EMAIL_SIGN_IN_START,
+});
+
 // ================ Reduce Thunk Flow ================
 export const signInFormOnHide = () => {
   return (dispatch) => {

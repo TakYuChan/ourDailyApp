@@ -7,10 +7,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { renderProfilePicture } from "../../utils/conditional.js";
 import { closeNav } from "../../redux/nav/nav.actions";
-import {
-  selectCurrentUser,
-  selectUserLogged,
-} from "../../redux/user/user.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import SignInSignOutButton from "../../ComponentsNotReuse/signInSignOutButton/signInSignOutButton.component";
 import DropDownHeader from "../../ComponentsNotReuse/profileDropDownHeader/profileDropDownHeader.component";
@@ -68,7 +65,6 @@ class ProfileDropDownMenu extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
-  userLogged: selectUserLogged,
 });
 
 const mapDispatchToState = (dispatch) => ({

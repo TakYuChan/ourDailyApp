@@ -10,12 +10,7 @@ import { connect } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styled/globalStyle";
 import { lightTheme, darkTheme } from "./styled/theme";
-
-import {
-  setUser,
-  userLoggedOn,
-  userLoggedOFF,
-} from "./redux/user/user.actions";
+import { checkAuthSession } from "./redux/user/user.actions";
 
 import MainPage from "./Pages/mainPage/mainPage.component";
 import ShopPage from "./Pages/shopPage/shopPage.component";
@@ -31,8 +26,6 @@ import FloatNav from "./Components/floatNav/floatNav.component";
 import ShopNav from "./ComponentsNotReuse/shopNav/shopNav.component";
 import CartPreview from "./ComponentsNotReuse/cartPreview/cartPreview.component";
 
-import { checkUserSession } from "./redux/user/user.actions";
-
 import "./App.scss";
 
 class App extends React.Component {
@@ -44,10 +37,9 @@ class App extends React.Component {
   }
 
   //=============== Life Cycle Hooks ===============
-
   componentDidMount() {
-    const { checkUserSession } = this.props;
-    checkUserSession();
+    const { checkAuthSession } = this.props;
+    checkAuthSession();
   }
 
   render() {
@@ -80,10 +72,7 @@ class App extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setUser: (user) => dispatch(setUser(user)),
-  userLoggedOn: () => dispatch(userLoggedOn()),
-  userLoggedOFF: () => dispatch(userLoggedOFF()),
-  checkUserSession: () => dispatch(checkUserSession()),
+  checkAuthSession: () => dispatch(checkAuthSession()),
 });
 
 export default connect(null, mapDispatchToProps)(App);

@@ -13,6 +13,18 @@ const config = {
   measurementId: "G-XKBNYDPQ1F",
 };
 
+// Initialize Firebase
+firebase.initializeApp(config);
+
+export const auth = firebase.auth();
+export const firestore = firebase.firestore();
+
+// Google Authentication
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: "select_account" });
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
+
+// =============== Custom functions =================
 //===== firestore =====
 
 //===== User =====
@@ -56,18 +68,5 @@ export const getCurrentUser = () => {
     }, reject);
   });
 };
-
-// Initialize Firebase
-firebase.initializeApp(config);
-
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
-
-// Google Authentication
-export const googleProvider = new firebase.auth.GoogleAuthProvider();
-googleProvider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
-
-// =============== Custom functions =================
 
 export default firebase;

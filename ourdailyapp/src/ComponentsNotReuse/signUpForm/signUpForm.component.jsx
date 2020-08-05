@@ -7,14 +7,13 @@ import FormInput from "../../Components/formInput/formInput.component";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { userLoggedOn } from "../../redux/user/user.actions";
+
 import {
-  setRenderForRegisterSuccess,
-  signUpSubmitFlow,
-  setEmailAlreadyInUserTRUE,
-  setEmailNotRegisteredFALSE,
-} from "../../redux/signInUp/signInUp.actions";
-import { selectSignUpFormError } from "../../redux/signInUp/signInUp.selector";
+  selectSignUpFormError,
+  selectIsProcessingSignUp,
+} from "../../redux/signInUp/signInUp.selector";
+
+import { signUpStart } from "../../redux/user/user.actions";
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -28,43 +27,6 @@ class SignUpForm extends React.Component {
   }
 
   //  ================================= Custom Methods =================================
-  handleSubmit = async (event) => {
-    const {
-      errorCheckAndRedirect,
-      setEmailAlreadyInUserTRUE,
-      setEmailNotRegisteredFALSE,
-    } = this.props;
-    const { displayName, email, password, confirmPassword } = this.state;
-    try {
-      event.preventDefault();
-
-      // 1. Sign Up and error checking
-      // Source: signInUp.reducer.js
-      const isSignUpSuccess = await errorCheckAndRedirect({
-        displayName,
-        email,
-        password,
-        confirmPassword,
-      });
-
-      // 2. Optional ============ If Sign Up Successfully ===============
-      if (isSignUpSuccess) {
-        // Clear all input in the sign up form
-        this.setState({
-          displayName: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-        });
-      }
-    } catch (error) {
-      error.code === "auth/email-already-in-use"
-        ? setEmailAlreadyInUserTRUE()
-        : setEmailNotRegisteredFALSE();
-
-      console.log(`Error creating user with email and password`, error.code);
-    }
-  };
 
   handleInputChange = (event) => {
     const { value, name } = event.target;
@@ -75,7 +37,7 @@ class SignUpForm extends React.Component {
   //   ================================= Life Cycle Hooks =================================
   render() {
     const { displayName, email, password, confirmPassword } = this.state;
-    const { signUpErrorObj } = this.props;
+    const { signUpErrorObj, signUpStart, isProcessingSignUp } = this.props;
 
     return (
       <Form className="signUpForm">
@@ -123,8 +85,15 @@ class SignUpForm extends React.Component {
           errorObj={signUpErrorObj.passwordError}
         />
 
-        <S.Button variant="primary" type="submit" onClick={this.handleSubmit}>
-          Submit
+        <S.Button
+          variant="primary"
+          type="submit"
+          onClick={(event) => {
+            event.preventDefault();
+            signUpStart({ displayName, email, password, confirmPassword });
+          }}
+        >
+          Submit{isProcessingSignUp && <S.Spinner></S.Spinner>}
         </S.Button>
       </Form>
     );
@@ -133,14 +102,11 @@ class SignUpForm extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   signUpErrorObj: selectSignUpFormError,
+  isProcessingSignUp: selectIsProcessingSignUp,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  userLoggedOn: () => dispatch(userLoggedOn()),
-  renderForRegisterSuccess: () => dispatch(setRenderForRegisterSuccess()),
-  errorCheckAndRedirect: (formInputs) => dispatch(signUpSubmitFlow(formInputs)),
-  setEmailAlreadyInUserTRUE: () => dispatch(setEmailAlreadyInUserTRUE()),
-  setEmailNotRegisteredFALSE: () => dispatch(setEmailNotRegisteredFALSE()),
+  signUpStart: (registerDetails) => dispatch(signUpStart(registerDetails)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
