@@ -23,9 +23,9 @@ export function* checkSignInFormError(error) {
   return;
 }
 
-export function* getSnapshotFromAuth(user) {
+export function* getSnapshotFromAuth(user, additionalData) {
   try {
-    const userRef = yield call(createUserProfileDocument, user);
+    const userRef = yield call(createUserProfileDocument, user, additionalData);
     const userSnapshot = yield userRef.get();
     yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
   } catch (error) {
