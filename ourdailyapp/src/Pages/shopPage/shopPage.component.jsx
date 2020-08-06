@@ -7,8 +7,8 @@ import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { fetchApplicationsStart } from "../../redux/app/app.actions";
 
 import SectionHeader from "../../Components/sectionHeader/sectionHeader.component";
-import ApplicationOverview from "../../ComponentsNotReuse/applicationOverview/applicationOverview.component";
-import ApplicationDetailWithPreloader from "../ApplicationDetailPage/applicationDetailWithPreloader.component";
+import ApplicationOverview from "../../Pages/applicationOverview/applicationOverview.component";
+import ApplicationDetailWithPreloader from "../ApplicationDetailPage/ApplicationDetailPageWithPreloader.component";
 
 class ShopPage extends React.Component {
   componentDidMount() {

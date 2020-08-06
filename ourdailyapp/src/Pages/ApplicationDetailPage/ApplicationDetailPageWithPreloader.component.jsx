@@ -1,10 +1,10 @@
 import React from "react";
-import S from "./applicationDetailWithPreloader.style";
-import "./applicationDetailWithPreloader.style.scss";
+import S from "./ApplicationDetailPageWithPreloader.style";
+import "./ApplicationDetailPageWithPreloader.style.scss";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import ApplicationDetailPage from "./applicationDetailPage.component";
+import ApplicationDetailPage from "./ApplicationDetailPage.component";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { selectIsApplicationsLoaded } from "../../redux/app/app.selector";
 

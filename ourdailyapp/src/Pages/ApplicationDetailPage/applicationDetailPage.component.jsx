@@ -1,5 +1,5 @@
 import React from "react";
-import S from "./applicationDetailPage.style";
+import S from "./ApplicationDetailPage.style";
 
 import { connect } from "react-redux";
 import { selectApp } from "../../redux/app/app.selector";
