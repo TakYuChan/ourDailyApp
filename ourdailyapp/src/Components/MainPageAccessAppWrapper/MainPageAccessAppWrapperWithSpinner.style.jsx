@@ -11,7 +11,7 @@ const load = keyframes`
   opacity: 0;
 }`;
 
-S.applicationWrapperWithSpinner_wrapper = styled.div`
+S.mainPageAccessAppWrapperWithSpinner_wrapper = styled.div`
   width: 100vw;
 `;
 

@@ -1,9 +1,9 @@
 import React from "react";
-import S from "./applicationItem.style";
+import S from "./MainPageAccessAppBtn.style";
 
 import { Link } from "react-router-dom";
 
-const ApplicationItem = ({ app, index }) => {
+const MainPageAccessAppBtn = ({ app, index }) => {
   const { name, route, imageUrl, border } = app;
 
   return (
@@ -19,4 +19,4 @@ const ApplicationItem = ({ app, index }) => {
   );
 };
 
-export default ApplicationItem;
+export default MainPageAccessAppBtn;

@@ -1,12 +1,12 @@
 import React from "react";
-import S from "./applicationWrapperWithSpinner.style";
-import "./applicationWrapperWithSpinner.style.scss";
+import S from "./MainPageAccessAppWrapperWithSpinner.style";
+import "./MainPageAccessAppWrapperWithSpinner.style.scss";
 
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
-import ApplicationWrapper from "./applicationWrapper.component";
+import MainPageAccessAppWrapper from "./MainPageAccessAppWrapper.component";
 import {
   selectIsAppLogoItemsLoaded,
   selectAppLogoItems,
@@ -26,15 +26,18 @@ const ApplicationWrapperWithSpinner = ({
         }
         classNames="fade"
       >
-        <S.applicationWrapperWithSpinner_wrapper>
+        <S.mainPageAccessAppWrapperWithSpinner_wrapper>
           {isLoading ? (
             <S.SpinnerOverlay>
               <S.SpinnerContainer />
             </S.SpinnerOverlay>
           ) : (
-            <ApplicationWrapper appLogoItems={appLogoItems} {...otherProps} />
+            <MainPageAccessAppWrapper
+              appLogoItems={appLogoItems}
+              {...otherProps}
+            />
           )}
-        </S.applicationWrapperWithSpinner_wrapper>
+        </S.mainPageAccessAppWrapperWithSpinner_wrapper>
       </CSSTransition>
     </SwitchTransition>
   );

@@ -6,7 +6,7 @@ import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { connect } from "react-redux";
 import { fetchAppLogoItemsStart } from "../../redux/app/app.actions";
 
-import ApplicationWrapperWithSpinner from "../../Components/applicationWrapper/applicationWrapperWithSpinner.component";
+import MainPageAccessAppWrapperWithSpinner from "../../Components/MainPageAccessAppWrapper/MainPageAccessAppWrapperWithSpinner.component";
 import Logo from "../../Components/logo/logo.component";
 
 class MainPage extends React.Component {
@@ -29,7 +29,7 @@ class MainPage extends React.Component {
         <S.LogoWrapper className="logo-wrapper">
           <Logo />
         </S.LogoWrapper>
-        <ApplicationWrapperWithSpinner />
+        <MainPageAccessAppWrapperWithSpinner />
       </S.MainPageContainer>
     );
   }
