@@ -31,9 +31,9 @@ export const selectIsApplicationsLoaded = createSelector(
   (app) => !!app.applications
 );
 
-export const selectIsAppLogoItemsLoaded = createSelector(
+export const selectIsAccessAppBtnsLoaded = createSelector(
   [selectAppReducer],
-  (app) => !!app.appLogo_items
+  (app) => !!app.accessAppBtns
 );
 
 export const selectAppQuantity = createSelector(
@@ -41,6 +41,6 @@ export const selectAppQuantity = createSelector(
   (app) => app.customAppLength
 );
 
-export const selectAppLogoItems = createSelector([selectAppReducer], (app) => {
-  return app.appLogo_items ? app.appLogo_items : [];
+export const selectAccessAppBtns = createSelector([selectAppReducer], (app) => {
+  return app.accessAppBtns ? app.accessAppBtns : [];
 });

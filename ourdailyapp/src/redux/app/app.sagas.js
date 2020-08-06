@@ -2,20 +2,23 @@ import { takeLatest, call, put, all } from "redux-saga/effects";
 
 import AppActionTypes from "./app.types";
 import {
-  fetchAppLogoItemsSuccess,
+  fetchAccessAppBtnsSuccess,
   fetchApplicationsFailure,
   fetchApplicationsSuccess,
 } from "./app.actions";
 import {
   convertApplicationsArrayToMap,
-  transformAppLogoItemsArray,
+  transformAccessAppBtnsArray,
 } from "../../firebase/firestore/convertData";
 
 import { firestore } from "../../firebase/firebase.utils";
 
 // ================= Sagas ==================
-function* onFetchAppLogoItemsStart() {
-  yield takeLatest(AppActionTypes.FETCH_APPLOGO_ITEM_START, fetchAppLogoItems);
+function* onFetchAccessAppBtnsStart() {
+  yield takeLatest(
+    AppActionTypes.FETCH_ACCESS_APP_BTN_START,
+    fetchAccessAppBtns
+  );
 }
 
 function* onFetchApplicationsStart() {
@@ -23,17 +26,20 @@ function* onFetchApplicationsStart() {
 }
 
 export default function* appSaga() {
-  yield all([call(onFetchAppLogoItemsStart), call(onFetchApplicationsStart)]);
+  yield all([call(onFetchAccessAppBtnsStart), call(onFetchApplicationsStart)]);
 }
 
 // ================= other generator functions ==================
 
-function* fetchAppLogoItems() {
+function* fetchAccessAppBtns() {
   try {
     const collectionRef = firestore.collection("appLogoItems");
     const snapshot = yield collectionRef.get();
-    const appLogoItemsArray = yield call(transformAppLogoItemsArray, snapshot);
-    yield put(fetchAppLogoItemsSuccess(appLogoItemsArray));
+    const accessAppBtnsArray = yield call(
+      transformAccessAppBtnsArray,
+      snapshot
+    );
+    yield put(fetchAccessAppBtnsSuccess(accessAppBtnsArray));
   } catch (error) {
     yield put(fetchApplicationsFailure(error));
   }

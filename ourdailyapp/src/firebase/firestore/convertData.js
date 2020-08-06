@@ -19,16 +19,16 @@ export const convertApplicationsArrayToMap = (snapshot) => {
   }
 };
 
-export const transformAppLogoItemsArray = (snapshot) => {
+export const transformAccessAppBtnsArray = (snapshot) => {
   try {
-    const transformedAppLogoItemsArray = snapshot.docs.map((doc) => {
+    const transformAccessAppBtnsArray = snapshot.docs.map((doc) => {
       return {
         ...doc.data(),
         id: doc.id,
       };
     });
 
-    return transformedAppLogoItemsArray;
+    return transformAccessAppBtnsArray;
   } catch (error) {
     console.log("Error transforming app Logo Items array", error);
   }

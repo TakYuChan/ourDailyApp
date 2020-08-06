@@ -2,8 +2,8 @@ import AppActionTypes from "./app.types";
 
 const INITIAL_STATE = {
   applications: null,
-  appLogo_items: null,
-  errorMsg: "",
+  accessAppBtns: null,
+  errorMsg: null,
 };
 
 const appReducer = (state = INITIAL_STATE, action) => {
@@ -22,17 +22,12 @@ const appReducer = (state = INITIAL_STATE, action) => {
 
     // ====================== App Logo items =================
 
-    case AppActionTypes.FETCH_APPLOGO_ITEM_SUCCESS:
+    case AppActionTypes.FETCH_ACCESS_APP_BTN_SUCCESS:
       return {
         ...state,
-        appLogo_items: action.payload,
+        accessAppBtns: action.payload,
+        errorMsg: null,
       };
-    case AppActionTypes.FETCH_APPLOGO_ITEM_FAILURE:
-      return {
-        ...state,
-        errorMsg: action.payload,
-      };
-
     default:
       return state;
   }

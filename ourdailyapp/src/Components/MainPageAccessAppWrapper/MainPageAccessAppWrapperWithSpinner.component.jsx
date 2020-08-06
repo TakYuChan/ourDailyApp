@@ -8,13 +8,13 @@ import { createStructuredSelector } from "reselect";
 
 import MainPageAccessAppWrapper from "./MainPageAccessAppWrapper.component";
 import {
-  selectIsAppLogoItemsLoaded,
-  selectAppLogoItems,
+  selectIsAccessAppBtnsLoaded,
+  selectAccessAppBtns,
 } from "../../redux/app/app.selector";
 
 const ApplicationWrapperWithSpinner = ({
   isLoading,
-  appLogoItems,
+  accessAppBtns,
   ...otherProps
 }) => {
   return (
@@ -33,7 +33,7 @@ const ApplicationWrapperWithSpinner = ({
             </S.SpinnerOverlay>
           ) : (
             <MainPageAccessAppWrapper
-              appLogoItems={appLogoItems}
+              accessAppBtns={accessAppBtns}
               {...otherProps}
             />
           )}
@@ -44,8 +44,8 @@ const ApplicationWrapperWithSpinner = ({
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: (state) => !selectIsAppLogoItemsLoaded(state),
-  appLogoItems: selectAppLogoItems,
+  isLoading: (state) => !selectIsAccessAppBtnsLoaded(state),
+  accessAppBtns: selectAccessAppBtns,
 });
 
 export default connect(mapStateToProps)(ApplicationWrapperWithSpinner);

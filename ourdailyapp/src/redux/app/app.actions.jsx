@@ -14,12 +14,12 @@ export const fetchApplicationsFailure = (errorMsg) => ({
   payload: errorMsg,
 });
 
-// ====================== App Logo items =================
-export const fetchAppLogoItemsStart = () => ({
-  type: AppActionTypes.FETCH_APPLOGO_ITEM_START,
+// ====================== ACCESS APP BUTTONS =================
+export const fetchAccessAppBtnsStart = () => ({
+  type: AppActionTypes.FETCH_ACCESS_APP_BTN_START,
 });
 
-export const fetchAppLogoItemsSuccess = (appLogoItems) => ({
-  type: AppActionTypes.FETCH_APPLOGO_ITEM_SUCCESS,
-  payload: appLogoItems,
+export const fetchAccessAppBtnsSuccess = (accessAppBtns) => ({
+  type: AppActionTypes.FETCH_ACCESS_APP_BTN_SUCCESS,
+  payload: accessAppBtns,
 });
