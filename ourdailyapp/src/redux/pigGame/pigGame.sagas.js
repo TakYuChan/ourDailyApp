@@ -6,6 +6,15 @@ import {
   signInFailure,
   signOutSuccess,
   signOutFailure,
+  changeDiceNumber,
+  changePrevScores,
+  playerClearTotalScore,
+  playerClearCurrentScore,
+  switchActivePlayer,
+  playerAddCurrentScore,
+  addStrikes,
+  clearStrikes,
+  restorePrevGameData,
 } from "./pigGame.actions";
 import {
   setIsProcessingSignInTRUE,
@@ -23,8 +32,21 @@ function* onSignOutStart() {
   yield takeLatest(PigGameActionTypes.SIGN_OUT_START, signOut);
 }
 
+function* onRollDice() {
+  yield takeLatest(PigGameActionTypes.ROLL_DICE, rollDice);
+}
+
+function* onStartNewGame() {
+  yield takeLatest(PigGameActionTypes.START_NEW_GAME, saveNewGame);
+}
+
 export default function* pigGameSaga() {
-  yield all([call(onSignInStart), call(onSignOutStart)]);
+  yield all([
+    call(onSignInStart),
+    call(onSignOutStart),
+    call(onRollDice),
+    call(onStartNewGame),
+  ]);
 }
 
 // ================= More generator functions =================
@@ -67,5 +89,48 @@ function* signOut() {
     yield call(saveGameState, pigGameState);
   } catch (error) {
     yield put(signOutFailure(error.message));
+  }
+}
+
+function* saveNewGame() {
+  const gameState = yield select((state) => state.pigGame_P);
+  console.log("game: ".gameState);
+  yield call(saveGameState, gameState);
+}
+
+function* rollDice() {
+  const prevGameState = yield select((state) => state.pigGame_P);
+  try {
+    const winner = yield select((state) => state.pigGame_P.winner);
+    if (winner === "none") {
+      console.log("rolling dice...");
+      const newDiceNum = yield Math.floor(Math.random() * 6) + 1;
+      const pigGameReducer = yield select((state) => state.pigGame_P);
+      const activePlayer = pigGameReducer.activePlayer;
+      yield put(changeDiceNumber(newDiceNum));
+      // 1. Save the number
+      // 2. IF prev dice + current dice === 8 -> STOP
+      const prev_scores = yield select((state) => state.pigGame_P.prev_scores);
+      yield put(changePrevScores(newDiceNum));
+      if (newDiceNum + prev_scores[activePlayer - 1] === 8) {
+        yield put(playerClearTotalScore());
+        yield put(playerClearCurrentScore());
+        yield put(switchActivePlayer());
+      }
+      // 3. IF prev dice + current dice !== 8 START applying game logic
+      yield put(playerAddCurrentScore(newDiceNum));
+      // 4. IF prev dice and the current dice are the same === strikes++
+      if (newDiceNum === prev_scores[activePlayer - 1]) {
+        yield put(addStrikes());
+      } else {
+        yield put(clearStrikes());
+      }
+      // 5. Save Data to firestore
+      const pigGameStateObj = yield select((state) => state.pigGame_P);
+      yield call(saveGameState, pigGameStateObj);
+    }
+  } catch (error) {
+    yield put(restorePrevGameData(prevGameState));
+    console.log(error);
   }
 }

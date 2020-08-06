@@ -3,6 +3,7 @@ import S from "./pigGamePageWithSpinner.style";
 import "./pigGamePageWithSpinner.style.scss";
 
 import { getPigGameState } from "../../firebase/firestore/getData";
+
 // import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -11,6 +12,7 @@ import {
   loadGameState,
   loadingIsFinished,
   setIsLoadingToTrue,
+  startNewGame,
 } from "../../redux/pigGame/pigGame.actions";
 
 import PigGamePage from "./pigGamePage.component";
@@ -19,13 +21,20 @@ class PigGamePageWithSpinner extends React.Component {
   async componentDidMount() {
     // Load Game State to pigGameReducer
 
-    const { loadGameState, loadingIsFinished, isLoading } = this.props;
+    const {
+      loadGameState,
+      loadingIsFinished,
+      isLoading,
+      startNewGame,
+    } = this.props;
 
     console.log("PigGameWithSpinner Mounted: ", isLoading);
 
     const gameState = await getPigGameState();
     if (gameState !== null) {
       loadGameState(gameState);
+    } else {
+      startNewGame();
     }
 
     loadingIsFinished();
@@ -77,6 +86,7 @@ const mapDispatchToProps = (dispatch) => ({
   loadGameState: (gameState) => dispatch(loadGameState(gameState)),
   loadingIsFinished: () => dispatch(loadingIsFinished()),
   setIsLoadingToTrue: () => dispatch(setIsLoadingToTrue()),
+  startNewGame: () => dispatch(startNewGame()),
 });
 
 export default connect(

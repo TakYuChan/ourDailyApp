@@ -114,6 +114,8 @@ const pigGameReducer_P = (state = INITIAL_STATE, action) => {
         ...state,
         player2UserInfo: INITIAL_STATE.player2UserInfo,
       };
+    case PigGameActionTypes.RESTORE_PREV_GAME_DATA:
+      return action.payload;
     default:
       return state;
   }
