@@ -45,6 +45,8 @@ function* signIn({ email, password }) {
       const pigGameState = yield select((state) => state.pigGame_P);
       yield put(signInFormOnHide());
       yield call(saveGameState, pigGameState);
+    } else {
+      throw new Error("Sign In Form Error");
     }
 
     // * Stop spinner

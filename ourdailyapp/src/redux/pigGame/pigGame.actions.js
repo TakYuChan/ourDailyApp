@@ -91,7 +91,7 @@ export const signInStart = (email, password) => ({
 });
 
 export const signInFailure = (error) => ({
-  type: PigGameActionTypes.SIGN_In_FAILURE,
+  type: PigGameActionTypes.SIGN_IN_FAILURE,
   payload: error,
 });
 

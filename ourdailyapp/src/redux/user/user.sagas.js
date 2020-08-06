@@ -1,12 +1,4 @@
-import {
-  takeLatest,
-  call,
-  put,
-  all,
-  take,
-  fork,
-  cancel,
-} from "redux-saga/effects";
+import { takeLatest, call, put, all } from "redux-saga/effects";
 
 import UserActionTypes from "./user.types";
 import {
@@ -42,46 +34,21 @@ import {
 
 import { signUpFormErrorCheck } from "../../utils/errorCheckUtils";
 // ================= Sagas ==================
-// function* onGoogleSignInStart() {
-//   yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
-// }
+function* onGoogleSignInStart() {
+  yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
+}
 
-// function* onEmailSignInStart() {
-//   yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
-// }
-
-function* onSignInStart() {
-  while (true) {
-    const signInAction = yield take([
-      UserActionTypes.GOOGLE_SIGN_IN_START,
-      UserActionTypes.EMAIL_SIGN_IN_START,
-    ]);
-    let signInTask = null;
-    if (signInAction.type === UserActionTypes.EMAIL_SIGN_IN_START) {
-      signInTask = yield fork(signInWithEmail, signInAction);
-    } else if (signInAction.type === UserActionTypes.GOOGLE_SIGN_IN_START) {
-      console.log("google sign in");
-      signInTask = yield fork(signInWithGoogle);
-    }
-    const action = yield take([
-      UserActionTypes.SIGN_OUT_START,
-      UserActionTypes.SIGN_IN_FAILURE,
-    ]);
-    // If Sign In failure then restart the listener
-    if (action.type === UserActionTypes.SIGN_IN_FAILURE) continue;
-    yield cancel(signInTask);
-    yield call(signOut);
-    console.log("ended");
-  }
+function* onEmailSignInStart() {
+  yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
 
 function* onCheckAuthSession() {
   yield takeLatest(UserActionTypes.CHECK_AUTH_SESSION, isUserAuthenticated);
 }
 
-// function* onSignOutStart() {
-//   yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
-// }
+function* onSignOutStart() {
+  yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
+}
 
 function* onSignUpStart() {
   yield takeLatest(UserActionTypes.SIGN_UP_START, signUp);
@@ -93,11 +60,10 @@ function* onSignUpSuccess() {
 
 export default function* userSaga() {
   yield all([
-    // call(onGoogleSignInStart),
-    // call(onEmailSignInStart),
-    call(onSignInStart),
+    call(onGoogleSignInStart),
+    call(onEmailSignInStart),
     call(onCheckAuthSession),
-    // call(onSignOutStart),
+    call(onSignOutStart),
     call(onSignUpStart),
     call(onSignUpSuccess),
   ]);
