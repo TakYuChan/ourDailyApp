@@ -15,6 +15,9 @@ import {
   addStrikes,
   clearStrikes,
   restorePrevGameData,
+  playerAddTotalScore,
+  checkWinner,
+  resetPrevScore,
 } from "./pigGame.actions";
 import {
   setIsProcessingSignInTRUE,
@@ -36,6 +39,10 @@ function* onRollDice() {
   yield takeLatest(PigGameActionTypes.ROLL_DICE, rollDice);
 }
 
+function* onHoldDice() {
+  yield takeLatest(PigGameActionTypes.HOLD_DICE, holdDice);
+}
+
 function* onStartNewGame() {
   yield takeLatest(PigGameActionTypes.START_NEW_GAME, saveNewGame);
 }
@@ -46,6 +53,7 @@ export default function* pigGameSaga() {
     call(onSignOutStart),
     call(onRollDice),
     call(onStartNewGame),
+    call(onHoldDice),
   ]);
 }
 
@@ -132,5 +140,39 @@ function* rollDice() {
   } catch (error) {
     yield put(restorePrevGameData(prevGameState));
     console.log(error);
+  }
+}
+
+function* holdDice() {
+  const prevGameState = yield select((state) => state.pigGame_P);
+  try {
+    if (prevGameState.winner === "none") {
+      console.log("hi");
+      const activePlayer = prevGameState.activePlayer;
+      // 1. Clear strikes
+      yield put(clearStrikes());
+      // 2. Add current score to total score
+      yield put(
+        playerAddTotalScore(prevGameState[`player${activePlayer}`].currentScore)
+      );
+      // 3. Clear current score
+      yield put(playerClearCurrentScore());
+      // // 4. Check if someone has won
+      yield put(checkWinner());
+      // // 5. IF no one has won, game continues and switch player
+      let gameState = yield select((state) => state.pigGame_P);
+      if (gameState.winner === "none") {
+        // Reset prev score
+        yield put(resetPrevScore());
+        // Switch Player
+        yield put(switchActivePlayer());
+      }
+      // Save data to firestore
+      gameState = yield select((state) => state.pigGame_P);
+      yield call(saveGameState, gameState);
+    }
+  } catch (error) {
+    console.log(error);
+    yield put(restorePrevGameData(prevGameState));
   }
 }

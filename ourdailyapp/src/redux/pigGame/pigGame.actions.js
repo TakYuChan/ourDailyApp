@@ -112,51 +112,16 @@ export const rollDice = () => ({
   type: PigGameActionTypes.ROLL_DICE,
 });
 
+export const holdDice = () => ({
+  type: PigGameActionTypes.HOLD_DICE,
+});
+
 export const restorePrevGameData = (gameState) => ({
   type: PigGameActionTypes.RESTORE_PREV_GAME_DATA,
   payload: gameState,
 });
 
 // ========= Thunk action flow =========
-
-export const holdDice = () => {
-  return (dispatch, getState) => {
-    if (getState().pigGame_P.winner === "none") {
-      const activePlayer = getState().pigGame_P.activePlayer;
-
-      // Clear strikes
-      dispatch(clearStrikes());
-
-      // 1. Add current score to total score
-      dispatch(
-        playerAddTotalScore(
-          getState().pigGame_P[`player${activePlayer}`].currentScore
-        )
-      );
-      // Clear current score
-      dispatch(playerClearCurrentScore());
-
-      // 2. Check if someone has won
-      dispatch(checkWinner());
-
-      // 3. IF no one has won, game continue and switch player
-      if (getState().pigGame_P.winner === "none") {
-        // Reset prev score
-        dispatch(resetPrevScore());
-        // Switch Player
-        dispatch(switchActivePlayer());
-
-        // Save Data to firestore
-        const pigGameStateObj = getState().pigGame_P;
-        saveGameState(pigGameStateObj);
-      }
-
-      // 4. Save Data to firestore
-      const pigGameStateObj = getState().pigGame_P;
-      saveGameState(pigGameStateObj);
-    }
-  };
-};
 
 export const player2SignOutFlow = () => {
   return (dispatch, getState) => {
