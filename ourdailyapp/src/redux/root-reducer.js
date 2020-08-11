@@ -13,9 +13,9 @@ import cartReducer from "./cart/cart.reducer";
 import sectionHeaderReducer from "./sectionHeader/sectionHeader.reducer";
 
 // =========== Applications ===========
-import pigGame_P_Reducer from "./pigGame/pigGame_P.reducer";
+import pigGameReducer from "./pigGame/pigGame.reducer";
 import pigGameModalsReducer from "./pigGameModals/pigGameModals.reducer";
-import pigGamePlayer2_P_Reducer from "./pigGamePlayer2/pigGamePlayer2_P.reducer";
+import pigGamePlayer2Reducer from "./pigGamePlayer2/pigGamePlayer2.reducer";
 
 const persistConfig = {
   key: "root",
@@ -35,9 +35,9 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   sectionHeader: sectionHeaderReducer,
   // =========== Applications ===========
-  pigGame_P: pigGame_P_Reducer,
+  pigGame: pigGameReducer,
   pigGameModals: pigGameModalsReducer,
-  pigGamePlayer2_P: pigGamePlayer2_P_Reducer,
+  pigGamePlayer2: pigGamePlayer2Reducer,
 });
 
 // export default rootReducer;

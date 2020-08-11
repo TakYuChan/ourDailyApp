@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   isLogged: false,
 };
 
-const pigGamePlayer2Reducer_P = (state = INITIAL_STATE, action) => {
+const pigGamePlayer2Reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case PigGamePlayer2ActionTypes.SIGN_IN_SUCCESS:
       return {
@@ -38,4 +38,4 @@ const pigGamePlayer2Reducer_P = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default pigGamePlayer2Reducer_P;
+export default pigGamePlayer2Reducer;
