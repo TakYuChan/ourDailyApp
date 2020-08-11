@@ -1,7 +1,13 @@
 import UserActionTypes from "./user.types";
 
 const INITIATE_STATE = {
-  currentUser: null,
+  currentUser: {
+    id: null,
+    displayName: null,
+    email: null,
+    photoURL: null,
+  },
+  isLogged: false,
   error: null,
 };
 
@@ -10,13 +16,20 @@ const userReducer = (state = INITIATE_STATE, action) => {
     case UserActionTypes.SIGN_IN_SUCCESS:
       return {
         ...state,
-        currentUser: action.payload,
+        currentUser: {
+          id: action.payload.id,
+          displayName: action.payload.displayName,
+          email: action.payload.email,
+          photoURL: action.payload.photoURL,
+        },
+        isLogged: true,
         error: null,
       };
     case UserActionTypes.SIGN_OUT_SUCCESS:
       return {
         ...state,
-        currentUser: null,
+        currentUser: INITIATE_STATE.currentUser,
+        isLogged: false,
         error: null,
       };
     case UserActionTypes.SIGN_OUT_FAILURE:

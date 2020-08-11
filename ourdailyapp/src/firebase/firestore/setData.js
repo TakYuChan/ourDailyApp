@@ -19,16 +19,29 @@ export const addCollectionAndDocuments = (collectionName, arrayToAdd) => {
   }
 };
 
-export const saveGameState = (objToAdd) => {
+export function saveGameState(stateObj) {
   try {
     const collectionRef = firestore.collection("pigGame");
-    console.log("Ready to add Single Document");
+
     const newDocRef = collectionRef.doc("game01");
     newDocRef.set({
-      ...objToAdd,
+      ...stateObj,
+      isLoading: true,
     });
     console.log("Added Single Document");
   } catch (error) {
     console.log(error);
   }
-};
+}
+
+export function savePigGamePlayer2State(stateObj) {
+  try {
+    const collectionRef = firestore.collection("pigGame");
+    const newDocRef = collectionRef.doc("player2");
+    newDocRef.set({
+      ...stateObj,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}

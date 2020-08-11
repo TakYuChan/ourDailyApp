@@ -2,7 +2,10 @@ import React from "react";
 import S from "./pigGamePageWithSpinner.style";
 import "./pigGamePageWithSpinner.style.scss";
 
-import { getPigGameState } from "../../firebase/firestore/getData";
+import {
+  getPigGameState,
+  getPigGamePlayer2State,
+} from "../../firebase/firestore/getData";
 
 // import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
@@ -14,6 +17,7 @@ import {
   setIsLoadingToTrue,
   startNewGame,
 } from "../../redux/pigGame/pigGame.actions";
+import { loadPlayer2State } from "../../redux/pigGamePlayer2/pigGamePlayer2.actions";
 
 import PigGamePage from "./pigGamePage.component";
 
@@ -24,18 +28,23 @@ class PigGamePageWithSpinner extends React.Component {
     const {
       loadGameState,
       loadingIsFinished,
-      isLoading,
       startNewGame,
+      loadPlayer2State,
     } = this.props;
 
-    console.log("PigGameWithSpinner Mounted: ", isLoading);
-
     const gameState = await getPigGameState();
+
     if (gameState !== null) {
       loadGameState(gameState);
     } else {
       startNewGame();
     }
+
+    // if (gamePlayer2State !== null) {
+    const gamePlayer2State = await getPigGamePlayer2State();
+    loadPlayer2State(gamePlayer2State);
+
+    // }
 
     loadingIsFinished();
   }
@@ -84,6 +93,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   loadGameState: (gameState) => dispatch(loadGameState(gameState)),
+  loadPlayer2State: (player2State) => dispatch(loadPlayer2State(player2State)),
   loadingIsFinished: () => dispatch(loadingIsFinished()),
   setIsLoadingToTrue: () => dispatch(setIsLoadingToTrue()),
   startNewGame: () => dispatch(startNewGame()),

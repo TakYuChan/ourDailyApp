@@ -12,10 +12,10 @@ import { Dropdown } from "react-bootstrap";
 
 const SignInSignOutButton = ({
   toggleSignInUpModal,
-  userAuth,
+  isLogged,
   signOutStart,
 }) => {
-  return userAuth ? (
+  return isLogged ? (
     <Dropdown.Item
       className="btn--openSignOutModal"
       onClick={() => {

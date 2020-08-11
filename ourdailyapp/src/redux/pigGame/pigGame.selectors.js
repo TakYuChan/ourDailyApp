@@ -37,10 +37,10 @@ export const selectIsLoading = createSelector(
   (pigGame_P) => pigGame_P.isLoading
 );
 
-export const selectPlayer2UserInfo = createSelector(
-  [selectPigGameReducer],
-  (pigGame_P) => pigGame_P.player2UserInfo
-);
+// export const selectPlayer2UserInfo = createSelector(
+//   [selectPigGameReducer],
+//   (pigGame_P) => pigGame_P.player2UserInfo
+// );
 
 export const selectStrikes = createSelector(
   [selectPigGameReducer],

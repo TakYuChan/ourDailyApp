@@ -67,45 +67,12 @@ export const resetPrevScore = () => ({
   type: PigGameActionTypes.RESET_PREV_SCORE,
 });
 
-export const setPlayer2UserInfo = (userObj) => ({
-  type: PigGameActionTypes.SET_PLAYER2_USER_INFO,
-  payload: userObj,
-});
-
-export const player2LogOut = () => ({
-  type: PigGameActionTypes.PLAYER2_USER_LOGOUT,
-});
-
 export const addStrikes = () => ({
   type: PigGameActionTypes.ADD_STRIKES,
 });
 
 export const clearStrikes = () => ({
   type: PigGameActionTypes.CLEAR_STRIKES,
-});
-
-export const signInStart = (email, password) => ({
-  type: PigGameActionTypes.SIGN_IN_START,
-  email,
-  password,
-});
-
-export const signInFailure = (error) => ({
-  type: PigGameActionTypes.SIGN_IN_FAILURE,
-  payload: error,
-});
-
-export const signOutStart = () => ({
-  type: PigGameActionTypes.SIGN_OUT_START,
-});
-
-export const signOutSuccess = () => ({
-  type: PigGameActionTypes.SIGN_OUT_SUCCESS,
-});
-
-export const signOutFailure = (error) => ({
-  type: PigGameActionTypes.SIGN_OUT_FAILURE,
-  payload: error,
 });
 
 export const rollDice = () => ({
@@ -122,16 +89,3 @@ export const restorePrevGameData = (gameState) => ({
 });
 
 // ========= Thunk action flow =========
-
-export const player2SignOutFlow = () => {
-  return (dispatch, getState) => {
-    dispatch(player2LogOut());
-
-    // CLEAR UP every game data
-    dispatch(startNewGame());
-
-    // Save everything after log out
-    const pigGameStateObj = getState().pigGame_P;
-    saveGameState(pigGameStateObj);
-  };
-};

@@ -13,21 +13,29 @@ import {
   selectPlayer2Obj,
   selectWinner,
   selectFinalScore,
-  selectPlayer2UserInfo,
+  // selectPlayer2UserInfo,
   selectStrikes,
 } from "../../redux/pigGame/pigGame.selectors";
+import {
+  selectPlayer2DisplayName,
+  selectPlayer2PhotoURL,
+  selectIsLogged,
+} from "../../redux/pigGamePlayer2/pigGamePlayer2.selectors";
 import {
   toggleSignInModal,
   toggleInfoModal,
 } from "../../redux/pigGameModals/pigGameModals.actions";
-import { selectCurrentUser } from "../../redux/user/user.selectors";
+import {
+  selectCurrentUser,
+  selectIsUserLogged,
+} from "../../redux/user/user.selectors";
 import {
   rollDice,
   holdDice,
   startNewGame,
   changeFinalScore,
-  signOutStart,
 } from "../../redux/pigGame/pigGame.actions";
+import { signOutStart } from "../../redux/pigGamePlayer2/pigGamePlayer2.actions";
 
 import Player2SignInModal from "./Components/player2SignInModal.component";
 import InfoModal from "./Components/infoModal.component";
@@ -47,10 +55,13 @@ class PigGamePage extends React.Component {
       changeFinalScore,
       selectCurrentUser,
       toggleSignInModal,
-      player2Obj,
+      displayName,
+      photoURL,
       toggleInfoModal,
       strikesNum,
       signOutStart,
+      isPlayer2Logged,
+      isMainUserLogged,
     } = this.props;
 
     return (
@@ -63,7 +74,7 @@ class PigGamePage extends React.Component {
         <Player2SignInModal />
         <InfoModal />
         <S.ModalsContainer>
-          {player2Obj !== null ? (
+          {isPlayer2Logged ? (
             <S.Player2SignOutBtn onClick={signOutStart}>
               <S.playerIcon className="iconfont icon-player" />
               Player2 Log Out
@@ -92,18 +103,21 @@ class PigGamePage extends React.Component {
             {/* ================= Player One Info Container ================= */}
             <S.PlayerInfoContainer>
               <S.PlayerPic
-                imgsrc={renderProfilePicture(selectCurrentUser)}
+                imgsrc={
+                  isMainUserLogged
+                    ? renderProfilePicture(selectCurrentUser.photoURL)
+                    : null
+                }
               ></S.PlayerPic>
               <S.PlayerName
                 className={`${activePlayer === 1 && "active"} player-name`}
                 fontSize={
-                  selectCurrentUser !== null &&
-                  selectCurrentUser.displayName !== null
+                  isMainUserLogged
                     ? playerNameFontSize(selectCurrentUser.displayName.length)
                     : 1
                 }
               >
-                {selectCurrentUser !== null
+                {isMainUserLogged
                   ? displayNameLengthFilter(selectCurrentUser.displayName, 8)
                   : "Player 1"}
               </S.PlayerName>
@@ -135,18 +149,18 @@ class PigGamePage extends React.Component {
             {/* ================= Player Two Info Container ================= */}
             <S.PlayerInfoContainer>
               <S.PlayerPic
-                imgsrc={renderProfilePicture(player2Obj)}
+                imgsrc={isPlayer2Logged ? renderProfilePicture(photoURL) : null}
               ></S.PlayerPic>
               <S.PlayerName
                 className={`${activePlayer === 2 && "active"} player-name`}
                 fontSize={
-                  player2Obj !== undefined && player2Obj !== null
-                    ? playerNameFontSize(player2Obj.displayName.length)
+                  displayName !== null
+                    ? playerNameFontSize(displayName.length)
                     : 1
                 }
               >
-                {player2Obj !== undefined && player2Obj !== null
-                  ? displayNameLengthFilter(player2Obj.displayName, 12)
+                {displayName !== null
+                  ? displayNameLengthFilter(displayName, 12)
                   : "Player 2"}
               </S.PlayerName>
             </S.PlayerInfoContainer>
@@ -204,8 +218,11 @@ const mapStateToProps = createStructuredSelector({
   selectWinner: selectWinner,
   finalScore: selectFinalScore,
   selectCurrentUser: selectCurrentUser,
-  player2Obj: selectPlayer2UserInfo,
+  isPlayer2Logged: selectIsLogged,
   strikesNum: selectStrikes,
+  displayName: selectPlayer2DisplayName,
+  photoURL: selectPlayer2PhotoURL,
+  isMainUserLogged: selectIsUserLogged,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -11,6 +11,17 @@ export const getPigGameState = async () => {
   }
 };
 
+export const getPigGamePlayer2State = async () => {
+  const docRef = firestore.collection("pigGame").doc("player2");
+  const docSnapshot = await docRef.get();
+  if (docSnapshot.exists) {
+    console.log("docSnapshot player2", docSnapshot.data());
+    return docSnapshot.data();
+  } else {
+    return null;
+  }
+};
+
 // export const getMatchedUserArray = async (email, password) => {
 //   // 1. Look if the email exists in firestore
 //   const collectionRef = firestore.collection("user");

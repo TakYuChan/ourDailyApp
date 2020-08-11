@@ -9,14 +9,12 @@ import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import { Dropdown } from "react-bootstrap";
 
-const DropDownHeader = ({ currentUser }) => {
-  return currentUser ? (
+const DropDownHeader = ({ currentUser, isLogged }) => {
+  return isLogged ? (
     [
       <Dropdown.Header key="1">Welcome Back!</Dropdown.Header>,
       <Dropdown.Item key="2" disabled className="userName">
-        {currentUser !== null && currentUser.displayName !== null
-          ? displayNameLengthFilter(currentUser.displayName, 20)
-          : null}
+        {displayNameLengthFilter(currentUser.displayName, 20)}
       </Dropdown.Item>,
     ]
   ) : (

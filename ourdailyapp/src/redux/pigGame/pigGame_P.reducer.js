@@ -22,7 +22,6 @@ const INITIAL_STATE = {
     totalScore: 0,
     currentScore: 0,
   },
-  player2UserInfo: null,
   //winner -> none, player1, player2
   winner: "none",
   finalScore: 100,
@@ -59,7 +58,6 @@ const pigGameReducer_P = (state = INITIAL_STATE, action) => {
       return {
         ...INITIAL_STATE,
         finalScore: state.finalScore,
-        player2UserInfo: state.player2UserInfo,
         isLoading: false,
       };
     case PigGameActionTypes.CHANGE_FINAL_SCORE:
@@ -87,12 +85,7 @@ const pigGameReducer_P = (state = INITIAL_STATE, action) => {
           state.prev_scores
         ),
       };
-    case PigGameActionTypes.SET_PLAYER2_USER_INFO:
-      return {
-        ...state,
-        player2UserInfo: action.payload,
-        error: null,
-      };
+
     case PigGameActionTypes.ADD_STRIKES:
       return {
         ...state,
@@ -103,19 +96,14 @@ const pigGameReducer_P = (state = INITIAL_STATE, action) => {
         ...state,
         strikes: 0,
       };
-    case PigGameActionTypes.SIGN_OUT_FAILURE:
-    case PigGameActionTypes.SIGN_IN_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
-      };
-    case PigGameActionTypes.SIGN_OUT_SUCCESS:
-      return {
-        ...state,
-        player2UserInfo: INITIAL_STATE.player2UserInfo,
-      };
+
     case PigGameActionTypes.RESTORE_PREV_GAME_DATA:
       return action.payload;
+    case PigGameActionTypes.LOADING_FINISHED:
+      return {
+        ...state,
+        isLoading: false,
+      };
     default:
       return state;
   }
