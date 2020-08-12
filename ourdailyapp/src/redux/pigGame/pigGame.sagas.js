@@ -44,7 +44,7 @@ export default function* pigGameSaga() {
 
 function* saveNewGame() {
   const gameState = yield select((state) => state.pigGame);
-  console.log("game: ".gameState);
+  //console.log("game: ".gameState);
   yield call(saveGameState, gameState);
 }
 
