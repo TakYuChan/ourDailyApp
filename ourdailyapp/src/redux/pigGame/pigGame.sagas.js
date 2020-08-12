@@ -43,24 +43,24 @@ export default function* pigGameSaga() {
 // ================= More generator functions =================
 
 function* saveNewGame() {
-  const gameState = yield select((state) => state.pigGame_P);
+  const gameState = yield select((state) => state.pigGame);
   console.log("game: ".gameState);
   yield call(saveGameState, gameState);
 }
 
 function* rollDice() {
-  const prevGameState = yield select((state) => state.pigGame_P);
+  const prevGameState = yield select((state) => state.pigGame);
   try {
-    const winner = yield select((state) => state.pigGame_P.winner);
+    const winner = yield select((state) => state.pigGame.winner);
     if (winner === "none") {
       console.log("rolling dice...");
       const newDiceNum = yield Math.floor(Math.random() * 6) + 1;
-      const pigGameReducer = yield select((state) => state.pigGame_P);
+      const pigGameReducer = yield select((state) => state.pigGame);
       const activePlayer = pigGameReducer.activePlayer;
       yield put(changeDiceNumber(newDiceNum));
       // 1. Save the number
       // 2. IF prev dice + current dice === 8 -> STOP
-      const prev_scores = yield select((state) => state.pigGame_P.prev_scores);
+      const prev_scores = yield select((state) => state.pigGame.prev_scores);
       yield put(changePrevScores(newDiceNum));
       if (newDiceNum + prev_scores[activePlayer - 1] === 8) {
         yield put(playerClearTotalScore());
@@ -76,7 +76,7 @@ function* rollDice() {
         yield put(clearStrikes());
       }
       // 5. Save Data to firestore
-      const pigGameStateObj = yield select((state) => state.pigGame_P);
+      const pigGameStateObj = yield select((state) => state.pigGame);
       yield call(saveGameState, pigGameStateObj);
     }
   } catch (error) {
@@ -86,7 +86,7 @@ function* rollDice() {
 }
 
 function* holdDice() {
-  const prevGameState = yield select((state) => state.pigGame_P);
+  const prevGameState = yield select((state) => state.pigGame);
   try {
     if (prevGameState.winner === "none") {
       console.log("hi");
@@ -102,7 +102,7 @@ function* holdDice() {
       // // 4. Check if someone has won
       yield put(checkWinner());
       // // 5. IF no one has won, game continues and switch player
-      let gameState = yield select((state) => state.pigGame_P);
+      let gameState = yield select((state) => state.pigGame);
       if (gameState.winner === "none") {
         // Reset prev score
         yield put(resetPrevScore());
@@ -110,7 +110,7 @@ function* holdDice() {
         yield put(switchActivePlayer());
       }
       // Save data to firestore
-      gameState = yield select((state) => state.pigGame_P);
+      gameState = yield select((state) => state.pigGame);
       yield call(saveGameState, gameState);
     }
   } catch (error) {
