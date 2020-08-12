@@ -58,7 +58,7 @@ const pigGameReducer = (state = INITIAL_STATE, action) => {
       return {
         ...INITIAL_STATE,
         finalScore: state.finalScore,
-        isLoading: false,
+        isLoading: state.isLoading,
       };
     case PigGameActionTypes.CHANGE_FINAL_SCORE:
       return {

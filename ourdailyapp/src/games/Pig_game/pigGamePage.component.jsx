@@ -154,12 +154,10 @@ class PigGamePage extends React.Component {
               <S.PlayerName
                 className={`${activePlayer === 2 && "active"} player-name`}
                 fontSize={
-                  displayName !== null
-                    ? playerNameFontSize(displayName.length)
-                    : 1
+                  isPlayer2Logged ? playerNameFontSize(displayName.length) : 1
                 }
               >
-                {displayName !== null
+                {isPlayer2Logged
                   ? displayNameLengthFilter(displayName, 12)
                   : "Player 2"}
               </S.PlayerName>
