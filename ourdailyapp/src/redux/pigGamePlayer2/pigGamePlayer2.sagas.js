@@ -49,11 +49,11 @@ function* signIn({ email, password }) {
       yield put(signInSuccess(displayName, photoURL));
 
       // 3. Saving Data to backend
-      const pigGameState = yield select((state) => state.pigGame_P);
+      const pigGameState = yield select((state) => state.pigGame);
       yield call(saveGameState, pigGameState);
 
       const pigGamePlayer2State = yield select(
-        (state) => state.pigGamePlayer2_P
+        (state) => state.pigGamePlayer2
       );
       yield call(savePigGamePlayer2State, pigGamePlayer2State);
 
@@ -78,10 +78,10 @@ function* signOut() {
     // yield put(startNewGame());
 
     // Save state to firestore
-    const pigGameState = yield select((state) => state.pigGame_P);
+    const pigGameState = yield select((state) => state.pigGame);
     yield call(saveGameState, pigGameState);
 
-    const pigGamePlayer2State = yield select((state) => state.pigGamePlayer2_P);
+    const pigGamePlayer2State = yield select((state) => state.pigGamePlayer2);
     yield call(savePigGamePlayer2State, pigGamePlayer2State);
   } catch (error) {
     yield put(signOutFailure(error.message));
