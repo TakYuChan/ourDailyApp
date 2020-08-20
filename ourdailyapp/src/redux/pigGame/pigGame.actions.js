@@ -1,5 +1,5 @@
 import PigGameActionTypes from "./pigGame.types";
-import { saveGameState } from "../../firebase/firestore/setData";
+// import { saveGameState } from "../../firebase/firestore/setData";
 
 export const changeDiceNumber = (newDiceNum) => ({
   type: PigGameActionTypes.CHANGE_DICE_NUM,

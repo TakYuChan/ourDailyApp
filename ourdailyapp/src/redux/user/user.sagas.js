@@ -76,7 +76,7 @@ function* signInWithGoogle() {
     // * Start spinner
     yield put(setIsProcessingSignInTRUE());
 
-    const { user } = yield call(() => auth.signInWithPopup(googleProvider));
+    const { user } = yield call([auth, auth.signInWithPopup], googleProvider);
     yield call(getSnapshotFromAuth, user);
 
     // Hide Modals
@@ -157,7 +157,8 @@ function* signUp({
     // 3. if NO error is detected, start creating new user in firebase.
     if (Object.keys(errorObj).length === 0) {
       // Create user account
-      const { user } = yield auth.createUserWithEmailAndPassword(
+      const { user } = yield call(
+        [auth, auth.createUserWithEmailAndPassword],
         email,
         password
       );
