@@ -10,6 +10,8 @@ import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 
 import FloatNavContent from "../../ComponentsNotReuse/floatNavContent/floatNavContent.component";
 
+import PropTypes from "prop-types";
+
 class FloatNav extends React.Component {
   constructor(props) {
     super(props);
@@ -87,5 +89,9 @@ const mapDispatchToProps = (dispatch) => ({
   closeNav: () => dispatch(closeNav()),
   closeShopNav: () => dispatch(closeShopNav()),
 });
+
+FloatNav.propTypes = {
+  navHidden: PropTypes.bool.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FloatNav);

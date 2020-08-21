@@ -3,6 +3,8 @@ import S from "./MainPageAccessAppBtn.style";
 
 import { Link } from "react-router-dom";
 
+import PropTypes from "prop-types";
+
 const MainPageAccessAppBtn = ({ app, index }) => {
   const { name, route, imageUrl, border } = app;
 
@@ -17,6 +19,10 @@ const MainPageAccessAppBtn = ({ app, index }) => {
       </S.ApplicationItemContainer>
     </Link>
   );
+};
+
+MainPageAccessAppBtn.propTypes = {
+  app: PropTypes.object.isRequired,
 };
 
 export default MainPageAccessAppBtn;

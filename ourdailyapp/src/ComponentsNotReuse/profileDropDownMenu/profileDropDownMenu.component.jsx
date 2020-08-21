@@ -16,57 +16,47 @@ import SignInSignOutButton from "../../ComponentsNotReuse/signInSignOutButton/si
 import DropDownHeader from "../../ComponentsNotReuse/profileDropDownHeader/profileDropDownHeader.component";
 import { Dropdown } from "react-bootstrap";
 
-class ProfileDropDownMenu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+import PropTypes from "prop-types";
 
-  // ========================= Life Cycle Hooks =========================
+const ProfileDropDownMenu = ({ currentUser, isLogged, closeNav, history }) => {
+  return (
+    <Dropdown className="dropDownMenu--profile">
+      <S.DropDownToggle
+        id="dropdown-basic-button"
+        title=""
+        imgsrc={isLogged ? renderProfilePicture(currentUser.photoURL) : null}
+      ></S.DropDownToggle>
 
-  render() {
-    const { currentUser, isLogged, closeNav, history } = this.props;
-    if (currentUser !== null && currentUser !== undefined) {
-    }
-    return (
-      <Dropdown className="dropDownMenu--profile">
-        <S.DropDownToggle
-          id="dropdown-basic-button"
-          title=""
-          imgsrc={isLogged ? renderProfilePicture(currentUser.photoURL) : null}
-        ></S.DropDownToggle>
+      <Dropdown.Menu>
+        <DropDownHeader currentUser={currentUser} isLogged={isLogged} />
 
-        <Dropdown.Menu>
-          <DropDownHeader currentUser={currentUser} isLogged={isLogged} />
+        <Dropdown.Divider />
 
-          <Dropdown.Divider />
+        {/* =========== openSignInModal Btn ============= */}
+        <SignInSignOutButton isLogged={isLogged} />
 
-          {/* =========== openSignInModal Btn ============= */}
-          <SignInSignOutButton isLogged={isLogged} />
+        <Dropdown.Item
+          className="btn--profile"
+          onClick={() => {
+            closeNav();
+            history.push("/profile");
+          }}
+        >
+          <i className="iconfont icon-profile"></i>Profile
+        </Dropdown.Item>
 
-          <Dropdown.Item
-            className="btn--profile"
-            onClick={() => {
-              closeNav();
-              history.push("/profile");
-            }}
-          >
-            <i className="iconfont icon-profile"></i>Profile
-          </Dropdown.Item>
-
-          <Dropdown.Item
-            onClick={() => {
-              closeNav();
-            }}
-          >
-            <i className="iconfont icon-Settingscontroloptions"></i>
-            Setting
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-    );
-  }
-}
+        <Dropdown.Item
+          onClick={() => {
+            closeNav();
+          }}
+        >
+          <i className="iconfont icon-Settingscontroloptions"></i>
+          Setting
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
@@ -76,6 +66,11 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToState = (dispatch) => ({
   closeNav: () => dispatch(closeNav()),
 });
+
+ProfileDropDownMenu.propTypes = {
+  currentUser: PropTypes.object.isRequired,
+  isLogged: PropTypes.bool.isRequired,
+};
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToState)(ProfileDropDownMenu)

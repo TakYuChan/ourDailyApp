@@ -2,6 +2,7 @@ import React from "react";
 import S from "./customCard.style";
 
 import { withRouter, Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const CustomCard = ({ match, app }) => {
   const { title, description, imageSrc, route } = app;
@@ -22,6 +23,10 @@ const CustomCard = ({ match, app }) => {
       </Link>
     </S.CustomCardWrapper>
   );
+};
+
+CustomCard.propTypes = {
+  app: PropTypes.object.isRequired,
 };
 
 export default withRouter(CustomCard);

@@ -3,6 +3,7 @@ import S from "./MainPageAccessAppWrapper.style";
 
 import MainPageAccessAppBtn from "../MainPageAccessAppBtn/MainPageAccessAppBtn.component";
 
+import PropTypes from "prop-types";
 // import APPLICATIONS_DATA from "../../data/application.data.jsx";
 
 const MainPageAccessAppWrapper = ({ accessAppBtns }) => {
@@ -13,6 +14,10 @@ const MainPageAccessAppWrapper = ({ accessAppBtns }) => {
       ))}
     </S.ApplicationsContainer>
   );
+};
+
+MainPageAccessAppWrapper.propTypes = {
+  accessAppBtns: PropTypes.array.isRequired,
 };
 
 export default MainPageAccessAppWrapper;

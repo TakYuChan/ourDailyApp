@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
+import PropTypes from "prop-types";
+
 import { Dropdown } from "react-bootstrap";
 
 const DropDownHeader = ({ currentUser, isLogged }) => {
@@ -25,5 +27,9 @@ const DropDownHeader = ({ currentUser, isLogged }) => {
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
+
+DropDownHeader.propTypes = {
+  currentUser: PropTypes.object.isRequired,
+};
 
 export default connect(mapStateToProps)(DropDownHeader);
