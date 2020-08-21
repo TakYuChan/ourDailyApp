@@ -10,6 +10,8 @@ import { localStorageClearItem } from "../../utils/localStorage";
 
 import { Dropdown } from "react-bootstrap";
 
+import PropTypes from "prop-types";
+
 const SignInSignOutButton = ({
   toggleSignInUpModal,
   isLogged,
@@ -47,6 +49,10 @@ const mapDispatchToProps = (dispatch) => ({
   toggleSignInUpModal: () => dispatch(toggleSignInUpModal()),
   signOutStart: () => dispatch(signOutStart()),
 });
+
+SignInSignOutButton.propTypes = {
+  userAuth: PropTypes.object.isRequired,
+};
 
 export default connect(
   mapStateToProps,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import S from "./applicationOverview.style";
 
 import { updateSectionHeader } from "../../redux/sectionHeader/sectionHeader.actions";
@@ -6,35 +6,30 @@ import { connect } from "react-redux";
 
 import CustomCardWithPreloader from "../../Components/customCard/customCardWithPreloader.component";
 
-class ApplicationOverview extends React.Component {
-  componentDidMount() {
-    const { updateSectionHeader } = this.props;
-
+const ApplicationOverview = ({ updateSectionHeader }) => {
+  useEffect(() => {
     updateSectionHeader({
       page: "shop",
       details: {},
     });
-  }
 
-  componentWillUnmount() {
-    const { updateSectionHeader } = this.props;
-    updateSectionHeader({
-      page: "preloader",
-      details: {},
-    });
-  }
+    return () => {
+      updateSectionHeader({
+        page: "preloader",
+        details: {},
+      });
+    };
+  }, [updateSectionHeader]);
 
-  render() {
-    return (
-      <S.ApplicationOverviewContainer className="application-overview pages">
-        {/* ============= content main ============= */}
-        <S.ShopContentContainer className={`shop-content-main`}>
-          <CustomCardWithPreloader />
-        </S.ShopContentContainer>
-      </S.ApplicationOverviewContainer>
-    );
-  }
-}
+  return (
+    <S.ApplicationOverviewContainer className="application-overview pages">
+      {/* ============= content main ============= */}
+      <S.ShopContentContainer className={`shop-content-main`}>
+        <CustomCardWithPreloader />
+      </S.ShopContentContainer>
+    </S.ApplicationOverviewContainer>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => ({
   updateSectionHeader: (sectionHeaderDetails) =>

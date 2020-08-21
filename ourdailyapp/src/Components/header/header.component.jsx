@@ -17,6 +17,8 @@ import Logo from "../logo/logo.component";
 
 import ProfileDropDownMenu from "../../ComponentsNotReuse/profileDropDownMenu/profileDropDownMenu.component";
 
+import PropTypes from "prop-types";
+
 const Header = ({
   navHidden,
   toggleNav,
@@ -121,5 +123,10 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCartPopUp: () => dispatch(toggleCartPopUp()),
   closeNav: () => dispatch(closeNav()),
 });
+
+Header.propTypes = {
+  navHidden: PropTypes.bool.isRequired,
+  cartItemsQuantity: PropTypes.number.isRequired,
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

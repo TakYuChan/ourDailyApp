@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import S from "./floatNav.style";
 
@@ -12,74 +12,55 @@ import FloatNavContent from "../../ComponentsNotReuse/floatNavContent/floatNavCo
 
 import PropTypes from "prop-types";
 
-class FloatNav extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hoverNavItem: null,
-    };
-  }
+const FloatNav = ({ closeNav, navHidden, closeShopNav }) => {
+  const [hoverNavItem, setHoverNavItem] = useState(null);
 
-  handleNavItemHover = (item) => {
-    this.setState({ hoverNavItem: item });
+  const onItemClick = () => {
+    closeNav();
+    closeShopNav();
   };
 
-  render() {
-    const { hoverNavItem } = this.state;
+  return (
+    <S.FloatNavContainer className={`${!navHidden ? "active" : ""} float-nav`}>
+      <S.FloatNavList className="float-nav-list">
+        <S.FloatNavItems
+          onMouseOver={() => {
+            setHoverNavItem("appstore");
+          }}
+          onClick={onItemClick}
+          to="/shop"
+          className="float-nav-item"
+        >
+          AppStore
+        </S.FloatNavItems>
+        <S.FloatNavItems
+          as="a"
+          onMouseOver={() => {
+            setHoverNavItem("linkedin");
+          }}
+          onClick={onItemClick}
+          href="https://www.linkedin.com/in/franky-tak-yu-chan-18b51518b/"
+          className="float-nav-item"
+        >
+          LinkedIn
+        </S.FloatNavItems>
+        <S.FloatNavItems
+          as="a"
+          onMouseOver={() => {
+            setHoverNavItem("github");
+          }}
+          onClick={onItemClick}
+          href="https://github.com/TakYuChan"
+          className="float-nav-item"
+        >
+          Github
+        </S.FloatNavItems>
+      </S.FloatNavList>
 
-    return (
-      <S.FloatNavContainer
-        className={`${!this.props.navHidden ? "active" : ""} float-nav`}
-      >
-        <S.FloatNavList className="float-nav-list">
-          <S.FloatNavItems
-            onMouseOver={() => {
-              this.handleNavItemHover("appstore");
-            }}
-            onClick={() => {
-              this.props.closeNav();
-              this.props.closeShopNav();
-            }}
-            to="/shop"
-            className="float-nav-item"
-          >
-            AppStore
-          </S.FloatNavItems>
-          <S.FloatNavItems
-            as="a"
-            onMouseOver={() => {
-              this.handleNavItemHover("linkedin");
-            }}
-            onClick={() => {
-              this.props.closeNav();
-              this.props.closeShopNav();
-            }}
-            href="https://www.linkedin.com/in/franky-tak-yu-chan-18b51518b/"
-            className="float-nav-item"
-          >
-            LinkedIn
-          </S.FloatNavItems>
-          <S.FloatNavItems
-            as="a"
-            onMouseOver={() => {
-              this.handleNavItemHover("github");
-            }}
-            onClick={() => {
-              this.props.closeNav();
-              this.props.closeShopNav();
-            }}
-            href="https://github.com/TakYuChan"
-            className="float-nav-item"
-          >
-            Github
-          </S.FloatNavItems>
-        </S.FloatNavList>
-
-        <FloatNavContent hoverNavItem={hoverNavItem}></FloatNavContent>
-      </S.FloatNavContainer>
-    );
-  }
-}
+      <FloatNavContent hoverNavItem={hoverNavItem}></FloatNavContent>
+    </S.FloatNavContainer>
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   navHidden: selectHidden,
@@ -92,6 +73,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 FloatNav.propTypes = {
   navHidden: PropTypes.bool.isRequired,
+  closeNav: PropTypes.func.isRequired,
+  closeShopNav: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FloatNav);

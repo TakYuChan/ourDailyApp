@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import SHOP_DATA from "./redux/shop/shop.data";
 // import APPLICATIONS_DATA from "./data/application.data";
 import "./App.css";
@@ -28,48 +28,33 @@ import CartPreview from "./ComponentsNotReuse/cartPreview/cartPreview.component"
 
 import "./App.scss";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hoverNavItem: null,
-    };
-  }
-
+const App = ({ checkAuthSession }) => {
   //=============== Life Cycle Hooks ===============
-  componentDidMount() {
-    const { checkAuthSession } = this.props;
+  useEffect(() => {
     checkAuthSession();
-  }
+  }, [checkAuthSession]);
 
-  render() {
-    const { hoverNavItem } = this.state;
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <GlobalStyle />
+      <Header />
+      <FloatNav />
 
-    return (
-      <ThemeProvider theme={lightTheme}>
-        <GlobalStyle />
-        <Header />
-        <FloatNav
-          handleNavItemHover={this.handleNavItemHover}
-          hoverNavItem={hoverNavItem}
-        />
-
-        <ShopNav />
-        <CartPreview />
-        <Switch>
-          <Route exact path="/" component={MainPage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route path="/profile" component={ProfilePage} />
-          <Route path="/cart" component={CartPage} />
-          <Route path="/wishlist" component={WishlistPage} />
-          <Route path="/commentsConverter" component={CommentsConverterPage} />
-          <Route path="/pigGame" component={PigGamePageWithSpinner} />
-          <Route component={NoMatch} />
-        </Switch>
-      </ThemeProvider>
-    );
-  }
-}
+      <ShopNav />
+      <CartPreview />
+      <Switch>
+        <Route exact path="/" component={MainPage} />
+        <Route path="/shop" component={ShopPage} />
+        <Route path="/profile" component={ProfilePage} />
+        <Route path="/cart" component={CartPage} />
+        <Route path="/wishlist" component={WishlistPage} />
+        <Route path="/commentsConverter" component={CommentsConverterPage} />
+        <Route path="/pigGame" component={PigGamePageWithSpinner} />
+        <Route component={NoMatch} />
+      </Switch>
+    </ThemeProvider>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => ({
   checkAuthSession: () => dispatch(checkAuthSession()),

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./shopPage.style.scss";
 
 import { Route } from "react-router-dom";
@@ -10,33 +10,34 @@ import SectionHeader from "../../Components/sectionHeader/sectionHeader.componen
 import ApplicationOverview from "../../Pages/applicationOverview/applicationOverview.component";
 import ApplicationDetailWithPreloader from "../ApplicationDetailPage/ApplicationDetailPageWithPreloader.component";
 
-class ShopPage extends React.Component {
-  componentDidMount() {
-    const { fetchApplicationsStart } = this.props;
+import PropTypes from "prop-types";
 
+const ShopPage = ({ match, closeShopNav, fetchApplicationsStart }) => {
+  useEffect(() => {
     fetchApplicationsStart();
-  }
+  }, [fetchApplicationsStart]);
 
-  render() {
-    const { match, closeShopNav } = this.props;
-
-    return (
-      <div className="shop-page" onClick={closeShopNav}>
-        <SectionHeader />
-        <Route exact path={`${match.path}`} component={ApplicationOverview} />
-        <Route
-          exact
-          path={`${match.path}/:applicationId`}
-          component={ApplicationDetailWithPreloader}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="shop-page" onClick={closeShopNav}>
+      <SectionHeader />
+      <Route exact path={`${match.path}`} component={ApplicationOverview} />
+      <Route
+        exact
+        path={`${match.path}/:applicationId`}
+        component={ApplicationDetailWithPreloader}
+      />
+    </div>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => ({
   closeShopNav: () => dispatch(closeShopNav()),
   fetchApplicationsStart: () => dispatch(fetchApplicationsStart()),
 });
+
+ShopPage.propTypes = {
+  closeShopNav: PropTypes.func.isRequired,
+  fetchApplicationsStart: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(ShopPage);

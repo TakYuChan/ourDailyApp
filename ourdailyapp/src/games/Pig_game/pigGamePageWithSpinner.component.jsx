@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import S from "./pigGamePageWithSpinner.style";
 import "./pigGamePageWithSpinner.style.scss";
 
@@ -21,71 +21,108 @@ import { loadPlayer2State } from "../../redux/pigGamePlayer2/pigGamePlayer2.acti
 
 import PigGamePage from "./pigGamePage.component";
 
-class PigGamePageWithSpinner extends React.Component {
-  async componentDidMount() {
+const PigGamePageWithSpinner = ({
+  isLoading,
+  loadGameState,
+  loadingIsFinished,
+  startNewGame,
+  loadPlayer2State,
+}) => {
+  useEffect(() => {
     // Load Game State to pigGameReducer
+    async function loadGame() {
+      const gameState = await getPigGameState();
 
-    const {
-      loadGameState,
-      loadingIsFinished,
-      startNewGame,
-      loadPlayer2State,
-    } = this.props;
+      if (gameState !== null) {
+        loadGameState(gameState);
+      } else {
+        startNewGame();
+      }
 
-    const gameState = await getPigGameState();
+      // if (gamePlayer2State !== null) {
+      const gamePlayer2State = await getPigGamePlayer2State();
+      loadPlayer2State(gamePlayer2State);
 
-    if (gameState !== null) {
-      loadGameState(gameState);
-    } else {
-      startNewGame();
+      // }
+
+      loadingIsFinished();
     }
+    if (isLoading !== false) loadGame();
 
-    // if (gamePlayer2State !== null) {
-    const gamePlayer2State = await getPigGamePlayer2State();
-    loadPlayer2State(gamePlayer2State);
+    return () => {
+      //   const { isLoading, setIsLoadingToTrue } = this.props;
+      setIsLoadingToTrue();
+      console.log("PigGameWithSpinner Unmounted: ", isLoading);
+    };
+  }, [
+    isLoading,
+    loadGameState,
+    loadPlayer2State,
+    loadingIsFinished,
+    startNewGame,
+  ]);
 
-    // }
+  // async componentDidMount() {
+  //   // Load Game State to pigGameReducer
 
-    loadingIsFinished();
-  }
+  //   const {
+  //     loadGameState,
+  //     loadingIsFinished,
+  //     startNewGame,
+  //     loadPlayer2State,
+  //   } = this.props;
 
-  componentWillUnmount() {
-    const { isLoading, setIsLoadingToTrue } = this.props;
-    setIsLoadingToTrue();
-    console.log("PigGameWithSpinner Unmounted: ", isLoading);
-  }
+  //   const gameState = await getPigGameState();
 
-  render() {
-    const { isLoading } = this.props;
-    return isLoading ? (
-      <S.Container>
-        <S.Dice>
-          <S.Face_front>
-            <div></div>
-          </S.Face_front>
-          <S.Face_left>
-            <div></div>
-            <div></div>
-            <div></div>
-          </S.Face_left>
-          <S.Face_right>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </S.Face_right>
-          <S.Face_back>
-            <div></div>
-            <div></div>
-          </S.Face_back>
-        </S.Dice>
-      </S.Container>
-    ) : (
-      <PigGamePage />
-    );
-  }
-}
+  //   if (gameState !== null) {
+  //     loadGameState(gameState);
+  //   } else {
+  //     startNewGame();
+  //   }
+
+  //   // if (gamePlayer2State !== null) {
+  //   const gamePlayer2State = await getPigGamePlayer2State();
+  //   loadPlayer2State(gamePlayer2State);
+
+  //   // }
+
+  //   loadingIsFinished();
+  // }
+
+  // componentWillUnmount() {
+  //   const { isLoading, setIsLoadingToTrue } = this.props;
+  //   setIsLoadingToTrue();
+  //   console.log("PigGameWithSpinner Unmounted: ", isLoading);
+  // }
+
+  return isLoading ? (
+    <S.Container>
+      <S.Dice>
+        <S.Face_front>
+          <div></div>
+        </S.Face_front>
+        <S.Face_left>
+          <div></div>
+          <div></div>
+          <div></div>
+        </S.Face_left>
+        <S.Face_right>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </S.Face_right>
+        <S.Face_back>
+          <div></div>
+          <div></div>
+        </S.Face_back>
+      </S.Dice>
+    </S.Container>
+  ) : (
+    <PigGamePage />
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   isLoading: selectIsLoading,
