@@ -77,7 +77,7 @@ const SignUpForm = ({ signUpErrorObj, signUpStart, isProcessingSignUp }) => {
         type="password"
         name="confirmPassword"
         placeholder="Confirm Password"
-        handleInputChange={this.handleInputChange}
+        handleInputChange={handleInputChange}
         value={confirmPassword}
         errorObj={signUpErrorObj.passwordError}
       />
