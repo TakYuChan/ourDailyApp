@@ -13,7 +13,7 @@ import { lightTheme, darkTheme } from "./styled/theme";
 import { checkAuthSession } from "./redux/user/user.actions";
 
 import MainPage from "./Pages/mainPage/mainPage.component";
-import ShopPage from "./Pages/shopPage/shopPage.component";
+import ShopRouter from "./Routers/ShopRouter/shopRouter.component";
 import ProfilePage from "./Pages/ProfilePage/profilePage.component";
 import CommentsConverterPage from "./Pages/CommentsConverterPage/commentsConverterPage.component";
 import NoMatch from "./Pages/NoMatchPage/noMatchPage.component";
@@ -44,7 +44,7 @@ const App = ({ checkAuthSession }) => {
       <CartPreview />
       <Switch>
         <Route exact path="/" component={MainPage} />
-        <Route path="/shop" component={ShopPage} />
+        <Route path="/shop" component={ShopRouter} />
         <Route path="/profile" component={ProfilePage} />
         <Route path="/cart" component={CartPage} />
         <Route path="/wishlist" component={WishlistPage} />

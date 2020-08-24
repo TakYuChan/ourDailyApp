@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./shopPage.style.scss";
+import "./shopRouter.style.scss";
 
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
@@ -8,11 +8,11 @@ import { fetchApplicationsStart } from "../../redux/app/app.actions";
 
 import SectionHeader from "../../Components/sectionHeader/sectionHeader.component";
 import ApplicationOverview from "../../Pages/applicationOverview/applicationOverview.component";
-import ApplicationDetailWithPreloader from "../ApplicationDetailPage/ApplicationDetailPageWithPreloader.component";
+import ApplicationDetailWithPreloader from "../../Pages/ApplicationDetailPage/ApplicationDetailPageWithPreloader.component";
 
 import PropTypes from "prop-types";
 
-const ShopPage = ({ match, closeShopNav, fetchApplicationsStart }) => {
+const ShopRouter = ({ match, closeShopNav, fetchApplicationsStart }) => {
   useEffect(() => {
     fetchApplicationsStart();
   }, [fetchApplicationsStart]);
@@ -35,9 +35,9 @@ const mapDispatchToProps = (dispatch) => ({
   fetchApplicationsStart: () => dispatch(fetchApplicationsStart()),
 });
 
-ShopPage.propTypes = {
+ShopRouter.propTypes = {
   closeShopNav: PropTypes.func.isRequired,
   fetchApplicationsStart: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(ShopPage);
+export default connect(null, mapDispatchToProps)(ShopRouter);
