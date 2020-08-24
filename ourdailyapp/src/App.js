@@ -14,7 +14,7 @@ import { checkAuthSession } from "./redux/user/user.actions";
 
 import MainPage from "./Pages/mainPage/mainPage.component";
 import ShopRouter from "./Routers/ShopRouter/ShopRouter.component";
-import ProfilePage from "./Pages/ProfilePage/profilePage.component";
+import ProfilePage from "./Pages/ProfilePage/ProfilePage.component";
 import CommentsConverterPage from "./Pages/CommentsConverterPage/commentsConverterPage.component";
 import NoMatch from "./Pages/NoMatchPage/NoMatchPage.component";
 import CartPage from "./Pages/cartPage/cartPage.component";

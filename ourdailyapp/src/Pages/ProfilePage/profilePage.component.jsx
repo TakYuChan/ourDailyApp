@@ -1,5 +1,5 @@
 import React from "react";
-import "./profilePage.style.scss";
+import "./ProfilePage.style.scss";
 
 const ProfilePage = () => {
   return (
