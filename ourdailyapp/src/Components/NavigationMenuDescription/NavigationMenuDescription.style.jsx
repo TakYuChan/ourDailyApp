@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const S = {};
 
-S.FloatNavContentWrapper = styled.div`
+S.DescriptionWrapper = styled.div`
   width: 80%;
   max-width: 500px;
   text-align: center;

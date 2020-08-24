@@ -12,9 +12,9 @@ import { signInUpOnHide } from "../../redux/signInUp/signInUp.actions";
 
 // import { Modal } from "react-bootstrap";
 
-import SignIn from "../../ComponentsNotReuse/sign_in/sign_in.component";
-import SignUp from "../../ComponentsNotReuse/sign_up/sign_up.component";
-import RegisterSuccessScene from "../../ComponentsNotReuse/registerSuccess/registerSuccess.component";
+import SignIn from "../../Components/sign_in/sign_in.component";
+import SignUp from "../../Components/sign_up/sign_up.component";
+import RegisterSuccessScene from "../../Components/registerSuccess/registerSuccess.component";
 
 const SignInAndSignUp = ({ renderFor, showSignInUpModal, signInUpOnHide }) => {
   //   ================================= Life Cycle Hooks =================================

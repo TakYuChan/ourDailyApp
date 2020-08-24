@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { setRenderForSignIn } from "../../redux/signInUp/signInUp.actions";
 
 import { Modal } from "react-bootstrap";
-import SignUpForm from "../../ComponentsNotReuse/signUpForm/signUpForm.component";
+import SignUpForm from "../signUpForm/signUpForm.component";
 
 const SignUp = ({ renderForSignIn }) => {
   return (

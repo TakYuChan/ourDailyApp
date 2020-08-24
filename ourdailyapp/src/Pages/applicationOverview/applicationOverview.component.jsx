@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import S from "./applicationOverview.style";
+import S from "./ApplicationOverview.style";
 
 import { updateSectionHeader } from "../../redux/sectionHeader/sectionHeader.actions";
 import { connect } from "react-redux";

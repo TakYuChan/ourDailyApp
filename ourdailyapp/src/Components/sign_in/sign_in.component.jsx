@@ -6,7 +6,7 @@ import { setRenderForSignUp } from "../../redux/signInUp/signInUp.actions";
 import { googleSignInStart } from "../../redux/user/user.actions";
 
 import { Modal } from "react-bootstrap";
-import SignInForm from "../../ComponentsNotReuse/signInForm/signInForm.component";
+import SignInForm from "../signInForm/signInForm.component";
 
 const SignIn = ({ renderForSignUp, googleSignInStart }) => {
   return (

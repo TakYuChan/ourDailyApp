@@ -11,7 +11,7 @@ import {
 import { createStructuredSelector } from "reselect";
 
 import AppItem from "../../Components/app-item/app-item.component";
-import StripeCheckoutButton from "../../ComponentsNotReuse/stripe-button/stripe-button.component";
+import StripeCheckoutButton from "../../Components/stripe-button/stripe-button.component";
 
 const CartPage = ({
   cartItems,

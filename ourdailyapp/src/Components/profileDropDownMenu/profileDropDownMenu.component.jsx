@@ -12,8 +12,8 @@ import {
   selectIsUserLogged,
 } from "../../redux/user/user.selectors";
 
-import SignInSignOutButton from "../../ComponentsNotReuse/signInSignOutButton/signInSignOutButton.component";
-import DropDownHeader from "../../ComponentsNotReuse/profileDropDownHeader/profileDropDownHeader.component";
+import SignInSignOutButton from "../signInSignOutButton/signInSignOutButton.component";
+import DropDownHeader from "../profileDropDownHeader/profileDropDownHeader.component";
 import { Dropdown } from "react-bootstrap";
 
 import PropTypes from "prop-types";

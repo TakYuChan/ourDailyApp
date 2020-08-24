@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./shopRouter.style.scss";
+import "./ShopRouter.style.scss";
 
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
@@ -7,7 +7,7 @@ import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { fetchApplicationsStart } from "../../redux/app/app.actions";
 
 import SectionHeader from "../../Components/sectionHeader/sectionHeader.component";
-import ApplicationOverview from "../../Pages/applicationOverview/applicationOverview.component";
+import ApplicationOverview from "../../Pages/ApplicationOverview/ApplicationOverview.component";
 import ApplicationDetailWithPreloader from "../../Pages/ApplicationDetailPage/ApplicationDetailPageWithPreloader.component";
 
 import PropTypes from "prop-types";

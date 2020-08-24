@@ -60,10 +60,10 @@ export const lightTheme = {
     cartItemBtns_Hover: rootStyles.blue_light,
     cartWishlistBorder: `1px solid rgba(128, 128, 128, 0.13)`,
   },
-  floatNav: {
-    floatNavBg: rootStyles.blue_light,
-    floatNavText: "pink",
-    floatNavText_Hover: "white",
+  NavigationMenu: {
+    NavigationMenuBg: rootStyles.blue_light,
+    NavigationMenuText: "pink",
+    NavigationMenuText_Hover: "white",
   },
   appDetailPage: {
     featureList: rootStyles.gray6,

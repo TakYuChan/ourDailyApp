@@ -1,5 +1,5 @@
 import React from "react";
-import "./noMatchPage.style.scss";
+import "./NoMatchPage.style.scss";
 
 const NoMatch = () => (
   <div className="noMatch-page">

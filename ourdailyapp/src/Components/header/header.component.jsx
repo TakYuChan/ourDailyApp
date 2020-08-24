@@ -15,7 +15,7 @@ import SignInAndSignUp from "../../Pages/signInAndSignUp/signInAndSignUp.compone
 import { Button } from "react-bootstrap";
 import Logo from "../logo/logo.component";
 
-import ProfileDropDownMenu from "../../ComponentsNotReuse/profileDropDownMenu/profileDropDownMenu.component";
+import ProfileDropDownMenu from "../profileDropDownMenu/profileDropDownMenu.component";
 
 import PropTypes from "prop-types";
 

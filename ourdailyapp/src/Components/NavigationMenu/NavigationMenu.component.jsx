@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import S from "./floatNav.style";
+import S from "./NavigationMenu.style";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -8,11 +8,11 @@ import { selectHidden } from "../../redux/nav/nav.selectors";
 import { closeNav } from "../../redux/nav/nav.actions";
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 
-import FloatNavContent from "../../ComponentsNotReuse/floatNavContent/floatNavContent.component";
+import NavigationMenuDescription from "../NavigationMenuDescription/NavigationMenuDescription.component";
 
 import PropTypes from "prop-types";
 
-const FloatNav = ({ closeNav, navHidden, closeShopNav }) => {
+const NavigationMenu = ({ closeNav, navHidden, closeShopNav }) => {
   const [hoverNavItem, setHoverNavItem] = useState(null);
 
   const onItemClick = () => {
@@ -22,8 +22,8 @@ const FloatNav = ({ closeNav, navHidden, closeShopNav }) => {
 
   return (
     <S.FloatNavContainer className={`${!navHidden ? "active" : ""} float-nav`}>
-      <S.FloatNavList className="float-nav-list">
-        <S.FloatNavItems
+      <S.NavigationList className="float-nav-list">
+        <S.NavigationItems
           onMouseOver={() => {
             setHoverNavItem("appstore");
           }}
@@ -32,8 +32,8 @@ const FloatNav = ({ closeNav, navHidden, closeShopNav }) => {
           className="float-nav-item"
         >
           AppStore
-        </S.FloatNavItems>
-        <S.FloatNavItems
+        </S.NavigationItems>
+        <S.NavigationItems
           as="a"
           onMouseOver={() => {
             setHoverNavItem("linkedin");
@@ -43,8 +43,8 @@ const FloatNav = ({ closeNav, navHidden, closeShopNav }) => {
           className="float-nav-item"
         >
           LinkedIn
-        </S.FloatNavItems>
-        <S.FloatNavItems
+        </S.NavigationItems>
+        <S.NavigationItems
           as="a"
           onMouseOver={() => {
             setHoverNavItem("github");
@@ -54,10 +54,12 @@ const FloatNav = ({ closeNav, navHidden, closeShopNav }) => {
           className="float-nav-item"
         >
           Github
-        </S.FloatNavItems>
-      </S.FloatNavList>
+        </S.NavigationItems>
+      </S.NavigationList>
 
-      <FloatNavContent hoverNavItem={hoverNavItem}></FloatNavContent>
+      <NavigationMenuDescription
+        hoverNavItem={hoverNavItem}
+      ></NavigationMenuDescription>
     </S.FloatNavContainer>
   );
 };
@@ -71,10 +73,10 @@ const mapDispatchToProps = (dispatch) => ({
   closeShopNav: () => dispatch(closeShopNav()),
 });
 
-FloatNav.propTypes = {
+NavigationMenu.propTypes = {
   navHidden: PropTypes.bool.isRequired,
   closeNav: PropTypes.func.isRequired,
   closeShopNav: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FloatNav);
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationMenu);

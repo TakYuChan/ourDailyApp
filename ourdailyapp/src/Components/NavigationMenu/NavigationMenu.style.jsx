@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const S = {};
 
 const textStyles = css`
-  color: ${(props) => props.theme.floatNav.floatNavText};
+  color: ${(props) => props.theme.NavigationMenu.NavigationMenuText};
 `;
 
 S.FloatNavContainer = styled.div`
@@ -18,7 +18,7 @@ S.FloatNavContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: ${(props) => props.theme.floatNav.floatNavBg};
+  background: ${(props) => props.theme.NavigationMenu.NavigationMenuBg};
 
   z-index: 8;
   display: flex;
@@ -49,11 +49,11 @@ S.FloatNavContainer = styled.div`
 `;
 
 // ==================== Nav left side =====================
-S.FloatNavList = styled.ul`
+S.NavigationList = styled.ul`
   text-align: center;
 `;
 
-S.FloatNavItems = styled(Link)`
+S.NavigationItems = styled(Link)`
   ${textStyles}
   padding: 1rem 0;
   margin: 0;
@@ -66,7 +66,7 @@ S.FloatNavItems = styled(Link)`
 
   &:hover {
     text-decoration: none;
-    color: ${(props) => props.theme.floatNav.floatNavText_Hover};
+    color: ${(props) => props.theme.NavigationMenu.NavigationMenuText_Hover};
   }
 
   @media screen and (min-width: 600px) {
