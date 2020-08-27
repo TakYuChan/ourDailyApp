@@ -12,7 +12,7 @@ to {
 }
 `;
 
-S.CustomCardWrapper = styled.div`
+S.AppStoreCardWrapper = styled.div`
   animation: ${cardPopsUp} 300ms ease-in-out forwards;
   &:hover .card-app {
     transform: translateY(-10px);

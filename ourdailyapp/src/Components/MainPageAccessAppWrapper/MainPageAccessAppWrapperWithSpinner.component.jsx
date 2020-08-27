@@ -12,7 +12,7 @@ import {
   selectAccessAppBtns,
 } from "../../redux/app/app.selector";
 
-const ApplicationWrapperWithSpinner = ({
+const MainPageAccessAppWrapperWithSpinner = ({
   isLoading,
   accessAppBtns,
   ...otherProps
@@ -48,4 +48,4 @@ const mapStateToProps = createStructuredSelector({
   accessAppBtns: selectAccessAppBtns,
 });
 
-export default connect(mapStateToProps)(ApplicationWrapperWithSpinner);
+export default connect(mapStateToProps)(MainPageAccessAppWrapperWithSpinner);

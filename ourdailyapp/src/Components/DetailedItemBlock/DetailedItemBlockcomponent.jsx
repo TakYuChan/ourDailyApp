@@ -1,5 +1,5 @@
 import React from "react";
-import S from "./app-item.style";
+import S from "./DetailedItemBlock.style";
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -12,7 +12,7 @@ import {
 } from "../../redux/cart/cart.actions";
 import { addCartAnimation } from "../../utils/animation";
 
-const AppItem = ({
+const DetailedItemBlock = ({
   cartItem,
   removeItem,
   minusItemPrice,
@@ -93,4 +93,4 @@ const mapDispatchToProps = (dispatch) => ({
   moveItemToCartList: (item) => dispatch(moveToCartList(item)),
 });
 
-export default withRouter(connect(null, mapDispatchToProps)(AppItem));
+export default withRouter(connect(null, mapDispatchToProps)(DetailedItemBlock));

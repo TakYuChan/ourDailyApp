@@ -39,7 +39,7 @@ S.AppInCartText = styled.span`
   font-size: 1.1rem;
 `;
 
-S.CartItemsWrapper = styled.div`
+S.DetailedItemBlocksWrapper = styled.div`
   ${CartAndWishlistWrapperStyles}
 `;
 

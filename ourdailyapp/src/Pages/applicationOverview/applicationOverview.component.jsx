@@ -4,7 +4,7 @@ import S from "./ApplicationOverview.style";
 import { updateSectionHeader } from "../../redux/sectionHeader/sectionHeader.actions";
 import { connect } from "react-redux";
 
-import CustomCardWithPreloader from "../../Components/customCard/customCardWithPreloader.component";
+import AppStoreCardWithPreloader from "../../Components/Cards/AppStoreCard/AppStoreCardWithPreloader.component";
 
 const ApplicationOverview = ({ updateSectionHeader }) => {
   useEffect(() => {
@@ -25,7 +25,7 @@ const ApplicationOverview = ({ updateSectionHeader }) => {
     <S.ApplicationOverviewContainer className="application-overview pages">
       {/* ============= content main ============= */}
       <S.ShopContentContainer className={`shop-content-main`}>
-        <CustomCardWithPreloader />
+        <AppStoreCardWithPreloader />
       </S.ShopContentContainer>
     </S.ApplicationOverviewContainer>
   );

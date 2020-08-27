@@ -9,16 +9,11 @@ import {
   moveToCartList,
 } from "../../redux/cart/cart.actions";
 import { withRouter } from "react-router-dom";
-import { addCartAnimation } from "../../utils/animation";
 
-import AppItem from "../../Components/app-item/app-item.component";
+import DetailedItemBlock from "../../Components/DetailedItemBlock/DetailedItemBlockcomponent";
+import WishListCard from "../../Components/Cards/WishListCard/WishListCard.component";
 
-const WishlistPage = ({
-  wishlist,
-  toggleWishListItem,
-  moveItemToCartList,
-  history,
-}) => (
+const WishlistPage = ({ wishlist }) => (
   <S.PageContainer className="Wishlist-page pages">
     {/* ========================== heading ========================== */}
     <div className="heading">
@@ -28,82 +23,19 @@ const WishlistPage = ({
     {/* ========================== content main ========================== */}
     <S.ContentContainer className="wishlist-content-main">
       {/* ========================== Render 1: {wishlist.length > 0 && } min-width 850px ========================== */}
-      {wishlist !== null &&
-        wishlist.length > 0 &&
-        wishlist.map((wishlistItem) => (
-          <S.WishlistMIN850 className="wishlist-min850">
-            <S.CardWrapper
-              className="card-wishlistItem-wrapper"
-              onClick={() => history.push(`/shop/${wishlistItem.route}`)}
-            >
-              {/* ========== wishlist item image =========== */}
-              <S.ImageWrapper className="img-wrapper">
-                <S.Image
-                  src={wishlistItem.imageSrc}
-                  alt={`${wishlistItem.title}`}
-                  className="img-app"
-                />
-              </S.ImageWrapper>
-              {/* ====================== card-bottom-part ====================== */}
-              <S.CardBottomWrapper className="card-bottom-part">
-                {/* ========== wishlist item info text =========== */}
-                <S.ItemTitleText className="wishlistItem-title">
-                  {wishlistItem.title}
-                </S.ItemTitleText>
-                <S.ItemCreatorText className="wishlistItem-creator">
-                  {wishlistItem.creator}
-                </S.ItemCreatorText>
-
-                <S.BtnAndPriceContainer className="btn-and-price">
-                  {/* ========== btn - to cart =========== */}
-                  <S.BtnAddToCart
-                    className="btn-addToCart"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      moveItemToCartList(wishlistItem);
-
-                      /* ================ animations ================ */
-                      addCartAnimation(wishlistItem.imageSrc, ".Wishlist-page");
-                    }}
-                  >
-                    Add to cart
-                  </S.BtnAddToCart>
-                  {/* ========== price text =========== */}
-                  <S.TotalPriceText className="total-price-text">
-                    <span className="dollar-price-text">
-                      $
-                      <S.PriceText className="price-text">
-                        {wishlistItem.price}
-                      </S.PriceText>
-                    </span>
-                  </S.TotalPriceText>
-                </S.BtnAndPriceContainer>
-              </S.CardBottomWrapper>
-              {/* ====================== element - absolute ====================== */}
-
-              <S.IconHeart
-                className={`fas fa-heart`}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  toggleWishListItem({
-                    id: wishlistItem.id,
-                    title: wishlistItem.title,
-                    creator: wishlistItem.creator,
-                    imageSrc: wishlistItem.imageSrc,
-                    price: wishlistItem.price,
-                    route: wishlistItem.route,
-                  });
-                }}
-              ></S.IconHeart>
-            </S.CardWrapper>
-          </S.WishlistMIN850>
-        ))}
-      {/* ========================== Render 2: {wishlist.length > 0 && } max-width 849px
+      <S.WishlistMIN850>
+        {wishlist !== null &&
+          wishlist.length > 0 &&
+          wishlist.map((wishlistItem) => (
+            <WishListCard wishlistItem={wishlistItem} />
+          ))}
+      </S.WishlistMIN850>
+      {/* /* ========================== Render 2: {wishlist.length > 0 && } max-width 849px
       ========================== */}
       <S.WishlistMAX849 className="wishlist-max849">
         {wishlist !== null &&
           wishlist.map((wishlistItem) => (
-            <AppItem
+            <DetailedItemBlock
               id={wishlistItem.id}
               cartItem={wishlistItem}
               itemType="wishlist"

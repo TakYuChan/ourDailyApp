@@ -32,7 +32,7 @@ S.SpinnerContainer = styled.div`
   height: 40px;
   margin: 100px auto;
   background-color: ${(props) =>
-    props.theme.mainPage.spinner_applicationWrapper};
+    props.theme.mainPage.spinner_mainPageAccessAppWrapper};
 
   border-radius: 100%;
   animation: ${load} 1s infinite ease-in-out;

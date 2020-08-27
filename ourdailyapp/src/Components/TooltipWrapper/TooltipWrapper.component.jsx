@@ -1,9 +1,9 @@
 import React from "react";
-import S from "./customButton.style";
+import S from "./TooltipWrapper.style";
 
-const CustomButton = (props) => {
+const TooltipWrapper = (props) => {
   return (
-    <div className="customButton">
+    <div className="TooltipWrapper">
       <button
         className={props.className}
         onClick={props.onClick}
@@ -28,4 +28,4 @@ const CustomButton = (props) => {
   );
 };
 
-export default CustomButton;
+export default TooltipWrapper;

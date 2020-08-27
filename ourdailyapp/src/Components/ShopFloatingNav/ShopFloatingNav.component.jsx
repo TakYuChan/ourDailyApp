@@ -1,5 +1,5 @@
 import React from "react";
-import S from "./shopNav.style";
+import S from "./ShopFloatingNav.style";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";

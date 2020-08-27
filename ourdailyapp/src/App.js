@@ -23,7 +23,7 @@ import PigGamePageWithSpinner from "./games/Pig_game/pigGamePageWithSpinner.comp
 
 import Header from "./Components/header/header.component";
 import NavigationMenu from "./Components/NavigationMenu/NavigationMenu.component";
-import ShopNav from "./Components/shopNav/shopNav.component";
+import ShopFloatingNav from "./Components/ShopFloatingNav/ShopFloatingNav.component";
 import CartPreview from "./Components/cartPreview/cartPreview.component";
 
 import "./App.scss";
@@ -40,7 +40,7 @@ const App = ({ checkAuthSession }) => {
       <Header />
       <NavigationMenu />
 
-      <ShopNav />
+      <ShopFloatingNav />
       <CartPreview />
       <Switch>
         <Route exact path="/" component={MainPage} />

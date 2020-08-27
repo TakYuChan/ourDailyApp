@@ -10,7 +10,7 @@ import {
 } from "../../redux/cart/cart.selectors";
 import { createStructuredSelector } from "reselect";
 
-import AppItem from "../../Components/app-item/app-item.component";
+import DetailedItemBlock from "../../Components/DetailedItemBlock/DetailedItemBlockcomponent";
 import StripeCheckoutButton from "../../Components/stripe-button/stripe-button.component";
 
 const CartPage = ({
@@ -33,12 +33,16 @@ const CartPage = ({
           {cartItemsQuantity === 1 ? "Application" : "Applications"} in Cart
         </S.AppInCartText>
 
-        <S.CartItemsWrapper className="appItem-wrapper cartItems-wrapper">
+        <S.DetailedItemBlocksWrapper className="DetailedItemBlock-wrapper cartItems-wrapper">
           {/* ============= Render 1: cartItems quantity >= 1 ============= */}
           {cartItemsQuantity !== 0 &&
             cartItems !== null &&
             cartItems.map((cartItem) => (
-              <AppItem id={cartItem.id} cartItem={cartItem} itemType="cart" />
+              <DetailedItemBlock
+                id={cartItem.id}
+                cartItem={cartItem}
+                itemType="cart"
+              />
             ))}
 
           {/* ============= Render 2: empty cartItems ============= */}
@@ -50,7 +54,7 @@ const CartPage = ({
               </p>
             </S.EmptyCartItemsWrapper>
           )}
-        </S.CartItemsWrapper>
+        </S.DetailedItemBlocksWrapper>
 
         {/* ============= WishList ============= */}
         <S.RecentlyWishlistedText className="recently-wishlisted">
@@ -58,10 +62,10 @@ const CartPage = ({
         </S.RecentlyWishlistedText>
         {/* ============= Render 1: wishlistItems quantity >= 1 ============= */}
         {wishlistItems.length !== 0 && (
-          <S.WishlistWrapper className="appItem-wrapper wishlist-wrapper">
+          <S.WishlistWrapper className="wishList-wrapper wishlist-wrapper">
             {wishlistItems !== null &&
               wishlistItems.map((wishlistItem) => (
-                <AppItem
+                <DetailedItemBlock
                   id={wishlistItem.id}
                   cartItem={wishlistItem}
                   itemType="wishlist"

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import CustomButton from "../customButton/customButton.component";
+import TooltipWrapper from "../TooltipWrapper/TooltipWrapper.component";
 import ReactToolTip from "react-tooltip";
 import { ReactComponent as NavIcon } from "../../assets/nav.svg";
 
@@ -24,7 +24,7 @@ S.HeaderNavContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5vw;
+  padding: 0 2vw;
   background: var(--clr-nav);
 `;
 
@@ -37,7 +37,7 @@ S.LogoWrapper = styled.div`
 /* ============================== Nav List ================================= */
 
 S.NavListContainer = styled.div`
-  width: 12rem;
+  width: 8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -82,7 +82,7 @@ S.CartItemsQuantityText = styled.span`
 
 /* ====================== SVG btn -> Float Nav ====================== */
 
-S.NavIconContainer = styled(CustomButton)`
+S.NavIconContainer = styled(TooltipWrapper)`
   all: unset;
   --size: 40px;
   width: var(--size);

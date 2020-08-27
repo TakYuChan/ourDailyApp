@@ -21,13 +21,11 @@ S.ShopNavWrapper = styled.div`
   position: fixed;
 
   bottom: 10%;
-  right: 14%;
+  right: 12vw;
   z-index: 5;
 
-  border: 2px solid red;
-
   @media screen and (min-width: 850px) {
-    right: 3%;
+    right: 3vw;
   }
 `;
 

@@ -1,17 +1,17 @@
 import React from "react";
-import S from "./customCardWithPreloader.style";
-import "./customCardWithPreloader.style.scss";
+import S from "./AppStoreCardWithPreloader.style";
+import "./AppStoreCardWithPreloader.style.scss";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import CustomCard from "./customCard.component";
+import AppStoreCard from "./AppStoreCard.component";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import {
   selectIsApplicationsLoaded,
   selectApplicationsInArray,
-} from "../../redux/app/app.selector";
+} from "../../../redux/app/app.selector";
 
-const CustomCardWithPreloader = ({
+const AppStoreCardWithPreloader = ({
   isLoading,
   applications,
   ...otherProps
@@ -36,7 +36,12 @@ const CustomCardWithPreloader = ({
                 </S.LoadingCardContainer>
               ))
             : applications.map((app, index) => (
-                <CustomCard key={index} {...otherProps} id={app.id} app={app} />
+                <AppStoreCard
+                  key={index}
+                  {...otherProps}
+                  id={app.id}
+                  app={app}
+                />
               ))}
         </S.CardSectionContainer>
       </CSSTransition>
@@ -49,4 +54,4 @@ const mapStateToProps = createStructuredSelector({
   applications: selectApplicationsInArray,
 });
 
-export default connect(mapStateToProps)(CustomCardWithPreloader);
+export default connect(mapStateToProps)(AppStoreCardWithPreloader);
