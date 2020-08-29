@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { fetchApplicationsStart } from "../../redux/app/app.actions";
 
-import SectionHeader from "../../Components/sectionHeader/sectionHeader.component";
 import ApplicationOverview from "../../Pages/ApplicationOverview/ApplicationOverview.component";
 import ApplicationDetailWithPreloader from "../../Pages/ApplicationDetailPage/ApplicationDetailPageWithPreloader.component";
 
@@ -19,7 +18,6 @@ const ShopRouter = ({ match, closeShopNav, fetchApplicationsStart }) => {
 
   return (
     <div className="shop-page" onClick={closeShopNav}>
-      <SectionHeader />
       <Route exact path={`${match.path}`} component={ApplicationOverview} />
       <Route
         exact

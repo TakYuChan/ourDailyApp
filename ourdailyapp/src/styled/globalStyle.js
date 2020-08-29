@@ -4,13 +4,14 @@ const GlobalStyle = createGlobalStyle`
 body {
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Poppins', sans-serif;
+    // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    //   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    //   sans-serif;
+    // -webkit-font-smoothing: antialiased;
+    // -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-
+    background-color: ${(props) => props.theme.body};
 
   }
   
@@ -129,34 +130,15 @@ body {
 .pages {
   background: ${(props) => props.theme.body};
   min-height: calc(100vh - var(--nav-height));
-  // height: 10vh;
-  font-family: "Montserrat", sans-serif;
   width: 100%;
 
   // overflow: hidden;
 }
 
-/* ========================== heading ========================== */
-.section-header {
-  width: 100vw;
-  background: var(--gray1);
 
-  font-size: clamp(0.6rem, 1.2vw, 1rem);
-  padding: 4em;
-  // margin-bottom: 50px;
-  position: relative;
 
-  .title {
-    position: absolute;
-    bottom: 0;
-    left: 8%;
-    color: var(--gray3);
-    opacity: 0.7;
-    user-select: none;
 
-    font-size: clamp(1.4rem, 3.5vw, 2.5rem);
-  }
-}
+
 
 /* ================ animations ================ */
 .animation-parabola-wrapper {

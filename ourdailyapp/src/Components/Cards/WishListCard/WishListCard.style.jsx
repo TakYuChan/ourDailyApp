@@ -1,14 +1,20 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 /* ========================== Wishlist item card ========================== */
 
 const S = {};
+
+const textStyle = css`
+  color: ${(props) => props.theme.wishListPage.cardText};
+`;
 
 S.CardWrapper = styled.div`
   position: relative;
   box-shadow: 2px 4px 40px rgba(19, 15, 235, 0.1);
   transition: box-shadow 0.4s ease-in-out;
   height: 320px;
+
+  background: ${(props) => props.theme.wishListPage.cardBg};
 
   cursor: pointer;
 
@@ -41,12 +47,13 @@ S.CardBottomWrapper = styled.div`
 S.ItemTitleText = styled.h3`
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--blue-dark);
+  ${textStyle}
 `;
 
 S.ItemCreatorText = styled.p`
   font-size: 0.9rem;
   color: var(--blue-light);
+  ${textStyle}
 `;
 
 S.BtnAndPriceContainer = styled.div`
@@ -59,7 +66,7 @@ S.BtnAddToCart = styled.button`
   border: 0;
   font-size: 0.8rem;
   padding: 0.4em 1em;
-  background: var(--blue);
+  background: ${(props) => props.theme.wishListPage.cardBtn_bg};
   color: white;
   cursor: pointer;
   user-select: none;
@@ -68,6 +75,7 @@ S.BtnAddToCart = styled.button`
 S.TotalPriceText = styled.span`
   font-weight: 700;
   font-size: 1.8rem;
+  ${textStyle}
 `;
 
 S.PriceText = styled.span`

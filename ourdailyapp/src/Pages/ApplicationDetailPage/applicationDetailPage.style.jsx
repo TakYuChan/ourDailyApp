@@ -13,10 +13,8 @@ const buttonStyles = css`
   color: ${(props) => props.theme.appDetailPage.btn_font_clr};
   font-size: clamp(0.8rem, 1.2vw, 1.4rem);
   transition: all 300ms ease-in-out;
-
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 2px 5px 8px rgba($color: #000000, $alpha: 0.3);
   }
 `;
 
@@ -28,6 +26,9 @@ S.PageContentContainer = styled.section`
   margin-top: 50px;
   padding: 0 5em;
   font-size: clamp(0.4rem, 1.4vw, 1rem);
+  color: ${(props) => props.theme.appDetailPage.text};
+
+  align-items: flex-start;
 `;
 
 // ====================== Video =====================
@@ -52,7 +53,6 @@ S.Intro = styled.div`
   font-weight: 700;
   font-size: clamp(0.8rem, 1.4vw, 1rem);
   margin: 1.2em 0 0;
-  color: var(--gray4);
   line-height: 1.8;
 
   & p {
@@ -88,15 +88,14 @@ S.FeatureList = styled.ul`
 S.BtnAddToWishlist = styled.button`
   ${buttonStyles}
 
-  background: var(--blue-dark);
+  background: ${(props) => props.theme.appDetailPage.addToWishListBtn_bg};
 
   padding: 0.8em 1.2em;
-  align-self: flex-start;
 
   }
 `;
 
-S.IconHeart = styled.i`
+S.IconSvg = styled.i`
   margin-left: 0.3rem;
   font-size: 1em;
   color: ${(props) => props.theme.appDetailPage.heartIcon}
@@ -109,12 +108,9 @@ S.IconHeart = styled.i`
 
 S.BtnAddToCart = styled.button`
   ${buttonStyles}
+  background: ${(props) => props.theme.appDetailPage.addToCartBtn_bg};
 
-  display: block;
-  background: limegreen;
-
-  width: 100%;
   margin-bottom: 5rem;
-  padding: 0.8em 0;
+  padding: 0.8em 1.2em;
 `;
 export default S;

@@ -36,11 +36,9 @@ const ApplicationDetailPage = ({
 
     return () => {
       updateSectionHeader({
-        page: "preloader",
+        page: "",
         details: {},
       });
-
-      console.log("Application Detail Page unmounted");
     };
   }, [updateSectionHeader, appData.title]);
 
@@ -100,9 +98,9 @@ const ApplicationDetailPage = ({
         }}
       >
         Wishlist
-        <S.IconHeart
+        <S.IconSvg
           className={`fas fa-heart ${wishListed(appData.id) ? "active" : ""}`}
-        ></S.IconHeart>
+        ></S.IconSvg>
       </S.BtnAddToWishlist>
 
       {/* ================ Add to Cart ================ */}
@@ -124,6 +122,7 @@ const ApplicationDetailPage = ({
         }}
       >
         Add to cart
+        <S.IconSvg className={`iconfont icon-cart1`}></S.IconSvg>
       </S.BtnAddToCart>
     </S.PageContentContainer>
   );

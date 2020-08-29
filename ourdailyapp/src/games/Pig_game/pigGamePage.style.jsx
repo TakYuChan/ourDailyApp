@@ -139,7 +139,7 @@ S.GameConsoleContainer = styled.div`
   height: 60vh;
   background: white;
 
-  font-family: Lato;
+  // font-family: Lato;
 
   display: flex;
 

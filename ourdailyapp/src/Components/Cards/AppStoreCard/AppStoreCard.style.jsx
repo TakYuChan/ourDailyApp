@@ -21,8 +21,8 @@ S.AppStoreCardWrapper = styled.div`
 
 S.CardContainer = styled.div`
   padding: 20px 0 30px;
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   align-items: center;
   background-color: ${(props) => props.theme.appStore.cardBg};
   width: 100%;
@@ -57,7 +57,7 @@ S.DescriptionText = styled.h5`
 
 S.BtnStart = styled.button`
   border: 0;
-  background: var(--blue-light);
+  background: ${(props) => props.theme.appStore.cardStartBtn_bg};
   border-radius: 3px;
   color: white !important;
   font-weight: 700;

@@ -15,6 +15,10 @@ const S = {};
 // ========== Container =========
 
 S.ApplicationsContainer = styled.div`
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, 0);
   display: grid;
   width: 80%;
   max-width: 600px;

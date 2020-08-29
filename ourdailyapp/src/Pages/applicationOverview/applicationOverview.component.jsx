@@ -15,7 +15,7 @@ const ApplicationOverview = ({ updateSectionHeader }) => {
 
     return () => {
       updateSectionHeader({
-        page: "preloader",
+        page: "",
         details: {},
       });
     };

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import profilePic from "../../assets/UIFace.png";
 import S from "./mainPage.style";
 
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
@@ -7,9 +7,8 @@ import { connect } from "react-redux";
 import { fetchAccessAppBtnsStart } from "../../redux/app/app.actions";
 
 import MainPageAccessAppWrapperWithSpinner from "../../Components/MainPageAccessAppWrapper/MainPageAccessAppWrapperWithSpinner.component";
-import Logo from "../../Components/logo/logo.component";
 
-const MainPage = ({ fetchAccessAppBtnsStart, closeShopNav }) => {
+const MainPage = ({ fetchAccessAppBtnsStart, closeShopNav, closeNav }) => {
   // ============= Life Cycle Hooks =============
 
   useEffect(() => {
@@ -18,9 +17,13 @@ const MainPage = ({ fetchAccessAppBtnsStart, closeShopNav }) => {
 
   return (
     <S.MainPageContainer className="MainPage pages" onClick={closeShopNav}>
-      <S.LogoWrapper className="logo-wrapper">
-        <Logo />
-      </S.LogoWrapper>
+      <S.picNameWrapper>
+        <S.ImgWrapper>
+          <S.Img src={profilePic} />
+          <S.EditProfileText className="styled_editProfileSpan">Edit Profile</S.EditProfileText>
+        </S.ImgWrapper>
+        <S.username>name</S.username>
+      </S.picNameWrapper>
       <MainPageAccessAppWrapperWithSpinner />
     </S.MainPageContainer>
   );

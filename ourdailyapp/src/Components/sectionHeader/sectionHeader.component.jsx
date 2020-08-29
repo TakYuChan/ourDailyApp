@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import S from "./sectionHeader.style";
+
+import { ReactComponent as ToSvg } from "../../assets/svg/to.svg";
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -9,25 +11,57 @@ import {
   selectDetails,
 } from "../../redux/sectionHeader/sectionHeader.selectors";
 
-const SectionHeader = ({ selectPage, selectDetails, history }) => (
-  <div className="section-header">
-    {selectPage === "shop" && (
-      <h1 className="title">
-        App Store
-        <S.IconApp className="iconfont icon-icon_yingyongguanli"></S.IconApp>
-      </h1>
-    )}
-    {selectPage === "applicationDetails" && (
-      <h1 className="title">
-        <S.PrevLink className="prev-link" onClick={() => history.push("/shop")}>
-          /shop<S.IconShop className="iconfont icon-shop"></S.IconShop>
+const SectionHeader = ({ selectPage, selectDetails, history }) => {
+  useEffect(() => {
+    console.log("I am being mounted!");
+  }, []);
+
+  const routerTextRender = (
+    prevRoute,
+    currentRoute,
+    linkToPrevRoute,
+    iconClassName
+  ) => {
+    return (
+      <S.RouteText>
+        <S.PrevLink
+          className="prev-link"
+          onClick={() => history.push(linkToPrevRoute)}
+        >
+          {prevRoute}
         </S.PrevLink>
-        /{selectDetails.title}
-      </h1>
-    )}
-    {selectPage === "preloader" && null}
-  </div>
-);
+        <ToSvg
+          style={{
+            fontSize: "clamp(.6rem, .9vw, .9rem)",
+            marginRight: ".5em",
+          }}
+        />
+        <S.CurrentLoc>
+          {currentRoute}
+          <S.Icon className={iconClassName}></S.Icon>
+        </S.CurrentLoc>
+      </S.RouteText>
+    );
+  };
+
+  return (
+    <S.RouteContainer>
+      {selectPage === "shop" &&
+        routerTextRender(
+          "HOME",
+          "SHOP",
+          "/",
+          "iconfont icon-icon_yingyongguanli"
+        )}
+      {selectPage === "wishlist" &&
+        routerTextRender("HOME", "WISHLIST", "/", "iconfont icon-wish")}
+      {selectPage === "cart" &&
+        routerTextRender("HOME", "WISHLIST", "/", "iconfont icon-cart")}
+      {selectPage === "applicationDetails" &&
+        routerTextRender("SHOP", selectDetails.title.toUpperCase(), "/shop")}
+    </S.RouteContainer>
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   selectPage,

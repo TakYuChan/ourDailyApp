@@ -1,32 +1,6 @@
 /* ========================== Pages ========================== */
-.pages {
-  background: var(--mainpage-bg);
-  min-height: calc(100vh - var(--nav-height));
-  font-family: "Montserrat", sans-serif;
-}
 
-/* ========================== heading ========================== */
-.heading {
-  width: 100vw;
-  background: var(--gray1);
-  font-size: clamp(0.6rem, 1.2vw, 1rem);
-  padding: 4em;
-  margin-bottom: 50px;
-  position: relative;
-}
 
-.heading .title {
-  position: absolute;
-  bottom: 0;
-  left: 8%;
-  color: var(--gray3);
-  opacity: 0.7;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  font-size: clamp(1.4rem, 3.5vw, 2.5rem);
-}
 
 /* ================ animations ================ */
 .animation-parabola-wrapper {

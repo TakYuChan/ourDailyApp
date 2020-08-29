@@ -8,7 +8,7 @@ const textStyles = css`
   color: ${(props) => props.theme.NavigationMenu.NavigationMenuText};
 `;
 
-S.FloatNavContainer = styled.div`
+S.NavMenuContainer = styled.div`
   ${textStyles}
 
   user-select: none;

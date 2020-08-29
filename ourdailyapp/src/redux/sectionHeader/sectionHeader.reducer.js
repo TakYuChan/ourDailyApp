@@ -2,7 +2,7 @@ import SectionHeaderActionTypes from "./sectionHeader.types";
 import { updateStates } from "./sectionHeader.utils";
 
 const INITIAL_STATE = {
-  page: "preloader",
+  page: "",
   details: {},
 };
 

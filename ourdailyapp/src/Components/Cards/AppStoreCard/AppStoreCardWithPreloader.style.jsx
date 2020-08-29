@@ -63,7 +63,7 @@ S.CardSectionContainer = styled.div`
 
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
 
-  gap: 20px;
+  gap: 40px;
 
   @media screen and (max-width: 1125px) {
     grid-template-columns: 450px;
@@ -84,7 +84,7 @@ S.LoadingCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  background: ${(props) => props.theme.appStore.cartBg};
+  background: ${(props) => props.theme.appStore.cardBg};
 
   animation: ${loadingCardPopsUp} 250ms;
 

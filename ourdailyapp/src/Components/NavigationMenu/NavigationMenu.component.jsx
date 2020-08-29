@@ -21,7 +21,7 @@ const NavigationMenu = ({ closeNav, navHidden, closeShopNav }) => {
   };
 
   return (
-    <S.FloatNavContainer className={`${!navHidden ? "active" : ""} float-nav`}>
+    <S.NavMenuContainer className={`${!navHidden ? "active" : ""} float-nav`}>
       <S.NavigationList className="float-nav-list">
         <S.NavigationItems
           onMouseOver={() => {
@@ -60,7 +60,7 @@ const NavigationMenu = ({ closeNav, navHidden, closeShopNav }) => {
       <NavigationMenuDescription
         hoverNavItem={hoverNavItem}
       ></NavigationMenuDescription>
-    </S.FloatNavContainer>
+    </S.NavMenuContainer>
   );
 };
 

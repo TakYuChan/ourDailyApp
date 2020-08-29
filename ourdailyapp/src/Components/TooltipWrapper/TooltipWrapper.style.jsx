@@ -7,7 +7,7 @@ const S = {};
 S.ToolTip = styled(ReactToolTip)`
   &#navTip {
     background: var(--gray4);
-    font-family: "Roboto", sans-serif;
+    // font-family: "Roboto", sans-serif;
   }
 `;
 

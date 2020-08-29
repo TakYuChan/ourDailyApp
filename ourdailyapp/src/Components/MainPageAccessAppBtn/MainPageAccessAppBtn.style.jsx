@@ -21,7 +21,7 @@ S.ApplicationItemContainer = styled.div`
 
   display: grid;
   place-items: center;
-  font-family: "Roboto", sans-serif;
+  // font-family: "Roboto", sans-serif;
 
   font-size: 0.8rem;
   font-weight: 700;
@@ -29,12 +29,12 @@ S.ApplicationItemContainer = styled.div`
   height: 100%;
   width: 100%;
 
-  &:hover {
-    background: ${(props) => props.theme.mainPage.app_Hover};
-    .link-text {
-      text-decoration: none;
-    }
-  }
+  // &:hover {
+  //   background: ${(props) => props.theme.mainPage.app_Hover};
+  //   .link-text {
+  //     text-decoration: none;
+  //   }
+  // }
 
   animation: 600ms ${appear} backwards ${(props) => props.stagger}s;
 `;
@@ -53,10 +53,15 @@ S.Image = styled.img`
   .border {
     border: 1px solid var(--blue);
   }
+
+  &:hover {
+    border: 1px solid white;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
+  }
 `;
 
 S.AppLinkText = styled.span`
-  color: ${(props) => props.theme.mainPage.appLinkText};
+  color: ${(props) => props.theme.mainPage.appAccessBtnText};
   text-decoration: none;
 `;
 

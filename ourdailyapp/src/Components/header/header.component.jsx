@@ -1,7 +1,7 @@
 import React from "react";
 
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { selectHidden } from "../../redux/nav/nav.selectors";
 import { toggleNavHidden, closeNav } from "../../redux/nav/nav.actions";
@@ -11,9 +11,6 @@ import { selectCartItemsQuantity } from "../../redux/cart/cart.selectors";
 import S from "./header.style";
 
 import SignInAndSignUp from "../../Pages/signInAndSignUp/signInAndSignUp.component";
-
-// import { Button } from "react-bootstrap";
-import Logo from "../logo/logo.component";
 
 import ProfileDropDownMenu from "../profileDropDownMenu/profileDropDownMenu.component";
 
@@ -27,41 +24,39 @@ const Header = ({
   closeNav,
   cartItemsQuantity,
 }) => {
+  function useRouter() {
+    const history = useHistory();
+
+    return React.useMemo(() => {
+      return {
+        push: history.push,
+      };
+    }, [history]);
+  }
+
+  const router = useRouter();
+
   return (
     <S.HeaderContainer className="header">
       <S.HeaderNavContainer>
         {/* ====================== Logo ====================== */}
         <S.LogoWrapper>
-          <Logo
-            wrapperId="header-logo-wrapper"
-            id="header-logo"
-            withLink={true}
+          <img
+            className="logo"
+            src={"/images/assets/logo_white_small.png"}
+            alt=""
+            role="presentation"
+            onClick={() => {
+              closeNav();
+              closeShopNav();
+              router.push("/");
+            }}
           />
         </S.LogoWrapper>
+
         {/* ============================== Nav List ================================= */}
 
         <S.NavListContainer className="list">
-          {/* ====================== Change language Badge ====================== */}
-          {/* <div className="btn-lang-wrapper">
-            <Button
-              variant="primary"
-              className="badge badge-primary btn-lang"
-              data-tip
-              data-for="langTip"
-            >
-              <span>中文</span>
-            </Button>
-            <S.LanguageToolTip
-              arrowColor="#454e56"
-              id="langTip"
-              place="bottom"
-              effect="solid"
-              className="tooltip"
-            >
-              Language
-            </S.LanguageToolTip>
-          </div> */}
-
           {/* ====================== Cart Icon ====================== */}
           <S.CartIconWrapper
             className="cart-icon-wrapper"
@@ -129,4 +124,4 @@ Header.propTypes = {
   cartItemsQuantity: PropTypes.number.isRequired,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

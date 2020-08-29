@@ -25,6 +25,7 @@ import Header from "./Components/header/header.component";
 import NavigationMenu from "./Components/NavigationMenu/NavigationMenu.component";
 import ShopFloatingNav from "./Components/ShopFloatingNav/ShopFloatingNav.component";
 import CartPreview from "./Components/cartPreview/cartPreview.component";
+import SectionHeader from "./Components/sectionHeader/sectionHeader.component";
 
 import "./App.scss";
 
@@ -42,14 +43,15 @@ const App = ({ checkAuthSession }) => {
 
       <ShopFloatingNav />
       <CartPreview />
+      <SectionHeader />
       <Switch>
         <Route exact path="/" component={MainPage} />
+        <Route path="/commentsConverter" component={CommentsConverterPage} />
+        <Route path="/pigGame" component={PigGamePageWithSpinner} />
         <Route path="/shop" component={ShopRouter} />
         <Route path="/profile" component={ProfilePage} />
         <Route path="/cart" component={CartPage} />
         <Route path="/wishlist" component={WishlistPage} />
-        <Route path="/commentsConverter" component={CommentsConverterPage} />
-        <Route path="/pigGame" component={PigGamePageWithSpinner} />
         <Route component={NoMatch} />
       </Switch>
     </ThemeProvider>

@@ -13,19 +13,24 @@ S.HeaderContainer = styled.header`
   height: var(--nav-height);
 
   width: 100vw;
+  background-color: ${(props) => props.theme.header};
 
   position: relative;
+  // top: 0;
+  // left: 0;
   z-index: 10;
+  display: flex;
+  justify-content: center;
 `;
 
 S.HeaderNavContainer = styled.nav`
   height: 100%;
-  width: 100%;
+  width: calc(100% - 4vw);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2vw;
-  background: var(--clr-nav);
+  // padding: 0 2vw;
+  border-bottom: 1px solid white;
 `;
 
 /* ============================== Logo Wrapper ================================= */
@@ -114,7 +119,7 @@ S.NavIcon = styled(NavIcon)`
 // ============================= ToolTips =========================
 S.LanguageToolTip = styled(ReactToolTip)`
   background: var(--gray4) !important;
-  font-family: "Roboto", sans-serif;
+  // font-family: "Roboto", sans-serif;
 `;
 
 export default S;

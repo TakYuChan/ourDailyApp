@@ -43,13 +43,14 @@ S.ToggleContainer = styled.div`
   display: grid;
   place-items: center;
   border-radius: 100%;
-  background: var(--toggle-shopnav-clr);
+
+  background-color: ${(props) => props.theme.shopNav.toggler_bg};
   cursor: pointer;
 
   transition: all 250ms;
 
   &:hover {
-    background: var(--blue);
+    background: ${(props) => props.theme.shopNav.toggler_bg_hover};
   }
 `;
 
@@ -81,7 +82,7 @@ S.MenuWrapper = styled.div`
   width: var(--size);
   height: var(--size);
   border-radius: 100%;
-  box-shadow: 0px 0px 0 200px var(--clr-nav);
+  box-shadow: 0px 0px 0 200px ${(props) => props.theme.shopNav.menuWrapper_bg};
   transform: scale(0.05);
   position: relative;
   pointer-events: initial;
