@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import S from "./wishlistPage.style";
 
-import { updateSectionHeader } from "../../redux/sectionHeader/sectionHeader.actions";
+import { updateRoutePath } from "../../redux/routePath/routePath.actions";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectWishListItems } from "../../redux/cart/cart.selectors";
@@ -14,30 +14,25 @@ import { withRouter } from "react-router-dom";
 import DetailedItemBlock from "../../Components/DetailedItemBlock/DetailedItemBlockcomponent";
 import WishListCard from "../../Components/Cards/WishListCard/WishListCard.component";
 
-const WishlistPage = ({ wishlist, updateSectionHeader }) => {
+const WishlistPage = ({ wishlist, updateRoutePath }) => {
   useEffect(() => {
-    updateSectionHeader({
+    updateRoutePath({
       page: "wishlist",
       details: {},
     });
 
     return () => {
-      updateSectionHeader({
+      updateRoutePath({
         page: "",
         details: {},
       });
     };
-  }, [updateSectionHeader]);
+  }, [updateRoutePath]);
 
   return (
-    <S.PageContainer className="Wishlist-page pages">
-      {/* ========================== heading ========================== */}
-      {/* <div className="heading">
-      <h1 className="route-container">Wishlist</h1>
-    </div> */}
-
+    <S.PageContainer className="Wishlist-page">
       {/* ========================== content main ========================== */}
-      <S.ContentContainer className="wishlist-content-main">
+      <S.ContentContainer className="wishlist-content-main gs-PageContentContainer">
         {/* ========================== Render 1: {wishlist.length > 0 && } min-width 850px ========================== */}
         <S.WishlistMIN850>
           {wishlist !== null &&
@@ -78,8 +73,8 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   toggleWishListItem: (item) => dispatch(toggleWishListItem(item)),
   moveItemToCartList: (item) => dispatch(moveToCartList(item)),
-  updateSectionHeader: (sectionHeaderDetails) =>
-    dispatch(updateSectionHeader(sectionHeaderDetails)),
+  updateRoutePath: (routePathDetails) =>
+    dispatch(updateRoutePath(routePathDetails)),
 });
 
 export default withRouter(

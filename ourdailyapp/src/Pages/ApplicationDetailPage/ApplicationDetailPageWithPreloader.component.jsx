@@ -18,7 +18,7 @@ const ApplicationDetailWithPreloader = ({ isLoading, ...otherProps }) => {
         }}
         classNames="fade"
       >
-        <S.PageContainer className="application-detail-page pages">
+        <S.PageContainer className="application-detail-page gs-page ">
           {isLoading ? (
             <S.PageContentContainerPreloader className="app-content-main">
               <S.VideoWrapperPreloader className="video-wrapper"></S.VideoWrapperPreloader>

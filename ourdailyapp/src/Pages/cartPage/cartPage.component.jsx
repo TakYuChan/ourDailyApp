@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import S from "./cartPage.style";
 
-import { updateSectionHeader } from "../../redux/sectionHeader/sectionHeader.actions";
+import { updateRoutePath } from "../../redux/routePath/routePath.actions";
 import { connect } from "react-redux";
 import {
   selectCartItems,
@@ -19,29 +19,26 @@ const CartPage = ({
   cartItemsQuantity,
   totalPrice,
   wishlistItems,
-  updateSectionHeader,
+  updateRoutePath,
 }) => {
   useEffect(() => {
-    updateSectionHeader({
+    updateRoutePath({
       page: "cart",
       details: {},
     });
 
     return () => {
-      updateSectionHeader({
+      updateRoutePath({
         page: "",
         details: {},
       });
     };
-  }, [updateSectionHeader]);
+  }, [updateRoutePath]);
 
   return (
-    <S.PageContainer className="Cart-Page pages">
-      <div className="heading">
-        <h1 className="title">Cart</h1>
-      </div>
+    <S.PageContainer className="Cart-Page">
       {/* ========================== content main ========================== */}
-      <S.ContentContainer className="cart-content-main">
+      <S.ContentContainer className="cart-content-main gs-PageContentContainer">
         {/* ========================== Left Side ========================== */}
         <S.LeftWrapper className="left-side">
           {/* ============= Cart Items ============= */}
@@ -140,8 +137,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateSectionHeader: (sectionHeaderDetails) =>
-    dispatch(updateSectionHeader(sectionHeaderDetails)),
+  updateRoutePath: (routePathDetails) =>
+    dispatch(updateRoutePath(routePathDetails)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPage);

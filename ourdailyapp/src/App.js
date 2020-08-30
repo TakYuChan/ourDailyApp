@@ -25,7 +25,7 @@ import Header from "./Components/header/header.component";
 import NavigationMenu from "./Components/NavigationMenu/NavigationMenu.component";
 import ShopFloatingNav from "./Components/ShopFloatingNav/ShopFloatingNav.component";
 import CartPreview from "./Components/cartPreview/cartPreview.component";
-import SectionHeader from "./Components/sectionHeader/sectionHeader.component";
+import RoutePath from "./Components/RoutePath/RoutePath.component";
 
 import "./App.scss";
 
@@ -43,7 +43,7 @@ const App = ({ checkAuthSession }) => {
 
       <ShopFloatingNav />
       <CartPreview />
-      <SectionHeader />
+      <RoutePath />
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route path="/commentsConverter" component={CommentsConverterPage} />

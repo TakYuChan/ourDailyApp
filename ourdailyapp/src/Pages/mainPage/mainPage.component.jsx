@@ -16,11 +16,13 @@ const MainPage = ({ fetchAccessAppBtnsStart, closeShopNav, closeNav }) => {
   }, [fetchAccessAppBtnsStart]);
 
   return (
-    <S.MainPageContainer className="MainPage pages" onClick={closeShopNav}>
+    <S.MainPageContainer className="MainPage gs-page " onClick={closeShopNav}>
       <S.picNameWrapper>
         <S.ImgWrapper>
           <S.Img src={profilePic} />
-          <S.EditProfileText className="styled_editProfileSpan">Edit Profile</S.EditProfileText>
+          <S.EditProfileText className="styled_editProfileSpan">
+            Edit Profile
+          </S.EditProfileText>
         </S.ImgWrapper>
         <S.username>name</S.username>
       </S.picNameWrapper>

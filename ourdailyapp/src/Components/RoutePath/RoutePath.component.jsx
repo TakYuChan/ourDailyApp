@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import S from "./sectionHeader.style";
+import S from "./RoutePath.style";
 
 import { ReactComponent as ToSvg } from "../../assets/svg/to.svg";
 
@@ -9,9 +9,9 @@ import { createStructuredSelector } from "reselect";
 import {
   selectPage,
   selectDetails,
-} from "../../redux/sectionHeader/sectionHeader.selectors";
+} from "../../redux/routePath/routePath.selectors";
 
-const SectionHeader = ({ selectPage, selectDetails, history }) => {
+const RoutePath = ({ selectPage, selectDetails, history }) => {
   useEffect(() => {
     console.log("I am being mounted!");
   }, []);
@@ -68,4 +68,4 @@ const mapStateToProps = createStructuredSelector({
   selectDetails,
 });
 
-export default withRouter(connect(mapStateToProps)(SectionHeader));
+export default withRouter(connect(mapStateToProps)(RoutePath));

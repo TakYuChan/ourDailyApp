@@ -12,7 +12,7 @@ import S from "./header.style";
 
 import SignInAndSignUp from "../../Pages/signInAndSignUp/signInAndSignUp.component";
 
-import ProfileDropDownMenu from "../profileDropDownMenu/profileDropDownMenu.component";
+// import ProfileDropDownMenu from "../profileDropDownMenu/profileDropDownMenu.component";
 
 import PropTypes from "prop-types";
 
@@ -97,7 +97,7 @@ const Header = ({
 
           {/* ====================== Profile Drop Down ====================== */}
 
-          <ProfileDropDownMenu />
+          {/* <ProfileDropDownMenu /> */}
 
           {/* - Passing the "showSignInSignUpModal" to Open / Close Modal */}
           <SignInAndSignUp />

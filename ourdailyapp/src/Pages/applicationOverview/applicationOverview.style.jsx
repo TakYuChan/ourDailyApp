@@ -22,4 +22,26 @@ S.ShopContentContainer = styled.div`
   width: 100vw;
 `;
 
+// ================ Card Section Container - for transition ======================
+
+S.CardSectionContainer = styled.div`
+  display: grid;
+  width: 90%;
+  max-width: 900px;
+
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+
+  gap: 40px;
+
+  @media screen and (max-width: 1125px) {
+    grid-template-columns: 450px;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 550px) {
+    grid-template-columns: minmax(100px, 440px);
+    justify-content: center;
+  }
+`;
+
 export default S;

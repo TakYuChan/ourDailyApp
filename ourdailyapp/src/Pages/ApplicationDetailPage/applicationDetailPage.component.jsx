@@ -8,7 +8,7 @@ import {
   selectCartItemExist,
 } from "../../redux/cart/cart.selectors";
 import { addItem, toggleWishListItem } from "../../redux/cart/cart.actions";
-import { updateSectionHeader } from "../../redux/sectionHeader/sectionHeader.actions";
+import { updateRoutePath } from "../../redux/routePath/routePath.actions";
 import { addCartAnimation } from "../../utils/animation";
 import PropTypes from "prop-types";
 
@@ -20,14 +20,14 @@ const ApplicationDetailPage = ({
   wishListed,
   toggleWishListItem,
   cartItemExist,
-  updateSectionHeader,
+  updateRoutePath,
 }) => {
   //=========================== Life Cycle Hooks =========================
 
   useEffect(() => {
     console.log("Application Detail Page Mounted");
 
-    updateSectionHeader({
+    updateRoutePath({
       page: "applicationDetails",
       details: {
         title: appData.title,
@@ -35,12 +35,12 @@ const ApplicationDetailPage = ({
     });
 
     return () => {
-      updateSectionHeader({
+      updateRoutePath({
         page: "",
         details: {},
       });
     };
-  }, [updateSectionHeader, appData.title]);
+  }, [updateRoutePath, appData.title]);
 
   const { videoSrc, tags, intros, features, tagsColor } = appData.appDetails;
 
@@ -137,8 +137,8 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
   toggleWishListItem: (item) => dispatch(toggleWishListItem(item)),
-  updateSectionHeader: (sectionHeaderDetails) =>
-    dispatch(updateSectionHeader(sectionHeaderDetails)),
+  updateRoutePath: (routePathDetails) =>
+    dispatch(updateRoutePath(routePathDetails)),
 });
 
 ApplicationDetailPage.propTypes = {

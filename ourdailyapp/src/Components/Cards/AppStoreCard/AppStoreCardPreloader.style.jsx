@@ -31,7 +31,7 @@ to {
 
 const preloaderContentStyles = css`
   background-color: ${(props) =>
-    props.theme.appStore.cardLoadingContent_primary};
+    props.theme.appStoreCard.cardLoadingContent_primary};
 `;
 
 const borderRadiusPreloaderStyles = css`
@@ -46,33 +46,11 @@ const preloaderAnimationStyles = css`
     position: absolute;
     width: 60%;
     height: 100%;
-    background: ${(props) => props.theme.appStore.cardLoadingContent_secondary};
+    background: ${(props) =>
+      props.theme.appStoreCard.cardLoadingContent_secondary};
     filter: blur(100px);
     left: 0;
     animation: ${loading} 2.8s infinite;
-  }
-`;
-
-// ================ Card Section Container - for transition ======================
-
-S.CardSectionContainer = styled.div`
-  display: grid;
-  width: 90%;
-  max-width: 900px;
-  margin: 50px auto;
-
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-
-  gap: 40px;
-
-  @media screen and (max-width: 1125px) {
-    grid-template-columns: 450px;
-    justify-content: center;
-  }
-
-  @media screen and (max-width: 550px) {
-    grid-template-columns: minmax(100px, 440px);
-    justify-content: center;
   }
 `;
 
@@ -84,7 +62,7 @@ S.LoadingCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  background: ${(props) => props.theme.appStore.cardBg};
+  background: ${(props) => props.theme.appStoreCard.cardBg};
 
   animation: ${loadingCardPopsUp} 250ms;
 
@@ -105,7 +83,8 @@ S.LoadingImgWrapper = styled.div`
     position: absolute;
     width: 10%;
     height: 100%;
-    background: ${(props) => props.theme.appStore.cardLoadingContent_secondary};
+    background: ${(props) =>
+      props.theme.appStoreCard.cardLoadingContent_secondary};
     filter: blur(100px);
     left: 0;
     animation: ${loadingImg} 2.4s infinite;
@@ -124,7 +103,7 @@ S.LoadingTitleText = styled.div`
 `;
 
 S.LoadingDescriptionText = styled.div`
-  color: ${(props) => props.theme.appStore.cardText};
+  color: ${(props) => props.theme.appStoreCard.cardText};
   font-size: clamp(0.8rem, 1.1vw, 1.1rem);
   margin-bottom: 20px;
 

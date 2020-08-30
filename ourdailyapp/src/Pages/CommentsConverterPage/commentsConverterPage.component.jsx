@@ -24,7 +24,7 @@ const CommentsConverterPage = ({
   setStep2ToFalse,
   setStep2ToTrue,
 }) => (
-  <S.PageContainer className="commentsConverter-page pages">
+  <S.PageContainer className="commentsConverter-page gs-PageContentContainer">
     {/* ====================================== Introduction ====================================== */}
     <S.IntroContainer className="introduction">
       {/* ============= intro left ============= */}

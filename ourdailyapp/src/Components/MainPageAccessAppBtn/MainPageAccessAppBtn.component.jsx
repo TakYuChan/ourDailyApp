@@ -14,7 +14,7 @@ const MainPageAccessAppBtn = ({ app, index }) => {
         className="application-item"
         stagger={(index + 1) * 0.1}
       >
-        <S.Image src={imageUrl} className={`${border && "border"}`} />
+        <S.Image src={imageUrl} className={`${border ? "border" : ""}`} />
         <S.AppLinkText className="link-text">{name}</S.AppLinkText>
       </S.ApplicationItemContainer>
     </Link>

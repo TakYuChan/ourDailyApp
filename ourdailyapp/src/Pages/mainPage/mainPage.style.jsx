@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import profilePic from "../../assets/UIFace.png";
 
 const S = {};
 
@@ -30,6 +29,8 @@ S.MainPageContainer = styled.div`
 S.picNameWrapper = styled.div`
   position: absolute;
   top: 20%;
+
+  animation: ${appear} 350ms;
 
   text-align: center;
 `;

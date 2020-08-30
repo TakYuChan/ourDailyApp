@@ -5,7 +5,7 @@ import styled, { css } from "styled-components";
 const S = {};
 
 const textStyle = css`
-  color: ${(props) => props.theme.wishListPage.cardText};
+  color: ${(props) => props.theme.wishListCard.cardText};
 `;
 
 S.CardWrapper = styled.div`
@@ -14,7 +14,7 @@ S.CardWrapper = styled.div`
   transition: box-shadow 0.4s ease-in-out;
   height: 320px;
 
-  background: ${(props) => props.theme.wishListPage.cardBg};
+  background: ${(props) => props.theme.wishListCard.cardBg};
 
   cursor: pointer;
 
@@ -66,7 +66,7 @@ S.BtnAddToCart = styled.button`
   border: 0;
   font-size: 0.8rem;
   padding: 0.4em 1em;
-  background: ${(props) => props.theme.wishListPage.cardBtn_bg};
+  background: ${(props) => props.theme.wishListCard.cardBtn_bg};
   color: white;
   cursor: pointer;
   user-select: none;

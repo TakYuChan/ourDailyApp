@@ -62,39 +62,6 @@ const PigGamePageWithSpinner = ({
     startNewGame,
   ]);
 
-  // async componentDidMount() {
-  //   // Load Game State to pigGameReducer
-
-  //   const {
-  //     loadGameState,
-  //     loadingIsFinished,
-  //     startNewGame,
-  //     loadPlayer2State,
-  //   } = this.props;
-
-  //   const gameState = await getPigGameState();
-
-  //   if (gameState !== null) {
-  //     loadGameState(gameState);
-  //   } else {
-  //     startNewGame();
-  //   }
-
-  //   // if (gamePlayer2State !== null) {
-  //   const gamePlayer2State = await getPigGamePlayer2State();
-  //   loadPlayer2State(gamePlayer2State);
-
-  //   // }
-
-  //   loadingIsFinished();
-  // }
-
-  // componentWillUnmount() {
-  //   const { isLoading, setIsLoadingToTrue } = this.props;
-  //   setIsLoadingToTrue();
-  //   console.log("PigGameWithSpinner Unmounted: ", isLoading);
-  // }
-
   return isLoading ? (
     <S.Container>
       <S.Dice>

@@ -1,39 +1,77 @@
 import React, { useEffect } from "react";
 import S from "./ApplicationOverview.style";
 
-import { updateSectionHeader } from "../../redux/sectionHeader/sectionHeader.actions";
+import { updateRoutePath } from "../../redux/routePath/routePath.actions";
+import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
+import AppStoreCard from "../../Components/Cards/AppStoreCard/AppStoreCard.component";
+import AppStoreCardPreloader from "../../Components/Cards/AppStoreCard/AppStoreCardPreloader.component";
+import "./transitionGroup.scss";
+import {
+  selectIsApplicationsLoaded,
+  selectApplicationsInArray,
+} from "../../redux/app/app.selector";
 
-import AppStoreCardWithPreloader from "../../Components/Cards/AppStoreCard/AppStoreCardWithPreloader.component";
-
-const ApplicationOverview = ({ updateSectionHeader }) => {
+const ApplicationOverview = ({
+  updateRoutePath,
+  isLoading,
+  applications,
+  // ...otherProps
+}) => {
   useEffect(() => {
-    updateSectionHeader({
+    updateRoutePath({
       page: "shop",
       details: {},
     });
 
     return () => {
-      updateSectionHeader({
+      updateRoutePath({
         page: "",
         details: {},
       });
     };
-  }, [updateSectionHeader]);
+  }, [updateRoutePath]);
 
   return (
-    <S.ApplicationOverviewContainer className="application-overview pages">
+    <S.ApplicationOverviewContainer className="application-overview">
       {/* ============= content main ============= */}
       <S.ShopContentContainer className={`shop-content-main`}>
-        <AppStoreCardWithPreloader />
+        <SwitchTransition mode="out-in">
+          <CSSTransition
+            key={isLoading}
+            addEndListener={(node, done) => {
+              node.addEventListener("transitionend", done, false);
+            }}
+            classNames="fade"
+          >
+            <S.CardSectionContainer className="CardSectionContainer gs-PageContentContainer">
+              {isLoading
+                ? [...Array(6)].map((e, index) => (
+                    <AppStoreCardPreloader index={index} />
+                  ))
+                : applications.map((app, index) => (
+                    <AppStoreCard key={index} id={app.id} app={app} />
+                  ))}
+            </S.CardSectionContainer>
+          </CSSTransition>
+        </SwitchTransition>
       </S.ShopContentContainer>
     </S.ApplicationOverviewContainer>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  updateSectionHeader: (sectionHeaderDetails) =>
-    dispatch(updateSectionHeader(sectionHeaderDetails)),
+const mapStateToProps = createStructuredSelector({
+  isLoading: (state) => !selectIsApplicationsLoaded(state),
+  applications: selectApplicationsInArray,
 });
 
-export default connect(null, mapDispatchToProps)(ApplicationOverview);
+const mapDispatchToProps = (dispatch) => ({
+  updateRoutePath: (routePathDetails) =>
+    dispatch(updateRoutePath(routePathDetails)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ApplicationOverview);

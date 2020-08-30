@@ -21,10 +21,8 @@ S.AppStoreCardWrapper = styled.div`
 
 S.CardContainer = styled.div`
   padding: 20px 0 30px;
-  // display: flex;
-  // flex-direction: column;
   align-items: center;
-  background-color: ${(props) => props.theme.appStore.cardBg};
+  background-color: ${(props) => props.theme.appStoreCard.cardBg};
   width: 100%;
   height: 100%;
   cursor: pointer;
@@ -46,18 +44,18 @@ S.TitleText = styled.h3`
   margin: 20px 0;
   font-size: clamp(1rem, 1.5vw, 1.5rem);
   font-weight: 700;
-  color: ${(props) => props.theme.appStore.cardText};
+  color: ${(props) => props.theme.appStoreCard.cardText};
 `;
 
 S.DescriptionText = styled.h5`
-  color: ${(props) => props.theme.appStore.cardText};
+  color: ${(props) => props.theme.appStoreCard.cardText};
   font-size: clamp(0.8rem, 1.1vw, 1.1rem);
   margin-bottom: 20px;
 `;
 
 S.BtnStart = styled.button`
   border: 0;
-  background: ${(props) => props.theme.appStore.cardStartBtn_bg};
+  background: ${(props) => props.theme.appStoreCard.cardStartBtn_bg};
   border-radius: 3px;
   color: white !important;
   font-weight: 700;

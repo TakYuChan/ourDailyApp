@@ -10,7 +10,7 @@ import appReducer from "./app/app.reducer";
 import commentsConverterReducer from "./commentsConverter/commentsConverter.reducer";
 import cart_P_Reducer from "./cart/cart_P.reducer";
 import cartReducer from "./cart/cart.reducer";
-import sectionHeaderReducer from "./sectionHeader/sectionHeader.reducer";
+import routePathReducer from "./routePath/routePath.reducer";
 
 // =========== Applications ===========
 import pigGameReducer from "./pigGame/pigGame.reducer";
@@ -33,7 +33,7 @@ const rootReducer = combineReducers({
   shopNav: shopNavReducer,
   cart_P: cart_P_Reducer,
   cart: cartReducer,
-  sectionHeader: sectionHeaderReducer,
+  routePath: routePathReducer,
   // =========== Applications ===========
   pigGame: pigGameReducer,
   pigGameModals: pigGameModalsReducer,

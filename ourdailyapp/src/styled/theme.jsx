@@ -72,15 +72,20 @@ export const lightTheme = {
     shopNavText_Hover: rootStyles.gray2,
     menuWrapper_bg: rootStyles.blue_p2,
   },
-  appStore: {
+  appStoreCard: {
     cardBg: rootStyles.primary_m1,
     cardText: rootStyles.primary_old,
-    cardStartBtn_bg: rootStyles.blue_p2,
+    cardStartBtn_bg: rootStyles.blue_m2,
     // cardLoadingContent_primary: rootStyles.gray1,
     cardLoadingContent_primary: rootStyles.gray_m2,
     // cardLoadingContent_secondary: `#d1d8e1`,
     cardLoadingContent_secondary: rootStyles.primary_m1,
     // cardLoadingContent_secondary: rootStyles.primary_m1,
+  },
+  wishListCard: {
+    cardBg: rootStyles.primary_m1,
+    cardText: rootStyles.primary_old,
+    cardBtn_bg: rootStyles.blue_p2,
   },
   cartPage: {
     cartItemTitleCreatorText: rootStyles.primary_old,
@@ -92,9 +97,6 @@ export const lightTheme = {
   },
   wishListPage: {
     emptyWishList_text: rootStyles.primary_old,
-    cardBg: rootStyles.primary_m1,
-    cardText: rootStyles.primary_old,
-    cardBtn_bg: rootStyles.blue_p2,
   },
   NavigationMenu: {
     NavigationMenuBg: `rgba(0, 0, 0, 0.8)`,

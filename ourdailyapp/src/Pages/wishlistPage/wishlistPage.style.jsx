@@ -44,7 +44,8 @@ S.ContentContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, 260px);
+  grid-template-columns: repeat(auto-fit, 260px);\
+
 
   justify-content: center;
 

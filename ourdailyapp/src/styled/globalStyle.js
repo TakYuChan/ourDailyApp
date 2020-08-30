@@ -127,12 +127,17 @@ body {
   }
 
   /* ========================== Pages ========================== */
-.pages {
+.gs-page {
   background: ${(props) => props.theme.body};
+  // min-height: calc(100vh - var(--nav-height));
   min-height: calc(100vh - var(--nav-height));
   width: 100%;
 
-  // overflow: hidden;
+  overflow: hidden;
+}
+
+.gs-PageContentContainer {
+  margin: 50px auto;
 }
 
 

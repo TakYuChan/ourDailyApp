@@ -62,7 +62,7 @@ const PigGamePage = ({
   isMainUserLogged,
 }) => {
   return (
-    <S.PigGameContainer className="PigGame-Page pages">
+    <S.PigGameContainer className="PigGame-Page gs-page ">
       <style>
         @import
         url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
