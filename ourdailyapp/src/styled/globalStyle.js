@@ -126,6 +126,12 @@ body {
     transition: all 0.3s ease;
   }
 
+  
+  /* ========================== General style ========================== */
+a {
+  text-decoration: none;
+}
+
   /* ========================== Pages ========================== */
 .gs-page {
   background: ${(props) => props.theme.body};
@@ -139,10 +145,6 @@ body {
 .gs-PageContentContainer {
   margin: 50px auto;
 }
-
-
-
-
 
 
 /* ================ animations ================ */

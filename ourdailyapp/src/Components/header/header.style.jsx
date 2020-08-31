@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import TooltipWrapper from "../TooltipWrapper/TooltipWrapper.component";
+// import TooltipWrapper from "../TooltipWrapper/TooltipWrapper.component";
 import ReactToolTip from "react-tooltip";
 import { ReactComponent as NavIcon } from "../../assets/nav.svg";
 
@@ -87,14 +87,14 @@ S.CartItemsQuantityText = styled.span`
 
 /* ====================== SVG btn -> Float Nav ====================== */
 
-S.NavIconContainer = styled(TooltipWrapper)`
+S.NavIconContainer = styled.div`
   all: unset;
   --size: 40px;
   width: var(--size);
   height: var(--size);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  display: grid;
+  place-items: center;
 
   border-radius: 100%;
   cursor: pointer;
@@ -114,6 +114,7 @@ S.NavIconContainer = styled(TooltipWrapper)`
 
 S.NavIcon = styled(NavIcon)`
   fill: var(--gray1);
+  // transform: translateY(15%);
 `;
 
 // ============================= ToolTips =========================

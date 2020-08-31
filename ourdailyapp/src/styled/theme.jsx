@@ -133,6 +133,11 @@ export const lightTheme = {
     playerLogInBtn_primary: `#eb4d4d`,
     PlayerLogInBtn_secondary: "white",
   },
+  signInSignUpForm: {
+    inputText: rootStyles.primary_old,
+    inputPlaceHolder: rootStyles.primary_old,
+    inputSvg: rootStyles.primary_old,
+  },
 };
 
 export const darkTheme = {};

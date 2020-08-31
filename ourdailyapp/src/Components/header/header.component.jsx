@@ -10,7 +10,7 @@ import { toggleCartPopUp } from "../../redux/cart/cart.actions";
 import { selectCartItemsQuantity } from "../../redux/cart/cart.selectors";
 import S from "./header.style";
 
-import SignInAndSignUp from "../../Pages/signInAndSignUp/signInAndSignUp.component";
+// import SignInAndSignUp from "../../Pages/signInAndSignUp/signInAndSignUp.component";
 
 // import ProfileDropDownMenu from "../profileDropDownMenu/profileDropDownMenu.component";
 
@@ -30,6 +30,7 @@ const Header = ({
     return React.useMemo(() => {
       return {
         push: history.push,
+        history,
       };
     }, [history]);
   }
@@ -84,13 +85,13 @@ const Header = ({
             onClick={() => {
               toggleNav();
             }}
-            dataFor="navTip"
-            withToolTip={true}
-            toolTipId="navTip"
-            toolTipPlace="bottom"
-            toolTipEffect="solid"
-            toolTipClass="tooltip"
-            toolTipText="Navigation Menu"
+            // dataFor="navTip"
+            // withToolTip={true}
+            // toolTipId="navTip"
+            // toolTipPlace="bottom"
+            // toolTipEffect="solid"
+            // toolTipClass="tooltip"
+            // toolTipText="Navigation Menu"
           >
             <S.NavIcon className="svg" />
           </S.NavIconContainer>
@@ -100,7 +101,7 @@ const Header = ({
           {/* <ProfileDropDownMenu /> */}
 
           {/* - Passing the "showSignInSignUpModal" to Open / Close Modal */}
-          <SignInAndSignUp />
+          {/* <SignInAndSignUp /> */}
         </S.NavListContainer>
       </S.HeaderNavContainer>
     </S.HeaderContainer>

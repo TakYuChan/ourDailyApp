@@ -65,7 +65,6 @@ S.NavigationItems = styled(Link)`
   }
 
   &:hover {
-    text-decoration: none;
     color: ${(props) => props.theme.NavigationMenu.NavigationMenuText_Hover};
   }
 

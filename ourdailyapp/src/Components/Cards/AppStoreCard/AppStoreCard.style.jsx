@@ -20,6 +20,9 @@ S.AppStoreCardWrapper = styled.div`
 `;
 
 S.CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px 0 30px;
   align-items: center;
   background-color: ${(props) => props.theme.appStoreCard.cardBg};

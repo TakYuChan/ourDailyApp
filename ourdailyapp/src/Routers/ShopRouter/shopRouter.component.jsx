@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import "./ShopRouter.style.scss";
 
-import { Route } from "react-router-dom";
+import { Route, useRouteMatch } from "react-router-dom";
 import { connect } from "react-redux";
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { fetchApplicationsStart } from "../../redux/app/app.actions";
@@ -11,17 +10,33 @@ import ApplicationDetailWithPreloader from "../../Pages/ApplicationDetailPage/Ap
 
 import PropTypes from "prop-types";
 
-const ShopRouter = ({ match, closeShopNav, fetchApplicationsStart }) => {
+const ShopRouter = ({ closeShopNav, fetchApplicationsStart }) => {
   useEffect(() => {
     fetchApplicationsStart();
   }, [fetchApplicationsStart]);
 
+  function useRouter() {
+    const match = useRouteMatch();
+
+    return React.useMemo(() => {
+      return {
+        matchPath: match.path,
+      };
+    }, [match]);
+  }
+
+  const router = useRouter();
+
   return (
     <div className="shop-page" onClick={closeShopNav}>
-      <Route exact path={`${match.path}`} component={ApplicationOverview} />
       <Route
         exact
-        path={`${match.path}/:applicationId`}
+        path={`${router.matchPath}`}
+        component={ApplicationOverview}
+      />
+      <Route
+        exact
+        path={`${router.matchPath}/:applicationId`}
         component={ApplicationDetailWithPreloader}
       />
     </div>

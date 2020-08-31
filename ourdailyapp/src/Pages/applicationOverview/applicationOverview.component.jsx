@@ -48,7 +48,7 @@ const ApplicationOverview = ({
             <S.CardSectionContainer className="CardSectionContainer gs-PageContentContainer">
               {isLoading
                 ? [...Array(6)].map((e, index) => (
-                    <AppStoreCardPreloader index={index} />
+                    <AppStoreCardPreloader key={index} />
                   ))
                 : applications.map((app, index) => (
                     <AppStoreCard key={index} id={app.id} app={app} />

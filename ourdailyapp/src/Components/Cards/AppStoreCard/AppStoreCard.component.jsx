@@ -10,7 +10,7 @@ const AppStoreCard = ({ match, app }) => {
   return (
     <S.AppStoreCardWrapper className="custom-card">
       <Link className="link" to={`${match.path}/${route}`}>
-        <S.CardContainer className="card card-app">
+        <S.CardContainer className="card-app">
           <S.ImgWrapper className="img-wrapper">
             <img src={imageSrc} alt="" className="app-img" />
           </S.ImgWrapper>

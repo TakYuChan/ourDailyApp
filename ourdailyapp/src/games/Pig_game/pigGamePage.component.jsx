@@ -37,8 +37,8 @@ import {
 } from "../../redux/pigGame/pigGame.actions";
 import { signOutStart } from "../../redux/pigGamePlayer2/pigGamePlayer2.actions";
 
-import Player2SignInModal from "./Components/player2SignInModal.component";
-import InfoModal from "./Components/infoModal.component";
+// import Player2SignInModal from "./Components/player2SignInModal.component";
+// import InfoModal from "./Components/infoModal.component";
 
 const PigGamePage = ({
   diceNumber,
@@ -68,8 +68,8 @@ const PigGamePage = ({
         url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
       </style>
       {/* ================= Player TWO Sign In BTN and MODAL ================= */}
-      <Player2SignInModal />
-      <InfoModal />
+      {/* <Player2SignInModal /> */}
+      {/* <InfoModal /> */}
       <S.ModalsContainer>
         {isPlayer2Logged ? (
           <S.Player2SignOutBtn onClick={signOutStart}>
