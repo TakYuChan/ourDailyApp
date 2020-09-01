@@ -133,10 +133,28 @@ export const lightTheme = {
     playerLogInBtn_primary: `#eb4d4d`,
     PlayerLogInBtn_secondary: "white",
   },
-  signInSignUpForm: {
-    inputText: rootStyles.primary_old,
-    inputPlaceHolder: rootStyles.primary_old,
-    inputSvg: rootStyles.primary_old,
+  LogInForm: {
+    logInBtn_bg: rootStyles.blue_m2,
+    logInBtn_text: rootStyles.primary_old,
+    toCreateAccountLink: rootStyles.primary_old,
+  },
+  FormInput: {
+    text: rootStyles.primary_old,
+    placeHolder: rootStyles.primary_old,
+    svg: rootStyles.primary_old,
+    forgotPassBtn_text: rootStyles.primary_old,
+  },
+  OauthBtns: {
+    googleBtn_bg: "white",
+    facebookBtn_bg: rootStyles.blue_facebook,
+    appleBtn_bg: "black",
+    googleBtn_text: "black",
+    facebookBtn_text: "white",
+    appleBtn_text: "white",
+  },
+  SocialContactPair: {
+    svg: rootStyles.primary_old,
+    text: rootStyles.primary_old,
   },
 };
 

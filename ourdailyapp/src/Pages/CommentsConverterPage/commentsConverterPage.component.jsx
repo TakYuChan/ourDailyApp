@@ -14,7 +14,7 @@ import {
   selectStep2Show,
 } from "../../redux/commentsConverter/commentsConverter.selectors";
 
-import { Form } from "react-bootstrap";
+// import { Form } from "react-bootstrap";
 
 const CommentsConverterPage = ({
   videoIdInputValue,
@@ -86,7 +86,7 @@ const CommentsConverterPage = ({
           gCxsW2DXK0Y
         </S.BtnExample>
       </p>
-      <S.Form>
+      {/* <S.Form>
         <Form.Control
           className="input--videoId"
           type="text"
@@ -102,7 +102,7 @@ const CommentsConverterPage = ({
               setStep2ToTrue();
           }}
         />
-      </S.Form>
+      </S.Form> */}
 
       {step2Show && (
         <S.BtnStep2 className="btn--step2">Step2: Get Comments</S.BtnStep2>

@@ -10,30 +10,58 @@ S.FormInputBlock = styled.div`
   padding-bottom: 0.4em;
   position: relative;
 
+  transition: all 250ms linear;
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 880px) and (orientation: landscape) {
+    // background: pink;
+    margin-bottom: 1.2rem;
+  }
+
   & .styled-svg {
     --size: 1.2em;
     width: var(--size);
     height: var(--size);
     margin-right: 0.6em;
-    fill: ${(props) => props.theme.signInSignUpForm.inputSvg};
+    fill: ${(props) => props.theme.FormInput.svg};
   }
 `;
 
 S.InputField = styled.input`
-  width: 100%;
+  width: 80%;
   align-self: flex-end;
   font-size: 0.9em;
   border: 0;
   background: 0;
   outline: 0;
 
-  color: ${(props) => props.theme.signInSignUpForm.inputText};
+  position: relative;
 
-  &::placeholder {
-    color: ${(props) => props.theme.signInSignUpForm.inputPlaceHolder};
-    opacity: 1;
-    font-weight: 300;
+  color: ${(props) => props.theme.FormInput.text};
+
+  &:focus + .styled_label,
+  &:valid + .styled_label,
+  &.active + .styled_label {
+    font-size: 0.6em;
+    padding: 0.7em 1.5em;
+    transform: translateY(-1.4em);
   }
+
+  &:required {
+    box-shadow: none;
+  }
+`;
+
+S.Label = styled.label`
+  position: absolute;
+  left: 2em;
+  color: ${(props) => props.theme.FormInput.placeHolder};
+  opacity: 1;
+  font-weight: 300;
+  // font-size: 16px;
+
+  transition: all 150ms linear;
+
+  pointer-events: none;
 `;
 
 S.ForgotPassBtn = styled.button`
@@ -45,10 +73,10 @@ S.ForgotPassBtn = styled.button`
 
   cursor: pointer;
 
-  font-size: 0.6em;
+  font-size: 0.7em;
   position: absolute;
 
-  color: ${(props) => props.theme.signInSignUpForm.inputText};
+  color: ${(props) => props.theme.FormInput.forgotPassBtn_text};
   bottom: -2em;
   right: 0;
 

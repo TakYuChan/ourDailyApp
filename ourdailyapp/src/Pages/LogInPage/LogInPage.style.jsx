@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { rgba } from "polished";
 
 import bg from "../../assets/bg/bgJpg.jpg";
+import { Link } from "react-router-dom";
 
 const S = {};
 
@@ -11,13 +12,13 @@ S.LogInPageHazyBg = styled.div`
   background: url(${bg}) no-repeat center center fixed;
   background-size: cover;
   filter: blur(18px);
-  // overflow: hidden;
 `;
 
 S.LogInPageContent = styled.div`
   overflow-y: auto;
   width: 85%;
   height: 85%;
+  user-select: none;
 
   border-radius: 20px;
 
@@ -32,25 +33,93 @@ S.LogInPageContent = styled.div`
 
   display: grid;
   font-size: clamp(0.8rem, 1.8vw, 1.5rem);
-  grid-template-columns: 1fr 3em 10em 3em 1fr;
-  grid-template-rows: 12em 5em;
+  grid-template-columns: 1fr 1em 1em 1em 10em 1em 1em 1em 1fr;
 
-  row-gap: 1.7em;
+  grid-template-areas:
+    ". . . . logo . . . ."
+    ". . login login login login login . ."
+    ". . . oauth oauth oauth . . ."
+    "signup signup signup . . copyright copyright copyright copyright";
 `;
 
 // ============= Logo ==============
 S.LogoWrapper = styled.div`
-  grid-column: 3;
+  grid-column: 5;
   align-self: flex-end;
+
+  margin-bottom: 1.2rem;
 
   & img {
     object-fit: contain;
   }
 `;
 
+// ============== Log in form wrapper ================
+
 S.LogInFormWrapper = styled.div`
-  grid-column: 2 / 5;
-  grid-row: 2;
+  grid-column: 3 / 8;
+  margin-bottom: 2rem;
+`;
+// ============== Oauth wrapper ================
+S.OauthBtnsWrapper = styled.div`
+  grid-column: 5;
+
+  @media only screen and (max-width: 1000px) {
+    grid-column: 3 / 7;
+  }
+  @media only screen and (max-width: 750px) {
+    grid-column: 3 / 8;
+  }
+`;
+
+/* // ============== Create Account Btn ==============  */
+S.ToCreateAccount = styled(Link)`
+  grid-column: 1/ 5;
+  left: 1.5em;
+
+  font-size: 0.7em;
+  color: ${(props) => props.theme.LogInForm.toCreateAccountLink};
+  align-self: center;
+  text-decoration: underline;
+  align-self: flex-end;
+  justify-self: flex-start;
+
+  margin-left: 2em;
+  margin-bottom: 0.3em;
+`;
+
+/* // ============== S.SocialContactAndCopyRightWrapper ==============  */
+S.SocialContactAndCopyRightWrapper = styled.div`
+  grid-column: 5 / 10;
+  display: flex;
+  align-self: flex-end;
+  justify-self: flex-end;
+  right: 1.5em;
+
+  margin-bottom: 0.1em;
+
+  @media only screen and (max-width: 647px) {
+    flex-direction: column;
+  }
+`;
+/* // ============== My Social Media Contact ==============  */
+S.SocialContactWrapper = styled.div`
+  align-self: flex-end;
+  justify-self: flex-end;
+  right: 1.5em;
+  display: flex;
+
+  margin-bottom: 0.1em;
+`;
+
+/* // ============== Copy Right Text ==============  */
+S.CopyRightText = styled.span`
+  grid-column: 7;
+  font-size: 0.7em;
+  align-self: flex-end;
+  margin-bottom: 0.3em;
+  margin-right: 2em;
+  color: #f8f8f8;
 `;
 
 export default S;

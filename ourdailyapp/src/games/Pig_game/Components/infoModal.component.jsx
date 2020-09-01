@@ -10,7 +10,7 @@ import {
 } from "../../../redux/pigGameModals/pigGameModals.actions";
 import { selectShowInfoModal } from "../../../redux/pigGameModals/pigGameModals.selectors";
 
-import { Modal } from "react-bootstrap";
+// import { Modal } from "react-bootstrap";
 
 const InfoModal = ({ showInfoModal, toggleInfoModal, turnInfoModalOff }) => {
   return (
@@ -25,10 +25,10 @@ const InfoModal = ({ showInfoModal, toggleInfoModal, turnInfoModalOff }) => {
         @import
         url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
       </style>
-      <Modal.Header closeButton>
+      {/* <Modal.Header closeButton>
         <S.ModalTitle>Pig Game</S.ModalTitle>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body> */}
         {/* ======================== Rules ======================== */}
         <S.SubHeader>RULES: </S.SubHeader>
         <p>

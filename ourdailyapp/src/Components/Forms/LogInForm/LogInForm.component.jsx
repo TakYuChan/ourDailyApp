@@ -22,6 +22,7 @@ const LogInForm = () => {
         type="password"
         hasForgotPassBtn={true}
       />
+      <S.LogInButton type="submit">LOG IN</S.LogInButton>
     </S.LogInForm>
   );
 };
