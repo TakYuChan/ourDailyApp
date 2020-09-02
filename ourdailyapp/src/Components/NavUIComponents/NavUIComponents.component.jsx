@@ -1,6 +1,6 @@
 import React from "react";
 
-import Header from "../header/header.component";
+import Header from "../Header/Header.component";
 import NavigationMenu from "../NavigationMenu/NavigationMenu.component";
 import ShopFloatingNav from "../ShopFloatingNav/ShopFloatingNav.component";
 import CartPreview from "../cartPreview/cartPreview.component";

@@ -1,20 +1,20 @@
-import React from "react";
+import React from "./node_modules/react";
 
-import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { createStructuredSelector } from "reselect";
+import { connect } from "./node_modules/react-redux";
+import { useHistory } from "./node_modules/react-router-dom";
+import { createStructuredSelector } from "./node_modules/reselect";
 import { selectHidden } from "../../redux/nav/nav.selectors";
 import { toggleNavHidden, closeNav } from "../../redux/nav/nav.actions";
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { toggleCartPopUp } from "../../redux/cart/cart.actions";
 import { selectCartItemsQuantity } from "../../redux/cart/cart.selectors";
-import S from "./header.style";
+import S from "./Header.style";
 
 // import SignInAndSignUp from "../../Pages/signInAndSignUp/signInAndSignUp.component";
 
 // import ProfileDropDownMenu from "../profileDropDownMenu/profileDropDownMenu.component";
 
-import PropTypes from "prop-types";
+import PropTypes from "./node_modules/prop-types";
 
 const Header = ({
   navHidden,
