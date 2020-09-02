@@ -48,35 +48,25 @@ const App = ({ checkAuthSession, isUserLogged }) => {
         <Route
           exact
           path="/"
-          render={() =>
-            isUserLogged ? <MainPage /> : <Redirect to="/auth/login" />
-          }
+          render={() => (isUserLogged ? <MainPage /> : <Redirect to="/auth" />)}
         />
         <Route
           path="/shop"
           render={() =>
-            isUserLogged ? <ShopRouter /> : <Redirect to="/auth/login" />
+            isUserLogged ? <ShopRouter /> : <Redirect to="/auth" />
           }
           // component={ShopRouter}
         />
         <Route
           path="/commentsConverter"
           render={() =>
-            isUserLogged ? (
-              <CommentsConverterPage />
-            ) : (
-              <Redirect to="/auth/login" />
-            )
+            isUserLogged ? <CommentsConverterPage /> : <Redirect to="/auth" />
           }
         />
         <Route
           path="/pigGame"
           render={() =>
-            isUserLogged ? (
-              <PigGamePageWithSpinner />
-            ) : (
-              <Redirect to="/auth/login" />
-            )
+            isUserLogged ? <PigGamePageWithSpinner /> : <Redirect to="/auth" />
           }
         />
         <Route

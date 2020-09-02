@@ -1,10 +1,10 @@
-import styled from "./node_modules/styled-components";
+import styled from "styled-components";
 
 // import TooltipWrapper from "../TooltipWrapper/TooltipWrapper.component";
-import ReactToolTip from "./node_modules/react-tooltip";
+import ReactToolTip from "react-tooltip";
 import { ReactComponent as NavIcon } from "../../assets/nav.svg";
 
-import { rgba } from "./node_modules/polished";
+import { rgba } from "polished";
 const S = {};
 
 /* ============================== Header ================================= */
