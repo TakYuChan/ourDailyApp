@@ -15,8 +15,8 @@ import { checkAuthSession } from "./redux/user/user.actions";
 import { selectIsUserLogged } from "./redux/user/user.selectors";
 
 import MainPage from "./Pages/mainPage/mainPage.component";
-import LogInPage from "./Pages/LogInPage/LogInPage.component";
 import ShopRouter from "./Routers/ShopRouter/ShopRouter.component";
+import AuthRouter from "./Routers/AuthRouter/AuthRouter.component";
 import NavUIComponents from "./Components/NavUIComponents/NavUIComponents.component";
 import ProfilePage from "./Pages/ProfilePage/ProfilePage.component";
 import CommentsConverterPage from "./Pages/CommentsConverterPage/commentsConverterPage.component";
@@ -24,12 +24,6 @@ import NoMatch from "./Pages/NoMatchPage/NoMatchPage.component";
 import CartPage from "./Pages/cartPage/cartPage.component";
 import WishlistPage from "./Pages/wishlistPage/wishlistPage.component";
 import PigGamePageWithSpinner from "./games/Pig_game/pigGamePageWithSpinner.component";
-
-// import Header from "./Components/header/header.component";
-// import NavigationMenu from "./Components/NavigationMenu/NavigationMenu.component";
-// import ShopFloatingNav from "./Components/ShopFloatingNav/ShopFloatingNav.component";
-// import CartPreview from "./Components/cartPreview/cartPreview.component";
-// import RoutePath from "./Components/RoutePath/RoutePath.component";
 
 import "./App.scss";
 
@@ -46,53 +40,60 @@ const App = ({ checkAuthSession, isUserLogged }) => {
       {isUserLogged && <NavUIComponents />}
       <Switch>
         <Route
-          exact
-          path="/login"
-          render={() => (!isUserLogged ? <LogInPage /> : <Redirect to="/" />)}
+          path="/auth"
+          render={() => (!isUserLogged ? <AuthRouter /> : <Redirect to="/" />)}
         />
 
         <Route
           exact
           path="/"
           render={() =>
-            isUserLogged ? <MainPage /> : <Redirect to="/login" />
+            isUserLogged ? <MainPage /> : <Redirect to="/auth/login" />
           }
         />
         <Route
           path="/shop"
           render={() =>
-            isUserLogged ? <ShopRouter /> : <Redirect to="/login" />
+            isUserLogged ? <ShopRouter /> : <Redirect to="/auth/login" />
           }
           // component={ShopRouter}
         />
         <Route
           path="/commentsConverter"
           render={() =>
-            isUserLogged ? <CommentsConverterPage /> : <Redirect to="/login" />
+            isUserLogged ? (
+              <CommentsConverterPage />
+            ) : (
+              <Redirect to="/auth/login" />
+            )
           }
         />
         <Route
           path="/pigGame"
           render={() =>
-            isUserLogged ? <PigGamePageWithSpinner /> : <Redirect to="/login" />
+            isUserLogged ? (
+              <PigGamePageWithSpinner />
+            ) : (
+              <Redirect to="/auth/login" />
+            )
           }
         />
         <Route
           path="/profile"
           render={() =>
-            isUserLogged ? <ProfilePage /> : <Redirect to="/login" />
+            isUserLogged ? <ProfilePage /> : <Redirect to="/auth/login" />
           }
         />
         <Route
           path="/cart"
           render={() =>
-            isUserLogged ? <CartPage /> : <Redirect to="/login" />
+            isUserLogged ? <CartPage /> : <Redirect to="/auth/login" />
           }
         />
         <Route
           path="/wishlist"
           render={() =>
-            isUserLogged ? <WishlistPage /> : <Redirect to="/login" />
+            isUserLogged ? <WishlistPage /> : <Redirect to="/auth/login" />
           }
         />
         <Route

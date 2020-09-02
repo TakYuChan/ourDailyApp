@@ -12,8 +12,7 @@ S.FormInputBlock = styled.div`
 
   transition: all 250ms linear;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 880px) and (orientation: landscape) {
-    // background: pink;
+  @media only screen and (min-device-width: 320px) and (max-device-width: 1000px) and (orientation: landscape) {
     margin-bottom: 1.2rem;
   }
 
