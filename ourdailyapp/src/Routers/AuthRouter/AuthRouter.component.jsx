@@ -3,6 +3,7 @@ import S from "./AuthRouter.style";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import { Route } from "react-router-dom";
 import { selectAuthPage } from "../../redux/AuthRouter/AuthRouter.selectors";
 import { changePage } from "../../redux/AuthRouter/AuthRouter.actions";
 
@@ -35,7 +36,7 @@ const AuthRouter = ({ authPage, changeAuthPage }) => {
         )}
         {authPage === "signup" && (
           <S.ToLogInPage onClick={() => changeAuthPage("login")}>
-            Log In
+            Log In Now
           </S.ToLogInPage>
         )}
 
