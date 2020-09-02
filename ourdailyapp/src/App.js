@@ -40,6 +40,7 @@ const App = ({ checkAuthSession, isUserLogged }) => {
       {isUserLogged && <NavUIComponents />}
       <Switch>
         <Route
+          exact
           path="/auth"
           render={() => (!isUserLogged ? <AuthRouter /> : <Redirect to="/" />)}
         />
