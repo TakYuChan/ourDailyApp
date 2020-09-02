@@ -11,7 +11,7 @@ const SignUpPage = ({ authPage, changeAuthPage }) => {
     changeAuthPage("signup");
   }, [changeAuthPage]);
 
-  return <h1>SignUpPage</h1>;
+  return <React.Fragment></React.Fragment>;
 };
 
 const mapStateToProps = createStructuredSelector({

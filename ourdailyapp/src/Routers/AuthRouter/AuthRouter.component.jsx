@@ -1,6 +1,8 @@
 import React from "react";
 import S from "./AuthRouter.style";
+import "./transitionGroup.scss";
 
+import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { Switch, Route, useRouteMatch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -58,7 +60,14 @@ const AuthRouter = ({ authPage }) => {
           />
         </Switch>
         {/* // ============== Create Account Btn ==============  */}
-        <S.ToCreateAccount to="/">Create Account</S.ToCreateAccount>
+        {authPage === "login" && (
+          <S.ToCreateAccount to="/auth/signup">
+            Create Account
+          </S.ToCreateAccount>
+        )}
+        {authPage === "signup" && (
+          <S.ToCreateAccount to="/auth/login">Log In Now</S.ToCreateAccount>
+        )}
         <S.SocialContactAndCopyRightWrapper>
           {/* // ============== My Social Media Contact ==============  */}
           <S.SocialContactWrapper>

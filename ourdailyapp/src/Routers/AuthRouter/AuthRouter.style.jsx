@@ -40,20 +40,21 @@ S.LogInPageContent = styled.div`
 S.LogoWrapper = styled.div`
   // grid-column: 5;
   grid-column: 4;
-  align-self: flex-end;
+  grid-row: 1;
+  align-self: flex-start;
+  margin-top: 2rem;
 
   margin-bottom: 1.2rem;
 
-  // transition: transform 1s linear;
-  // transform: scale(1);
+  transition: transform 1s linear;
 
   & img {
     object-fit: contain;
   }
 
-  // &.styled_smallerLogo {
-  //   transform: scale(0.7);
-  // }
+  &.styled_smallerLogo {
+    transform: scale(0.7);
+  }
 `;
 
 /* // ============== Create Account Btn ==============  */
