@@ -1,10 +1,29 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { rgba } from "polished";
-import { Link } from "react-router-dom";
 
 import bg from "../../assets/bg/bgJpg.jpg";
 
 const S = {};
+
+const switchPageBtnStyle = css`
+  grid-column: 1/ 5;
+  left: 1.5em;
+
+  background: 0;
+  border: 0;
+  outline: 0;
+
+  cursor: pointer;
+
+  font-size: 0.7em;
+  align-self: center;
+  text-decoration: underline;
+  align-self: flex-end;
+  justify-self: flex-start;
+
+  margin-left: 2em;
+  margin-bottom: 0.3em;
+`;
 
 S.LogInPageHazyBg = styled.div`
   width: 100vw;
@@ -57,20 +76,14 @@ S.LogoWrapper = styled.div`
   }
 `;
 
-/* // ============== Create Account Btn ==============  */
-S.ToCreateAccount = styled(Link)`
-  grid-column: 1/ 5;
-  left: 1.5em;
-
-  font-size: 0.7em;
-  color: ${(props) => props.theme.LogInForm.toCreateAccountLink};
-  align-self: center;
-  text-decoration: underline;
-  align-self: flex-end;
-  justify-self: flex-start;
-
-  margin-left: 2em;
-  margin-bottom: 0.3em;
+/* // ============== Switch Auth Page Btn ==============  */
+S.ToSignUpBtn = styled.button`
+  ${switchPageBtnStyle}
+  color: ${(props) => props.theme.AuthPage.ToSignUpBtn}
+`;
+S.ToLogInBtn = styled.button`
+  ${switchPageBtnStyle}
+  color: ${(props) => props.theme.AuthPage.ToLogInBtn}
 `;
 
 /* // ============== S.SocialContactAndCopyRightWrapper ==============  */

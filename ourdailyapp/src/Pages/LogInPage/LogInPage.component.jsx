@@ -1,10 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import S from "./LogInPage.style";
-
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import { selectAuthPage } from "../../redux/AuthRouter/AuthRouter.selectors";
-import { changePage } from "../../redux/AuthRouter/AuthRouter.actions";
 
 import LogInForm from "../../Components/Forms/LogInForm/LogInForm.component";
 import OauthBtn from "../../Components/Buttons/OauthBtn.component";
@@ -13,11 +8,7 @@ import { ReactComponent as GoogleSvg } from "../../assets/svg/google.svg";
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";
 import { ReactComponent as AppleSvg } from "../../assets/svg/apple.svg";
 
-const LogInPage = ({ authPage, changeAuthPage }) => {
-  useEffect(() => {
-    changeAuthPage("login");
-  }, [changeAuthPage]);
-
+const LogInPage = () => {
   return (
     <React.Fragment>
       {/* // ============== Log In Form wrapper==============  */}
@@ -34,12 +25,4 @@ const LogInPage = ({ authPage, changeAuthPage }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  authPage: selectAuthPage,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  changeAuthPage: (pageName) => dispatch(changePage(pageName)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(LogInPage);
+export default LogInPage;

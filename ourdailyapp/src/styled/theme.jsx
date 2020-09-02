@@ -133,6 +133,10 @@ export const lightTheme = {
     playerLogInBtn_primary: `#eb4d4d`,
     PlayerLogInBtn_secondary: "white",
   },
+  AuthPage: {
+    ToSignUpBtn: rootStyles.primary_old,
+    ToLogInBtn: rootStyles.primary_old,
+  },
   LogInForm: {
     logInBtn_bg: rootStyles.blue_m2,
     logInBtn_text: rootStyles.primary_old,

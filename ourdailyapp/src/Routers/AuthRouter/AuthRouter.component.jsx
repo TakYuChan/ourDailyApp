@@ -2,11 +2,10 @@ import React from "react";
 import S from "./AuthRouter.style";
 import "./transitionGroup.scss";
 
-import { SwitchTransition, CSSTransition } from "react-transition-group";
-import { Switch, Route, useRouteMatch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectAuthPage } from "../../redux/AuthRouter/AuthRouter.selectors";
+import { changePage } from "../../redux/AuthRouter/AuthRouter.actions";
 
 import LogInPage from "../../Pages/LogInPage/LogInPage.component";
 import SignUpPage from "../../Pages/SignUpPage/SignUpPage.component";
@@ -16,20 +15,7 @@ import logo from "../../assets/logo_new.png";
 import { ReactComponent as LinkedInSvg } from "../../assets/svg/LinkedIn2.svg";
 import { ReactComponent as GithubSvg } from "../../assets/svg/GitHub2.svg";
 
-const AuthRouter = ({ authPage }) => {
-  function useRouter() {
-    const match = useRouteMatch();
-
-    return React.useMemo(() => {
-      return {
-        matchPath: match.path,
-        match,
-      };
-    }, [match]);
-  }
-
-  const router = useRouter();
-
+const AuthRouter = ({ authPage, changeAuthPage }) => {
   return (
     <React.Fragment>
       <S.LogInPageHazyBg></S.LogInPageHazyBg>
@@ -39,40 +25,27 @@ const AuthRouter = ({ authPage }) => {
         >
           <img className="logo" src={logo} alt="" role="presentation" />
         </S.LogoWrapper>
-        <Switch>
-          <Route
-            exact
-            path={`${router.matchPath}`}
-            render={() => <Redirect to="/auth/login" />}
-          />
-          <Route
-            exact
-            path={`${router.matchPath}/login`}
-            component={LogInPage}
-          />
-          <Route
-            exact
-            path={`${router.matchPath}/signup`}
-            component={SignUpPage}
-          />
-          <Route
-            path={`${router.matchPath}/:everyParams`}
-            render={() => <Redirect to="/auth/login" />}
-          />
-        </Switch>
-        {/* // ============== Create Account Btn ==============  */}
+
+        {authPage === "login" && <LogInPage />}
+        {authPage === "signup" && <SignUpPage />}
+        {/* ============== Switch Auth Page Btn ============== */}
         {authPage === "login" && (
-          <S.ToCreateAccount
-            to="/auth/signup"
+          <S.ToSignUpBtn
             onClick={() => {
-              console.log(router.match);
+              changeAuthPage("signup");
             }}
           >
             Create Account
-          </S.ToCreateAccount>
+          </S.ToSignUpBtn>
         )}
         {authPage === "signup" && (
-          <S.ToCreateAccount to="/auth/login">Log In Now</S.ToCreateAccount>
+          <S.ToLogInBtn
+            onClick={() => {
+              changeAuthPage("login");
+            }}
+          >
+            Log In Now
+          </S.ToLogInBtn>
         )}
         <S.SocialContactAndCopyRightWrapper>
           {/* // ============== My Social Media Contact ==============  */}
@@ -96,4 +69,8 @@ const mapStateToProps = createStructuredSelector({
   authPage: selectAuthPage,
 });
 
-export default connect(mapStateToProps)(AuthRouter);
+const mapDispatchToProps = (dispatch) => ({
+  changeAuthPage: (pageName) => dispatch(changePage(pageName)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthRouter);
