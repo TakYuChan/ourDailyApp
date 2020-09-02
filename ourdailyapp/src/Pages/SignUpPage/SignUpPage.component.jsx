@@ -15,6 +15,8 @@ const SignUpPage = () => {
       <S.SignUpFormWrapper>
         <SignUpForm />
       </S.SignUpFormWrapper>
+      {/* // =================== OR Seperate Line ====================== */}
+      <S.Or>OR</S.Or>
       {/* // ============== Oauth Buttons wrapper==============  */}
       <S.OauthBtnsWrapper>
         <OauthBtn SvgComponent={GoogleSvg}>Google</OauthBtn>
