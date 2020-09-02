@@ -3,7 +3,7 @@ import S from "./AuthRouter.style";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { Route } from "react-router-dom";
+import { Route, Switch, useRouteMatch, Redirect } from "react-router-dom";
 import { selectAuthPage } from "../../redux/AuthRouter/AuthRouter.selectors";
 import { changePage } from "../../redux/AuthRouter/AuthRouter.actions";
 
@@ -16,6 +16,18 @@ import { ReactComponent as LinkedInSvg } from "../../assets/svg/LinkedIn2.svg";
 import { ReactComponent as GithubSvg } from "../../assets/svg/GitHub2.svg";
 
 const AuthRouter = ({ authPage, changeAuthPage }) => {
+  function useRouter() {
+    const match = useRouteMatch();
+
+    return React.useMemo(() => {
+      return {
+        matchPath: match.path,
+      };
+    }, [match]);
+  }
+
+  const router = useRouter();
+
   return (
     <React.Fragment>
       <S.LogInPageHazyBg></S.LogInPageHazyBg>
@@ -25,9 +37,22 @@ const AuthRouter = ({ authPage, changeAuthPage }) => {
         >
           <img className="logo" src={logo} alt="" role="presentation" />
         </S.LogoWrapper>
+        <Switch>
+          <Route
+            path={`${router.matchPath}`}
+            render={() => {
+              console.log("hello");
+            }}
+          />
+          <Route
+            exact
+            path={`${router.matchPath}/login`}
+            component={<h1>hi</h1>}
+          />
+        </Switch>
 
-        {authPage === "login" && <LogInPage />}
-        {authPage === "signup" && <SignUpPage />}
+        {/* {authPage === "login" && <LogInPage />}
+        {authPage === "signup" && <SignUpPage />} */}
         {/* // ============== Create Account Btn ==============  */}
         {authPage === "login" && (
           <S.ToSignUpPage onClick={() => changeAuthPage("signup")}>
@@ -36,7 +61,7 @@ const AuthRouter = ({ authPage, changeAuthPage }) => {
         )}
         {authPage === "signup" && (
           <S.ToLogInPage onClick={() => changeAuthPage("login")}>
-            Log In Now
+            {`Log In Now ${router.matchPath}`}
           </S.ToLogInPage>
         )}
 
