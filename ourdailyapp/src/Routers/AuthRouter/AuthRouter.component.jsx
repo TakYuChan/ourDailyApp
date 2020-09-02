@@ -3,7 +3,7 @@ import S from "./AuthRouter.style";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { Route, Switch, useRouteMatch, Redirect } from "react-router-dom";
+
 import { selectAuthPage } from "../../redux/AuthRouter/AuthRouter.selectors";
 import { changePage } from "../../redux/AuthRouter/AuthRouter.actions";
 
@@ -16,18 +16,6 @@ import { ReactComponent as LinkedInSvg } from "../../assets/svg/LinkedIn2.svg";
 import { ReactComponent as GithubSvg } from "../../assets/svg/GitHub2.svg";
 
 const AuthRouter = ({ authPage, changeAuthPage }) => {
-  function useRouter() {
-    const match = useRouteMatch();
-
-    return React.useMemo(() => {
-      return {
-        matchPath: match.path,
-      };
-    }, [match]);
-  }
-
-  const router = useRouter();
-
   return (
     <React.Fragment>
       <S.LogInPageHazyBg></S.LogInPageHazyBg>
@@ -47,9 +35,9 @@ const AuthRouter = ({ authPage, changeAuthPage }) => {
           </S.ToSignUpPage>
         )}
         {authPage === "signup" && (
-          <S.ToLogInPage onClick={() => changeAuthPage("login")}>
-            {`Log In Now ${router.matchPath}`}
-          </S.ToLogInPage>
+          <S.ToLogInPage
+            onClick={() => changeAuthPage("login")}
+          ></S.ToLogInPage>
         )}
 
         <S.SocialContactAndCopyRightWrapper>

@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import { rgba } from "polished";
-import { Link } from "react-router-dom";
 
 import bg from "../../assets/bg/bgJpg.jpg";
 
