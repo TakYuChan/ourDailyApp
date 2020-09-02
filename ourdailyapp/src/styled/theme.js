@@ -133,6 +133,9 @@ export const lightTheme = {
     playerLogInBtn_primary: `#eb4d4d`,
     PlayerLogInBtn_secondary: "white",
   },
+  SignUpPage: {
+    SignUpTitle: rootStyles.primary_old,
+  },
   AuthPage: {
     ToSignUpPageBtn: rootStyles.primary_old,
     ToLogInPageBtn: rootStyles.primary_old,
@@ -141,6 +144,11 @@ export const lightTheme = {
     logInBtn_bg: rootStyles.blue_m2,
     logInBtn_text: rootStyles.primary_old,
     toCreateAccountLink: rootStyles.primary_old,
+  },
+  SignUpForm: {
+    SignUpButton_bg: `rgba(0, 0, 0, 0)`,
+    SignUpButton_border: rootStyles.primary_old,
+    SignUpButton_text: rootStyles.primary_old,
   },
   FormInput: {
     text: rootStyles.primary_old,

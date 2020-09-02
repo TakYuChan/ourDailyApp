@@ -28,20 +28,20 @@ S.FormInputBlock = styled.div`
 S.InputField = styled.input`
   width: 80%;
   align-self: flex-end;
-  font-size: 0.9em;
   border: 0;
   background: 0;
   outline: 0;
 
   position: relative;
 
+  font-size: ${(props) => (props.styled_hasSvgComponent ? "0.9em;" : "0.6em;")};
   color: ${(props) => props.theme.FormInput.text};
 
   &:focus + .styled_label,
   &:valid + .styled_label,
   &.active + .styled_label {
     font-size: 0.6em;
-    padding: 0.7em 1.5em;
+    ${(props) => props.styled_hasSvgComponent && "padding: 0.7em 1.5em;"};
     transform: translateY(-1.4em);
   }
 
@@ -52,13 +52,14 @@ S.InputField = styled.input`
 
 S.Label = styled.label`
   position: absolute;
-  left: 2em;
+  ${(props) => props.styled_hasSvgComponent && "left: 2em"};
   color: ${(props) => props.theme.FormInput.placeHolder};
   opacity: 1;
   font-weight: 300;
-  // font-size: 16px;
 
   transition: all 150ms linear;
+
+  font-size: ${(props) => (props.styled_hasSvgComponent ? "0.9em;" : "0.6em;")};
 
   pointer-events: none;
 `;

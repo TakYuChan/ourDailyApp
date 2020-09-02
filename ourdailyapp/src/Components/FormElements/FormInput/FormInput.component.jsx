@@ -4,18 +4,22 @@ import S from "./FormInput.style";
 const FormInput = ({ SvgComponent, placeholder, type, hasForgotPassBtn }) => {
   const [value, setValue] = useState("");
 
-  //@importedBy   LogInForm
+  //@importedBy   LogInForm SignUpForm
+  //@styledProps  Size / Position of label
   return (
     <S.FormInputBlock beforeContent={placeholder}>
-      <SvgComponent className="styled-svg" />
+      {SvgComponent !== undefined && <SvgComponent className="styled-svg" />}
       <S.InputField
         required
         type={type}
         value={value}
         onChange={(event) => setValue(event.target.value)}
         className={value !== "" && "active"}
+        styled_hasSvgComponent={SvgComponent}
       />
-      <S.Label className="styled_label">{placeholder}</S.Label>
+      <S.Label className="styled_label" hasSvgComponent={SvgComponent}>
+        {placeholder}
+      </S.Label>
       {hasForgotPassBtn && (
         <S.ForgotPassBtn type="button">Forgot Password?</S.ForgotPassBtn>
       )}

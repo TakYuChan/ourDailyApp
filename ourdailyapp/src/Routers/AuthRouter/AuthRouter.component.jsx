@@ -28,31 +28,33 @@ const AuthRouter = ({ authPage, changeAuthPage }) => {
 
         {authPage === "login" && <LogInPage />}
         {authPage === "signup" && <SignUpPage />}
-        {/* // ============== Create Account Btn ==============  */}
-        {authPage === "login" && (
-          <S.ToSignUpPage onClick={() => changeAuthPage("signup")}>
-            Create Account
-          </S.ToSignUpPage>
-        )}
-        {authPage === "signup" && (
-          <S.ToLogInPage
-            onClick={() => changeAuthPage("login")}
-          ></S.ToLogInPage>
-        )}
 
-        <S.SocialContactAndCopyRightWrapper>
+        <S.FooterWrapper>
+          {/* // ============== Create Account Btn ==============  */}
+          {authPage === "login" && (
+            <S.ToSignUpPage onClick={() => changeAuthPage("signup")}>
+              Create Account
+            </S.ToSignUpPage>
+          )}
+          {authPage === "signup" && (
+            <S.ToLogInPage onClick={() => changeAuthPage("login")}>
+              Log In Now
+            </S.ToLogInPage>
+          )}
           {/* // ============== My Social Media Contact ==============  */}
-          <S.SocialContactWrapper>
-            <SocialContactPair SvgComponent={LinkedInSvg}>
-              LinkedIn
-            </SocialContactPair>
-            <SocialContactPair SvgComponent={GithubSvg}>
-              Github
-            </SocialContactPair>
-          </S.SocialContactWrapper>
-          {/* // ============== Copy Right Text ==============  */}
-          <S.CopyRightText>© 2020 by Franky Chan</S.CopyRightText>
-        </S.SocialContactAndCopyRightWrapper>
+          <S.SocialContactAndCopyRightWrapper>
+            <S.SocialContactWrapper>
+              <SocialContactPair SvgComponent={LinkedInSvg}>
+                LinkedIn
+              </SocialContactPair>
+              <SocialContactPair SvgComponent={GithubSvg}>
+                Github
+              </SocialContactPair>
+            </S.SocialContactWrapper>
+            {/* // ============== Copy Right Text ==============  */}
+            <S.CopyRightText>© 2020 by Franky Chan</S.CopyRightText>
+          </S.SocialContactAndCopyRightWrapper>
+        </S.FooterWrapper>
       </S.LogInPageContent>
     </React.Fragment>
   );

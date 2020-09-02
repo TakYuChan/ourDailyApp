@@ -6,8 +6,7 @@ import bg from "../../assets/bg/bgJpg.jpg";
 const S = {};
 
 const switchPageBtnStyle = css`
-  grid-column: 1/ 5;
-  left: 1.5em;
+  grid-column: 1/ 4;
 
   background: 0;
   border: 0;
@@ -16,10 +15,7 @@ const switchPageBtnStyle = css`
   cursor: pointer;
 
   font-size: 0.7em;
-  align-self: center;
   text-decoration: underline;
-  align-self: flex-end;
-  justify-self: flex-start;
 
   margin-left: 2em;
   margin-bottom: 0.3em;
@@ -79,12 +75,18 @@ ${switchPageBtnStyle}
   color: ${(props) => props.theme.AuthPage.ToLogInPageBtn};
 `;
 
-/* // ============== S.SocialContactAndCopyRightWrapper ==============  */
-S.SocialContactAndCopyRightWrapper = styled.div`
-  grid-column: 5 / 10;
+/* // ============== S.Footer ==============  */
+S.FooterWrapper = styled.div`
+  grid-column: 1 / 10;
+  width: 100%;
   display: flex;
-  align-self: flex-end;
-  justify-self: flex-end;
+  align-items: flex-end;
+  justify-content: space-between;
+`;
+/* // ============== S.SocialContactAndCopyRightWrapper ==============  */
+
+S.SocialContactAndCopyRightWrapper = styled.div`
+  display: flex;
   right: 1.5em;
   margin-bottom: 0.1em;
   @media only screen and (max-width: 647px) {
