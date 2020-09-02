@@ -23,6 +23,7 @@ const AuthRouter = ({ authPage }) => {
     return React.useMemo(() => {
       return {
         matchPath: match.path,
+        match,
       };
     }, [match]);
   }
@@ -61,7 +62,12 @@ const AuthRouter = ({ authPage }) => {
         </Switch>
         {/* // ============== Create Account Btn ==============  */}
         {authPage === "login" && (
-          <S.ToCreateAccount to="/auth/signup">
+          <S.ToCreateAccount
+            to="/auth/signup"
+            onClick={() => {
+              console.log(router.match);
+            }}
+          >
             Create Account
           </S.ToCreateAccount>
         )}
