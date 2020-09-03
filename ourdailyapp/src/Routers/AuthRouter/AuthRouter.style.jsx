@@ -6,8 +6,6 @@ import bg from "../../assets/bg/bgJpg.jpg";
 const S = {};
 
 const switchPageBtnStyle = css`
-  grid-column: 1/ 4;
-
   background: 0;
   border: 0;
   outline: 0;
@@ -45,16 +43,33 @@ S.LogInPageContent = styled.div`
   transform: translate(-50%, -50%);
   display: grid;
   font-size: clamp(0.8rem, 1.8vw, 1.5rem);
-  grid-template-columns: 1fr 1em 1em 10em 1em 1em 1fr;
+  grid-template: 1em 10em 2em 10em 2em 4em 1fr / auto 4em 1.5em 8em 1.5em 4em auto;
+  grid-template-areas:
+    " . . . . . . ."
+    ". . logo logo logo . ."
+    ". . . . . . ."
+    ". form form form form form ."
+    " . . . . . . ."
+    ". . authBtns authBtns authBtns . ."
+    "footer footer footer footer footer footer footer";
+
+  @media only screen and (max-width: 890px) {
+    grid-template: 1em 10em 2em 10em 2em 4em auto / auto 2.8em 1.2em 1.5em 8em 1.5em 1.2em 2.8em auto;
+
+    grid-template-areas:
+      " . . . . . . . . ."
+      ". . logo logo logo logo logo . ."
+      ". . . . . . . . ."
+      ". form form form form form form form ."
+      " . . . . . . . . ."
+      ". . authBtns authBtns authBtns authBtns authBtns . ."
+      "footer footer footer footer footer footer footer footer footer";
+  }
 `;
 
 // ============= Logo ==============
 S.LogoWrapper = styled.div`
-  grid-column: 4;
-  grid-row: 1;
-  align-self: flex-start;
-  margin-top: 2.2rem;
-  margin-bottom: 1.2rem;
+  grid-area: logo;
   transition: transform 800ms linear;
   transform: scale(1);
   & img {
@@ -77,37 +92,34 @@ ${switchPageBtnStyle}
 
 /* // ============== S.Footer ==============  */
 S.FooterWrapper = styled.div`
-  grid-column: 1 / 10;
+  grid-area: footer;
   width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+
+  margin-bottom: 0.2em;
 `;
 /* // ============== S.SocialContactAndCopyRightWrapper ==============  */
 
 S.SocialContactAndCopyRightWrapper = styled.div`
   display: flex;
-  right: 1.5em;
-  margin-bottom: 0.1em;
+  // margin-bottom: 0.1em;
   @media only screen and (max-width: 647px) {
     flex-direction: column;
   }
 `;
 /* // ============== My Social Media Contact ==============  */
 S.SocialContactWrapper = styled.div`
-  align-self: flex-end;
-  justify-self: flex-end;
-  right: 1.5em;
   display: flex;
-  margin-bottom: 0.1em;
+  // margin-bottom: 0.1em;
 `;
 
 /* // ============== Copy Right Text ==============  */
 S.CopyRightText = styled.span`
-  grid-column: 7;
   font-size: 0.7em;
   align-self: flex-end;
-  margin-bottom: 0.3em;
+  // margin-bottom: 0.3em;
   margin-right: 2em;
   color: #f8f8f8;
 `;

@@ -17,7 +17,7 @@ const FormInput = ({ SvgComponent, placeholder, type, hasForgotPassBtn }) => {
         className={value !== "" && "active"}
         styled_hasSvgComponent={SvgComponent}
       />
-      <S.Label className="styled_label" hasSvgComponent={SvgComponent}>
+      <S.Label className="styled_label" styled_hasSvgComponent={SvgComponent}>
         {placeholder}
       </S.Label>
       {hasForgotPassBtn && (
