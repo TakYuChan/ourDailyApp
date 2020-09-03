@@ -19,7 +19,7 @@ const AuthRouter = ({ authPage, changeAuthPage }) => {
   return (
     <React.Fragment>
       <S.LogInPageHazyBg></S.LogInPageHazyBg>
-      <S.LogInPageContent>
+      <S.LogInPageContent styled_authPage={authPage}>
         <S.LogoWrapper
           className={authPage === "signup" && "styled_smallerLogo"}
         >

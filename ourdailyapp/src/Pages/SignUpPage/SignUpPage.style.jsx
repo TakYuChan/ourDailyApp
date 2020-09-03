@@ -5,12 +5,13 @@ const S = {};
 // ============== Log in form wrapper ================
 
 S.SignUpFormWrapper = styled.div`
-  grid-column: 1;
-  grid-row: 2;
-  margin-bottom: 2rem;
-  width: 60%;
-  height: 100%;
+  grid-area: form;
   justify-self: flex-end;
+
+  width: 90%;
+  max-width: 400px;
+  height: 100%;
+  // justify-self: flex-end;
 
   position: relative;
 
@@ -28,9 +29,10 @@ S.SignUpFormWrapper = styled.div`
 
 /* // =================== OR Seperate Line ====================== */
 S.Or = styled.span`
-  grid-column: 4 / 5;
   justify-self: center;
   align-self: center;
+
+  grid-area: seperate;
 
   color: ${(props) => props.theme.SignUpPage.OrSepereateLine};
 
@@ -57,26 +59,16 @@ S.Or = styled.span`
   &:after {
     bottom: -500%;
   }
-`;
+`
 
 // ============== Oauth wrapper ================
 S.OauthBtnsWrapper = styled.div`
-  grid-column: 7;
-  grid-row: 2;
-  justify-self: flex-start;
 
-  width: 10em;
+  grid-area: authBtns;
+  align-self: center;
 
-  //   @media only screen and (max-width: 1000px) {
-  //     grid-column: 3 / 6;
-  //   }
-  //   @media only screen and (max-width: 750px) {
-  //     grid-column: 3 / 7;
-  //   }
-
-  //   @media only screen and (min-device-width: 320px) and (max-device-width: 1000px) and (orientation: landscape) {
-  //     margin-bottom: 1.2rem;
-  //   }
+  width: 80%;
+  max-width: 240px;
 `;
 
 export default S;

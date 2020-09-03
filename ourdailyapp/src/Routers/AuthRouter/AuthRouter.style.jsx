@@ -43,8 +43,24 @@ S.LogInPageContent = styled.div`
   transform: translate(-50%, -50%);
   display: grid;
   font-size: clamp(0.8rem, 1.8vw, 1.5rem);
+
   grid-template: 1em 10em 2em 10em 2em 7em 1fr / auto 4em 1.5em 8em 1.5em 4em auto;
-  grid-template-areas:
+
+
+// =========================== For Log In Page ===========================
+
+  @media screen and (max-width: 890px) {
+    ${props => props.styled_authPage === "login" &&
+      `
+       grid-template-rows: 1em 10em 2em 10em 2em 7em 1fr;
+       grid-template-columns: auto 2em 2.8em 8em 2.8em 2em auto;
+      `
+    };
+  }
+
+
+  ${props => props.styled_authPage === "login" &&
+    `grid-template-areas:
     " . . . . . . ."
     ". . logo logo logo . ."
     ". . . . . . ."
@@ -52,19 +68,29 @@ S.LogInPageContent = styled.div`
     " . . . . . . ."
     ". . authBtns authBtns authBtns . ."
     "footer footer footer footer footer footer footer";
+    `
+  };
 
-  @media only screen and (max-width: 890px) {
-    grid-template: 1em 10em 2em 10em 2em 9em auto / auto 2.8em 1.2em 1.5em 8em 1.5em 1.2em 2.8em auto;
+  // =========================== For Sign Up Page ===========================
 
-    grid-template-areas:
-      " . . . . . . . . ."
-      ". . logo logo logo logo logo . ."
-      ". . . . . . . . ."
-      ". form form form form form form form ."
-      " . . . . . . . . ."
-      ". . authBtns authBtns authBtns authBtns authBtns . ."
-      "footer footer footer footer footer footer footer footer footer";
-  }
+  ${props => props.styled_authPage === "signup" &&
+  `grid-template-areas:
+  " . . . . . . ."
+  ". . logo logo logo . ."
+  "form . . . . . authBtns"
+  "form . . seperate . . authBtns"
+  "form . . seperate . . authBtns"
+  ". . . . . . ."
+  "footer footer footer footer footer footer footer";
+  `
+  };
+
+
+
+
+    
+
+
 `;
 
 // ============= Logo ==============
