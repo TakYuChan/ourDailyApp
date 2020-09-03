@@ -1,5 +1,5 @@
 import React from "react";
-import S from "./AuthRouter.style";
+import S from "./AuthPage.style";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -7,8 +7,8 @@ import { createStructuredSelector } from "reselect";
 import { selectAuthPage } from "../../redux/AuthRouter/AuthRouter.selectors";
 import { changePage } from "../../redux/AuthRouter/AuthRouter.actions";
 
-import LogInPage from "../../Pages/LogInPage/LogInPage.component";
-import SignUpPage from "../../Pages/SignUpPage/SignUpPage.component";
+import LogInPage from "../LogInPage/LogInPage.component";
+import SignUpPage from "../SignUpPage/SignUpPage.component";
 import SocialContactPair from "../../Components/SocialContact/SocialContactPair.component";
 
 import logo from "../../assets/logo_new.png";

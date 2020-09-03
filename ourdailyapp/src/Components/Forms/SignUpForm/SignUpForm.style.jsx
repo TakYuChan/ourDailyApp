@@ -10,8 +10,17 @@ const labelStyle = css`
   transition: all 150ms linear;
 
   font-size: 0.6em;
+  position: relative;
+  cursor: pointer;
+`;
 
-  pointer-events: none;
+const originalRadioBtnStyle = css`
+  display: none;
+
+  &:checked + .S_CustomSpan {
+    border-color: ${(props) => props.theme.SignUpPage.genderRadiusBtn_hover};
+    background: ${(props) => props.theme.SignUpPage.genderRadiusBtn_hover};
+  }
 `;
 
 S.SignUpForm = styled.form`
@@ -47,12 +56,11 @@ S.SignUpButton = styled.button`
 S.GenderAndDateWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  // align-items: flex-end;
 `;
 // ====================== Gender Block =============================
 
 S.GenderBlock = styled.div`
-  width: 30%;
+  width: 35%;
   border-bottom: 1px solid white;
   display: flex;
   justify-content: space-between;
@@ -63,14 +71,48 @@ S.GenderLabel = styled.label`
   ${labelStyle}
 `;
 
-S.RadioBtnsBlock = styled.div``;
+S.RadioBtnsWrapper = styled.div`
+  width: 55%;
+  display: flex;
 
-S.Radiolabel = styled.label`
-  ${labelStyle}
+  align-items: center;
+  justify-content: flex-end;
 `;
 
-S.MaleRadio = styled.input``;
-S.FemaleRadio = styled.input``;
+S.RadioBtnBlock = styled.label`
+  cursor: pointer;
+`;
+
+S.OriginalRadioInput = styled.input`
+  ${originalRadioBtnStyle}
+`;
+
+S.CustomSpan = styled.span`
+  font-size: 0.4em;
+  padding: 0.3em 1em;
+  border: 0.2em solid white;
+  em solid white;
+  display: inline-block;
+  color: white;
+  text-transform: uppercase;
+
+  margin-bottom: 0.5em;
+
+  --radius: 6px;
+
+  &.S_CustomSpan_female {
+    border-right: 0.1em solid white;
+    border-top-left-radius: var(--radius);
+    border-bottom-left-radius: var(--radius);
+  }
+
+  &.S_CustomSpan_male {
+    border-left: 0.1em solid white;
+    border-top-right-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+  }
+`;
+
 // ====================== Form Date Picker =============================
 S.FormDatePickerBlock = styled.div`
   width: 60%;
@@ -86,6 +128,7 @@ S.FormDatePickerBlock = styled.div`
 
 S.DatePicker = styled.input`
   align-self: flex-end;
+
   border: 0;
   background: 0;
   outline: 0;

@@ -136,6 +136,7 @@ export const lightTheme = {
   SignUpPage: {
     SignUpTitle: rootStyles.primary_old,
     OrSepereateLine: rootStyles.primary_old,
+    genderRadiusBtn_hover: rootStyles.blue_m2,
   },
   AuthPage: {
     ToSignUpPageBtn: rootStyles.primary_old,

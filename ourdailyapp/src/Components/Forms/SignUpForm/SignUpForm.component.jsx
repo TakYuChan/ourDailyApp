@@ -13,12 +13,21 @@ const SignUpForm = () => {
       <S.GenderAndDateWrapper>
         <S.GenderBlock>
           <S.GenderLabel>Gender</S.GenderLabel>
-          <S.RadioBtnsBlock>
-            <S.Radiolabel for="female">F</S.Radiolabel>
-            <S.FemaleRadio id="female" type="radio" value="F" name="gender" />
-            <S.Radiolabel for="male">M</S.Radiolabel>
-            <S.MaleRadio id="male" type="radio" value="M" name="gender" />
-          </S.RadioBtnsBlock>
+          <S.RadioBtnsWrapper>
+            <S.RadioBtnBlock>
+              <S.OriginalRadioInput type="radio" value="Female" name="gender" />
+              <S.CustomSpan className="S_CustomSpan S_CustomSpan_female">
+                F
+              </S.CustomSpan>
+            </S.RadioBtnBlock>
+
+            <S.RadioBtnBlock>
+              <S.OriginalRadioInput type="radio" value="Male" name="gender" />
+              <S.CustomSpan className="S_CustomSpan S_CustomSpan_male">
+                M
+              </S.CustomSpan>
+            </S.RadioBtnBlock>
+          </S.RadioBtnsWrapper>
         </S.GenderBlock>
         <S.FormDatePickerBlock>
           <S.PickerLabel className="styled_pickerLlabel">

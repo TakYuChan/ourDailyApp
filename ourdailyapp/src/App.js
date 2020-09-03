@@ -16,7 +16,7 @@ import { selectIsUserLogged } from "./redux/user/user.selectors";
 
 import MainPage from "./Pages/mainPage/mainPage.component";
 import ShopRouter from "./Routers/ShopRouter/ShopRouter.component";
-import AuthRouter from "./Routers/AuthRouter/AuthRouter.component";
+import AuthPage from "./Pages/AuthPage/AuthPage.component";
 import NavUIComponents from "./Components/NavUIComponents/NavUIComponents.component";
 import ProfilePage from "./Pages/ProfilePage/ProfilePage.component";
 import CommentsConverterPage from "./Pages/CommentsConverterPage/commentsConverterPage.component";
@@ -42,7 +42,7 @@ const App = ({ checkAuthSession, isUserLogged }) => {
         <Route
           exact
           path="/auth"
-          render={() => (!isUserLogged ? <AuthRouter /> : <Redirect to="/" />)}
+          render={() => (!isUserLogged ? <AuthPage /> : <Redirect to="/" />)}
         />
 
         <Route
