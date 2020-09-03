@@ -25,6 +25,8 @@ S.LogInPageHazyBg = styled.div`
   background: url(${bg}) no-repeat center center fixed;
   background-size: cover;
   filter: blur(18px);
+
+  position: fixed;
 `;
 
 S.LogInPageContent = styled.div`
@@ -46,20 +48,8 @@ S.LogInPageContent = styled.div`
 
   grid-template: 1em 10em 2em 10em 2em 7em 1fr / auto 4em 1.5em 8em 1.5em 4em auto;
 
-
-// =========================== For Log In Page ===========================
-
-  @media screen and (max-width: 890px) {
-    ${props => props.styled_authPage === "login" &&
-      `
-       grid-template-rows: 1em 10em 2em 10em 2em 7em 1fr;
-       grid-template-columns: auto 2em 2.8em 8em 2.8em 2em auto;
-      `
-    };
-  }
-
-
-  ${props => props.styled_authPage === "login" &&
+  ${(props) =>
+    props.styled_authPage === "login" &&
     `grid-template-areas:
     " . . . . . . ."
     ". . logo logo logo . ."
@@ -68,13 +58,11 @@ S.LogInPageContent = styled.div`
     " . . . . . . ."
     ". . authBtns authBtns authBtns . ."
     "footer footer footer footer footer footer footer";
-    `
-  };
+    `};
 
-  // =========================== For Sign Up Page ===========================
-
-  ${props => props.styled_authPage === "signup" &&
-  `grid-template-areas:
+  ${(props) =>
+    props.styled_authPage === "signup" &&
+    `grid-template-areas:
   " . . . . . . ."
   ". . logo logo logo . ."
   "form . . . . . authBtns"
@@ -82,15 +70,53 @@ S.LogInPageContent = styled.div`
   "form . . seperate . . authBtns"
   ". . . . . . ."
   "footer footer footer footer footer footer footer";
-  `
-  };
+  `};
 
+  @media screen and (max-width: 1300px) {
+    ${(props) =>
+      props.styled_authPage === "signup" &&
+      `
+       grid-template-rows: 1em 10em 2em 10em 2em 7em 1fr;
+       grid-template-columns: auto 2em 1.5em 8em 1.5em 2em auto;
+      `};
+  }
+  @media screen and (max-width: 890px) {
+    ${(props) =>
+      props.styled_authPage === "login" &&
+      `
+       grid-template-rows: 1em 10em 2em 10em 2em 7em 1fr;
+       grid-template-columns: auto 2em 2.8em 8em 2.8em 2em auto;
+      `};
 
+    ${(props) =>
+      props.styled_authPage === "signup" &&
+      `
+       grid-template-rows: 1em 10em 2em 10em 2em 7em 7em 1fr;
+       grid-template-columns: auto .5em .5em 8em .5em .5em auto;
+      `};
+  }
 
+  @media screen and (max-width: 750px) {
+    ${(props) =>
+      props.styled_authPage === "signup" &&
+      `
+       grid-template-rows: 1em 10em 2em 15em 1em 7em 1fr;
+       grid-template-columns: auto 2em 15em 2em auto;
+      `};
 
-    
-
-
+    ${(props) =>
+      props.styled_authPage === "signup" &&
+      `grid-template-areas:
+      " . . . . ."
+      ". . logo . ."
+      ". . . . ."
+      ". form form form ."
+      ". . . . ."
+      " . . seperate . ."
+      ". . authBtns . ."
+      "footer footer footer footer footer";
+      `};
+  }
 `;
 
 // ============= Logo ==============

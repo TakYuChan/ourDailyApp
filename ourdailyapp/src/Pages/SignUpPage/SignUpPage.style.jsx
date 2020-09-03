@@ -11,7 +11,6 @@ S.SignUpFormWrapper = styled.div`
   width: 90%;
   max-width: 400px;
   height: 100%;
-  // justify-self: flex-end;
 
   position: relative;
 
@@ -24,6 +23,10 @@ S.SignUpFormWrapper = styled.div`
     position: absolute;
     left: -1em;
     top: -3em;
+  }
+
+  @media screen and (max-width: 750px) {
+    justify-self: center;
   }
 `;
 
@@ -59,16 +62,36 @@ S.Or = styled.span`
   &:after {
     bottom: -500%;
   }
-`
+
+  @media screen and (max-width: 750px) {
+    &:before,
+    &:after {
+      transform: rotate(90deg);
+      top: -180%;
+    }
+
+    &:before {
+      left: -350%;
+    }
+
+    &:after {
+      bottom: 0;
+      left: 450%;
+    }
+  }
+`;
 
 // ============== Oauth wrapper ================
 S.OauthBtnsWrapper = styled.div`
-
   grid-area: authBtns;
   align-self: center;
 
-  width: 80%;
+  width: 90%;
   max-width: 240px;
+
+  @media screen and (max-width: 750px) {
+    justify-self: center;
+  }
 `;
 
 export default S;

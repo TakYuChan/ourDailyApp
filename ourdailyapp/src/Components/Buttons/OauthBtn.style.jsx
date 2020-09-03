@@ -21,10 +21,6 @@ S.OauthBtn = styled.button`
 
   transition: transform 150ms linear;
 
-  // @media only screen and (max-width: 1000px) {
-  //   padding: 0;
-  // }
-
   &:hover {
     transform: translateY(-0.2em);
   }
