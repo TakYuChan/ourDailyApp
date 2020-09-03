@@ -46,8 +46,6 @@ S.LogInPageContent = styled.div`
   display: grid;
   font-size: clamp(0.8rem, 1.8vw, 1.5rem);
 
-  // grid-template: 1em 10em 2em 10em 2em 7em 1fr / auto 4em 1.5em 8em 1.5em 4em auto;
-
   ${(props) => {
     if (props.styled_authPage === "login") {
       return `
@@ -91,11 +89,12 @@ S.LogInPageContent = styled.div`
        grid-template-columns: auto 2em 1.5em 8em 1.5em 2em auto;
       `};
   }
+
   @media screen and (max-width: 890px) {
     ${(props) =>
       props.styled_authPage === "login" &&
       `
-        grid-template-rows: 1em 10em 2em 10em 1em 7em 4em 1fr;
+        grid-template-rows: 1em 10em 2em 10em 4em 7em 4em 1fr;
        grid-template-columns: auto 2em 2.8em 8em 2.8em 2em auto;
       `};
 
