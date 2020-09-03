@@ -46,31 +46,42 @@ S.LogInPageContent = styled.div`
   display: grid;
   font-size: clamp(0.8rem, 1.8vw, 1.5rem);
 
-  grid-template: 1em 10em 2em 10em 2em 7em 1fr / auto 4em 1.5em 8em 1.5em 4em auto;
+  // grid-template: 1em 10em 2em 10em 2em 7em 1fr / auto 4em 1.5em 8em 1.5em 4em auto;
 
-  ${(props) =>
-    props.styled_authPage === "login" &&
-    `grid-template-areas:
+  ${(props) => {
+    if (props.styled_authPage === "login") {
+      return `
+      grid-template-rows: 1em 10em 2em 7em 2em 7em 0em 1fr;
+      grid-template-columns: auto 4em 1.5em 8em 1.5em 4em auto;
+      grid-template-areas: 
     " . . . . . . ."
     ". . logo logo logo . ."
     ". . . . . . ."
     ". form form form form form ."
     " . . . . . . ."
     ". . authBtns authBtns authBtns . ."
+    " . . . . . . ."
     "footer footer footer footer footer footer footer";
-    `};
+    `;
+    }
+  }};
 
-  ${(props) =>
-    props.styled_authPage === "signup" &&
-    `grid-template-areas:
-  " . . . . . . ."
-  ". . logo logo logo . ."
-  "form . . . . . authBtns"
-  "form . . seperate . . authBtns"
-  "form . . seperate . . authBtns"
-  ". . . . . . ."
-  "footer footer footer footer footer footer footer";
-  `};
+  ${(props) => {
+    if (props.styled_authPage === "signup") {
+      return `
+      grid-template-rows: 1em 10em 2em 10em 2em 4em 1fr;
+      grid-template-columns: auto 4em 1.5em 8em 1.5em 4em auto;
+      grid-template-areas:
+      " . . . . . . ."
+      ". . logo logo logo . ."
+      "form . . . . . authBtns"
+      "form . . seperate . . authBtns"
+      "form . . seperate . . authBtns"
+      ". . . . . . ."
+      "footer footer footer footer footer footer footer";
+      `;
+    }
+  }};
 
   @media screen and (max-width: 1300px) {
     ${(props) =>
@@ -84,7 +95,7 @@ S.LogInPageContent = styled.div`
     ${(props) =>
       props.styled_authPage === "login" &&
       `
-       grid-template-rows: 1em 10em 2em 10em 2em 7em 1fr;
+        grid-template-rows: 1em 10em 2em 10em 1em 7em 4em 1fr;
        grid-template-columns: auto 2em 2.8em 8em 2.8em 2em auto;
       `};
 
@@ -100,7 +111,7 @@ S.LogInPageContent = styled.div`
     ${(props) =>
       props.styled_authPage === "signup" &&
       `
-       grid-template-rows: 1em 10em 2em 15em 1em 7em 1fr;
+       grid-template-rows: 1em 10em 2em 15em 5em 10em 1fr;
        grid-template-columns: auto 2em 15em 2em auto;
       `};
 
@@ -111,7 +122,6 @@ S.LogInPageContent = styled.div`
       ". . logo . ."
       ". . . . ."
       ". form form form ."
-      ". . . . ."
       " . . seperate . ."
       ". . authBtns . ."
       "footer footer footer footer footer";
@@ -156,7 +166,6 @@ S.FooterWrapper = styled.div`
 
 S.SocialContactAndCopyRightWrapper = styled.div`
   display: flex;
-  // margin-bottom: 0.1em;
   @media only screen and (max-width: 647px) {
     flex-direction: column;
   }
@@ -164,7 +173,6 @@ S.SocialContactAndCopyRightWrapper = styled.div`
 /* // ============== My Social Media Contact ==============  */
 S.SocialContactWrapper = styled.div`
   display: flex;
-  // margin-bottom: 0.1em;
 `;
 
 /* // ============== Copy Right Text ==============  */

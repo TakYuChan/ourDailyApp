@@ -18,8 +18,6 @@ S.LogInButton = styled.button`
   background: ${(props) => props.theme.LogInForm.logInBtn_bg};
   color: ${(props) => props.theme.LogInForm.logInBtn_text};
 
-  margin-top: 2em;
-
   font-weight: 700;
 
   cursor: pointer;
