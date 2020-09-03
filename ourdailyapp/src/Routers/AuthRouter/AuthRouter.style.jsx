@@ -43,7 +43,7 @@ S.LogInPageContent = styled.div`
   transform: translate(-50%, -50%);
   display: grid;
   font-size: clamp(0.8rem, 1.8vw, 1.5rem);
-  grid-template: 1em 10em 2em 10em 2em 4em 1fr / auto 4em 1.5em 8em 1.5em 4em auto;
+  grid-template: 1em 10em 2em 10em 2em 7em 1fr / auto 4em 1.5em 8em 1.5em 4em auto;
   grid-template-areas:
     " . . . . . . ."
     ". . logo logo logo . ."
@@ -54,7 +54,7 @@ S.LogInPageContent = styled.div`
     "footer footer footer footer footer footer footer";
 
   @media only screen and (max-width: 890px) {
-    grid-template: 1em 10em 2em 10em 2em 4em auto / auto 2.8em 1.2em 1.5em 8em 1.5em 1.2em 2.8em auto;
+    grid-template: 1em 10em 2em 10em 2em 9em auto / auto 2.8em 1.2em 1.5em 8em 1.5em 1.2em 2.8em auto;
 
     grid-template-areas:
       " . . . . . . . . ."
