@@ -36,7 +36,9 @@ const SignUpForm = () => {
           <S.DatePicker type="date" required />
         </S.FormDatePickerBlock>
       </S.GenderAndDateWrapper>
-      <S.SignUpButton type="submit">SIGN UP</S.SignUpButton>
+      <S.SignUpButton type="submit" name="birthday">
+        SIGN UP
+      </S.SignUpButton>
     </S.SignUpForm>
   );
 };
