@@ -19,7 +19,7 @@ import ShopRouter from "./Routers/ShopRouter/ShopRouter.component";
 import AuthPage from "./Pages/AuthPage/AuthPage.component";
 import NavUIComponents from "./Components/NavUIComponents/NavUIComponents.component";
 import ProfilePage from "./Pages/ProfilePage/ProfilePage.component";
-import CommentsConverterPage from "./Pages/CommentsConverterPage/commentsConverterPage.component";
+import CommentsConverterPage from "./Pages/CommentsConverterPage/CommentsConverterPage.component";
 import NoMatch from "./Pages/NoMatchPage/NoMatchPage.component";
 import CartPage from "./Pages/cartPage/cartPage.component";
 import WishlistPage from "./Pages/wishlistPage/wishlistPage.component";

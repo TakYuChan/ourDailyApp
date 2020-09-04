@@ -1,5 +1,5 @@
 import React from "react";
-import S from "./commentsConverterPage.style";
+import S from "./CommentsConverterPage.style";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
