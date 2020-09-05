@@ -9,10 +9,10 @@ flex-basis: 45%;
 `;
 // ============== Oauth wrapper ================
 S.OauthBtnsWrapper = styled.div`
-flex-basis: 30%;
+flex-basis: 50%;
 display: flex;
 flex-direction: column;
-justify-content: space-around;
+justify-content: center;
 align-self: center;
 
 width: 52%;

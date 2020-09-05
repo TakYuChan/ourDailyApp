@@ -8,7 +8,7 @@ import { selectAuthPage } from "../../redux/AuthRouter/AuthRouter.selectors";
 import { changePage } from "../../redux/AuthRouter/AuthRouter.actions";
 
 import LogInContainer from "../../Components/LogInContainer/LogInContainer.component";
-import SignUpPage from "../SignUpPage/SignUpPage.component";
+import SignUpContainer from "../../Components/SignUpContainer/SignUpContainer.component";
 import SocialContactPair from "../../Components/SocialContact/SocialContactPair.component";
 
 import logo from "../../assets/logo_new.png";
@@ -27,7 +27,7 @@ const AuthRouter = ({ authPage, changeAuthPage }) => {
         </S.LogoWrapper>
 
         <S.LogInWrapper>{authPage === "login" && <LogInContainer />}</S.LogInWrapper>
-        {authPage === "signup" && <SignUpPage />}
+        {authPage === "signup" && <SignUpContainer />}
 
         <S.FooterWrapper>
           {/* // ============== Create Account Btn ==============  */}

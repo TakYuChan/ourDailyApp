@@ -34,6 +34,8 @@ S.LogInPageContent = styled.div`
   width: 85%;
   height: 85%;
   max-width: 1650px;
+  max-height: 850px;
+
   user-select: none;
   border-radius: 20px;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
@@ -47,22 +49,37 @@ S.LogInPageContent = styled.div`
 
 
   display: grid;
-  font-size: clamp(0.8rem, 1.8vw, 1.5rem);
+  font-size: clamp(0.8rem, 1.4vw, 1.5rem);
 
   ${props => {if(props.styled_authPage === "login") {
-    return `grid-template-rows: minmax(5em, 1fr) minmax(5em, 1fr) 1fr 3em;
-            grid-template-columns: 1fr 1fr 1fr;
+    return `grid-template-rows: 0em minmax(9em, 1fr) minmax(18em, 1fr) 1fr;
+            grid-template-columns: minmax(80px, 1fr) minmax(50px, 100px) minmax(8em, 250px) minmax(50px, 100px)  minmax(80px, 1fr);
             grid-template-areas:
-            ". logo ."
-            ". logInPage ."
-            ". logInPage ."
-            "footer footer footer"
+            ". . . . ."
+            ". . logo . ."
+            ". logInPage logInPage logInPage ."
+            "footer footer footer footer footer";
+            row-gap: 1.5em; 
+
+            @media only screen and (max-width: 1000px) {
+              grid-template-rows: 0em minmax(9em, 1fr) minmax(22em, 1fr) 1fr;
+              grid-template-columns: minmax(80px, 1fr) minmax(50px, 60px) minmax(8em, 250px) minmax(50px, 60px)  minmax(80px, 1fr);
+            }
+
+            @media only screen and (max-width: 426px) {
+              grid-template-columns: 50px minmax(20px, 150px) minmax(6em, 250px) minmax(20px, 150px) 50px;
+            }
+
             `;
   }}};
 `;
 
 S.LogInWrapper = styled.div`
 grid-area: logInPage;
+
+display: flex;
+flex-direction: column;
+justify-content: space-between;
 `;
 
 // ============= Logo ==============

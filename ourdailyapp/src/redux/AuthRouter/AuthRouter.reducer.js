@@ -1,7 +1,7 @@
 import AuthRouterActionTypes from "./AuthRouter.types";
 
 const INITIATE_STATE = {
-  authPage: "login",
+  authPage: "signup",
 };
 
 const AuthRouterReducer = (state = INITIATE_STATE, action) => {
