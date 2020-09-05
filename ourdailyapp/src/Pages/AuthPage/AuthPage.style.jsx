@@ -101,7 +101,7 @@ S.LogInPageContent = styled.div`
     ${(props) =>
       props.styled_authPage === "signup" &&
       `
-       grid-template-rows: 1em 10em 2em 10em 2em 7em 7em 1fr;
+       grid-template-rows: 1em 10em 2em 10em 2em 7em 1fr;
        grid-template-columns: auto .5em .5em 8em .5em .5em auto;
       `};
   }
