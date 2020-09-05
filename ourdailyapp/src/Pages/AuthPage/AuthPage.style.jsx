@@ -62,7 +62,7 @@ S.LogInPageContent = styled.div`
             "footer footer footer footer footer";
 
             @media only screen and (max-width: 1000px) {
-              grid-template-rows: 0em minmax(9em, 1fr) 1.5em minmax(22em, 1fr) 1fr;
+              grid-template-rows: 1em minmax(9em, 1fr) 1.5em minmax(22em, 1fr) 1fr;
               grid-template-columns: minmax(80px, 1fr) minmax(50px, 60px) minmax(8em, 250px) minmax(50px, 60px)  minmax(80px, 1fr);
             }
 
@@ -74,11 +74,12 @@ S.LogInPageContent = styled.div`
   }}};
 
   ${props => {if(props.styled_authPage === "signup") {
-    return `grid-template-rows: 1em minmax(9em, 1fr) minmax(19em, 1fr) 1fr;
+    return `grid-template-rows: 1em minmax(9em, 1fr) 1.5em minmax(19em, 1fr) 1fr;
             grid-template-columns: minmax(40px, 1fr) minmax(50px, 1fr) minmax(8em, 250px) minmax(50px, 1fr)  minmax(40px, 1fr);
             grid-template-areas:
             ". . . . ."
             ". . logo . ."
+            ". . . . ."
             ". signUpPage signUpPage signUpPage ."
             "footer footer footer footer footer";
 
@@ -86,11 +87,11 @@ S.LogInPageContent = styled.div`
           and (min-device-width: 768px) 
           and (max-device-width: 1024px) 
           {
-            grid-template-rows: 1em minmax(9em, 1fr) minmax(22em, 1fr) minmax(5em, 1fr);
+            grid-template-rows: 1em minmax(9em, 1fr) 1.5em minmax(22em, 1fr) minmax(5em, 1fr);
           }
 
           @media only screen and (max-width: 700px) {
-            grid-template-rows: 1em minmax(9em, 1fr) 5em minmax(35em, 1fr) minmax(2em, 1fr);
+            grid-template-rows: 1em minmax(9em, 1fr) 1.5em 5em minmax(35em, 1fr) minmax(2em, 1fr);
             grid-template-areas:
             ". . . . ."
             ". . logo . ."
