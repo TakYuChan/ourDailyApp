@@ -10,7 +10,7 @@ import { ReactComponent as AppleSvg } from "../../assets/svg/apple.svg";
 
 const LogInPage = () => {
   return (
-    <S.LogInPage>
+    <React.Fragment>
       {/* // ============== Log In Form wrapper==============  */}
       <S.LogInFormWrapper>
         <LogInForm />
@@ -21,7 +21,7 @@ const LogInPage = () => {
         <OauthBtn SvgComponent={FacebookSvg}>Facebook</OauthBtn>
         <OauthBtn SvgComponent={AppleSvg}>Apple</OauthBtn>
       </S.OauthBtnsWrapper>
-    </S.LogInPage>
+    </React.Fragment>
   );
 };
 
