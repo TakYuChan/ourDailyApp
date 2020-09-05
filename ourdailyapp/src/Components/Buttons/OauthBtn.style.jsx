@@ -3,10 +3,13 @@ import styled from "styled-components";
 const S = {};
 
 S.OauthBtn = styled.button`
-  font-size: clamp(0.6rem, 1vw, 0.8rem);
+  font-size: clamp(0.5rem, 1vw, 0.8rem);
   border: 0;
   outline: 0;
   width: 100%;
+  min-width: 150px;
+  max-width: 240px;
+  
   display: flex;
   align-items: center;
   padding: 0.8em 0;

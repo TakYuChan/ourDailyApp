@@ -5,13 +5,9 @@ const S = {};
 // ============== Log in form wrapper ================
 
 S.SignUpFormWrapper = styled.div`
-  grid-area: form;
-  justify-self: flex-end;
 
-  width: 90%;
-  max-width: 400px;
-  height: 100%;
-
+  flex-basis: 40%;
+  height: 70%;
   position: relative;
 
   &::before {
@@ -32,11 +28,6 @@ S.SignUpFormWrapper = styled.div`
 
 /* // =================== OR Seperate Line ====================== */
 S.Or = styled.span`
-  justify-self: center;
-  align-self: center;
-
-  grid-area: seperate;
-
   color: ${(props) => props.theme.SignUpPage.OrSepereateLine};
 
   position: relative;
@@ -63,7 +54,7 @@ S.Or = styled.span`
     bottom: -500%;
   }
 
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: 700px) {
     &:before,
     &:after {
       transform: rotate(90deg);
@@ -83,15 +74,7 @@ S.Or = styled.span`
 
 // ============== Oauth wrapper ================
 S.OauthBtnsWrapper = styled.div`
-  grid-area: authBtns;
-  align-self: center;
-
-  width: 90%;
-  max-width: 240px;
-
-  @media screen and (max-width: 750px) {
-    justify-self: center;
-  }
+  flex-basis: 40%;
 `;
 
 export default S;

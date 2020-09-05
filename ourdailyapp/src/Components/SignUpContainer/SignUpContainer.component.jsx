@@ -19,7 +19,7 @@ const SignUpPage = () => {
       <S.Or>OR</S.Or>
       {/* // ============== Oauth Buttons wrapper==============  */}
       <S.OauthBtnsWrapper>
-        <OauthBtn SvgComponent={GoogleSvg}>Google</OauthBtn>
+        <OauthBtn SvgComponent={GoogleSvg} className="btn">Google</OauthBtn>
         <OauthBtn SvgComponent={FacebookSvg}>Facebook</OauthBtn>
         <OauthBtn SvgComponent={AppleSvg}>Apple</OauthBtn>
       </S.OauthBtnsWrapper>

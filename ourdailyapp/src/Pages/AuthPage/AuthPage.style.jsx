@@ -52,23 +52,52 @@ S.LogInPageContent = styled.div`
   font-size: clamp(0.8rem, 1.4vw, 1.5rem);
 
   ${props => {if(props.styled_authPage === "login") {
-    return `grid-template-rows: 0em minmax(9em, 1fr) minmax(18em, 1fr) 1fr;
+    return `grid-template-rows: 1em minmax(9em, 1fr) 1.5em minmax(18em, 1fr) 1fr;
             grid-template-columns: minmax(80px, 1fr) minmax(50px, 100px) minmax(8em, 250px) minmax(50px, 100px)  minmax(80px, 1fr);
             grid-template-areas:
             ". . . . ."
             ". . logo . ."
+            ". . . . ."
             ". logInPage logInPage logInPage ."
             "footer footer footer footer footer";
-            row-gap: 1.5em; 
 
             @media only screen and (max-width: 1000px) {
-              grid-template-rows: 0em minmax(9em, 1fr) minmax(22em, 1fr) 1fr;
+              grid-template-rows: 0em minmax(9em, 1fr) 1.5em minmax(22em, 1fr) 1fr;
               grid-template-columns: minmax(80px, 1fr) minmax(50px, 60px) minmax(8em, 250px) minmax(50px, 60px)  minmax(80px, 1fr);
             }
 
             @media only screen and (max-width: 426px) {
               grid-template-columns: 50px minmax(20px, 150px) minmax(6em, 250px) minmax(20px, 150px) 50px;
             }
+
+            `;
+  }}};
+
+  ${props => {if(props.styled_authPage === "signup") {
+    return `grid-template-rows: 1em minmax(9em, 1fr) minmax(19em, 1fr) 1fr;
+            grid-template-columns: minmax(40px, 1fr) minmax(50px, 1fr) minmax(8em, 250px) minmax(50px, 1fr)  minmax(40px, 1fr);
+            grid-template-areas:
+            ". . . . ."
+            ". . logo . ."
+            ". signUpPage signUpPage signUpPage ."
+            "footer footer footer footer footer";
+
+            @media only screen 
+          and (min-device-width: 768px) 
+          and (max-device-width: 1024px) 
+          {
+            grid-template-rows: 1em minmax(9em, 1fr) minmax(22em, 1fr) minmax(5em, 1fr);
+          }
+
+          @media only screen and (max-width: 700px) {
+            grid-template-rows: 1em minmax(9em, 1fr) 5em minmax(35em, 1fr) minmax(2em, 1fr);
+            grid-template-areas:
+            ". . . . ."
+            ". . logo . ."
+            ". . . . ."
+            ". signUpPage signUpPage signUpPage ."
+            "footer footer footer footer footer";
+          }
 
             `;
   }}};
@@ -79,7 +108,20 @@ grid-area: logInPage;
 
 display: flex;
 flex-direction: column;
+justify-content: space-between
+
+`;
+
+S.SignupWrapper = styled.div`
+grid-area: signUpPage;
+display: flex;
 justify-content: space-between;
+align-items: center;
+
+  @media only screen and (max-width: 700px) {
+    flex-direction: column;
+  }
+
 `;
 
 // ============= Logo ==============

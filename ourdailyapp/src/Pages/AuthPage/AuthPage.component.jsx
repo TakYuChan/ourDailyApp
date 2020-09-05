@@ -27,7 +27,7 @@ const AuthRouter = ({ authPage, changeAuthPage }) => {
         </S.LogoWrapper>
 
         <S.LogInWrapper>{authPage === "login" && <LogInContainer />}</S.LogInWrapper>
-        {authPage === "signup" && <SignUpContainer />}
+        <S.SignupWrapper>{authPage === "signup" && <SignUpContainer />}</S.SignupWrapper>
 
         <S.FooterWrapper>
           {/* // ============== Create Account Btn ==============  */}
