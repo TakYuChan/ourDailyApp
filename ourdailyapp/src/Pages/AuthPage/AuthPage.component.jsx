@@ -7,7 +7,7 @@ import { createStructuredSelector } from "reselect";
 import { selectAuthPage } from "../../redux/AuthRouter/AuthRouter.selectors";
 import { changePage } from "../../redux/AuthRouter/AuthRouter.actions";
 
-import LogInPage from "../LogInPage/LogInPage.component";
+import LogInContainer from "../../Components/LogInContainer/LogInContainer.component";
 import SignUpPage from "../SignUpPage/SignUpPage.component";
 import SocialContactPair from "../../Components/SocialContact/SocialContactPair.component";
 
@@ -26,7 +26,7 @@ const AuthRouter = ({ authPage, changeAuthPage }) => {
           <img className="logo" src={logo} alt="" role="presentation" />
         </S.LogoWrapper>
 
-        {authPage === "login" && <LogInPage />}
+        <S.LogInWrapper>{authPage === "login" && <LogInContainer />}</S.LogInWrapper>
         {authPage === "signup" && <SignUpPage />}
 
         <S.FooterWrapper>

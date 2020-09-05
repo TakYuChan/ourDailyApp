@@ -33,6 +33,7 @@ S.LogInPageContent = styled.div`
   overflow-y: auto;
   width: 85%;
   height: 85%;
+  max-width: 1650px;
   user-select: none;
   border-radius: 20px;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
@@ -43,89 +44,25 @@ S.LogInPageContent = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+
   display: grid;
   font-size: clamp(0.8rem, 1.8vw, 1.5rem);
 
-  ${(props) => {
-    if (props.styled_authPage === "login") {
-      return `
-      grid-template-rows: 1em 10em 2em 7em 2em 7em 0em 1fr;
-      grid-template-columns: auto 4em 1.5em 8em 1.5em 4em auto;
-      grid-template-areas: 
-    " . . . . . . ."
-    ". . logo logo logo . ."
-    ". . . . . . ."
-    ". form form form form form ."
-    " . . . . . . ."
-    ". . authBtns authBtns authBtns . ."
-    " . . . . . . ."
-    "footer footer footer footer footer footer footer";
-    `;
-    }
-  }};
+  ${props => {if(props.styled_authPage === "login") {
+    return `grid-template-rows: minmax(5em, 1fr) minmax(5em, 1fr) 1fr 3em;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-areas:
+            ". logo ."
+            ". logInPage ."
+            ". logInPage ."
+            "footer footer footer"
+            `;
+  }}};
+`;
 
-  ${(props) => {
-    if (props.styled_authPage === "signup") {
-      return `
-      grid-template-rows: 1em 10em 2em 10em 2em 4em 1fr;
-      grid-template-columns: auto 4em 1.5em 8em 1.5em 4em auto;
-      grid-template-areas:
-      " . . . . . . ."
-      ". . logo logo logo . ."
-      "form . . . . . authBtns"
-      "form . . seperate . . authBtns"
-      "form . . seperate . . authBtns"
-      ". . . . . . ."
-      "footer footer footer footer footer footer footer";
-      `;
-    }
-  }};
-
-  @media screen and (max-width: 1300px) {
-    ${(props) =>
-      props.styled_authPage === "signup" &&
-      `
-       grid-template-rows: 1em 10em 2em 10em 2em 7em 1fr;
-       grid-template-columns: auto 2em 1.5em 8em 1.5em 2em auto;
-      `};
-  }
-
-  @media screen and (max-width: 890px) {
-    ${(props) =>
-      props.styled_authPage === "login" &&
-      `
-        grid-template-rows: 1em 10em 2em 10em 4em 7em 4em 1fr;
-       grid-template-columns: auto 2em 2.8em 8em 2.8em 2em auto;
-      `};
-
-    ${(props) =>
-      props.styled_authPage === "signup" &&
-      `
-       grid-template-rows: 1em 10em 2em 10em 2em 7em 1fr;
-       grid-template-columns: auto .5em .5em 8em .5em .5em auto;
-      `};
-  }
-
-  @media screen and (max-width: 750px) {
-    ${(props) =>
-      props.styled_authPage === "signup" &&
-      `
-       grid-template-rows: 1em 10em 2em 15em 5em 10em 1fr;
-       grid-template-columns: auto 2em 15em 2em auto;
-      `};
-
-    ${(props) =>
-      props.styled_authPage === "signup" &&
-      `grid-template-areas:
-      " . . . . ."
-      ". . logo . ."
-      ". . . . ."
-      ". form form form ."
-      " . . seperate . ."
-      ". . authBtns . ."
-      "footer footer footer footer footer";
-      `};
-  }
+S.LogInWrapper = styled.div`
+grid-area: logInPage;
 `;
 
 // ============= Logo ==============
@@ -134,6 +71,8 @@ S.LogoWrapper = styled.div`
   transition: transform 800ms linear;
   transform: scale(1);
   & img {
+    height: 100%;
+    width: 100%;
     object-fit: contain;
   }
   &.styled_smallerLogo {
