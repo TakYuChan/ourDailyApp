@@ -9,13 +9,13 @@ flex-basis: 45%;
 `;
 // ============== Oauth wrapper ================
 S.OauthBtnsWrapper = styled.div`
-flex-basis: 45%;
+flex-basis: 30%;
 display: flex;
 flex-direction: column;
 justify-content: space-around;
 align-self: center;
 
-width: 50%;
+width: 52%;
 min-width: 175px;
 `;
 
