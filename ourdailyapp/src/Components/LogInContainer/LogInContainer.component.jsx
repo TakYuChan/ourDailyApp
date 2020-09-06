@@ -2,7 +2,7 @@ import React from "react";
 import S from "./LogInContainer.style";
 
 import LogInForm from "../Forms/LogInForm/LogInForm.component";
-import OauthBtn from "../Buttons/OauthBtn.component";
+import OauthBtn from "../Buttons/OauthBtn/OauthBtn.component";
 
 import { ReactComponent as GoogleSvg } from "../../assets/svg/google.svg";
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";
@@ -17,9 +17,9 @@ const LogInPage = () => {
       </S.LogInFormWrapper>
       {/* // ============== Oauth Buttons wrapper==============  */}
       <S.OauthBtnsWrapper>
-        <OauthBtn SvgComponent={GoogleSvg} withAuthText={true}>Google</OauthBtn>
-        <OauthBtn SvgComponent={FacebookSvg} withAuthText={true}>Facebook</OauthBtn>
-        <OauthBtn SvgComponent={AppleSvg} withAuthText={true}>Apple</OauthBtn>
+        <OauthBtn SvgComponent={GoogleSvg}>Google</OauthBtn>
+        <OauthBtn SvgComponent={FacebookSvg}>Facebook</OauthBtn>
+        <OauthBtn SvgComponent={AppleSvg}>Apple</OauthBtn>
       </S.OauthBtnsWrapper>
     </React.Fragment>
   );

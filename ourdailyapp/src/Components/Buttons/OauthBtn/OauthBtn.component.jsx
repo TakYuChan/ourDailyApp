@@ -1,13 +1,13 @@
 import React from "react";
 import S from "./OauthBtn.style";
 
-const OauthBtn = ({ SvgComponent, children, mq_IsTallScreen, withAuthText }) => {
+const OauthBtn = ({ SvgComponent, children }) => {
   //@importedBy LogInContainer SignUpContainer
 
   return (
-    <S.OauthBtn styled_provider={children} mq_IsTallScreen={mq_IsTallScreen}>
+    <S.OauthBtn styled_provider={children}>
       <SvgComponent className="styled-svg" />
-      {(mq_IsTallScreen || withAuthText) && `Continue with ${children}`}
+      Continue with {children}
     </S.OauthBtn>
   );
 };

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const S = {};
 
-S.OauthBtn = styled.button`
+S.OauthBtn_rounded = styled.button`
   font-size: clamp(0.5rem, 1vw, 0.8rem);
   border: 0;
   outline: 0;
@@ -15,20 +15,18 @@ S.OauthBtn = styled.button`
   
   display: flex;
   align-items: center;
-  padding: 0.8em 0;
+  justify-content: center;
+  padding: 0.8em .8em;
 
-  padding-left: 1.5em;
 
   border-radius: 30px;
-
-  font-weight: 700;
 
   cursor: pointer;
 
   transition: transform 150ms linear;
 
   &:hover {
-    transform: translateY(-0.2em);
+    transform: translateX(-0.2em);
   }
 
   margin-bottom: ${(props) => {
@@ -58,7 +56,6 @@ S.OauthBtn = styled.button`
   }};
 
   & .styled-svg {
-    margin-right: 1em;
     width: 2em;
   }
 `;
