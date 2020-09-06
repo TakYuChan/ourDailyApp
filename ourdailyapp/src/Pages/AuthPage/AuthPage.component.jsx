@@ -51,7 +51,7 @@ const AuthRouter = ({ authPage, changeAuthPage }) => {
               <SocialContactPair SvgComponent={LinkedInSvg}>
                 LinkedIn
               </SocialContactPair>
-              <SocialContactPair SvgComponent={GithubSvg}>
+              <SocialContactPair SvgComponent={GithubSvg} >
                 Github
               </SocialContactPair>
             </S.SocialContactWrapper>

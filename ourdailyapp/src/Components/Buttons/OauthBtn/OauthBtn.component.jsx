@@ -6,7 +6,7 @@ const OauthBtn = ({ SvgComponent, children }) => {
 
   return (
     <S.OauthBtn styled_provider={children}>
-      <SvgComponent className="styled-svg" />
+      <SvgComponent className="styled-svg"/>
       Continue with {children}
     </S.OauthBtn>
   );

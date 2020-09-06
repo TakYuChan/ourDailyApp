@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const S = {};
 
-S.SocialContactPair = styled.button`
+S.SocialContactPair = styled.a`
   background: 0;
   border: 0;
   display: flex;
