@@ -11,7 +11,7 @@ import commentsConverterReducer from "./commentsConverter/commentsConverter.redu
 import cart_P_Reducer from "./cart/cart_P.reducer";
 import cartReducer from "./cart/cart.reducer";
 import routePathReducer from "./routePath/routePath.reducer";
-import authRouterReducer from "./AuthRouter/AuthRouter.reducer";
+import authPageReducer from "./AuthPage/AuthPage.reducer";
 
 // =========== Applications ===========
 import pigGameReducer from "./pigGame/pigGame.reducer";
@@ -35,7 +35,7 @@ const rootReducer = combineReducers({
   cart_P: cart_P_Reducer,
   cart: cartReducer,
   routePath: routePathReducer,
-  authRouter: authRouterReducer,
+  authPage: authPageReducer,
   // =========== Applications ===========
   pigGame: pigGameReducer,
   pigGameModals: pigGameModalsReducer,

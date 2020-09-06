@@ -1,12 +1,12 @@
-import AuthRouterActionTypes from "./AuthRouter.types";
+import AuthPageActionTypes from "./AuthPage.types";
 
 const INITIATE_STATE = {
   authPage: "signup",
 };
 
-const AuthRouterReducer = (state = INITIATE_STATE, action) => {
+const AuthPageReducer = (state = INITIATE_STATE, action) => {
   switch (action.type) {
-    case AuthRouterActionTypes.AUTH_PAGE_CHANGE:
+    case AuthPageActionTypes.AUTH_PAGE_CHANGE:
       return {
         ...state,
         authPage: action.payload,
@@ -16,4 +16,4 @@ const AuthRouterReducer = (state = INITIATE_STATE, action) => {
   }
 };
 
-export default AuthRouterReducer;
+export default AuthPageReducer;

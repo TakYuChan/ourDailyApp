@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { useMediaQuery } from 'react-responsive';
 
-import { selectAuthPage } from "../../redux/AuthRouter/AuthRouter.selectors";
-import { changePage } from "../../redux/AuthRouter/AuthRouter.actions";
+import { selectAuthPage } from "../../redux/AuthPage/AuthPage.selectors";
+import { changePage } from "../../redux/AuthPage/AuthPage.actions";
 
 import LogInContainer from "../../Components/LogInContainer/LogInContainer.component";
 import SignUpContainer from "../../Components/SignUpContainer/SignUpContainer.component";
@@ -18,7 +18,7 @@ import { ReactComponent as GithubSvg } from "../../assets/svg/GitHub2.svg";
 
 import PropTypes from "prop-types";
 
-const AuthRouter = ({ authPage, changeAuthPage }) => {
+const AuthPage = ({ authPage, changeAuthPage }) => {
 
   const mq_IsTallScreen = useMediaQuery({query: '(min-device-height: 629px'});
 
@@ -66,7 +66,7 @@ const AuthRouter = ({ authPage, changeAuthPage }) => {
   );
 };
 
-AuthRouter.propTypes = {
+AuthPage.propTypes = {
   authPage: PropTypes.string.isRequired,
   changeAuthPage: PropTypes.func.isRequired,
 };
@@ -79,4 +79,4 @@ const mapDispatchToProps = (dispatch) => ({
   changeAuthPage: (pageName) => dispatch(changePage(pageName)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthRouter);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthPage);
