@@ -1,7 +1,10 @@
 import React from "react";
-import S from "./OauthBtn_Rounded.style";
+import S from "./OauthBtnRounded.style";
 
-const OauthBtn_rounded = ({ SvgComponent, children }) => {
+
+import PropTypes from "prop-types";
+
+const OauthBtnRounded = ({ SvgComponent, children }) => {
   //@importedBy LogInContainer SignUpContainer
 
   return (
@@ -11,5 +14,9 @@ const OauthBtn_rounded = ({ SvgComponent, children }) => {
   );
 };
 
-export default OauthBtn_rounded;
-// ${props => !props.mq_IsTallScreen && "padding-left: 1em;"}
+OauthBtnRounded.propTypes = {
+  children: PropTypes.string.isRequired,
+  SvgComponent: PropTypes.object.isRequired,
+}
+
+export default OauthBtnRounded;

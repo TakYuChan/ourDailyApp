@@ -16,6 +16,8 @@ import logo from "../../assets/logo_new.png";
 import { ReactComponent as LinkedInSvg } from "../../assets/svg/LinkedIn2.svg";
 import { ReactComponent as GithubSvg } from "../../assets/svg/GitHub2.svg";
 
+import PropTypes from "prop-types";
+
 const AuthRouter = ({ authPage, changeAuthPage }) => {
 
   const mq_IsTallScreen = useMediaQuery({query: '(min-device-height: 629px'});
@@ -62,6 +64,11 @@ const AuthRouter = ({ authPage, changeAuthPage }) => {
       </S.LogInPageContent>
     </React.Fragment>
   );
+};
+
+AuthRouter.propTypes = {
+  authPage: PropTypes.string.isRequired,
+  changeAuthPage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

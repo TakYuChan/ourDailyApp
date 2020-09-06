@@ -3,11 +3,13 @@ import S from "./SignUpContainer.style";
 
 import SignUpForm from "../Forms/SignUpForm/SignUpForm.component";
 import OauthBtn from "../Buttons/OauthBtn/OauthBtn.component";
-import OauthBtn_Rounded from "../Buttons/OauthBtn.Rounded/OauthBtn_Rounded.component";
+import OauthBtnRounded from "../Buttons/OauthBtnRounded/OauthBtnRounded.component";
 
 import { ReactComponent as GoogleSvg } from "../../assets/svg/google.svg";
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";
 import { ReactComponent as AppleSvg } from "../../assets/svg/apple.svg";
+
+import PropTypes from "prop-types";
 
 const SignUpPage = ({mq_IsTallScreen}) => {
 
@@ -29,13 +31,17 @@ const SignUpPage = ({mq_IsTallScreen}) => {
         </React.Fragment> 
         : 
         <React.Fragment>
-          <OauthBtn_Rounded SvgComponent={GoogleSvg} mq_IsTallScreen = {mq_IsTallScreen}>Google</OauthBtn_Rounded>
-          <OauthBtn_Rounded SvgComponent={FacebookSvg} mq_IsTallScreen = {mq_IsTallScreen}>Facebook</OauthBtn_Rounded>
-          <OauthBtn_Rounded SvgComponent={AppleSvg} mq_IsTallScreen = {mq_IsTallScreen}>Apple</OauthBtn_Rounded>
+          <OauthBtnRounded SvgComponent={GoogleSvg} mq_IsTallScreen = {mq_IsTallScreen}>Google</OauthBtnRounded>
+          <OauthBtnRounded SvgComponent={FacebookSvg} mq_IsTallScreen = {mq_IsTallScreen}>Facebook</OauthBtnRounded>
+          <OauthBtnRounded SvgComponent={AppleSvg} mq_IsTallScreen = {mq_IsTallScreen}>Apple</OauthBtnRounded>
         </React.Fragment>}
       </S.OauthBtnsWrapper>
     </React.Fragment>
   );
 };
+
+SignUpPage.propTypes = {
+  mq_IsTallScreen: PropTypes.bool.isRequired,
+}
 
 export default SignUpPage;
