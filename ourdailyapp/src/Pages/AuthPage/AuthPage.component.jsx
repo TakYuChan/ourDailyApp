@@ -3,6 +3,7 @@ import S from "./AuthPage.style";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import { useMediaQuery } from 'react-responsive';
 
 import { selectAuthPage } from "../../redux/AuthRouter/AuthRouter.selectors";
 import { changePage } from "../../redux/AuthRouter/AuthRouter.actions";
@@ -16,10 +17,13 @@ import { ReactComponent as LinkedInSvg } from "../../assets/svg/LinkedIn2.svg";
 import { ReactComponent as GithubSvg } from "../../assets/svg/GitHub2.svg";
 
 const AuthRouter = ({ authPage, changeAuthPage }) => {
+
+  const mq_IsTallScreen = useMediaQuery({query: '(min-device-height: 629px'});
+
   return (
     <React.Fragment>
       <S.LogInPageHazyBg></S.LogInPageHazyBg>
-      <S.LogInPageContent styled_authPage={authPage}>
+      <S.LogInPageContent styled_authPage={authPage} mq_IsTallScreen={mq_IsTallScreen}>
         <S.LogoWrapper
           className={authPage === "signup" && "styled_smallerLogo"}
         >
@@ -27,7 +31,7 @@ const AuthRouter = ({ authPage, changeAuthPage }) => {
         </S.LogoWrapper>
 
         <S.LogInWrapper>{authPage === "login" && <LogInContainer />}</S.LogInWrapper>
-        <S.SignupWrapper>{authPage === "signup" && <SignUpContainer />}</S.SignupWrapper>
+        <S.SignUpWrapper>{authPage === "signup" && <SignUpContainer mq_IsTallScreen = {mq_IsTallScreen} />}</S.SignUpWrapper>
 
         <S.FooterWrapper>
           {/* // ============== Create Account Btn ==============  */}

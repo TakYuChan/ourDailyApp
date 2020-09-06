@@ -7,14 +7,19 @@ S.OauthBtn = styled.button`
   border: 0;
   outline: 0;
   width: 100%;
-  min-width: 150px;
-  max-width: 240px;
+  max-width: 18em;
+
+  @media only screen and (min-width: 850px) {
+   max-width: 20em;           
+  }
   
   display: flex;
   align-items: center;
   padding: 0.8em 0;
 
   padding-left: 1.5em;
+
+  ${props => !props.mq_IsTallScreen && "padding-left: 1em;"}
 
   border-radius: 30px;
 

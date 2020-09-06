@@ -17,9 +17,9 @@ const LogInPage = () => {
       </S.LogInFormWrapper>
       {/* // ============== Oauth Buttons wrapper==============  */}
       <S.OauthBtnsWrapper>
-        <OauthBtn SvgComponent={GoogleSvg}>Google</OauthBtn>
-        <OauthBtn SvgComponent={FacebookSvg}>Facebook</OauthBtn>
-        <OauthBtn SvgComponent={AppleSvg}>Apple</OauthBtn>
+        <OauthBtn SvgComponent={GoogleSvg} withAuthText={true}>Google</OauthBtn>
+        <OauthBtn SvgComponent={FacebookSvg} withAuthText={true}>Facebook</OauthBtn>
+        <OauthBtn SvgComponent={AppleSvg} withAuthText={true}>Apple</OauthBtn>
       </S.OauthBtnsWrapper>
     </React.Fragment>
   );

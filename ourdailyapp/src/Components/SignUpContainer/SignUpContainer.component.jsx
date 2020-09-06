@@ -8,20 +8,21 @@ import { ReactComponent as GoogleSvg } from "../../assets/svg/google.svg";
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";
 import { ReactComponent as AppleSvg } from "../../assets/svg/apple.svg";
 
-const SignUpPage = () => {
+const SignUpPage = ({mq_IsTallScreen}) => {
+
   return (
     <React.Fragment>
       {/* // ============== Log In Form wrapper==============  */}
-      <S.SignUpFormWrapper>
+      <S.SignUpFormWrapper mq_IsTallScreen={mq_IsTallScreen}>
         <SignUpForm />
       </S.SignUpFormWrapper>
       {/* // =================== OR Seperate Line ====================== */}
-      <S.Or>OR</S.Or>
+  <S.Or mq_IsTallScreen={mq_IsTallScreen}>OR</S.Or>
       {/* // ============== Oauth Buttons wrapper==============  */}
-      <S.OauthBtnsWrapper>
-        <OauthBtn SvgComponent={GoogleSvg} className="btn">Google</OauthBtn>
-        <OauthBtn SvgComponent={FacebookSvg}>Facebook</OauthBtn>
-        <OauthBtn SvgComponent={AppleSvg}>Apple</OauthBtn>
+      <S.OauthBtnsWrapper mq_IsTallScreen = {mq_IsTallScreen}>
+        <OauthBtn SvgComponent={GoogleSvg} mq_IsTallScreen = {mq_IsTallScreen}>Google</OauthBtn>
+        <OauthBtn SvgComponent={FacebookSvg} mq_IsTallScreen = {mq_IsTallScreen}>Facebook</OauthBtn>
+        <OauthBtn SvgComponent={AppleSvg} mq_IsTallScreen = {mq_IsTallScreen}>Apple</OauthBtn>
       </S.OauthBtnsWrapper>
     </React.Fragment>
   );
