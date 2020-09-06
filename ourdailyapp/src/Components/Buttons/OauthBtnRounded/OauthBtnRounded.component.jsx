@@ -1,5 +1,5 @@
 import React from "react";
-import S from "./OauthBtn_rounded.style";
+import S from "./OauthBtn_Rounded.style";
 
 const OauthBtn_rounded = ({ SvgComponent, children }) => {
   //@importedBy LogInContainer SignUpContainer

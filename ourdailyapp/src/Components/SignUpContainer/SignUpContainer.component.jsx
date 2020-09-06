@@ -3,7 +3,7 @@ import S from "./SignUpContainer.style";
 
 import SignUpForm from "../Forms/SignUpForm/SignUpForm.component";
 import OauthBtn from "../Buttons/OauthBtn/OauthBtn.component";
-import OauthBtn_Rounded from "../Buttons/OauthBtn_Rounded/OauthBtn_Rounded.component";
+import OauthBtn_Rounded from "../Buttons/OauthBtn.Rounded/OauthBtn_Rounded.component";
 
 import { ReactComponent as GoogleSvg } from "../../assets/svg/google.svg";
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";
