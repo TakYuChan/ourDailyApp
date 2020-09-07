@@ -1,10 +1,10 @@
 import React from "react";
 import S from "./SocialContactPair.style";
 
-const SocialContactPair = ({ SvgComponent, children }) => {
+const SocialContactPair = ({ SvgComponent, children, link }) => {
 
   return (
-    <S.SocialContactPair >
+    <S.SocialContactPair href={link} target="_blank">
       <SvgComponent className="styled-svg"/>
       {children}
     </S.SocialContactPair>

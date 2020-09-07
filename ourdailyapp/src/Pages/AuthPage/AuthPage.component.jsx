@@ -50,10 +50,10 @@ const AuthPage = ({ authPage, changeAuthPage }) => {
           {/* // ============== My Social Media Contact ==============  */}
           <S.SocialContactAndCopyRightWrapper>
             <S.SocialContactWrapper>
-              <SocialContactPair SvgComponent={LinkedInSvg}>
+              <SocialContactPair SvgComponent={LinkedInSvg} link="https://www.linkedin.com/in/franky-tak-yu-chan-18b51518b/">
                 LinkedIn
               </SocialContactPair>
-              <SocialContactPair SvgComponent={GithubSvg} >
+              <SocialContactPair SvgComponent={GithubSvg} link="https://github.com/TakYuChan">
                 Github
               </SocialContactPair>
             </S.SocialContactWrapper>

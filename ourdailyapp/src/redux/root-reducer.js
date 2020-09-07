@@ -4,7 +4,7 @@ import storage from "redux-persist/lib/storage";
 
 import navReducer from "./nav/nav.reducer";
 import shopNavReducer from "./shopNav/shopNav.reducer";
-import userReducer from "./user/user.reducer";
+import authReducer from "./Auth/auth.reducer";
 import signInUpReducer from "./signInUp/signInUp.reducer";
 import appReducer from "./app/app.reducer";
 import commentsConverterReducer from "./commentsConverter/commentsConverter.reducer";
@@ -27,7 +27,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   nav: navReducer,
-  user: userReducer,
+  auth: authReducer,
   signInUp: signInUpReducer,
   app: appReducer,
   commentsConverter: commentsConverterReducer,

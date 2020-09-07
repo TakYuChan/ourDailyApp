@@ -1,4 +1,4 @@
-import UserActionTypes from "./user.types";
+import AuthActionTypes from "./auth.types";
 
 const INITIATE_STATE = {
   currentUser: {
@@ -13,7 +13,7 @@ const INITIATE_STATE = {
 
 const userReducer = (state = INITIATE_STATE, action) => {
   switch (action.type) {
-    case UserActionTypes.SIGN_IN_SUCCESS:
+    case AuthActionTypes.SIGN_IN_SUCCESS:
       return {
         ...state,
         currentUser: {
@@ -25,16 +25,16 @@ const userReducer = (state = INITIATE_STATE, action) => {
         isLogged: true,
         error: null,
       };
-    case UserActionTypes.SIGN_OUT_SUCCESS:
+    case AuthActionTypes.SIGN_OUT_SUCCESS:
       return {
         ...state,
         currentUser: INITIATE_STATE.currentUser,
         isLogged: false,
         error: null,
       };
-    case UserActionTypes.SIGN_OUT_FAILURE:
-    case UserActionTypes.SIGN_IN_FAILURE:
-    case UserActionTypes.SIGN_UP_FAILURE:
+    case AuthActionTypes.SIGN_OUT_FAILURE:
+    case AuthActionTypes.SIGN_IN_FAILURE:
+    case AuthActionTypes.SIGN_UP_FAILURE:
       return {
         ...state,
         error: action.payload,

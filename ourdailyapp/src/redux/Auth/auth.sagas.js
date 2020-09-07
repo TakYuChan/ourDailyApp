@@ -1,6 +1,6 @@
 import { takeLatest, call, put, all } from "redux-saga/effects";
 
-import UserActionTypes from "./user.types";
+import AuthActionTypes from "./auth.types";
 import {
   signOutSuccess,
   signOutFailure,
@@ -23,7 +23,7 @@ import {
   checkSignInFormError,
   getSnapshotFromAuth,
   checkSignUpFormError,
-} from "./user.sagaUtils";
+} from "./auth.sagaUtils";
 
 import {
   auth,
@@ -35,30 +35,30 @@ import {
 import { signUpFormErrorCheck } from "../../utils/errorCheckUtils";
 // ================= Sagas ==================
 function* onGoogleSignInStart() {
-  yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
+  yield takeLatest(AuthActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
 }
 
 function* onEmailSignInStart() {
-  yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
+  yield takeLatest(AuthActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
 
 function* onCheckAuthSession() {
-  yield takeLatest(UserActionTypes.CHECK_AUTH_SESSION, isUserAuthenticated);
+  yield takeLatest(AuthActionTypes.CHECK_AUTH_SESSION, isUserAuthenticated);
 }
 
 function* onSignOutStart() {
-  yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
+  yield takeLatest(AuthActionTypes.SIGN_OUT_START, signOut);
 }
 
 function* onSignUpStart() {
-  yield takeLatest(UserActionTypes.SIGN_UP_START, signUp);
+  yield takeLatest(AuthActionTypes.SIGN_UP_START, signUp);
 }
 
 function* onSignUpSuccess() {
-  yield takeLatest(UserActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
+  yield takeLatest(AuthActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
 }
 
-export default function* userSaga() {
+export default function* authSaga() {
   yield all([
     call(onGoogleSignInStart),
     call(onEmailSignInStart),
