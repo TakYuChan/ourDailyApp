@@ -8,7 +8,8 @@ const INITIATE_STATE = {
     photoURL: null,
   },
   isLogged: false,
-  error: null,
+  signUpAlert: null,
+  logInAlert: null,
 };
 
 const userReducer = (state = INITIATE_STATE, action) => {
@@ -23,22 +24,29 @@ const userReducer = (state = INITIATE_STATE, action) => {
           photoURL: action.payload.photoURL,
         },
         isLogged: true,
-        error: null,
+        signUpAlert: null,
+        logInAlert: null,
       };
     case AuthActionTypes.SIGN_OUT_SUCCESS:
       return {
         ...state,
         currentUser: INITIATE_STATE.currentUser,
         isLogged: false,
-        error: null,
+        signUpAlert: null,
+        logInAlert: null,
       };
-    case AuthActionTypes.SIGN_OUT_FAILURE:
-    case AuthActionTypes.SIGN_IN_FAILURE:
-    case AuthActionTypes.SIGN_UP_FAILURE:
+    // case AuthActionTypes.SIGN_OUT_FAILURE:
+    // case AuthActionTypes.SIGN_IN_FAILURE:
+    // case AuthActionTypes.SIGN_UP_FAILURE:
+    //   return {
+    //     ...state,
+    //     signUpAlert: action.payload,
+    //   };
+    case AuthActionTypes.SET_SIGNUP_ALERT:
       return {
         ...state,
-        error: action.payload,
-      };
+        signUpAlert: action.alert,
+      }
     default:
       return state;
   }

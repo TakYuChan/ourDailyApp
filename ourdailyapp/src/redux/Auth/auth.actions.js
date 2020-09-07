@@ -23,9 +23,11 @@ export const checkAuthSession = () => ({
   type: AuthActionTypes.CHECK_AUTH_SESSION,
 });
 
-export const signOutStart = () => ({
-  type: AuthActionTypes.SIGN_OUT_START,
-});
+// export const signOutStart = (error, targetComponent) => ({
+//   type: AuthActionTypes.SIGN_OUT_START,
+//   error,
+//   targetComponent,
+// });
 
 export const signOutSuccess = () => ({
   type: AuthActionTypes.SIGN_OUT_SUCCESS,
@@ -46,7 +48,13 @@ export const signUpSuccess = ({ user, additionalData }) => ({
   payload: { user, additionalData },
 });
 
-export const signUpFailure = (error) => ({
+export const signUpFailure = (error, targetComponent) => ({
   type: AuthActionTypes.SIGN_UP_FAILURE,
-  payload: error,
+  error,
+  targetComponent,
 });
+
+export const setSignUpAlert = (alert) => ({
+  type: AuthActionTypes.SET_SIGNUP_ALERT,
+  alert,
+})

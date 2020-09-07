@@ -10,6 +10,8 @@ import {
   signUpSuccess,
 } from "./auth.actions";
 
+import globalErrHandler from "../../utils/globalErrHandler";
+
 import axios from "axios";
 
 
@@ -40,6 +42,10 @@ function* onSignUpSuccess() {
   yield takeLatest(AuthActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
 }
 
+function* onSignUpFailure() {
+  yield takeLatest(AuthActionTypes.SIGN_UP_FAILURE, signUpFailHandler);
+}
+
 export default function* authSaga() {
   yield all([
     // call(onGoogleSignInStart),
@@ -48,6 +54,7 @@ export default function* authSaga() {
     call(onSignOutStart),
     call(onSignUpStart),
     call(onSignUpSuccess),
+    call(onSignUpFailure),
   ]);
 }
 
@@ -109,17 +116,22 @@ function* signOut() {
 
 }
 // { payload: { name, email, password, passwordConfirm, gender, birthday} }
+
 function* signUp({signUpDetails}) {
   try {
-    
-    yield axios.post("http://localhost:5000/api/v1/users/signup", {
+    yield axios.post(`${process.env.REACT_APP_URL}/users/signup`, {
       ...signUpDetails
     }).then((response) => {
       console.log(response);
     })
   } catch (error) {
-    console.log(error.response);
+   yield put(signUpFailure(error, "signUpForm"));
   }
+}
+
+function* signUpFailHandler({error, targetComponent}) {
+  console.log("SignUpFailHandler called");
+  globalErrHandler(error, targetComponent);
 }
 
 function* signInAfterSignUp({ payload: { user, additionalData } }) {
