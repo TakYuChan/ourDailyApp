@@ -11,8 +11,8 @@ import { createStructuredSelector } from "reselect";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./styled/globalStyle";
 import { lightTheme, darkTheme } from "./styled/theme";
-import { checkAuthSession } from "./redux/user/user.actions";
-import { selectIsUserLogged } from "./redux/user/user.selectors";
+import { checkAuthSession } from "./redux/Auth/auth.actions";
+import { selectIsUserLogged } from "./redux/Auth/auth.selectors";
 
 import MainPage from "./Pages/mainPage/mainPage.component";
 import ShopRouter from "./Routers/ShopRouter/ShopRouter.component";

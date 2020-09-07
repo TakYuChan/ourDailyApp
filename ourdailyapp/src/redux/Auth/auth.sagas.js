@@ -8,40 +8,22 @@ import {
   signInFailure,
   signUpFailure,
   signUpSuccess,
-} from "./user.actions";
-import {
-  setIsProcessingSignInTRUE,
-  setIsProcessingSignInFALSE,
-  setIsProcessingSignUpTRUE,
-  setIsProcessingSignUpFALSE,
-  signInUpOnHide,
-  updateSignUpError,
-  setRenderForRegisterSuccess,
-} from "../signInUp/signInUp.actions";
+} from "./auth.actions";
 
-import {
-  checkSignInFormError,
-  getSnapshotFromAuth,
-  checkSignUpFormError,
-} from "./auth.sagaUtils";
+import axios from "axios";
 
-import {
-  auth,
-  googleProvider,
-  createUserProfileDocument,
-  getCurrentUser,
-} from "../../firebase/firebase.utils";
 
-import { signUpFormErrorCheck } from "../../utils/errorCheckUtils";
+
+
+
 // ================= Sagas ==================
-function* onGoogleSignInStart() {
-  yield takeLatest(AuthActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
-}
+// function* onGoogleSignInStart() {
+//   yield takeLatest(AuthActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
+// }
 
-function* onEmailSignInStart() {
-  yield takeLatest(AuthActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
-}
-
+// function* onEmailSignInStart() {
+//   yield takeLatest(AuthActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
+// }
 function* onCheckAuthSession() {
   yield takeLatest(AuthActionTypes.CHECK_AUTH_SESSION, isUserAuthenticated);
 }
@@ -60,8 +42,8 @@ function* onSignUpSuccess() {
 
 export default function* authSaga() {
   yield all([
-    call(onGoogleSignInStart),
-    call(onEmailSignInStart),
+    // call(onGoogleSignInStart),
+    // call(onEmailSignInStart),
     call(onCheckAuthSession),
     call(onSignOutStart),
     call(onSignUpStart),
@@ -71,117 +53,75 @@ export default function* authSaga() {
 
 // ================= other generator functions ==================
 
-function* signInWithGoogle() {
-  try {
-    // * Start spinner
-    yield put(setIsProcessingSignInTRUE());
+// function* signInWithGoogle() {
+//   try {
+//     // * Start spinner
+//     yield put(setIsProcessingSignInTRUE());
 
-    const { user } = yield call([auth, auth.signInWithPopup], googleProvider);
-    yield call(getSnapshotFromAuth, user);
+//     const { user } = yield call([auth, auth.signInWithPopup], googleProvider);
+//     yield call(getSnapshotFromAuth, user);
 
-    // Hide Modals
-    yield put(signInUpOnHide());
+//     // Hide Modals
+//     yield put(signInUpOnHide());
 
-    // * Stop spinner
-    yield put(setIsProcessingSignInFALSE());
-  } catch (error) {
-    yield put(signInFailure(error));
+//     // * Stop spinner
+//     yield put(setIsProcessingSignInFALSE());
+//   } catch (error) {
+//     yield put(signInFailure(error));
 
-    // * Stop spinner
-    yield put(setIsProcessingSignInFALSE());
-  }
-}
+//     // * Stop spinner
+//     yield put(setIsProcessingSignInFALSE());
+//   }
+// }
 
-function* signInWithEmail({ payload: { email, password } }) {
-  try {
-    // * Start spinner
-    yield put(setIsProcessingSignInTRUE());
+// function* signInWithEmail({ payload: { name, email, password, passwordConfirm, gender, birthday} }) {
+//   try {
+//     // const { user } = yield call(() =>
+//     //   auth.signInWithEmailAndPassword(email, password)
+//     // );
+//     // const { user } = yield call(
+//     //   [auth, auth.createUserWithEmailAndPassword],
+//     //   email,
+//     //   password
+//     // );
+//     axios.get("http://localhost:5000/api/v1/users/signup", {}).then((response) => {
+//       console.log(response);
+//     })
 
-    const { user } = yield call(() =>
-      auth.signInWithEmailAndPassword(email, password)
-    );
-    yield call(getSnapshotFromAuth, user);
-
-    // Hide Modals
-    yield put(signInUpOnHide());
-
-    // * Stop spinner
-    yield put(setIsProcessingSignInFALSE());
-  } catch (error) {
-    console.log("failed");
-    yield checkSignInFormError(error);
-    // * Stop spinner
-    yield put(setIsProcessingSignInFALSE());
-    yield put(signInFailure(error));
-  }
-}
+//   } catch (error) {
+//     yield put(signInFailure(error));
+//   }
+// }
 
 function* isUserAuthenticated() {
-  try {
-    const userAuth = yield call(getCurrentUser);
-    if (userAuth === null) return;
-    const userRef = yield call(createUserProfileDocument, userAuth);
-    const snapshot = yield userRef.get();
-    yield put(signInSuccess({ id: snapshot.id, ...snapshot.data() }));
-  } catch (error) {
-    yield put(signInFailure(error));
-  }
+  // try {
+  //   const userAuth = yield call(getCurrentUser);
+  //   if (userAuth === null) return;
+  //   const userRef = yield call(createUserProfileDocument, userAuth);
+  //   const snapshot = yield userRef.get();
+  //   yield put(signInSuccess({ id: snapshot.id, ...snapshot.data() }));
+  // } catch (error) {
+  //   yield put(signInFailure(error));
+  // }
 }
 
 function* signOut() {
-  try {
-    yield auth.signOut();
-    yield put(signOutSuccess());
-  } catch (error) {
-    yield put(signOutFailure(error));
-  }
+
 }
-
-function* signUp({
-  payload: { displayName, email, password, confirmPassword },
-}) {
+// { payload: { name, email, password, passwordConfirm, gender, birthday} }
+function* signUp({signUpDetails}) {
   try {
-    // * Start Spinner
-    yield put(setIsProcessingSignUpTRUE());
-    // 1. Customized error checking
-    const errorObj = yield call(
-      signUpFormErrorCheck,
-      displayName,
-      email,
-      password,
-      confirmPassword
-    );
-    // 2. Update sign up error obj
-    yield put(updateSignUpError(errorObj));
-
-    // 3. if NO error is detected, start creating new user in firebase.
-    if (Object.keys(errorObj).length === 0) {
-      // Create user account
-      const { user } = yield call(
-        [auth, auth.createUserWithEmailAndPassword],
-        email,
-        password
-      );
-
-      // Create User profile in firestore
-      yield put(
-        signUpSuccess({ user, additionalData: { displayName, password } })
-      );
-
-      // Redirect to "registerSuccessScene"
-      yield put(setRenderForRegisterSuccess());
-    }
-
-    // * Stop Spinner
-    yield put(setIsProcessingSignUpFALSE());
+    
+    yield axios.post("http://localhost:5000/api/v1/users/signup", {
+      ...signUpDetails
+    }).then((response) => {
+      console.log(response);
+    })
   } catch (error) {
-    yield checkSignUpFormError(error);
-    // * Stop Spinner
-    yield put(setIsProcessingSignUpFALSE());
-    yield put(signUpFailure(error));
+    console.log(error.response);
   }
 }
 
 function* signInAfterSignUp({ payload: { user, additionalData } }) {
-  yield call(getSnapshotFromAuth, user, additionalData);
+
 }

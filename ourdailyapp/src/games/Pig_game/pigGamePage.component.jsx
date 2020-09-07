@@ -28,7 +28,7 @@ import {
 import {
   selectCurrentUser,
   selectIsUserLogged,
-} from "../../redux/user/user.selectors";
+} from "../../redux/Auth/auth.selectors";
 import {
   rollDice,
   holdDice,

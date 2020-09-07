@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import S from "./LogInForm.style";
 
 import { ReactComponent as UserSvg } from "../../../assets/svg/user.svg";
@@ -8,19 +8,35 @@ import FormInput from "../../FormElements/FormInput/FormInput.component";
 
 // @importedBy  LogInPage
 const LogInForm = () => {
+
+  const [logInDetails, setLogInDetails] = useState({email: "", password: ""});
+
+  const {email, password} = logInDetails;
+
+  const handleInputChange = (event) => {
+    const {name, value} = event.target;
+    setLogInDetails({...logInDetails, [name]: value});
+  }
+
   return (
     <S.LogInForm>
       <FormInput
         SvgComponent={UserSvg}
-        placeholder="Username"
+        placeholder="Email"
         type="email"
+        name="email"
         hasForgotPassBtn={false}
+        handleInputChange={handleInputChange}
+        value={email}
       />
       <FormInput
         SvgComponent={LockSvg}
         placeholder="Password"
         type="password"
+        name="password"
         hasForgotPassBtn={true}
+        handleInputChange={handleInputChange}
+        value={password}
       />
       <S.LogInButton type="submit">LOG IN</S.LogInButton>
     </S.LogInForm>

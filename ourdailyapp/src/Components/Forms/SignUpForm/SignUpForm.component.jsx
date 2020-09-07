@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 import S from "./SignUpForm.style";
 
+import {connect} from "react-redux";
+import {signUpStart} from "../../../redux/Auth/auth.actions";
+
 import FormInput from "../../FormElements/FormInput/FormInput.component";
 
-const SignUpForm = () => {
+const SignUpForm = ({signUpStart}) => {
   
   const [signUpDetails, setSignUpDetails] = useState({
     name: "",
@@ -53,11 +56,19 @@ const SignUpForm = () => {
           <S.DatePicker type="date" name="birthday" onChange={handleInputChange} required />
         </S.FormDatePickerBlock>
       </S.GenderAndDateWrapper>
-      <S.SignUpButton type="submit" name="birthday">
+      <S.SignUpButton type="submit" name="birthday" onClick={(event) => {
+        event.preventDefault();
+        console.log("submit btn clicked!");
+        signUpStart(signUpDetails);
+      }}>
         SIGN UP
       </S.SignUpButton>
     </S.SignUpForm>
   );
 };
 
-export default SignUpForm;
+const mapDispatchToProps = dispatch => ({
+  signUpStart: (signUpDetails) => dispatch(signUpStart(signUpDetails)),
+});
+
+export default connect(null, mapDispatchToProps)(SignUpForm);
