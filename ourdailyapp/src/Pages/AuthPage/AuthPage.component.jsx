@@ -3,7 +3,7 @@ import S from "./AuthPage.style";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 
 import { selectAuthPage } from "../../redux/AuthPage/AuthPage.selectors";
 import { changePage } from "../../redux/AuthPage/AuthPage.actions";
@@ -19,21 +19,29 @@ import { ReactComponent as GithubSvg } from "../../assets/svg/GitHub2.svg";
 import PropTypes from "prop-types";
 
 const AuthPage = ({ authPage, changeAuthPage }) => {
-
-  const mq_IsTallScreen = useMediaQuery({query: '(min-device-height: 629px'});
+  const mq_IsTallScreen = useMediaQuery({ query: "(min-device-height: 629px" });
 
   return (
     <React.Fragment>
       <S.LogInPageHazyBg></S.LogInPageHazyBg>
-      <S.LogInPageContent styled_authPage={authPage} mq_IsTallScreen={mq_IsTallScreen}>
+      <S.LogInPageContent
+        styled_authPage={authPage}
+        mq_IsTallScreen={mq_IsTallScreen}
+      >
         <S.LogoWrapper
           className={authPage === "signup" && "styled_smallerLogo"}
         >
           <img className="logo" src={logo} alt="" role="presentation" />
         </S.LogoWrapper>
 
-        <S.LogInWrapper>{authPage === "login" && <LogInContainer />}</S.LogInWrapper>
-        <S.SignUpWrapper>{authPage === "signup" && <SignUpContainer mq_IsTallScreen = {mq_IsTallScreen} />}</S.SignUpWrapper>
+        <S.LogInWrapper>
+          {authPage === "login" && <LogInContainer />}
+        </S.LogInWrapper>
+        <S.SignUpWrapper>
+          {authPage === "signup" && (
+            <SignUpContainer mq_IsTallScreen={mq_IsTallScreen} />
+          )}
+        </S.SignUpWrapper>
 
         <S.FooterWrapper>
           {/* // ============== Create Account Btn ==============  */}
@@ -50,10 +58,16 @@ const AuthPage = ({ authPage, changeAuthPage }) => {
           {/* // ============== My Social Media Contact ==============  */}
           <S.SocialContactAndCopyRightWrapper>
             <S.SocialContactWrapper>
-              <SocialContactPair SvgComponent={LinkedInSvg} link="https://www.linkedin.com/in/franky-tak-yu-chan-18b51518b/">
+              <SocialContactPair
+                SvgComponent={LinkedInSvg}
+                link="https://www.linkedin.com/in/franky-tak-yu-chan-18b51518b/"
+              >
                 LinkedIn
               </SocialContactPair>
-              <SocialContactPair SvgComponent={GithubSvg} link="https://github.com/TakYuChan">
+              <SocialContactPair
+                SvgComponent={GithubSvg}
+                link="https://github.com/TakYuChan"
+              >
                 Github
               </SocialContactPair>
             </S.SocialContactWrapper>

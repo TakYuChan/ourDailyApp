@@ -43,9 +43,8 @@ export const signUpStart = (signUpDetails) => ({
   signUpDetails,
 });
 
-export const signUpSuccess = ({ user, additionalData }) => ({
+export const signUpSuccess = () => ({
   type: AuthActionTypes.SIGN_UP_SUCCESS,
-  payload: { user, additionalData },
 });
 
 export const signUpFailure = (error, targetComponent) => ({
@@ -62,4 +61,12 @@ export const setSignUpAlert = (alert) => ({
 export const setLogInAlert = (alert) => ({
   type: AuthActionTypes.SET_LOGIN_ALERT,
   alert,
+})
+
+export const clearSignUpAlert = () => ({
+  type: AuthActionTypes.CLEAR_SIGNUP_ALERT,
+})
+
+export const clearLogInAlert = () => ({
+  type: AuthActionTypes.CLEAR_LOGIN_ALERT,
 })

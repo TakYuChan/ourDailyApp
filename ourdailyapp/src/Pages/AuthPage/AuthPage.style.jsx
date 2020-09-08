@@ -47,12 +47,12 @@ S.LogInPageContent = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 
-
   display: grid;
   font-size: clamp(0.8rem, 1.4vw, 1.5rem);
 
-  ${props => {if(props.styled_authPage === "login") {
-    return `grid-template-rows: 1em minmax(5em, 8em) 3em minmax(25em, 1fr) minmax(2em, 1fr);
+  ${(props) => {
+    if (props.styled_authPage === "login") {
+      return `grid-template-rows: 1em minmax(5em, 8em) 3em minmax(25em, 1fr) minmax(2em, 1fr);
             grid-template-columns: minmax(40px, 1fr) minmax(50px, 60px) minmax(8em, 250px) minmax(50px, 60px)  minmax(40px, 1fr);
             grid-template-areas:
             ". . . . ."
@@ -65,11 +65,12 @@ S.LogInPageContent = styled.div`
               grid-template-rows: 1em minmax(9em, 1fr) 1em minmax(21em, 1fr) minmax(2em, 1fr);
             }
             `;
-  }}};
+    }
+  }};
 
-  ${props => {if(props.styled_authPage === "signup") {
-
-    return `grid-template-rows: 1em minmax(5em, 8em) 5em minmax(15em, 1fr) minmax(1em, 1fr);
+  ${(props) => {
+    if (props.styled_authPage === "signup") {
+      return `grid-template-rows: 1em minmax(5em, 8em) 5em minmax(15em, 1fr) minmax(1em, 1fr);
             grid-template-columns: minmax(40px, 1fr) minmax(3em, 1fr) minmax(8em, 250px) minmax(3em, 1fr)  minmax(40px, 1fr);
             grid-template-areas:
             ". . . . ."
@@ -88,33 +89,34 @@ S.LogInPageContent = styled.div`
               grid-template-columns: minmax(40px, 1fr) minmax(50px, 1fr) minmax(8em, 250px) minmax(50px, 1fr)  minmax(40px, 1fr);
             }
             `;
-  }}};
+    }
+  }};
 
-  ${props => {if(props.styled_authPage === "signup" && props.mq_IsTallScreen) {
-    return `grid-template-rows: 1em minmax(5em, 8em) 5em minmax(30em, 1fr) minmax(1em, 1fr);`
-  }}};
+  ${(props) => {
+    if (props.styled_authPage === "signup" && props.mq_IsTallScreen) {
+      return `grid-template-rows: 1em minmax(5em, 8em) 5em minmax(30em, 1fr) minmax(1em, 1fr);`;
+    }
+  }};
 `;
 
 S.LogInWrapper = styled.div`
-grid-area: logInPage;
+  grid-area: logInPage;
 
-display: flex;
-flex-direction: column;
-justify-content: space-between
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 S.SignUpWrapper = styled.div`
-grid-area: signUpPage;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-align-items: center;
+  grid-area: signUpPage;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 
   @media only screen and (min-width: 700px) {
     flex-direction: row;
   }
-
 `;
 
 // ============= Logo ==============
@@ -138,7 +140,7 @@ S.ToSignUpPage = styled.button`
   color: ${(props) => props.theme.AuthPage.ToSignUpPageBtn};
 `;
 S.ToLogInPage = styled.button`
-${switchPageBtnStyle}
+  ${switchPageBtnStyle}
   color: ${(props) => props.theme.AuthPage.ToLogInPageBtn};
 `;
 

@@ -23,7 +23,7 @@ const AlertTooltip = ({ alerts, place, setClickedAlertSvg }) => {
     return () => {
       document.removeEventListener("mousedown", handleClick);
     };
-  }, []);
+  }, [handleClick]);
 
   // place: indicate the direction of the tooltip [top | right]
   return (

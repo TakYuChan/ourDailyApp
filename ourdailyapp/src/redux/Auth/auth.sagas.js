@@ -1,4 +1,9 @@
-import { takeLatest, call, put, all } from "redux-saga/effects";
+import {
+  takeLatest,
+  call,
+  put,
+  all
+} from "redux-saga/effects";
 
 import AuthActionTypes from "./auth.types";
 import {
@@ -8,11 +13,18 @@ import {
   signInFailure,
   signUpFailure,
   signUpSuccess,
+  clearSignUpAlert,
 } from "./auth.actions";
+
+import {
+  clearClickedAlertSvg
+} from "../signUpForm/signUpform.actions";
 
 import globalErrHandler from "../../utils/globalErrHandler";
 
-import {signUpUser} from "./auth.requests";
+import {
+  signUpUser
+} from "./auth.requests";
 
 
 
@@ -39,7 +51,7 @@ function* onSignUpStart() {
 }
 
 function* onSignUpSuccess() {
-  yield takeLatest(AuthActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
+  yield takeLatest(AuthActionTypes.SIGN_UP_SUCCESS, afterSignUp);
 }
 
 function* onSignUpFailure() {
@@ -60,45 +72,6 @@ export default function* authSaga() {
 
 // ================= other generator functions ==================
 
-// function* signInWithGoogle() {
-//   try {
-//     // * Start spinner
-//     yield put(setIsProcessingSignInTRUE());
-
-//     const { user } = yield call([auth, auth.signInWithPopup], googleProvider);
-//     yield call(getSnapshotFromAuth, user);
-
-//     // Hide Modals
-//     yield put(signInUpOnHide());
-
-//     // * Stop spinner
-//     yield put(setIsProcessingSignInFALSE());
-//   } catch (error) {
-//     yield put(signInFailure(error));
-
-//     // * Stop spinner
-//     yield put(setIsProcessingSignInFALSE());
-//   }
-// }
-
-// function* signInWithEmail({ payload: { name, email, password, passwordConfirm, gender, birthday} }) {
-//   try {
-//     // const { user } = yield call(() =>
-//     //   auth.signInWithEmailAndPassword(email, password)
-//     // );
-//     // const { user } = yield call(
-//     //   [auth, auth.createUserWithEmailAndPassword],
-//     //   email,
-//     //   password
-//     // );
-//     axios.get("http://localhost:5000/api/v1/users/signup", {}).then((response) => {
-//       console.log(response);
-//     })
-
-//   } catch (error) {
-//     yield put(signInFailure(error));
-//   }
-// }
 
 function* isUserAuthenticated() {
   // try {
@@ -115,20 +88,30 @@ function* isUserAuthenticated() {
 function* signOut() {
 
 }
-// { payload: { name, email, password, passwordConfirm, gender, birthday} }
 
-function* signUp({signUpDetails}) {
+function* signUp({
+  signUpDetails
+}) {
   try {
     yield call(signUpUser, signUpDetails);
+    yield put(signUpSuccess());
   } catch (error) {
-   yield put(signUpFailure(error, "signUpAlert"));
+    yield put(signUpFailure(error, "signUpAlert"));
   }
 }
 
-function* signUpFailHandler({error, targetComponent}) {
+function* signUpFailHandler({
+  error,
+  targetComponent
+}) {
   yield globalErrHandler(error, targetComponent);
 }
 
-function* signInAfterSignUp({ payload: { user, additionalData } }) {
+function* afterSignUp() {
+  try {
+    yield put(clearSignUpAlert());
+    yield put(clearClickedAlertSvg());
+  } catch (error) {
 
+  }
 }
