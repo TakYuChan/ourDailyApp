@@ -6,17 +6,22 @@ S.FormInputBlock = styled.div`
   border-bottom: 1px solid white;
   display: flex;
   align-items: center;
-  padding: 0 0.2em;
-  padding-bottom: 0.4em;
+  padding: 0.4em 0.2em;
+  // padding-bottom: 0.4em;
   position: relative;
 
   transition: all 250ms linear;
+
+  &.alert {
+    border: 1px solid ${props => props.theme.FormInput.alert_border}
+  }
 
   @media only screen and (min-device-width: 320px) and (max-device-width: 1000px) and (orientation: landscape) {
     margin-bottom: 1.2rem;
   }
 
-  & .styled-svg {
+  
+  & .styled_svg {
     --size: 1.2em;
     width: var(--size);
     height: var(--size);

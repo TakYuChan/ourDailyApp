@@ -1,5 +1,7 @@
 import AuthActionTypes from "./auth.types";
 
+import {allocateSignUpAlerts} from "./auth.utils";
+
 const INITIATE_STATE = {
   currentUser: {
     id: null,
@@ -8,8 +10,14 @@ const INITIATE_STATE = {
     photoURL: null,
   },
   isLogged: false,
-  signUpAlert: null,
-  logInAlert: null,
+  signUpAlert: {        
+    nameAlerts: [],
+    emailAlerts: [],
+    passwordAlerts: [],
+    genderAlerts: [],
+    birthdayAlerts: [],
+  },
+  logInAlert: {},
 };
 
 const userReducer = (state = INITIATE_STATE, action) => {
@@ -24,29 +32,19 @@ const userReducer = (state = INITIATE_STATE, action) => {
           photoURL: action.payload.photoURL,
         },
         isLogged: true,
-        signUpAlert: null,
-        logInAlert: null,
+        signUpAlert: {},
+        logInAlert: {},
       };
-    case AuthActionTypes.SIGN_OUT_SUCCESS:
-      return {
-        ...state,
-        currentUser: INITIATE_STATE.currentUser,
-        isLogged: false,
-        signUpAlert: null,
-        logInAlert: null,
-      };
-    // case AuthActionTypes.SIGN_OUT_FAILURE:
-    // case AuthActionTypes.SIGN_IN_FAILURE:
-    // case AuthActionTypes.SIGN_UP_FAILURE:
-    //   return {
-    //     ...state,
-    //     signUpAlert: action.payload,
-    //   };
     case AuthActionTypes.SET_SIGNUP_ALERT:
       return {
         ...state,
-        signUpAlert: action.alert,
+        signUpAlert: allocateSignUpAlerts(action.alert),
       }
+    // case AuthActionTypes.SET_LOGIN_ALERT:
+    //   return {
+    //     ...state,
+    //     logInAlert: action.alert,
+    //   }
     default:
       return state;
   }

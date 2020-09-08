@@ -1,17 +1,23 @@
 import {store} from "../redux/store";
 
-// import {}
+import {setSignUpAlert, setLogInAlert} from "../redux/Auth/auth.actions";
 
-function globalErrHandler(err, targetComponent) {
+function globalErrHandler(err, target) {
     console.log(err.response);
 
-    const {scope} = err.response.data.error;
+    const {scope, message} = err.response.data.error;
 
     // 1) Depends on err.scope to determine -> globalError reducer || local alert
     if(scope === "global") {
 
     } else if (scope === "local") {
-        switch(targetComponent) {
+        switch(target) {
+            case "signUpAlert":
+                store.dispatch(setSignUpAlert(message));
+                break;
+            case "logInAlert":
+                store.dispatch(setLogInAlert(message));
+                break;
             default:
                 console.log("Scope === local but not being handled!");
                 break;

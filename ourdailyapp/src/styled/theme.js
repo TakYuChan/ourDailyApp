@@ -157,6 +157,7 @@ export const lightTheme = {
     placeHolder: rootStyles.primary_old,
     svg: rootStyles.primary_old,
     forgotPassBtn_text: rootStyles.primary_old,
+    alert_border: rootStyles.blue_m2,
   },
   OauthBtns: {
     googleBtn_bg: "white",

@@ -12,7 +12,7 @@ import {
 
 import globalErrHandler from "../../utils/globalErrHandler";
 
-import axios from "axios";
+import {signUpUser} from "./auth.requests";
 
 
 
@@ -119,19 +119,14 @@ function* signOut() {
 
 function* signUp({signUpDetails}) {
   try {
-    yield axios.post(`${process.env.REACT_APP_URL}/users/signup`, {
-      ...signUpDetails
-    }).then((response) => {
-      console.log(response);
-    })
+    yield call(signUpUser, signUpDetails);
   } catch (error) {
-   yield put(signUpFailure(error, "signUpForm"));
+   yield put(signUpFailure(error, "signUpAlert"));
   }
 }
 
 function* signUpFailHandler({error, targetComponent}) {
-  console.log("SignUpFailHandler called");
-  globalErrHandler(error, targetComponent);
+  yield globalErrHandler(error, targetComponent);
 }
 
 function* signInAfterSignUp({ payload: { user, additionalData } }) {

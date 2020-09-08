@@ -58,3 +58,8 @@ export const setSignUpAlert = (alert) => ({
   type: AuthActionTypes.SET_SIGNUP_ALERT,
   alert,
 })
+
+export const setLogInAlert = (alert) => ({
+  type: AuthActionTypes.SET_LOGIN_ALERT,
+  alert,
+})
