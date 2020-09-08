@@ -20,7 +20,7 @@ const INITIATE_STATE = {
   logInAlert: {},
 };
 
-const userReducer = (state = INITIATE_STATE, action) => {
+const authReducer = (state = INITIATE_STATE, action) => {
   switch (action.type) {
     case AuthActionTypes.SIGN_IN_SUCCESS:
       return {
@@ -50,4 +50,4 @@ const userReducer = (state = INITIATE_STATE, action) => {
   }
 };
 
-export default userReducer;
+export default authReducer;

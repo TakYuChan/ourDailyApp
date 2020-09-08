@@ -1,14 +1,28 @@
 import React from "react";
 import S from "./FormInput.style";
-import {ReactComponent as AlertSvg} from "../../../assets/svg/alert.svg";
 
-const FormInput = ({ SvgComponent, placeholder, type, hasForgotPassBtn, handleInputChange, alerts, ...otherProps}) => {
+import { connect } from "react-redux";
+import { setClickedAlertSvg } from "../../../redux/signUpForm/signUpform.actions";
 
+import AlertTooltip from "../../Tooltips/AlertTooltip/AlertTooltip.component";
 
+import { ReactComponent as AlertSvg } from "../../../assets/svg/alert.svg";
 
-  
+const FormInput = ({
+  SvgComponent,
+  placeholder,
+  type,
+  hasForgotPassBtn,
+  handleInputChange,
+  alerts,
+  setClickedAlertSvg,
+  place,
+  hasAlertTooltip,
+  ...otherProps
+}) => {
+  // hasAlerts -> to see if we need show AlertSvg or not
   let hasAlerts = false;
-  if (alerts && alerts.length > 0 ) {
+  if (alerts && alerts.length > 0) {
     hasAlerts = true;
   }
 
@@ -16,7 +30,7 @@ const FormInput = ({ SvgComponent, placeholder, type, hasForgotPassBtn, handleIn
   //@styledProps  Size / Position of label
   return (
     <S.FormInputBlock className={`${hasAlerts ? "alert" : ""} hi`}>
-      {SvgComponent !== undefined && <SvgComponent className="styled_svg" />}
+      {SvgComponent !== undefined && <SvgComponent className="S_svg" />}
       <S.InputField
         type={type}
         onChange={handleInputChange}
@@ -33,15 +47,20 @@ const FormInput = ({ SvgComponent, placeholder, type, hasForgotPassBtn, handleIn
         <S.ForgotPassBtn type="button">Forgot Password?</S.ForgotPassBtn>
       )}
       {/* =================== Alerts =================== */}
-      {/* {
-        alerts && alerts.map(alert => {
-          if(alerts.length !== 0) {
-            return <AlertSvg/>
-          }
-        })
-      } */}
+      {hasAlerts && !hasAlertTooltip && (
+        <AlertSvg
+          className="S_AlertSvg"
+          onClick={() => setClickedAlertSvg(otherProps.name)}
+        />
+      )}
+      {/* =================== Alert Tooltip =================== */}
+      {hasAlertTooltip && <AlertTooltip place={place} alerts={alerts} />}
     </S.FormInputBlock>
   );
 };
 
-export default FormInput;
+const mapDispatchToProps = (dispatch) => ({
+  setClickedAlertSvg: (target) => dispatch(setClickedAlertSvg(target)),
+});
+
+export default connect(null, mapDispatchToProps)(FormInput);

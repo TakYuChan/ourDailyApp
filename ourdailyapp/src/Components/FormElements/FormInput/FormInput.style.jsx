@@ -10,23 +10,36 @@ S.FormInputBlock = styled.div`
   // padding-bottom: 0.4em;
   position: relative;
 
-  transition: all 250ms linear;
-
-  &.alert {
-    border: 1px solid ${props => props.theme.FormInput.alert_border}
-  }
+  transition: all 250ms linear background 0;
 
   @media only screen and (min-device-width: 320px) and (max-device-width: 1000px) and (orientation: landscape) {
     margin-bottom: 1.2rem;
   }
 
-  
-  & .styled_svg {
+  & .S_svg {
     --size: 1.2em;
     width: var(--size);
     height: var(--size);
     margin-right: 0.6em;
     fill: ${(props) => props.theme.FormInput.svg};
+  }
+
+  & .S_AlertSvg {
+    @keyframes pops {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    animation: pops 300ms linear;
+    --size: 0.8em;
+    width: var(--size);
+    height: var(--size);
+    position: absolute;
+    right: 0;
+    fill: ${(props) => props.theme.FormInput.alert_bg};
   }
 `;
 

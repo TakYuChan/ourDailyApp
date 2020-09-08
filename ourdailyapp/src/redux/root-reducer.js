@@ -5,13 +5,13 @@ import storage from "redux-persist/lib/storage";
 import navReducer from "./nav/nav.reducer";
 import shopNavReducer from "./shopNav/shopNav.reducer";
 import authReducer from "./Auth/auth.reducer";
-import signInUpReducer from "./signInUp/signInUp.reducer";
 import appReducer from "./app/app.reducer";
 import commentsConverterReducer from "./commentsConverter/commentsConverter.reducer";
 import cart_P_Reducer from "./cart/cart_P.reducer";
 import cartReducer from "./cart/cart.reducer";
 import routePathReducer from "./routePath/routePath.reducer";
 import authPageReducer from "./AuthPage/AuthPage.reducer";
+import signUpFormReducer from "./signUpForm/signUpForm.reducer";
 
 // =========== Applications ===========
 import pigGameReducer from "./pigGame/pigGame.reducer";
@@ -28,7 +28,6 @@ const persistConfig = {
 const rootReducer = combineReducers({
   nav: navReducer,
   auth: authReducer,
-  signInUp: signInUpReducer,
   app: appReducer,
   commentsConverter: commentsConverterReducer,
   shopNav: shopNavReducer,
@@ -36,6 +35,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   routePath: routePathReducer,
   authPage: authPageReducer,
+  signUpForm: signUpFormReducer,
   // =========== Applications ===========
   pigGame: pigGameReducer,
   pigGameModals: pigGameModalsReducer,
