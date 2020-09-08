@@ -7,9 +7,17 @@ import { signUpStart } from "../../../redux/Auth/auth.actions";
 import { selectSignUpAlerts } from "../../../redux/Auth/auth.selectors";
 import { selectClickedAlertSvg } from "../../../redux/signUpForm/signUpForm.selectors";
 
+import { selectIsSigningUp } from "../../../redux/signUpForm/signUpForm.selectors";
+import PixelSpinner from "../../Spinners/PixelSpinner/PixelSpinner.component";
+
 import FormInput from "../../FormElements/FormInput/FormInput.component";
 
-const SignUpForm = ({ signUpStart, signUpAlerts, clickedAlertSvg }) => {
+const SignUpForm = ({
+  signUpStart,
+  signUpAlerts,
+  clickedAlertSvg,
+  isSigningUp,
+}) => {
   const [signUpDetails, setSignUpDetails] = useState({
     name: "",
     email: "",
@@ -124,6 +132,13 @@ const SignUpForm = ({ signUpStart, signUpAlerts, clickedAlertSvg }) => {
         }}
       >
         SIGN UP
+        {isSigningUp && (
+          <PixelSpinner
+            size="1.2"
+            animationDuration="1500"
+            className="S_PixelSpinner"
+          />
+        )}
       </S.SignUpButton>
     </S.SignUpForm>
   );
@@ -132,6 +147,7 @@ const SignUpForm = ({ signUpStart, signUpAlerts, clickedAlertSvg }) => {
 const mapStateToProps = createStructuredSelector({
   signUpAlerts: selectSignUpAlerts,
   clickedAlertSvg: selectClickedAlertSvg,
+  isSigningUp: selectIsSigningUp,
 });
 
 const mapDispatchToProps = (dispatch) => ({

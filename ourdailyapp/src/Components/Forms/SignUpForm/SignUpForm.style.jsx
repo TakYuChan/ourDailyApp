@@ -39,6 +39,9 @@ S.SignUpButton = styled.button`
   background: ${(props) => props.theme.SignUpForm.SignUpButton_bg};
   color: ${(props) => props.theme.SignUpForm.SignUpButton_text};
 
+  display: flex;
+  justify-content: space-between;
+
   transition: opacity 250ms ease-in-out;
 
   &:hover {
@@ -50,6 +53,10 @@ S.SignUpButton = styled.button`
   font-weight: 700;
 
   cursor: pointer;
+
+  & > .S_PixelSpinner {
+    margin-left: 0.5em;
+  }
 `;
 
 // ====================== Gender and Date wrapper =============================

@@ -1,9 +1,4 @@
-import {
-  takeLatest,
-  call,
-  put,
-  all
-} from "redux-saga/effects";
+import { takeLatest, call, put, all } from "redux-saga/effects";
 
 import AuthActionTypes from "./auth.types";
 import {
@@ -17,18 +12,14 @@ import {
 } from "./auth.actions";
 
 import {
-  clearClickedAlertSvg
+  clearClickedAlertSvg,
+  setIsSigningUpTRUE,
+  setIsSigningUpFALSE,
 } from "../signUpForm/signUpform.actions";
 
 import globalErrHandler from "../../utils/globalErrHandler";
 
-import {
-  signUpUser
-} from "./auth.requests";
-
-
-
-
+import { signUpUser } from "./auth.requests";
 
 // ================= Sagas ==================
 // function* onGoogleSignInStart() {
@@ -72,7 +63,6 @@ export default function* authSaga() {
 
 // ================= other generator functions ==================
 
-
 function* isUserAuthenticated() {
   // try {
   //   const userAuth = yield call(getCurrentUser);
@@ -85,25 +75,26 @@ function* isUserAuthenticated() {
   // }
 }
 
-function* signOut() {
+function* signOut() {}
 
-}
-
-function* signUp({
-  signUpDetails
-}) {
+function* signUp({ signUpDetails }) {
   try {
+    // Start spinner
+    yield put(setIsSigningUpTRUE());
+
     yield call(signUpUser, signUpDetails);
     yield put(signUpSuccess());
+
+    // Stop spinner
+    yield put(setIsSigningUpFALSE());
   } catch (error) {
     yield put(signUpFailure(error, "signUpAlert"));
+    // Stop spinner
+    yield put(setIsSigningUpFALSE());
   }
 }
 
-function* signUpFailHandler({
-  error,
-  targetComponent
-}) {
+function* signUpFailHandler({ error, targetComponent }) {
   yield globalErrHandler(error, targetComponent);
 }
 
@@ -111,7 +102,5 @@ function* afterSignUp() {
   try {
     yield put(clearSignUpAlert());
     yield put(clearClickedAlertSvg());
-  } catch (error) {
-
-  }
+  } catch (error) {}
 }

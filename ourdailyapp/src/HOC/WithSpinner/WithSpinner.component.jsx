@@ -1,7 +1,7 @@
-import React from "react";
+import React from "./node_modules/react";
 import { PixelSpinner } from "react-epic-spinners";
 
-const withSpinner = ({
+const WithSpinner = ({
   WrappedComponent,
   size,
   color,
@@ -22,4 +22,4 @@ const withSpinner = ({
   );
 };
 
-export default withSpinner;
+export default WithSpinner;
