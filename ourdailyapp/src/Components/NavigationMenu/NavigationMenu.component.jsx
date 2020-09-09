@@ -6,18 +6,16 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectHidden } from "../../redux/nav/nav.selectors";
 import { closeNav } from "../../redux/nav/nav.actions";
-import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 
 import NavigationMenuDescription from "../NavigationMenuDescription/NavigationMenuDescription.component";
 
 import PropTypes from "prop-types";
 
-const NavigationMenu = ({ closeNav, navHidden, closeShopNav }) => {
+const NavigationMenu = ({ closeNav, navHidden }) => {
   const [hoverNavItem, setHoverNavItem] = useState(null);
 
   const onItemClick = () => {
     closeNav();
-    closeShopNav();
   };
 
   return (
@@ -70,13 +68,11 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   closeNav: () => dispatch(closeNav()),
-  closeShopNav: () => dispatch(closeShopNav()),
 });
 
 NavigationMenu.propTypes = {
   navHidden: PropTypes.bool.isRequired,
   closeNav: PropTypes.func.isRequired,
-  closeShopNav: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationMenu);

@@ -14,7 +14,10 @@ const LogInForm = () => {
 
   const handleInputChange = useCallback((event) => {
     const { name, value } = event.target;
-    setLogInDetails({ ...logInDetails, [name]: value });
+    setLogInDetails((prevLogInDetails) => ({
+      ...prevLogInDetails,
+      [name]: value,
+    }));
   }, []);
 
   return (

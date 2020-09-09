@@ -5,21 +5,16 @@ import { useHistory } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { selectHidden } from "../../redux/nav/nav.selectors";
 import { toggleNavHidden, closeNav } from "../../redux/nav/nav.actions";
-import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { toggleCartPopUp } from "../../redux/cart/cart.actions";
 import { selectCartItemsQuantity } from "../../redux/cart/cart.selectors";
 import S from "./Header.style";
-
-// import SignInAndSignUp from "../../Pages/signInAndSignUp/signInAndSignUp.component";
-
-// import ProfileDropDownMenu from "../profileDropDownMenu/profileDropDownMenu.component";
 
 import PropTypes from "prop-types";
 
 const Header = ({
   navHidden,
   toggleNav,
-  shopNavHiddenTRUE,
+  // shopNavHiddenTRUE,
   toggleCartPopUp,
   closeNav,
   cartItemsQuantity,
@@ -49,7 +44,6 @@ const Header = ({
             role="presentation"
             onClick={() => {
               closeNav();
-              closeShopNav();
               router.push("/");
             }}
           />
@@ -63,7 +57,6 @@ const Header = ({
             className="cart-icon-wrapper"
             onClick={() => {
               toggleCartPopUp();
-              shopNavHiddenTRUE();
               closeNav();
             }}
           >
@@ -97,11 +90,6 @@ const Header = ({
           </S.NavIconContainer>
 
           {/* ====================== Profile Drop Down ====================== */}
-
-          {/* <ProfileDropDownMenu /> */}
-
-          {/* - Passing the "showSignInSignUpModal" to Open / Close Modal */}
-          {/* <SignInAndSignUp /> */}
         </S.NavListContainer>
       </S.HeaderNavContainer>
     </S.HeaderContainer>
@@ -115,7 +103,6 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   toggleNav: () => dispatch(toggleNavHidden()),
-  shopNavHiddenTRUE: () => dispatch(closeShopNav()),
   toggleCartPopUp: () => dispatch(toggleCartPopUp()),
   closeNav: () => dispatch(closeNav()),
 });

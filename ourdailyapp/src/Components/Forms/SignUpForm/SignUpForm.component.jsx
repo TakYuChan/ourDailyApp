@@ -1,4 +1,4 @@
-import React, { useState, useCallback, memo } from "react";
+import React, { useState, useCallback } from "react";
 import S from "./SignUpForm.style";
 
 import { connect } from "react-redux";
@@ -38,7 +38,10 @@ const SignUpForm = ({
 
   const handleInputChange = useCallback((event) => {
     const { name, value } = event.target;
-    setSignUpDetails({ ...signUpDetails, [name]: value });
+    setSignUpDetails((prevSignUpDetails) => ({
+      ...prevSignUpDetails,
+      [name]: value,
+    }));
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import S from "./AlertTooltip.style";
 
 import { connect } from "react-redux";
@@ -7,23 +7,30 @@ import { setClickedAlertSvg } from "../../../../redux/signUpForm/signUpform.acti
 const AlertTooltip = ({ alerts, place, setClickedAlertSvg }) => {
   const node = useRef();
 
-  const handleClick = (e) => {
-    // If we click inside of our ref, nothing happens
-    if (node.current.contains(e.target)) {
-      return;
-    }
-    // Otherwise close the alertTooltip
-    setClickedAlertSvg("");
-  };
+  const dismissAlertTooltip = useCallback(
+    (e) => {
+      // If we click inside of our ref, nothing happens
+      if (node.current.contains(e.target)) {
+        return;
+      }
+      // Otherwise close the alertTooltip
+      setClickedAlertSvg("");
+    },
+    [setClickedAlertSvg]
+  );
 
   useEffect(() => {
     // add eventListener to document when mounted
-    document.addEventListener("mousedown", handleClick);
+    document.addEventListener("mousedown", dismissAlertTooltip);
     // remove eventListener from document when unmounted
     return () => {
-      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("mousedown", dismissAlertTooltip);
     };
-  }, [handleClick]);
+  }, [dismissAlertTooltip]);
+
+  useEffect(() => {
+    console.log("AlertTooltip rerendered!");
+  });
 
   // place: indicate the direction of the tooltip [top | right]
   return (
