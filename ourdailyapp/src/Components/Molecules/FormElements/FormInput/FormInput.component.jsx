@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import S from "./FormInput.style";
 
 import { connect } from "react-redux";
 import { setClickedAlertSvg } from "../../../../redux/signUpForm/signUpform.actions";
 
-import AlertTooltip from "../../../Tooltips/AlertTooltip/AlertTooltip.component";
+import AlertTooltip from "../../../Molecules/Tooltips/AlertTooltip/AlertTooltip.component";
 
 import { ReactComponent as AlertSvg } from "../../../../assets/svg/alert.svg";
 
@@ -22,16 +22,10 @@ const FormInput = ({
   hasAlertTooltip,
   ...otherProps
 }) => {
-  // hasAlerts -> to see if we need show AlertSvg or not
-  let hasAlerts = false;
-  if (alerts.length > 0) {
-    hasAlerts = true;
-  }
-
   //@importedBy   LogInForm SignUpForm
   //@styledProps  Size / Position of label
   return (
-    <S.FormInputBlock className={`${hasAlerts ? "alert" : ""}`}>
+    <S.FormInputBlock className={`${alerts.length > 0 ? "alert" : ""}`}>
       {SvgComponent !== undefined && <SvgComponent className="S_svg" />}
       <S.InputField
         type={type}
@@ -49,7 +43,7 @@ const FormInput = ({
         <S.ForgotPassBtn type="button">Forgot Password?</S.ForgotPassBtn>
       )}
       {/* =================== Alerts =================== */}
-      {hasAlerts && !hasAlertTooltip && (
+      {alerts.length > 0 && !hasAlertTooltip && (
         <AlertSvg
           className="S_AlertSvg"
           onClick={() => setClickedAlertSvg(otherProps.name)}
@@ -85,4 +79,4 @@ const mapDispatchToProps = (dispatch) => ({
   setClickedAlertSvg: (target) => dispatch(setClickedAlertSvg(target)),
 });
 
-export default connect(null, mapDispatchToProps)(FormInput);
+export default memo(connect(null, mapDispatchToProps)(FormInput));

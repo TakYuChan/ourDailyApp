@@ -27,7 +27,7 @@ S.AlertTooltip = styled.div`
           opacity: 1;
         }
       }
-      animation: pops 300ms linear;
+      animation: pops 250ms linear;
 
     &.top {
         right: 0;

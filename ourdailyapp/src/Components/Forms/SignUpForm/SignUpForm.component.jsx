@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, memo } from "react";
 import S from "./SignUpForm.style";
 
 import { connect } from "react-redux";
@@ -36,10 +36,10 @@ const SignUpForm = ({
     birthdayAlerts,
   } = signUpAlerts;
 
-  const handleInputChange = (event) => {
+  const handleInputChange = useCallback((event) => {
     const { name, value } = event.target;
     setSignUpDetails({ ...signUpDetails, [name]: value });
-  };
+  }, []);
 
   return (
     <S.SignUpForm>
@@ -131,8 +131,8 @@ const SignUpForm = ({
         SIGN UP
         {isSigningUp && (
           <PixelSpinner
-            size="1.2"
-            animationDuration="1500"
+            size={1.2}
+            animationDuration={1500}
             className="S_PixelSpinner"
           />
         )}

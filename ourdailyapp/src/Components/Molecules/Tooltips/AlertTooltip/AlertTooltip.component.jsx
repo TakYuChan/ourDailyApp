@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import S from "./AlertTooltip.style";
 
 import { connect } from "react-redux";
-import { setClickedAlertSvg } from "../../../redux/signUpForm/signUpform.actions";
+import { setClickedAlertSvg } from "../../../../redux/signUpForm/signUpform.actions";
 
 const AlertTooltip = ({ alerts, place, setClickedAlertSvg }) => {
   const node = useRef();

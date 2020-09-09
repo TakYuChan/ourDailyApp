@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import S from "./LogInForm.style";
 
 import { ReactComponent as UserSvg } from "../../../assets/svg/user.svg";
@@ -12,10 +12,10 @@ const LogInForm = () => {
 
   const { email, password } = logInDetails;
 
-  const handleInputChange = (event) => {
+  const handleInputChange = useCallback((event) => {
     const { name, value } = event.target;
     setLogInDetails({ ...logInDetails, [name]: value });
-  };
+  }, []);
 
   return (
     <S.LogInForm>
