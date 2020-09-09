@@ -8,8 +8,8 @@ import { useMediaQuery } from "react-responsive";
 import { selectAuthPage } from "../../redux/AuthPage/AuthPage.selectors";
 import { changePage } from "../../redux/AuthPage/AuthPage.actions";
 
-import LogInContainer from "../../Components/LogInContainer/LogInContainer.component";
-import SignUpContainer from "../../Components/SignUpContainer/SignUpContainer.component";
+import LogInOrganism from "../../Components/LogInOrganism/LogInOrganism.component";
+import SignUpOrganism from "../../Components/SignUpOrganism/SignUpOrganism.component";
 import SocialContactPair from "../../Components/SocialContact/SocialContactPair.component";
 
 import logo from "../../assets/logo_new.png";
@@ -36,11 +36,11 @@ const AuthPage = ({ authPage, changeAuthPage }) => {
         </S.LogoWrapper>
 
         <S.LogInWrapper>
-          {authPage === "login" && <LogInContainer />}
+          {authPage === "login" && <LogInOrganism />}
         </S.LogInWrapper>
         <S.SignUpWrapper>
           {authPage === "signup" && (
-            <SignUpContainer mq_IsTallScreen={mq_IsTallScreen} />
+            <SignUpOrganism mq_IsTallScreen={mq_IsTallScreen} />
           )}
         </S.SignUpWrapper>
 

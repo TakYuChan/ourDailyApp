@@ -1,5 +1,5 @@
 import React from "react";
-import S from "./SignUpContainer.style";
+import S from "./SignUpOrganism.style";
 
 import SignUpForm from "../Forms/SignUpForm/SignUpForm.component";
 import OauthBtn from "../Molecules/Buttons/OauthBtn/OauthBtn.component";
