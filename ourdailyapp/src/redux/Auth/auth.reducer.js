@@ -11,7 +11,7 @@ const INITIATE_STATE = {
     email: null,
     photoURL: null,
   },
-  isLogged: false,
+  isLogged: true,
   signUpAlert: {
     nameAlerts: [],
     emailAlerts: [],
