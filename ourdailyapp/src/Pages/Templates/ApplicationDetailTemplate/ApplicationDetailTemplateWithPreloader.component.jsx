@@ -1,12 +1,12 @@
 import React from "react";
-import S from "./ApplicationDetailPageWithPreloader.style";
-import "./ApplicationDetailPageWithPreloader.style.scss";
+import S from "./ApplicationDetailTemplateWithPreloader.style";
+import "./ApplicationDetailTemplateWithPreloader.style.scss";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import ApplicationDetailPage from "./ApplicationDetailPage.component";
+import ApplicationDetailTemplate from "./ApplicationDetailTemplate.component";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
-import { selectIsApplicationsLoaded } from "../../redux/app/app.selector";
+import { selectIsApplicationsLoaded } from "../../../redux/app/app.selector";
 
 const ApplicationDetailWithPreloader = ({ isLoading, ...otherProps }) => {
   return (
@@ -39,7 +39,7 @@ const ApplicationDetailWithPreloader = ({ isLoading, ...otherProps }) => {
               <S.BtnAddToCartPreloader className="btn--addToCart-preloader"></S.BtnAddToCartPreloader>
             </S.PageContentContainerPreloader>
           ) : (
-            <ApplicationDetailPage {...otherProps} />
+            <ApplicationDetailTemplate {...otherProps} />
           )}
         </S.PageContainer>
       </CSSTransition>

@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
-import S from "./ApplicationDetailPage.style";
+import S from "./ApplicationDetailTemplate.style";
 
 import { connect } from "react-redux";
-import { selectApp } from "../../redux/app/app.selector";
+import { selectApp } from "../../../redux/app/app.selector";
 import {
   selectWishListItemExist,
   selectCartItemExist,
-} from "../../redux/cart/cart.selectors";
-import { addItem, toggleWishListItem } from "../../redux/cart/cart.actions";
-import { updateRoutePath } from "../../redux/routePath/routePath.actions";
-import { addCartAnimation } from "../../utils/animation";
+} from "../../../redux/cart/cart.selectors";
+import { addItem, toggleWishListItem } from "../../../redux/cart/cart.actions";
+import { updateRoutePath } from "../../../redux/routePath/routePath.actions";
+import { addCartAnimation } from "../../../utils/animation";
 import PropTypes from "prop-types";
 
-import CustomTag from "../../Components/customTag/customTag.component";
+import CustomTag from "../../../Components/customTag/customTag.component";
 
 const ApplicationDetailPage = ({
   appData,

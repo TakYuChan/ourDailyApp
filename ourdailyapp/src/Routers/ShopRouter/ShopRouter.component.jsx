@@ -6,7 +6,7 @@ import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { fetchApplicationsStart } from "../../redux/app/app.actions";
 
 import ApplicationOverview from "../../Pages/ApplicationOverview/ApplicationOverview.component";
-import ApplicationDetailWithPreloader from "../../Pages/ApplicationDetailPage/ApplicationDetailPageWithPreloader.component";
+import ApplicationDetailTemplateWithPreloader from "../../Pages/Templates/ApplicationDetailTemplate/ApplicationDetailTemplateWithPreloader.component";
 
 import PropTypes from "prop-types";
 
@@ -37,7 +37,7 @@ const ShopRouter = ({ closeShopNav, fetchApplicationsStart }) => {
       <Route
         exact
         path={`${router.matchPath}/:applicationId`}
-        component={ApplicationDetailWithPreloader}
+        component={ApplicationDetailTemplateWithPreloader}
       />
     </div>
   );
