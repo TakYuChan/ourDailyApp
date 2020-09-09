@@ -50,7 +50,6 @@ const SignUpForm = ({
         value={name}
         handleInputChange={handleInputChange}
         alerts={nameAlerts}
-        place="top"
         hasAlertTooltip={clickedAlertSvg === "name"}
       />
       <FormInput
@@ -60,7 +59,6 @@ const SignUpForm = ({
         value={email}
         handleInputChange={handleInputChange}
         alerts={emailAlerts}
-        place="top"
         hasAlertTooltip={clickedAlertSvg === "email"}
       />
       <FormInput
@@ -70,7 +68,6 @@ const SignUpForm = ({
         value={password}
         handleInputChange={handleInputChange}
         alerts={passwordAlerts}
-        place="top"
         hasAlertTooltip={clickedAlertSvg === "password"}
       />
       <FormInput

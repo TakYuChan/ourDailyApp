@@ -8,6 +8,8 @@ import AlertTooltip from "../../Tooltips/AlertTooltip/AlertTooltip.component";
 
 import { ReactComponent as AlertSvg } from "../../../assets/svg/alert.svg";
 
+import PropTypes from "prop-types";
+
 const FormInput = ({
   SvgComponent,
   placeholder,
@@ -22,14 +24,14 @@ const FormInput = ({
 }) => {
   // hasAlerts -> to see if we need show AlertSvg or not
   let hasAlerts = false;
-  if (alerts && alerts.length > 0) {
+  if (alerts.length > 0) {
     hasAlerts = true;
   }
 
   //@importedBy   LogInForm SignUpForm
   //@styledProps  Size / Position of label
   return (
-    <S.FormInputBlock className={`${hasAlerts ? "alert" : ""} hi`}>
+    <S.FormInputBlock className={`${hasAlerts ? "alert" : ""}`}>
       {SvgComponent !== undefined && <SvgComponent className="S_svg" />}
       <S.InputField
         type={type}
@@ -57,6 +59,26 @@ const FormInput = ({
       {hasAlertTooltip && <AlertTooltip place={place} alerts={alerts} />}
     </S.FormInputBlock>
   );
+};
+
+FormInput.propTypes = {
+  SvgComponent: PropTypes.object,
+  placeholder: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  hasForgotPassBtn: PropTypes.bool,
+  hasAlertTooltip: PropTypes.bool,
+  alerts: PropTypes.array,
+  setClickedAlertSvg: PropTypes.func,
+  place: PropTypes.string,
+  otherProps: PropTypes.object,
+};
+
+FormInput.defaultProps = {
+  SvgComponent: undefined,
+  hasAlertTooltip: false,
+  hasForgotPassBtn: false,
+  place: "top",
+  alerts: [],
 };
 
 const mapDispatchToProps = (dispatch) => ({
