@@ -1,22 +1,21 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import S from "./LogInForm.style";
 
 import { ReactComponent as UserSvg } from "../../../assets/svg/user.svg";
 import { ReactComponent as LockSvg } from "../../../assets/svg/password.svg";
 
-import FormInput from "../../FormElements/FormInput/FormInput.component";
+import FormInput from "../../Molecules/FormElements/FormInput/FormInput.component";
 
 // @importedBy  LogInPage
 const LogInForm = () => {
+  const [logInDetails, setLogInDetails] = useState({ email: "", password: "" });
 
-  const [logInDetails, setLogInDetails] = useState({email: "", password: ""});
-
-  const {email, password} = logInDetails;
+  const { email, password } = logInDetails;
 
   const handleInputChange = (event) => {
-    const {name, value} = event.target;
-    setLogInDetails({...logInDetails, [name]: value});
-  }
+    const { name, value } = event.target;
+    setLogInDetails({ ...logInDetails, [name]: value });
+  };
 
   return (
     <S.LogInForm>

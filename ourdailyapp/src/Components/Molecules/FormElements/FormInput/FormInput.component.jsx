@@ -2,11 +2,11 @@ import React from "react";
 import S from "./FormInput.style";
 
 import { connect } from "react-redux";
-import { setClickedAlertSvg } from "../../../redux/signUpForm/signUpform.actions";
+import { setClickedAlertSvg } from "../../../../redux/signUpForm/signUpform.actions";
 
-import AlertTooltip from "../../Tooltips/AlertTooltip/AlertTooltip.component";
+import AlertTooltip from "../../../Tooltips/AlertTooltip/AlertTooltip.component";
 
-import { ReactComponent as AlertSvg } from "../../../assets/svg/alert.svg";
+import { ReactComponent as AlertSvg } from "../../../../assets/svg/alert.svg";
 
 import PropTypes from "prop-types";
 

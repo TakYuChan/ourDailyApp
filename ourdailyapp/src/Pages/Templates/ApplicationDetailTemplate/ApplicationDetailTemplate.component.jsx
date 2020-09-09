@@ -12,7 +12,7 @@ import { updateRoutePath } from "../../../redux/routePath/routePath.actions";
 import { addCartAnimation } from "../../../utils/animation";
 import PropTypes from "prop-types";
 
-import CustomTag from "../../../Components/customTag/customTag.component";
+import CustomTag from "../../../Components/Molecules/customTag/customTag.component";
 
 const ApplicationDetailPage = ({
   appData,

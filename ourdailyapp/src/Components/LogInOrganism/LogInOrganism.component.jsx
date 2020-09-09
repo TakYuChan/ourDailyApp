@@ -1,8 +1,8 @@
 import React from "react";
-import S from "./LogInContainer.style";
+import S from "./LogInOrganism.style";
 
 import LogInForm from "../Forms/LogInForm/LogInForm.component";
-import OauthBtn from "../Buttons/OauthBtn/OauthBtn.component";
+import OauthBtn from "../Molecules/Buttons/OauthBtn/OauthBtn.component";
 
 import { ReactComponent as GoogleSvg } from "../../assets/svg/google.svg";
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";

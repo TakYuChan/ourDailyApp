@@ -10,7 +10,7 @@ import { selectClickedAlertSvg } from "../../../redux/signUpForm/signUpForm.sele
 import { selectIsSigningUp } from "../../../redux/signUpForm/signUpForm.selectors";
 import PixelSpinner from "../../Spinners/PixelSpinner/PixelSpinner.component";
 
-import FormInput from "../../FormElements/FormInput/FormInput.component";
+import FormInput from "../../Molecules/FormElements/FormInput/FormInput.component";
 
 const SignUpForm = ({
   signUpStart,
