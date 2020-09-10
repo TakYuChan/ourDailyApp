@@ -1,4 +1,4 @@
-export default addCartAnimation = (itemImageSrc, animationAppendTo) => {
+const addCartAnimation = (itemImageSrc, animationAppendTo) => {
   if (document.querySelector(animationAppendTo) !== null) {
     let addedApp = document.createElement("div");
     addedApp.classList.add("addedApp");
@@ -14,3 +14,5 @@ export default addCartAnimation = (itemImageSrc, animationAppendTo) => {
     }, 700);
   }
 };
+
+export default addCartAnimation;

@@ -9,11 +9,11 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import { ThemeProvider } from "styled-components";
-import GlobalStyle from "./styled/globalStyle";
-import { lightTheme, darkTheme } from "./styled/theme";
+import GlobalStyle from "./utils/styled/globalStyle";
+import { lightTheme, darkTheme } from "./utils/styled/theme";
 import { checkAuthSession } from "./redux/Auth/auth.actions";
 import { selectIsUserLogged } from "./redux/Auth/auth.selectors";
-import { componentWithPreload } from "./utils/LazyLoad/lazyPreload";
+import componentWithPreload from "./utils/lazyLoading/componentWithPreload";
 
 // import MainPage from "./Pages/mainPage/mainPage.component";
 // import ShopRouter from "./Routers/ShopRouter/ShopRouter.component";
