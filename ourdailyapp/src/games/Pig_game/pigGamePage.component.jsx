@@ -1,7 +1,7 @@
 import React from "react";
 import S from "./pigGamePage.style";
 
-import { displayNameLengthFilter } from "../../utils/dataFilter";
+// import { displayNameLengthFilter } from "../../utils/dataFilter";
 import { renderProfilePicture } from "../../utils/conditional";
 import { playerNameFontSize } from "./pigGameUtils";
 import { connect } from "react-redux";
@@ -100,13 +100,13 @@ const PigGamePage = ({
           {/* ================= Player One Info Container ================= */}
           <S.PlayerInfoContainer>
             <S.PlayerPic
-              imgsrc={
-                isMainUserLogged
-                  ? renderProfilePicture(selectCurrentUser.photoURL)
-                  : null
-              }
+            // imgsrc={
+            //   isMainUserLogged
+            //     ? renderProfilePicture(selectCurrentUser.photoURL)
+            //     : null
+            // }
             ></S.PlayerPic>
-            <S.PlayerName
+            {/* <S.PlayerName
               className={`${activePlayer === 1 && "active"} player-name`}
               fontSize={
                 isMainUserLogged
@@ -117,7 +117,7 @@ const PigGamePage = ({
               {isMainUserLogged
                 ? displayNameLengthFilter(selectCurrentUser.displayName, 8)
                 : "Player 1"}
-            </S.PlayerName>
+            </S.PlayerName> */}
           </S.PlayerInfoContainer>
           {selectWinner === "player1" && (
             <S.CrownLeft className="fireworks">
@@ -148,7 +148,7 @@ const PigGamePage = ({
             <S.PlayerPic
               imgsrc={isPlayer2Logged ? renderProfilePicture(photoURL) : null}
             ></S.PlayerPic>
-            <S.PlayerName
+            {/* <S.PlayerName
               className={`${activePlayer === 2 && "active"} player-name`}
               fontSize={
                 isPlayer2Logged ? playerNameFontSize(displayName.length) : 1
@@ -157,7 +157,7 @@ const PigGamePage = ({
               {isPlayer2Logged
                 ? displayNameLengthFilter(displayName, 12)
                 : "Player 2"}
-            </S.PlayerName>
+            </S.PlayerName> */}
           </S.PlayerInfoContainer>
           {selectWinner === "player2" && (
             <S.CrownRight className="fireworks">

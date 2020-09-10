@@ -32,12 +32,14 @@ const ShopNav = ({
   );
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleCloseShopNav);
+    if (hidden === false) {
+      document.addEventListener("mousedown", handleCloseShopNav);
+    }
 
     return () => {
       document.removeEventListener("mousedown", handleCloseShopNav);
     };
-  }, [handleCloseShopNav]);
+  }, [hidden]);
 
   return (
     <S.ShopNavWrapper className="shopNav" ref={node}>

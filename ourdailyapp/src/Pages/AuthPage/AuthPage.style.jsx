@@ -62,7 +62,7 @@ S.LogInPageContent = styled.div`
             "footer footer footer footer footer";
 
             @media only screen and (min-width: 1280px) {
-              grid-template-rows: 1em minmax(9em, 1fr) 1em minmax(21em, 1fr) minmax(2em, 1fr);
+              grid-template-rows: 1em minmax(9em, 1fr) 1em minmax(19em, 1fr) minmax(2em, 1fr);
             }
             `;
     }
@@ -85,7 +85,7 @@ S.LogInPageContent = styled.div`
             }
 
             @media only screen and (min-width: 1000px) {
-              grid-template-rows: 1em minmax(9em, 1fr) 1em minmax(22em, 1fr) minmax(1em, 1fr);
+              grid-template-rows: 1em minmax(9em, 1fr) 1em minmax(20em, 1fr) minmax(1em, 1fr);
               grid-template-columns: minmax(40px, 1fr) minmax(50px, 1fr) minmax(8em, 250px) minmax(50px, 1fr)  minmax(40px, 1fr);
             }
             `;

@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 import { Route, useRouteMatch } from "react-router-dom";
 import { connect } from "react-redux";
-import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { fetchApplicationsStart } from "../../redux/app/app.actions";
 
 import ApplicationOverview from "../../Pages/ApplicationOverview/ApplicationOverview.component";
@@ -10,7 +9,7 @@ import ApplicationDetailTemplateWithPreloader from "../../Pages/Templates/Applic
 
 import PropTypes from "prop-types";
 
-const ShopRouter = ({ closeShopNav, fetchApplicationsStart }) => {
+const ShopRouter = ({ fetchApplicationsStart }) => {
   useEffect(() => {
     fetchApplicationsStart();
   }, [fetchApplicationsStart]);
@@ -28,7 +27,7 @@ const ShopRouter = ({ closeShopNav, fetchApplicationsStart }) => {
   const router = useRouter();
 
   return (
-    <div className="shop-page" onClick={closeShopNav}>
+    <div className="shop-page">
       <Route
         exact
         path={`${router.matchPath}`}
@@ -44,12 +43,10 @@ const ShopRouter = ({ closeShopNav, fetchApplicationsStart }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  closeShopNav: () => dispatch(closeShopNav()),
   fetchApplicationsStart: () => dispatch(fetchApplicationsStart()),
 });
 
 ShopRouter.propTypes = {
-  closeShopNav: PropTypes.func.isRequired,
   fetchApplicationsStart: PropTypes.func.isRequired,
 };
 

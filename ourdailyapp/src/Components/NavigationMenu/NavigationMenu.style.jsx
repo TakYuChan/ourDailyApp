@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import PreloadLink from "../UtilsComponent/PreloadLink/PreloadLink.component";
 
 const S = {};
 
@@ -53,7 +54,7 @@ S.NavigationList = styled.ul`
   text-align: center;
 `;
 
-S.NavigationItems = styled(Link)`
+S.NavigationItems = styled(PreloadLink)`
   ${textStyles}
   padding: 1rem 0;
   margin: 0;

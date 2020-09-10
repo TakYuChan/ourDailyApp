@@ -2,13 +2,12 @@ import React, { useEffect } from "react";
 import profilePic from "../../assets/UIFace.png";
 import S from "./mainPage.style";
 
-import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
 import { connect } from "react-redux";
 import { fetchAccessAppBtnsStart } from "../../redux/app/app.actions";
 
 import MainPageAccessAppWrapperWithSpinner from "../../Components/MainPageAccessAppWrapper/MainPageAccessAppWrapperWithSpinner.component";
 
-const MainPage = ({ fetchAccessAppBtnsStart, closeShopNav, closeNav }) => {
+const MainPage = ({ fetchAccessAppBtnsStart }) => {
   // ============= Life Cycle Hooks =============
 
   useEffect(() => {
@@ -16,7 +15,7 @@ const MainPage = ({ fetchAccessAppBtnsStart, closeShopNav, closeNav }) => {
   }, [fetchAccessAppBtnsStart]);
 
   return (
-    <S.MainPageContainer className="MainPage gs-page " onClick={closeShopNav}>
+    <S.MainPageContainer className="MainPage gs-page ">
       <S.picNameWrapper>
         <S.ImgWrapper>
           <S.Img src={profilePic} />
@@ -32,7 +31,6 @@ const MainPage = ({ fetchAccessAppBtnsStart, closeShopNav, closeNav }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  closeShopNav: () => dispatch(closeShopNav()),
   fetchAccessAppBtnsStart: () => dispatch(fetchAccessAppBtnsStart()),
 });
 
