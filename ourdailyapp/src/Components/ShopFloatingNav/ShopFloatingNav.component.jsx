@@ -39,7 +39,7 @@ const ShopNav = ({
     return () => {
       document.removeEventListener("mousedown", handleCloseShopNav);
     };
-  }, [hidden]);
+  }, [hidden, handleCloseShopNav]);
 
   return (
     <S.ShopNavWrapper className="shopNav" ref={node}>

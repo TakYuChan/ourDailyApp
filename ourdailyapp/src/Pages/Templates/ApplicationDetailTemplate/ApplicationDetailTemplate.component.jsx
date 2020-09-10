@@ -9,7 +9,7 @@ import {
 } from "../../../redux/cart/cart.selectors";
 import { addItem, toggleWishListItem } from "../../../redux/cart/cart.actions";
 import { updateRoutePath } from "../../../redux/routePath/routePath.actions";
-import { addCartAnimation } from "../../../utils/animation";
+import addCartAnimation from "../../../utils/animations/addCardAnimation";
 import PropTypes from "prop-types";
 
 import CustomTag from "../../../Components/Molecules/customTag/customTag.component";

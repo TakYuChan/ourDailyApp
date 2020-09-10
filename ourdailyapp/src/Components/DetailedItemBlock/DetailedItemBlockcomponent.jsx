@@ -10,7 +10,7 @@ import {
   moveToWishList,
   moveToCartList,
 } from "../../redux/cart/cart.actions";
-import { addCartAnimation } from "../../utils/animation";
+import addCartAnimation from "../../utils/animations/addCardAnimation";
 
 const DetailedItemBlock = ({
   cartItem,

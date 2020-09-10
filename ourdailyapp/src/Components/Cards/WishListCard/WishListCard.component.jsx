@@ -9,7 +9,7 @@ import {
 } from "../../../redux/cart/cart.actions";
 // import { withRouter } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { addCartAnimation } from "../../../utils/animation";
+import addCartAnimation from "../../../utils/animations/addCardAnimation";
 
 import PropTypes from "prop-types";
 

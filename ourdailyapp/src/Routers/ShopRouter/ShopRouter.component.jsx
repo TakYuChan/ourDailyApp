@@ -4,12 +4,21 @@ import { Route, useRouteMatch } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchApplicationsStart } from "../../redux/app/app.actions";
 
-import ApplicationOverview from "../../Pages/ApplicationOverview/ApplicationOverview.component";
-import ApplicationDetailTemplateWithPreloader from "../../Pages/Templates/ApplicationDetailTemplate/ApplicationDetailTemplateWithPreloader.component";
+// import ApplicationOverview from "../../Pages/ApplicationOverview/ApplicationOverview.component";
+// import ApplicationDetailTemplateWithPreloader from "../../Pages/Templates/ApplicationDetailTemplate/ApplicationDetailTemplateWithPreloader.component";
 
 import PropTypes from "prop-types";
 
 const ShopRouter = ({ fetchApplicationsStart }) => {
+  const ApplicationOverview = React.lazy(() =>
+    import("../../Pages/ApplicationOverview/ApplicationOverview.component")
+  );
+  const ApplicationDetailTemplateWithPreloader = React.lazy(() =>
+    import(
+      "../../Pages/Templates/ApplicationDetailTemplate/ApplicationDetailTemplateWithPreloader.component"
+    )
+  );
+
   useEffect(() => {
     fetchApplicationsStart();
   }, [fetchApplicationsStart]);

@@ -15,21 +15,37 @@ import { checkAuthSession } from "./redux/Auth/auth.actions";
 import { selectIsUserLogged } from "./redux/Auth/auth.selectors";
 import { componentWithPreload } from "./utils/LazyLoad/lazyPreload";
 
-import MainPage from "./Pages/mainPage/mainPage.component";
+// import MainPage from "./Pages/mainPage/mainPage.component";
 // import ShopRouter from "./Routers/ShopRouter/ShopRouter.component";
-import AuthPage from "./Pages/AuthPage/AuthPage.component";
+// import AuthPage from "./Pages/AuthPage/AuthPage.component";
 import NavUIComponents from "./Components/NavUIComponents/NavUIComponents.component";
 import ProfilePage from "./Pages/ProfilePage/ProfilePage.component";
 import CommentsConverterPage from "./Pages/CommentsConverterPage/CommentsConverterPage.component";
 import NoMatch from "./Pages/NoMatchPage/NoMatchPage.component";
-import CartPage from "./Pages/cartPage/cartPage.component";
-import WishlistPage from "./Pages/wishlistPage/wishlistPage.component";
-import PigGamePageWithSpinner from "./games/Pig_game/pigGamePageWithSpinner.component";
+// import CartPage from "./Pages/cartPage/cartPage.component";
+// import WishlistPage from "./Pages/wishlistPage/wishlistPage.component";
+// import PigGamePageWithSpinner from "./games/Pig_game/pigGamePageWithSpinner.component";
 
 import "./App.scss";
 
 const ShopRouter = componentWithPreload(() =>
   import("./Routers/ShopRouter/ShopRouter.component")
+);
+
+const WishListPage = React.lazy(() =>
+  import("./Pages/wishlistPage/wishlistPage.component")
+);
+const CartPage = React.lazy(() =>
+  import("./Pages/cartPage/cartPage.component")
+);
+const MainPage = React.lazy(() =>
+  import("./Pages/mainPage/mainPage.component")
+);
+const AuthPage = React.lazy(() =>
+  import("./Pages/AuthPage/AuthPage.component")
+);
+const PigGamePageWithSpinner = React.lazy(() =>
+  import("./games/Pig_game/pigGamePageWithSpinner.component")
 );
 
 export const routes = [
@@ -49,8 +65,8 @@ const App = ({ checkAuthSession, isUserLogged }) => {
   return (
     <ThemeProvider theme={lightTheme}>
       <GlobalStyle />
-      <React.Suspense fallback={<div style={{ display: "none" }}>Loading</div>}>
-        {isUserLogged && <NavUIComponents />}{" "}
+      {isUserLogged && <NavUIComponents />}{" "}
+      <React.Suspense fallback={<div style={{ display: "none" }}></div>}>
         <Switch>
           <Route
             exact
@@ -102,7 +118,7 @@ const App = ({ checkAuthSession, isUserLogged }) => {
           <Route
             path="/wishlist"
             render={() =>
-              isUserLogged ? <WishlistPage /> : <Redirect to="/auth/login" />
+              isUserLogged ? <WishListPage /> : <Redirect to="/auth/login" />
             }
           />{" "}
           <Route
