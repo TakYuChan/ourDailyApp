@@ -1,9 +1,7 @@
 import styled, { css } from "styled-components";
 import { rgba } from "polished";
 
-import bgJpg from "../../assets/bg/authPageBg.jpg";
 import bgJpeg from "../../assets/bg/authPageBg.jpeg";
-import bgWebp from "../../assets/bg/authPageBg.webp";
 
 const S = {};
 
@@ -14,7 +12,7 @@ const switchPageBtnStyle = css`
 
   cursor: pointer;
 
-  font-size: 0.7em;
+  font-size: 0.8em;
   text-decoration: underline;
 
   margin-left: 2em;
@@ -25,12 +23,8 @@ S.LogInPageHazyBg = styled.div`
   width: 100vw;
   height: 100vh;
 
-  &.no-webp {
-    background: url(${bgJpeg}) no-repeat center center fixed;
-  }
-  &.webp {
-    background: url(${bgWebp}) no-repeat center center fixed;
-  }
+  background: url(${bgJpeg}) no-repeat center center fixed;
+
   background-size: cover !important;
   filter: blur(18px);
 
@@ -47,22 +41,8 @@ S.LogInPageContent = styled.div`
   user-select: none;
   border-radius: 20px;
 
-  &.no-webp {
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.2),
-        rgba(0, 0, 0, 0.2)
-      ),
-      url(${bgJpeg});
-  }
-  &.webp {
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.2),
-        rgba(0, 0, 0, 0.2)
-      ),
-      url(${bgWebp});
-  }
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url(${bgJpeg});
 
   background-image: ${rgba("#000000", 0.5)};
   background-size: cover !important;
@@ -73,7 +53,7 @@ S.LogInPageContent = styled.div`
   transform: translate(-50%, -50%);
 
   display: grid;
-  font-size: clamp(0.8rem, 1.4vw, 1.5rem);
+  font-size: clamp(0.9rem, 1.4vw, 1.5rem);
 
   ${(props) => {
     if (props.styled_authPage === "login") {
@@ -95,7 +75,7 @@ S.LogInPageContent = styled.div`
 
   ${(props) => {
     if (props.styled_authPage === "signup") {
-      return `grid-template-rows: 1em minmax(5em, 8em) 5em minmax(15em, 1fr) minmax(1em, 1fr);
+      return `grid-template-rows: 1em minmax(5em, 8em) 3em minmax(15em, 1fr) minmax(1em, 1fr);
             grid-template-columns: minmax(40px, 1fr) minmax(3em, 1fr) minmax(8em, 250px) minmax(3em, 1fr)  minmax(40px, 1fr);
             grid-template-areas:
             ". . . . ."
