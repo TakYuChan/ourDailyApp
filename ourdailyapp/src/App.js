@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-// import SHOP_DATA from "./redux/shop/shop.data";
-// import APPLICATIONS_DATA from "./data/application.data";
+
 import "./App.css";
 
 import { Switch, Route, Redirect } from "react-router-dom";
-// import { addCollectionAndDocuments } from "./firebase/firestore/setData";
+
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
@@ -14,17 +13,12 @@ import { lightTheme, darkTheme } from "./utils/styled/theme";
 import { checkAuthSession } from "./redux/Auth/auth.actions";
 import { selectIsUserLogged } from "./redux/Auth/auth.selectors";
 import componentWithPreload from "./utils/lazyLoading/componentWithPreload";
+import PixelSpinner from "./Components/Spinners/PixelSpinner/PixelSpinner.component";
 
-// import MainPage from "./Pages/mainPage/mainPage.component";
-// import ShopRouter from "./Routers/ShopRouter/ShopRouter.component";
-// import AuthPage from "./Pages/AuthPage/AuthPage.component";
 import NavUIComponents from "./Components/NavUIComponents/NavUIComponents.component";
 import ProfilePage from "./Pages/ProfilePage/ProfilePage.component";
 import CommentsConverterPage from "./Pages/CommentsConverterPage/CommentsConverterPage.component";
 import NoMatch from "./Pages/NoMatchPage/NoMatchPage.component";
-// import CartPage from "./Pages/cartPage/cartPage.component";
-// import WishlistPage from "./Pages/wishlistPage/wishlistPage.component";
-// import PigGamePageWithSpinner from "./games/Pig_game/pigGamePageWithSpinner.component";
 
 import "./App.scss";
 
@@ -66,7 +60,20 @@ const App = ({ checkAuthSession, isUserLogged }) => {
     <ThemeProvider theme={lightTheme}>
       <GlobalStyle />
       {isUserLogged && <NavUIComponents />}{" "}
-      <React.Suspense fallback={<div style={{ display: "none" }}></div>}>
+      <React.Suspense
+        fallback={
+          <PixelSpinner
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+            size={2}
+            animationDuration={800}
+          />
+        }
+      >
         <Switch>
           <Route
             exact

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import S from "./NavigationMenu.style";
 
@@ -14,9 +14,9 @@ import PropTypes from "prop-types";
 const NavigationMenu = ({ closeNav, navHidden }) => {
   const [hoverNavItem, setHoverNavItem] = useState(null);
 
-  const onItemClick = () => {
-    closeNav();
-  };
+  useEffect(() => {
+    console.log("navMenu");
+  }, []);
 
   return (
     <S.NavMenuContainer className={`${!navHidden ? "active" : ""} float-nav`}>
@@ -25,7 +25,7 @@ const NavigationMenu = ({ closeNav, navHidden }) => {
           onMouseOver={() => {
             setHoverNavItem("appstore");
           }}
-          onClick={onItemClick}
+          onClick={closeNav}
           to="/shop"
           className="float-nav-item"
         >
@@ -36,7 +36,7 @@ const NavigationMenu = ({ closeNav, navHidden }) => {
           onMouseOver={() => {
             setHoverNavItem("linkedin");
           }}
-          onClick={onItemClick}
+          onClick={closeNav}
           href="https://www.linkedin.com/in/franky-tak-yu-chan-18b51518b/"
           className="float-nav-item"
         >
@@ -47,7 +47,7 @@ const NavigationMenu = ({ closeNav, navHidden }) => {
           onMouseOver={() => {
             setHoverNavItem("github");
           }}
-          onClick={onItemClick}
+          onClick={closeNav}
           href="https://github.com/TakYuChan"
           className="float-nav-item"
         >

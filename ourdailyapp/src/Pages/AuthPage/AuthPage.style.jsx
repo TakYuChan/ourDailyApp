@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { rgba } from "polished";
 
-import bg from "../../assets/bg/bgJpg.jpg";
+import bg from "../../assets/bg/authPageBg.jpg";
 
 const S = {};
 

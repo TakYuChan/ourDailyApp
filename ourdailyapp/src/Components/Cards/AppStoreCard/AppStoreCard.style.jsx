@@ -68,6 +68,8 @@ S.BtnStart = styled.button`
 
   transition: transform 0.5s;
 
+  cursor: pointer;
+
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 8px ${rgba("#000000", 0.12)};

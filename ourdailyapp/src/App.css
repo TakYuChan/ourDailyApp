@@ -1,7 +1,5 @@
 /* ========================== Pages ========================== */
 
-
-
 /* ================ animations ================ */
 .animation-parabola-wrapper {
   --size: 100px;
@@ -14,7 +12,7 @@
   bottom: 5%;
   pointer-events: none;
   -webkit-animation: parabola 0.9s linear forwards;
-          animation: parabola 0.9s linear forwards;
+  animation: parabola 0.9s linear forwards;
 }
 
 @media screen and (min-width: 850px) {
@@ -37,7 +35,7 @@
 @-webkit-keyframes parabola {
   0% {
     -webkit-transform: rotate(0);
-            transform: rotate(0);
+    transform: rotate(0);
     opacity: 1;
   }
   23% {
@@ -48,7 +46,7 @@
   }
   100% {
     -webkit-transform: rotate(270deg);
-            transform: rotate(270deg);
+    transform: rotate(270deg);
     opacity: 0;
   }
 }
@@ -56,7 +54,7 @@
 @keyframes parabola {
   0% {
     -webkit-transform: rotate(0);
-            transform: rotate(0);
+    transform: rotate(0);
     opacity: 1;
   }
   23% {
@@ -67,7 +65,7 @@
   }
   100% {
     -webkit-transform: rotate(270deg);
-            transform: rotate(270deg);
+    transform: rotate(270deg);
     opacity: 0;
   }
 }

@@ -42,6 +42,10 @@ const ApplicationDetailPage = ({
     };
   }, [updateRoutePath, appData.title]);
 
+  useEffect(() => {
+    console.log("detail template rerendered");
+  });
+
   const { videoSrc, tags, intros, features, tagsColor } = appData.appDetails;
 
   return (
@@ -99,7 +103,9 @@ const ApplicationDetailPage = ({
       >
         Wishlist
         <S.IconSvg
-          className={`fas fa-heart ${wishListed(appData.id) ? "active" : ""}`}
+          className={`iconfont icon-heart ${
+            wishListed(appData.id) ? "active" : ""
+          }`}
         ></S.IconSvg>
       </S.BtnAddToWishlist>
 

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 // import { Link } from "react-router-dom";
-import PreloadLink from "../UtilsComponent/PreloadLink/PreloadLink.component";
+import PreloadLink from "../Molecules/Links/PreloadLink/PreloadLink.component";
 
 const S = {};
 
