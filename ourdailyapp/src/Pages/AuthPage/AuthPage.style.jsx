@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
 import { rgba } from "polished";
 
-import bgJpeg from "../../assets/bg/authPageBg.jpeg";
+import bgJpg from "../../assets/bg/authPageBg-min.jpg";
+import bgJpgMobile from "../../assets/bg/authPageBg-mobile.jpg";
 
 const S = {};
 
@@ -23,8 +24,10 @@ S.LogInPageHazyBg = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background: url(${bgJpeg}) no-repeat center center fixed;
-
+  background: url(${bgJpgMobile}) no-repeat center center fixed;
+  @media only screen and (min-width: 1000px) {
+    background: url(${bgJpg}) no-repeat center center fixed;
+  }
   background-size: cover !important;
   filter: blur(18px);
 
@@ -42,7 +45,16 @@ S.LogInPageContent = styled.div`
   border-radius: 20px;
 
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url(${bgJpeg});
+    url(${bgJpgMobile});
+
+  @media only screen and (min-width: 1000px) {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.2)
+      ),
+      url(${bgJpg});
+  }
 
   background-image: ${rgba("#000000", 0.5)};
   background-size: cover !important;
@@ -68,7 +80,6 @@ S.LogInPageContent = styled.div`
 
             @media only screen and (min-width: 1280px) {
               grid-template-rows: 1em minmax(9em, 1fr) 1em minmax(19em, 1fr) minmax(2em, 1fr);
-              grid-template-columns: minmax(40px, 1fr) minmax(3em, 100px) minmax(7em, 250px) minmax(3em, 100px)  minmax(40px, 1fr);
             }
             `;
     }
@@ -77,7 +88,7 @@ S.LogInPageContent = styled.div`
   ${(props) => {
     if (props.styled_authPage === "signup") {
       return `grid-template-rows: 1em minmax(5em, 8em) 3em minmax(15em, 1fr) minmax(1em, 1fr);
-            grid-template-columns: minmax(40px, 1fr) minmax(3em, 1fr) minmax(7em, 250px) minmax(3em, 1fr)  minmax(40px, 1fr);
+            grid-template-columns: minmax(40px, 1fr) minmax(3em, 100px) minmax(7em, 250px) minmax(3em, 100px)  minmax(40px, 1fr);
             grid-template-areas:
             ". . . . ."
             ". . logo . ."
