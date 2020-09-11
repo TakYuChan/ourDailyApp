@@ -7,7 +7,7 @@ S.SocialContactPair = styled.a`
   border: 0;
   display: flex;
   align-items: center;
-  font-size: 0.7em;
+  font-size: 0.6em;
   color: ${(props) => props.theme.SocialContactPair.text};
   margin-right: 0.8em;
   cursor: pointer;

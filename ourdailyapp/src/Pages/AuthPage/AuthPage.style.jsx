@@ -57,8 +57,8 @@ S.LogInPageContent = styled.div`
 
   ${(props) => {
     if (props.styled_authPage === "login") {
-      return `grid-template-rows: 1em minmax(5em, 8em) 3em minmax(25em, 1fr) minmax(2em, 1fr);
-            grid-template-columns: minmax(40px, 1fr) minmax(50px, 60px) minmax(8em, 250px) minmax(50px, 60px)  minmax(40px, 1fr);
+      return `grid-template-rows: 1em minmax(7em, 8em) 1em minmax(21em, 1fr) minmax(2.5em, 1fr);
+            grid-template-columns: minmax(40px, 1fr) minmax(3em, 100px) minmax(7em, 250px) minmax(3em, 100px)  minmax(40px, 1fr);
             grid-template-areas:
             ". . . . ."
             ". . logo . ."
@@ -68,6 +68,7 @@ S.LogInPageContent = styled.div`
 
             @media only screen and (min-width: 1280px) {
               grid-template-rows: 1em minmax(9em, 1fr) 1em minmax(19em, 1fr) minmax(2em, 1fr);
+              grid-template-columns: minmax(40px, 1fr) minmax(3em, 100px) minmax(7em, 250px) minmax(3em, 100px)  minmax(40px, 1fr);
             }
             `;
     }
@@ -76,7 +77,7 @@ S.LogInPageContent = styled.div`
   ${(props) => {
     if (props.styled_authPage === "signup") {
       return `grid-template-rows: 1em minmax(5em, 8em) 3em minmax(15em, 1fr) minmax(1em, 1fr);
-            grid-template-columns: minmax(40px, 1fr) minmax(3em, 1fr) minmax(8em, 250px) minmax(3em, 1fr)  minmax(40px, 1fr);
+            grid-template-columns: minmax(40px, 1fr) minmax(3em, 1fr) minmax(7em, 250px) minmax(3em, 1fr)  minmax(40px, 1fr);
             grid-template-areas:
             ". . . . ."
             ". . logo . ."
@@ -86,7 +87,7 @@ S.LogInPageContent = styled.div`
 
             @media only screen and (min-width: 700px) {
               grid-template-rows: 1em minmax(5em, 8em) 2em minmax(24em, 1fr) minmax(1em, 1fr);
-              grid-template-columns: minmax(40px, 1fr) minmax(50px, 1fr) minmax(8em, 250px) minmax(50px, 1fr)  minmax(40px, 1fr);
+              grid-template-columns: minmax(40px, 1fr) minmax(50px, 1fr) minmax(8em, 300px) minmax(50px, 1fr)  minmax(40px, 1fr);
             }
 
             @media only screen and (min-width: 1000px) {
@@ -129,6 +130,7 @@ S.LogoWrapper = styled.div`
   grid-area: logo;
   transition: transform 800ms linear;
   transform: scale(1);
+
   & img {
     height: 100%;
     width: 100%;
@@ -174,7 +176,7 @@ S.SocialContactWrapper = styled.div`
 
 /* // ============== Copy Right Text ==============  */
 S.CopyRightText = styled.span`
-  font-size: 0.7em;
+  font-size: 0.6em;
   align-self: flex-end;
   // margin-bottom: 0.3em;
   margin-right: 2em;

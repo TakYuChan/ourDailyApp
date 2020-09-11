@@ -4,11 +4,11 @@ import S from "./OauthBtn.style";
 import PropTypes from "prop-types";
 
 const OauthBtn = ({ SvgComponent, children }) => {
-  //@importedBy LogInContainer SignUpContainer
+  //@importedBy LogInOrganism SignUpOrganism
 
   return (
     <S.OauthBtn styled_provider={children}>
-      <SvgComponent className="styled-svg"/>
+      <SvgComponent className="styled-svg" />
       Continue with {children}
     </S.OauthBtn>
   );
@@ -17,6 +17,6 @@ const OauthBtn = ({ SvgComponent, children }) => {
 OauthBtn.propTypes = {
   SvgComponent: PropTypes.object.isRequired,
   children: PropTypes.string.isRequired,
-}
+};
 
 export default OauthBtn;
