@@ -9,11 +9,18 @@ import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "react-router-dom";
 import { store, persistor } from "./redux/store";
 
+import { Auth0Provider } from "@auth0/auth0-react";
+
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <PersistGate persistor={persistor}>
-        <App />
+        <Auth0Provider domain={domain} clientId={clientId}>
+          <App />
+        </Auth0Provider>
       </PersistGate>
     </BrowserRouter>
   </Provider>,
