@@ -1,7 +1,9 @@
 import styled, { css } from "styled-components";
 import { rgba } from "polished";
 
-import bg from "../../assets/bg/authPageBg.jpg";
+import bgJpg from "../../assets/bg/authPageBg.jpg";
+import bgJpeg from "../../assets/bg/authPageBg.jpeg";
+import bgWebp from "../../assets/bg/authPageBg.webp";
 
 const S = {};
 
@@ -22,8 +24,14 @@ const switchPageBtnStyle = css`
 S.LogInPageHazyBg = styled.div`
   width: 100vw;
   height: 100vh;
-  background: url(${bg}) no-repeat center center fixed;
-  background-size: cover;
+
+  &.no-webp {
+    background: url(${bgJpeg}) no-repeat center center fixed;
+  }
+  &.webp {
+    background: url(${bgWebp}) no-repeat center center fixed;
+  }
+  background-size: cover !important;
   filter: blur(18px);
 
   position: fixed;
@@ -38,10 +46,27 @@ S.LogInPageContent = styled.div`
 
   user-select: none;
   border-radius: 20px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url(${bg});
+
+  &.no-webp {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.2)
+      ),
+      url(${bgJpeg});
+  }
+  &.webp {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.2)
+      ),
+      url(${bgWebp});
+  }
+
   background-image: ${rgba("#000000", 0.5)};
-  background-size: cover;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
   position: absolute;
   top: 50%;
   left: 50%;

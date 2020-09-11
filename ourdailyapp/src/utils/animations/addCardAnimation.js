@@ -2,7 +2,9 @@ const addCartAnimation = (itemImageSrc, animationAppendTo) => {
   if (document.querySelector(animationAppendTo) !== null) {
     let addedApp = document.createElement("div");
     addedApp.classList.add("addedApp");
-    addedApp.style.backgroundImage = `url(${itemImageSrc})`;
+    // addedApp.style.background = `red`;
+    console.log({ itemImageSrc });
+    addedApp.style.backgroundImage = `url(${itemImageSrc}.jpeg)`;
 
     let wrapper = document.createElement("div");
     wrapper.classList.add("animation-parabola-wrapper");

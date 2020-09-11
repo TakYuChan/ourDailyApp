@@ -23,9 +23,11 @@ const AuthPage = ({ authPage, changeAuthPage }) => {
 
   return (
     <React.Fragment>
-      <S.LogInPageHazyBg></S.LogInPageHazyBg>
+      <S.LogInPageHazyBg className="webp"></S.LogInPageHazyBg>
       <S.LogInPageContent
-        className={`${authPage} ${mq_IsTallScreen ? "mq_IsTallScreen" : ""}`}
+        className={`${authPage} ${
+          mq_IsTallScreen ? "mq_IsTallScreen" : ""
+        } webp`}
         styled_authPage={authPage}
         mq_IsTallScreen={mq_IsTallScreen}
       >

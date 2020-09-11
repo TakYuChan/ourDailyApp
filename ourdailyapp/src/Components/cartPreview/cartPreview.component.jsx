@@ -57,7 +57,7 @@ const CartPreview = ({
                   <S.LeftContainer className="left-side">
                     <S.ImageWrapper className="img-wrapper">
                       <S.CartItemImage
-                        src={cartItem.imageSrc}
+                        src={`${cartItem.imageSrc}.jpeg`}
                         alt="cart item"
                         className="cartItem-img"
                       />

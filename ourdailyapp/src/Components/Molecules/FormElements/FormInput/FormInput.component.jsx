@@ -28,6 +28,7 @@ const FormInput = ({
     <S.FormInputBlock className={`${alerts.length > 0 ? "alert" : ""}`}>
       {SvgComponent !== undefined && <SvgComponent className="S_svg" />}
       <S.InputField
+        aria-label={otherProps.name}
         type={type}
         onChange={handleInputChange}
         className={otherProps.value !== "" && "active"}

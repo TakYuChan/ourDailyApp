@@ -118,6 +118,7 @@ const SignUpForm = ({
             type="date"
             name="birthday"
             onChange={handleInputChange}
+            aria-label="birthday"
             required
           />
         </S.FormDatePickerBlock>

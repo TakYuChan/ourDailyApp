@@ -14,7 +14,7 @@ const NavUIComponents = () => {
       <NavigationMenu />
       <ShopFloatingNav />
       <CartPreview />
-      <React.Suspense fallback={<h1 style={{ display: "none" }} />}>
+      <React.Suspense fallback={<h1 style={{ display: "none" }}>Loading</h1>}>
         <RoutePath />
       </React.Suspense>
     </React.Fragment>

@@ -7,8 +7,6 @@ import { createStructuredSelector } from "reselect";
 import { selectHidden } from "../../redux/nav/nav.selectors";
 import { closeNav } from "../../redux/nav/nav.actions";
 
-import PreloadLink from "../Molecules/Links/PreloadLink/PreloadLink.component";
-
 import NavigationMenuDescription from "../NavigationMenuDescription/NavigationMenuDescription.component";
 
 import PropTypes from "prop-types";

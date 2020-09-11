@@ -148,6 +148,45 @@ a {
 
 
 /* ================ animations ================ */
+
+@-webkit-keyframes parabola {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+    opacity: 1;
+  }
+  23% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+    opacity: 0;
+  }
+}
+
+@keyframes parabola {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+    opacity: 1;
+  }
+  23% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+    opacity: 0;
+  }
+}
+
 .animation-parabola-wrapper {
   --size: 100px;
   height: var(--size);
