@@ -3,7 +3,7 @@ import AuthActionTypes from "./auth.types";
 import { allocateSignUpAlerts } from "./auth.utils";
 
 const INITIATE_STATE = {
-  isLogged: true,
+  isLogged: false,
   signUpAlert: {
     nameAlerts: [],
     emailAlerts: [],

@@ -15,7 +15,7 @@ const AppStoreCard = ({ match, app }) => {
             <picture>
               <source
                 type="image/webp"
-                media="(min-width: 1px)"
+                media="(min-width: 1000px)"
                 srcset={`${imageSrc}.webp`}
               />
               <img

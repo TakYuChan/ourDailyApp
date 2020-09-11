@@ -54,8 +54,7 @@ S.NavigationList = styled.ul`
   text-align: center;
 `;
 
-S.NavigationItems = styled(PreloadLink)`
-  ${textStyles}
+S.NavigationItems = styled.li`
   padding: 1rem 0;
   margin: 0;
   font-size: clamp(2rem, 3.5vw, 3.5rem);
@@ -65,12 +64,15 @@ S.NavigationItems = styled(PreloadLink)`
     margin-bottom: 2rem;
   }
 
-  &:hover {
-    color: ${(props) => props.theme.NavigationMenu.NavigationMenuText_Hover};
-  }
-
   @media screen and (min-width: 600px) {
     padding: 2rem 0;
+  }
+`;
+
+S.NavLink = styled(PreloadLink)`
+  ${textStyles}
+  &:hover {
+    color: ${(props) => props.theme.NavigationMenu.NavigationMenuText_Hover};
   }
 `;
 

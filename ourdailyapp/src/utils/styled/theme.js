@@ -105,7 +105,7 @@ export const lightTheme = {
   },
   RouteBlock: {
     currentRouteText: rootStyles.gray_0,
-    prevRouteText: rootStyles.gray_m2,
+    prevRouteText: rootStyles.gray_m1,
   },
   appDetailPage: {
     featureList: rootStyles.primary_old,
