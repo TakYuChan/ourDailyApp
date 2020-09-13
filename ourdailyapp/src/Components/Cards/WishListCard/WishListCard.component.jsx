@@ -53,6 +53,8 @@ const WishListCard = ({
                     event.stopPropagation();
                     moveItemToCartList(wishlistItem);
 
+                    console.log({ src: wishlistItem.imageSrc });
+
                     /* ================ animations ================ */
                     addCartAnimation(
                       wishlistItem.imageSrc,

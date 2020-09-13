@@ -53,11 +53,12 @@ const CartPage = ({
             {/* ============= Render 1: cartItems quantity >= 1 ============= */}
             {cartItemsQuantity !== 0 &&
               cartItems !== null &&
-              cartItems.map((cartItem) => (
+              cartItems.map((cartItem, index) => (
                 <DetailedItemBlock
                   id={cartItem.id}
                   cartItem={cartItem}
                   itemType="cart"
+                  key={index}
                 />
               ))}
 

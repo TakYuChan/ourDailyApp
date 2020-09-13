@@ -1,5 +1,6 @@
 const addCartAnimation = (itemImageSrc, animationAppendTo) => {
   if (document.querySelector(animationAppendTo) !== null) {
+    console.log("srcInAnimationFunc: ", itemImageSrc);
     let addedApp = document.createElement("div");
     addedApp.classList.add("addedApp");
     // addedApp.style.background = `red`;
