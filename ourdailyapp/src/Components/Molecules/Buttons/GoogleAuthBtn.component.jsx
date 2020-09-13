@@ -2,9 +2,8 @@ import React from "react";
 
 import GoogleLogin from "react-google-login";
 
-import { ReactComponent as GoogleSvg } from "../../assets/svg/google.svg";
-
-import { googleAuthorizationSuccess } from "../../redux/Auth/auth.actions";
+import { googleAuthorizationSuccess } from "../../../redux/Auth/auth.actions";
+import { ReactComponent as GoogleSvg } from "../../../assets/svg/google.svg";
 
 import { useDispatch } from "react-redux";
 
@@ -17,7 +16,12 @@ const GoogleAuthBtn = ({ children, renderBtn }) => {
     <GoogleLogin
       clientId={process.env.REACT_APP_GOOGLE_CLIENTID}
       render={(renderProps) =>
-        renderBtn(renderProps.onClick, renderProps.disabled, children)
+        renderBtn(
+          renderProps.onClick,
+          renderProps.disabled,
+          GoogleSvg,
+          children
+        )
       }
       onSuccess={(authenticationRes) =>
         dispatch(googleAuthorizationSuccess(authenticationRes))

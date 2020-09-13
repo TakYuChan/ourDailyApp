@@ -8,7 +8,7 @@ import { selectSignUpAlerts } from "../../../redux/Auth/auth.selectors";
 import { selectClickedAlertSvg } from "../../../redux/signUpForm/signUpForm.selectors";
 
 import { selectIsSigningUp } from "../../../redux/signUpForm/signUpForm.selectors";
-import PixelSpinner from "../../Spinners/PixelSpinner/PixelSpinner.component";
+import PixelSpinner from "../../Molecules/Spinners/PixelSpinner/PixelSpinner.component";
 
 import FormInput from "../../Molecules/FormElements/FormInput/FormInput.component";
 

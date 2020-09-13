@@ -2,17 +2,22 @@ import React, { useEffect } from "react";
 import profilePic from "../../assets/UIFace.png";
 import S from "./mainPage.style";
 
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchAccessAppBtnsStart } from "../../redux/app/app.actions";
 
-import MainPageAccessAppWrapperWithSpinner from "../../Components/MainPageAccessAppWrapper/MainPageAccessAppWrapperWithSpinner.component";
+import MainPageAccessAppWrapper from "../../Components/MainPageAccessAppWrapper/MainPageAccessAppWrapper.component";
+import Loader from "../../Components/Loader/Loader.component";
+import RippleSpinner from "../../Components/Molecules/Spinners/RippleSpinner/RippleSpinner.component";
 
-const MainPage = ({ fetchAccessAppBtnsStart }) => {
+const MainPage = () => {
+  const accessAppBtns = useSelector((state) => state.app.accessAppBtns);
+  const dispatch = useDispatch();
+
   // ============= Life Cycle Hooks =============
 
   useEffect(() => {
-    fetchAccessAppBtnsStart();
-  }, [fetchAccessAppBtnsStart]);
+    dispatch(fetchAccessAppBtnsStart());
+  }, [dispatch]);
 
   return (
     <S.MainPageContainer className="MainPage gs-page ">
@@ -25,13 +30,17 @@ const MainPage = ({ fetchAccessAppBtnsStart }) => {
         </S.ImgWrapper>
         <S.username>name</S.username>
       </S.picNameWrapper>
-      <MainPageAccessAppWrapperWithSpinner />
+      <Loader SpinnerComponent={RippleSpinner} isLoading={!!!accessAppBtns}>
+        {() => {
+          return (
+            <MainPageAccessAppWrapper
+              accessAppBtns={accessAppBtns ? accessAppBtns : []}
+            />
+          );
+        }}
+      </Loader>
     </S.MainPageContainer>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchAccessAppBtnsStart: () => dispatch(fetchAccessAppBtnsStart()),
-});
-
-export default connect(null, mapDispatchToProps)(MainPage);
+export default MainPage;

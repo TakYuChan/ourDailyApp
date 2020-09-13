@@ -13,7 +13,7 @@ import { lightTheme, darkTheme } from "./utils/styled/theme";
 import { checkAuthSession } from "./redux/Auth/auth.actions";
 import { selectIsUserLogged } from "./redux/Auth/auth.selectors";
 import componentWithPreload from "./utils/lazyLoading/componentWithPreload";
-import PixelSpinner from "./Components/Spinners/PixelSpinner/PixelSpinner.component";
+import PixelSpinner from "./Components/Molecules/Spinners/PixelSpinner/PixelSpinner.component";
 
 import NavUIComponents from "./Components/NavUIComponents/NavUIComponents.component";
 import ProfilePage from "./Pages/ProfilePage/ProfilePage.component";

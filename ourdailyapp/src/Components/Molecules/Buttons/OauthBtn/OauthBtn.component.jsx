@@ -3,8 +3,6 @@ import S from "./OauthBtn.style";
 
 import PropTypes from "prop-types";
 
-import WithGoogleAuth from "../../../../HOC/WithGoogleAuth/WithGoogleAuth.component";
-
 const OauthBtn = ({ SvgComponent, children, ...otherProps }) => {
   //@importedBy LogInOrganism SignUpOrganism
 

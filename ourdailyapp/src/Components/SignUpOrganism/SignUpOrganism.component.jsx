@@ -3,10 +3,9 @@ import S from "./SignUpOrganism.style";
 
 import SignUpForm from "../Forms/SignUpForm/SignUpForm.component";
 import OauthBtn from "../Molecules/Buttons/OauthBtn/OauthBtn.component";
-import OauthBtnWithAuth from "../Molecules/Buttons/OauthBtn/OauthBtn.withAuth";
 
 import OauthBtnRounded from "../Molecules/Buttons/OauthBtnRounded/OauthBtnRounded.component";
-import OauthBtnRoundedWithAuth from "../Molecules/Buttons/OauthBtnRounded/OauthBtnRounded.withAuth";
+import GoogleAuthBtn from "../Molecules/Buttons/GoogleAuthBtn.component";
 
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";
 import { ReactComponent as AppleSvg } from "../../assets/svg/apple.svg";
@@ -26,7 +25,19 @@ const SignUpOrganism = ({ mq_IsTallScreen }) => {
       <S.OauthBtnsWrapper mq_IsTallScreen={mq_IsTallScreen}>
         {mq_IsTallScreen ? (
           <React.Fragment>
-            <OauthBtnWithAuth provider="google" />
+            <GoogleAuthBtn
+              renderBtn={(onClick, disabled, SvgComponent, children) => (
+                <OauthBtn
+                  SvgComponent={SvgComponent}
+                  onClick={onClick}
+                  disabled={disabled}
+                >
+                  {children}
+                </OauthBtn>
+              )}
+            >
+              Google
+            </GoogleAuthBtn>
             <OauthBtn
               SvgComponent={FacebookSvg}
               mq_IsTallScreen={mq_IsTallScreen}
@@ -39,7 +50,17 @@ const SignUpOrganism = ({ mq_IsTallScreen }) => {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <OauthBtnRoundedWithAuth provider="google" />
+            <GoogleAuthBtn
+              renderBtn={(onClick, disabled, SvgComponent, children) => (
+                <OauthBtnRounded
+                  SvgComponent={SvgComponent}
+                  onClick={onClick}
+                  disabled={disabled}
+                >
+                  {children}
+                </OauthBtnRounded>
+              )}
+            />
             <OauthBtnRounded
               SvgComponent={FacebookSvg}
               mq_IsTallScreen={mq_IsTallScreen}
