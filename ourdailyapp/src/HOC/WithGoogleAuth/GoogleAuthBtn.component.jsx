@@ -25,7 +25,6 @@ const GoogleAuthBtn = ({ children, renderBtn }) => {
       onFailure={responseError}
       cookiePolicy={"single_host_origin"}
     />
-    // <h1>hi</h1>
   );
 };
 
