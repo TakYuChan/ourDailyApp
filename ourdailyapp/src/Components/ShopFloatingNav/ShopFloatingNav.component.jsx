@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback } from "react";
 // import { useHistory } from "react-router-dom";
-import UseRouter from "../../utils/jsxUtils/useRouter";
+import RenderRouter from "../RenderPropsComs/RenderRouter/RenderRouter.renderPropCom";
 import S from "./ShopFloatingNav.style";
 
 import { connect } from "react-redux";
@@ -65,7 +65,7 @@ const ShopNav = ({
             </S.Icon>
             <S.Text className="option-text">Cart</S.Text>
           </S.OptionCart>
-          <UseRouter>
+          <RenderRouter>
             {(router) => (
               <S.OptionCheckout
                 className="option option--checkout"
@@ -78,7 +78,7 @@ const ShopNav = ({
                 <S.Text className="option-text">Wishlist</S.Text>
               </S.OptionCheckout>
             )}
-          </UseRouter>
+          </RenderRouter>
         </S.MenuWrapper>
       </S.MenuContainer>
     </S.ShopNavWrapper>
