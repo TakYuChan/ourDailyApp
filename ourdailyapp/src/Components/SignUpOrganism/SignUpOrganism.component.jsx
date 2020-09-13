@@ -3,10 +3,10 @@ import S from "./SignUpOrganism.style";
 
 import SignUpForm from "../Forms/SignUpForm/SignUpForm.component";
 import OauthBtn from "../Molecules/Buttons/OauthBtn/OauthBtn.component";
-import OauthBtnContainer from "../Molecules/Buttons/OauthBtn/OauthBtn.container";
+import OauthBtnWithAuth from "../Molecules/Buttons/OauthBtn/OauthBtn.withAuth";
 
 import OauthBtnRounded from "../Molecules/Buttons/OauthBtnRounded/OauthBtnRounded.component";
-import OauthBtnRoundedContainer from "../Molecules/Buttons/OauthBtnRounded/OauthBtnRounded.container";
+import OauthBtnRoundedWithAuth from "../Molecules/Buttons/OauthBtnRounded/OauthBtnRounded.withAuth";
 
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";
 import { ReactComponent as AppleSvg } from "../../assets/svg/apple.svg";
@@ -26,7 +26,7 @@ const SignUpOrganism = ({ mq_IsTallScreen }) => {
       <S.OauthBtnsWrapper mq_IsTallScreen={mq_IsTallScreen}>
         {mq_IsTallScreen ? (
           <React.Fragment>
-            <OauthBtnContainer provider="google" />
+            <OauthBtnWithAuth provider="google" />
             <OauthBtn
               SvgComponent={FacebookSvg}
               mq_IsTallScreen={mq_IsTallScreen}
@@ -39,7 +39,7 @@ const SignUpOrganism = ({ mq_IsTallScreen }) => {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <OauthBtnRoundedContainer provider="google" />
+            <OauthBtnRoundedWithAuth provider="google" />
             <OauthBtnRounded
               SvgComponent={FacebookSvg}
               mq_IsTallScreen={mq_IsTallScreen}

@@ -8,28 +8,21 @@ import { ReactComponent as GoogleSvg } from "../../assets/svg/google.svg";
 
 import { googleAuthorizationSuccess } from "../../redux/Auth/auth.actions";
 
+import { useDispatch } from "react-redux";
+
 const WithGoogleAuth = ({
   WrappedBtnComponent,
   children,
   onAuthorizationSuccess,
   ...otherProps
 }) => {
-  //   const responseSuccess = async (response) => {
-  //     const backEndResponse = await axios({
-  //       method: "POST",
-  //       url: `http://localhost:5000/api/v1/users/googlelogin`,
-  //       data: {
-  //         tokenId: response.tokenId,
-  //       },
-  //     });
-  //     console.log("Google Log In success", backEndResponse);
-  //   };
-
   const responseError = async (response) => {};
+
+  const dispatch = useDispatch();
 
   return (
     <GoogleLogin
-      clientId="805613129868-l5s4bkonv7tdfec7f5nqa1l6rp8rtdin.apps.googleusercontent.com"
+      clientId={process.env.REACT_APP_GOOGLE_CLIENTID}
       render={(renderProps) => (
         <WrappedBtnComponent
           SvgComponent={GoogleSvg}
@@ -40,16 +33,13 @@ const WithGoogleAuth = ({
           {children}
         </WrappedBtnComponent>
       )}
-      onSuccess={onAuthorizationSuccess}
+      onSuccess={(authenticationRes) =>
+        dispatch(googleAuthorizationSuccess(authenticationRes))
+      }
       onFailure={responseError}
       cookiePolicy={"single_host_origin"}
     />
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onAuthorizationSuccess: (response) =>
-    dispatch(googleAuthorizationSuccess(response)),
-});
-
-export default connect(null, mapDispatchToProps)(WithGoogleAuth);
+export default WithGoogleAuth;

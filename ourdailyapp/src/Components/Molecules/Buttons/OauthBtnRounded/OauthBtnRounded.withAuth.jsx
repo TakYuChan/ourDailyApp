@@ -2,7 +2,7 @@ import React from "react";
 import WithGoogleAuth from "../../../../HOC/WithGoogleAuth/WithGoogleAuth.component";
 import OauthBtnRounded from "./OauthBtnRounded.component";
 
-const OauthBtnContainer = ({ provider, ...otherProps }) => {
+const OauthBtnWithAuth = ({ provider, ...otherProps }) => {
   return (
     provider === "google" && (
       <WithGoogleAuth WrappedBtnComponent={OauthBtnRounded} {...otherProps}>
@@ -12,4 +12,4 @@ const OauthBtnContainer = ({ provider, ...otherProps }) => {
   );
 };
 
-export default OauthBtnContainer;
+export default OauthBtnWithAuth;

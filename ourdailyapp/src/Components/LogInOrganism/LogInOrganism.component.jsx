@@ -3,7 +3,7 @@ import S from "./LogInOrganism.style";
 
 import LogInForm from "../Forms/LogInForm/LogInForm.component";
 import OauthBtn from "../Molecules/Buttons/OauthBtn/OauthBtn.component";
-import OauthBtnContainer from "../Molecules/Buttons/OauthBtn/OauthBtn.container";
+import OauthBtnWithAuth from "../Molecules/Buttons/OauthBtn/OauthBtn.withAuth";
 
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";
 import { ReactComponent as AppleSvg } from "../../assets/svg/apple.svg";
@@ -17,7 +17,7 @@ const LogInOrganism = () => {
       </S.LogInFormWrapper>
       {/* // ============== Oauth Buttons wrapper==============  */}
       <S.OauthBtnsWrapper>
-        <OauthBtnContainer provider="google" />
+        <OauthBtnWithAuth provider="google" />
         <OauthBtn SvgComponent={FacebookSvg}>Facebook</OauthBtn>
         <OauthBtn SvgComponent={AppleSvg}>Apple</OauthBtn>
       </S.OauthBtnsWrapper>
