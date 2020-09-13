@@ -59,7 +59,7 @@ const App = ({ checkAuthSession, isUserLogged }) => {
   return (
     <ThemeProvider theme={lightTheme}>
       <GlobalStyle />
-      {isUserLogged && <NavUIComponents />}{" "}
+      {isUserLogged && <NavUIComponents />}
       <React.Suspense
         fallback={
           <PixelSpinner
@@ -92,7 +92,6 @@ const App = ({ checkAuthSession, isUserLogged }) => {
             render={() =>
               isUserLogged ? <ShopRouter /> : <Redirect to="/auth" />
             }
-            // component={ShopRouter}
           />{" "}
           <Route
             path="/commentsConverter"

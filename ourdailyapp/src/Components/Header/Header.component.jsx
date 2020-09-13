@@ -14,7 +14,6 @@ import PropTypes from "prop-types";
 const Header = ({
   navHidden,
   toggleNav,
-  // shopNavHiddenTRUE,
   toggleCartPopUp,
   closeNav,
   cartItemsQuantity,
@@ -31,6 +30,8 @@ const Header = ({
   }
 
   const router = useRouter();
+
+  console.log("Header rendered");
 
   return (
     <S.HeaderContainer className="header">

@@ -10,14 +10,13 @@ S.OauthBtn_rounded = styled.button`
   max-width: 18em;
 
   @media only screen and (min-width: 850px) {
-   max-width: 20em;           
+    max-width: 20em;
   }
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.8em .8em;
-
+  padding: 0.8em 0.8em;
 
   border-radius: 30px;
 

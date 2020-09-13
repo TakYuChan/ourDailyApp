@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 
 const MainPageAccessAppBtn = ({ app, index }) => {
   const { name, route, imageUrl, border } = app;
-
   return (
     <Link to={`/${route}`} className={`link`}>
       <S.ApplicationItemContainer

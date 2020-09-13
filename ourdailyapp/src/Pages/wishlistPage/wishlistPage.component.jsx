@@ -29,6 +29,8 @@ const WishlistPage = ({ wishlist, updateRoutePath }) => {
     };
   }, [updateRoutePath]);
 
+  console.log("Wishlist rendered");
+
   return (
     <S.PageContainer className="Wishlist-page">
       {/* ========================== content main ========================== */}

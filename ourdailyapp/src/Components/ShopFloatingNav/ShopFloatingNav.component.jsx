@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useCallback } from "react";
+// import { useHistory } from "react-router-dom";
+import UseRouter from "../../utils/jsxUtils/useRouter";
 import S from "./ShopFloatingNav.style";
 
 import { connect } from "react-redux";
@@ -8,14 +10,12 @@ import { toggleCartPopUp } from "../../redux/cart/cart.actions";
 import { selectHidden } from "../../redux/shopNav/shopNav.selectors";
 import { selectCartItemsQuantity } from "../../redux/cart/cart.selectors";
 import { closeShopNav } from "../../redux/shopNav/shopNav.actions";
-import { withRouter } from "react-router-dom";
 
 const ShopNav = ({
   hidden,
   toggleHidden,
   itemQuantity,
   toggleCartPopUp,
-  history,
   closeShopNav,
 }) => {
   const node = useRef();
@@ -41,6 +41,8 @@ const ShopNav = ({
     };
   }, [hidden, handleCloseShopNav]);
 
+  console.log("ShopNav rendered");
+
   return (
     <S.ShopNavWrapper className="shopNav" ref={node}>
       <S.ToggleContainer className="toggle-shopNav" onClick={toggleHidden}>
@@ -63,16 +65,20 @@ const ShopNav = ({
             </S.Icon>
             <S.Text className="option-text">Cart</S.Text>
           </S.OptionCart>
-          <S.OptionCheckout
-            className="option option--checkout"
-            onClick={() => {
-              toggleHidden();
-              history.push("/wishlist");
-            }}
-          >
-            <S.Icon className="iconfont icon-wish"></S.Icon>
-            <S.Text className="option-text">Wishlist</S.Text>
-          </S.OptionCheckout>
+          <UseRouter>
+            {(router) => (
+              <S.OptionCheckout
+                className="option option--checkout"
+                onClick={() => {
+                  toggleHidden();
+                  router.push("/wishlist");
+                }}
+              >
+                <S.Icon className="iconfont icon-wish"></S.Icon>
+                <S.Text className="option-text">Wishlist</S.Text>
+              </S.OptionCheckout>
+            )}
+          </UseRouter>
         </S.MenuWrapper>
       </S.MenuContainer>
     </S.ShopNavWrapper>
@@ -90,6 +96,4 @@ const mapDispatchToProps = (dispatch) => ({
   closeShopNav: () => dispatch(closeShopNav()),
 });
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ShopNav)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ShopNav);

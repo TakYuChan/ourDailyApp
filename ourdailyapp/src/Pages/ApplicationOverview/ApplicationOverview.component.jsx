@@ -33,6 +33,8 @@ const ApplicationOverview = ({
     };
   }, [updateRoutePath]);
 
+  console.log("App Overview rendered");
+
   return (
     <S.ApplicationOverviewContainer className="application-overview">
       {/* ============= content main ============= */}

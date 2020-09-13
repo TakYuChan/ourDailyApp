@@ -35,6 +35,8 @@ const CartPage = ({
     };
   }, [updateRoutePath]);
 
+  console.log("CartPage rendered");
+
   return (
     <S.PageContainer className="Cart-Page">
       {/* ========================== content main ========================== */}

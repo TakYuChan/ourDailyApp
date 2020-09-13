@@ -34,6 +34,8 @@ const ApplicationDetailPage = ({
       },
     });
 
+    console.log("Application Detail Template rendered");
+
     return () => {
       updateRoutePath({
         page: "",

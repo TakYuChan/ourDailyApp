@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import S from "./NavigationMenu.style";
 
@@ -13,11 +13,7 @@ import PropTypes from "prop-types";
 
 const NavigationMenu = ({ closeNav, navHidden }) => {
   const [hoverNavItem, setHoverNavItem] = useState(null);
-
-  useEffect(() => {
-    console.log("navMenu");
-  }, []);
-
+  console.log("Nav Menu rendered");
   return (
     <S.NavMenuContainer className={`${!navHidden ? "active" : ""} float-nav`}>
       <S.NavigationList className="float-nav-list">

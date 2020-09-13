@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import S from "./LogInOrganism.style";
 
 import LogInForm from "../Forms/LogInForm/LogInForm.component";
@@ -7,8 +7,14 @@ import GoogleAuthBtn from "../Molecules/Buttons/GoogleAuthBtn.component";
 
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";
 import { ReactComponent as AppleSvg } from "../../assets/svg/apple.svg";
+import { isCompositeComponent } from "react-dom/test-utils";
 
 const LogInOrganism = () => {
+  useEffect(() => {
+    console.log("LogInOrganism mounted");
+  }, []);
+
+  console.log("LogInOrganism rendered");
   return (
     <React.Fragment>
       {/* // ============== Log In Form wrapper==============  */}

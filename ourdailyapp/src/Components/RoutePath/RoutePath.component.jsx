@@ -13,9 +13,9 @@ import {
 
 const RoutePath = ({ selectPage, selectDetails, history }) => {
   useEffect(() => {
-    console.log("I am being mounted!");
+    console.log("RoutePath is being mounted!");
   }, []);
-
+  console.log("RoutePath rerendered");
   const routerTextRender = (
     prevRoute,
     currentRoute,

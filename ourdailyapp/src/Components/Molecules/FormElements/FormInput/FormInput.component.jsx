@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import S from "./FormInput.style";
 
 import { connect } from "react-redux";
@@ -24,6 +24,7 @@ const FormInput = ({
 }) => {
   //@importedBy   LogInForm SignUpForm
   //@styledProps  Size / Position of label
+
   return (
     <S.FormInputBlock className={`${alerts.length > 0 ? "alert" : ""}`}>
       {SvgComponent !== undefined && <SvgComponent className="S_svg" />}
@@ -80,4 +81,4 @@ const mapDispatchToProps = (dispatch) => ({
   setClickedAlertSvg: (target) => dispatch(setClickedAlertSvg(target)),
 });
 
-export default memo(connect(null, mapDispatchToProps)(FormInput));
+export default connect(null, mapDispatchToProps)(FormInput);

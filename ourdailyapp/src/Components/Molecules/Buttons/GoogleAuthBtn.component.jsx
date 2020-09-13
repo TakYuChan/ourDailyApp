@@ -11,7 +11,6 @@ const GoogleAuthBtn = ({ children, renderBtn }) => {
   const responseError = async (response) => {};
 
   const dispatch = useDispatch();
-
   return (
     <GoogleLogin
       clientId={process.env.REACT_APP_GOOGLE_CLIENTID}

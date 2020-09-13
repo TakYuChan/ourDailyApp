@@ -23,6 +23,8 @@ const ShopRouter = ({ fetchApplicationsStart }) => {
     fetchApplicationsStart();
   }, [fetchApplicationsStart]);
 
+  console.log("Shop Router rendered");
+
   function useRouter() {
     const match = useRouteMatch();
 
