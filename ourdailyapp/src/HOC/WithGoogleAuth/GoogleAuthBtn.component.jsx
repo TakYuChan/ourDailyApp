@@ -8,12 +8,7 @@ import { googleAuthorizationSuccess } from "../../redux/Auth/auth.actions";
 
 import { useDispatch } from "react-redux";
 
-const WithGoogleAuth = ({
-  WrappedBtnComponent,
-  children,
-  onAuthorizationSuccess,
-  ...otherProps
-}) => {
+const GoogleAuthBtn = ({ children, renderBtn }) => {
   const responseError = async (response) => {};
 
   const dispatch = useDispatch();
@@ -21,23 +16,17 @@ const WithGoogleAuth = ({
   return (
     <GoogleLogin
       clientId={process.env.REACT_APP_GOOGLE_CLIENTID}
-      render={(renderProps) => (
-        <WrappedBtnComponent
-          SvgComponent={GoogleSvg}
-          {...otherProps}
-          onClick={renderProps.onClick}
-          disabled={renderProps.disabled}
-        >
-          {children}
-        </WrappedBtnComponent>
-      )}
+      render={(renderProps) =>
+        renderBtn(renderProps.onClick, renderProps.disabled, children)
+      }
       onSuccess={(authenticationRes) =>
         dispatch(googleAuthorizationSuccess(authenticationRes))
       }
       onFailure={responseError}
       cookiePolicy={"single_host_origin"}
     />
+    // <h1>hi</h1>
   );
 };
 
-export default WithGoogleAuth;
+export default GoogleAuthBtn;
