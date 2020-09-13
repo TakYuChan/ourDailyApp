@@ -1,7 +1,8 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import RenderRouter from "../RenderPropsComs/RenderRouter/RenderRouter.renderPropCom";
+
 import { createStructuredSelector } from "reselect";
 import { selectHidden } from "../../redux/nav/nav.selectors";
 import { toggleNavHidden, closeNav } from "../../redux/nav/nav.actions";
@@ -18,37 +19,28 @@ const Header = ({
   closeNav,
   cartItemsQuantity,
 }) => {
-  function useRouter() {
-    const history = useHistory();
-
-    return React.useMemo(() => {
-      return {
-        push: history.push,
-        history,
-      };
-    }, [history]);
-  }
-
-  const router = useRouter();
-
   console.log("Header rendered");
 
   return (
     <S.HeaderContainer className="header">
       <S.HeaderNavContainer>
         {/* ====================== Logo ====================== */}
-        <S.LogoWrapper>
-          <img
-            className="logo"
-            src={"/images/assets/logo_white_small.png"}
-            alt=""
-            role="presentation"
-            onClick={() => {
-              closeNav();
-              router.push("/");
-            }}
-          />
-        </S.LogoWrapper>
+        <RenderRouter>
+          {(router) => (
+            <S.LogoWrapper>
+              <img
+                className="logo"
+                src={"/images/assets/logo_white_small.png"}
+                alt=""
+                role="presentation"
+                onClick={() => {
+                  closeNav();
+                  router.push("/");
+                }}
+              />
+            </S.LogoWrapper>
+          )}
+        </RenderRouter>
 
         {/* ============================== Nav List ================================= */}
 

@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchAccessAppBtnsStart } from "../../redux/app/app.actions";
 
 import MainPageAccessAppWrapper from "../../Components/MainPageAccessAppWrapper/MainPageAccessAppWrapper.component";
-import Loader from "../../Components/Loader/Loader.component";
+import Loader from "../../Components/RenderPropsComs/Loader/Loader.renderPropCom";
 import RippleSpinner from "../../Components/Molecules/Spinners/RippleSpinner/RippleSpinner.component";
 
 const MainPage = () => {

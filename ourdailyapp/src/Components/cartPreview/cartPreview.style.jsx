@@ -42,6 +42,7 @@ S.CartPreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  text-align: center;
 
   padding: 0 1em 1em;
 

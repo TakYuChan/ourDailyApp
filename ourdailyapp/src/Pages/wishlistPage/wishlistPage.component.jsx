@@ -32,27 +32,28 @@ const WishlistPage = ({ wishlist, updateRoutePath }) => {
   console.log("Wishlist rendered");
 
   return (
-    <S.PageContainer className="Wishlist-page">
+    <S.PageContainer className="js_PageContainer">
       {/* ========================== content main ========================== */}
       <S.ContentContainer className="wishlist-content-main gs-PageContentContainer">
         {/* ========================== Render 1: {wishlist.length > 0 && } min-width 850px ========================== */}
         <S.WishlistMIN850>
           {wishlist !== null &&
             wishlist.length > 0 &&
-            wishlist.map((wishlistItem) => (
-              <WishListCard wishlistItem={wishlistItem} />
+            wishlist.map((wishlistItem, index) => (
+              <WishListCard wishlistItem={wishlistItem} key={index} />
             ))}
         </S.WishlistMIN850>
         {/* /* ========================== Render 2: {wishlist.length > 0 && } max-width 849px
       ========================== */}
         <S.WishlistMAX849 className="wishlist-max849">
           {wishlist !== null &&
-            wishlist.map((wishlistItem) => (
+            wishlist.map((wishlistItem, index) => (
               <DetailedItemBlock
                 id={wishlistItem.id}
                 cartItem={wishlistItem}
                 itemType="wishlist"
-                animationAppendTo=".Wishlist-page"
+                animationAppendTo=".js_PageContainer"
+                key={index}
               />
             ))}
         </S.WishlistMAX849>

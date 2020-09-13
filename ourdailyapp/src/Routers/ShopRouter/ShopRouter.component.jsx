@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 
-import { Route, useRouteMatch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { connect } from "react-redux";
+import RenderRouter from "../../Components/RenderPropsComs/RenderRouter/RenderRouter.renderPropCom";
 import { fetchApplicationsStart } from "../../redux/app/app.actions";
 
 // import ApplicationOverview from "../../Pages/ApplicationOverview/ApplicationOverview.component";
@@ -23,33 +24,25 @@ const ShopRouter = ({ fetchApplicationsStart }) => {
     fetchApplicationsStart();
   }, [fetchApplicationsStart]);
 
-  console.log("Shop Router rendered");
-
-  function useRouter() {
-    const match = useRouteMatch();
-
-    return React.useMemo(() => {
-      return {
-        matchPath: match.path,
-      };
-    }, [match]);
-  }
-
-  const router = useRouter();
+  console.log("Shop Router mounted");
 
   return (
-    <div className="shop-page">
-      <Route
-        exact
-        path={`${router.matchPath}`}
-        component={ApplicationOverview}
-      />
-      <Route
-        exact
-        path={`${router.matchPath}/:applicationId`}
-        component={ApplicationDetailTemplateWithPreloader}
-      />
-    </div>
+    <RenderRouter>
+      {(router) => (
+        <div className="shop-page">
+          <Route
+            exact
+            path={`${router.matchPath}`}
+            component={ApplicationOverview}
+          />
+          <Route
+            exact
+            path={`${router.matchPath}/:applicationId`}
+            component={ApplicationDetailTemplateWithPreloader}
+          />
+        </div>
+      )}
+    </RenderRouter>
   );
 };
 

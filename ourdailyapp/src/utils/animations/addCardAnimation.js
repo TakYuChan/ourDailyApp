@@ -3,7 +3,6 @@ const addCartAnimation = (itemImageSrc, animationAppendTo) => {
     let addedApp = document.createElement("div");
     addedApp.classList.add("addedApp");
     // addedApp.style.background = `red`;
-    console.log({ itemImageSrc });
     addedApp.style.backgroundImage = `url(${itemImageSrc}.jpeg)`;
 
     let wrapper = document.createElement("div");

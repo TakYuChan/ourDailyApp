@@ -29,7 +29,11 @@ const DetailedItemBlock = ({
       className="img-wrapper"
       onClick={() => history.push(`/shop/${cartItem.route}`)}
     >
-      <img src={cartItem.imageSrc} alt="cart item" className="img--item" />
+      <img
+        src={`${cartItem.imageSrc}.jpeg`}
+        alt="cart item"
+        className="img--item"
+      />
     </S.ImgWrapper>
     {/* ============= Items - info ============= */}
     <div className="title-and-creator">
