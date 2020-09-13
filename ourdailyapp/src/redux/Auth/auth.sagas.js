@@ -19,12 +19,15 @@ import {
 
 import globalErrHandler from "../../utils/globalErrHandler";
 
-import { signUpUser } from "./auth.requests";
+import { signUpUser, checkAuthInfoFromDB } from "./auth.requests";
 
 // ================= Sagas ==================
-// function* onGoogleSignInStart() {
-//   yield takeLatest(AuthActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
-// }
+function* onGoogleAuthorizationSuccess() {
+  yield takeLatest(
+    AuthActionTypes.GOOGLE_AUTHORIZATION_SUCCESS,
+    signInWithGoogle
+  );
+}
 
 // function* onEmailSignInStart() {
 //   yield takeLatest(AuthActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
@@ -51,7 +54,7 @@ function* onSignUpFailure() {
 
 export default function* authSaga() {
   yield all([
-    // call(onGoogleSignInStart),
+    call(onGoogleAuthorizationSuccess),
     // call(onEmailSignInStart),
     call(onCheckAuthSession),
     call(onSignOutStart),
@@ -91,6 +94,22 @@ function* signUp({ signUpDetails }) {
     yield put(signUpFailure(error, "signUpAlert"));
     // Stop spinner
     yield put(setIsSigningUpFALSE());
+  }
+}
+
+function* signInWithGoogle({ authorizeServerRes }) {
+  try {
+    // Start spinner
+
+    yield call(
+      checkAuthInfoFromDB,
+      authorizeServerRes,
+      `http://localhost:5000/api/v1/users/googlelogin`
+    );
+
+    // Stop spinner
+  } catch (error) {
+    // Stop spinner
   }
 }
 

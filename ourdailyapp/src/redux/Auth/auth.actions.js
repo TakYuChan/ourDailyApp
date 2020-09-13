@@ -1,7 +1,8 @@
 import AuthActionTypes from "./auth.types";
 
-export const googleSignInStart = () => ({
-  type: AuthActionTypes.GOOGLE_SIGN_IN_START,
+export const googleAuthorizationSuccess = (authorizeServerRes) => ({
+  type: AuthActionTypes.GOOGLE_AUTHORIZATION_SUCCESS,
+  authorizeServerRes,
 });
 
 export const emailSignInStart = (signUpDetails) => ({
@@ -56,17 +57,17 @@ export const signUpFailure = (error, targetComponent) => ({
 export const setSignUpAlert = (alert) => ({
   type: AuthActionTypes.SET_SIGNUP_ALERT,
   alert,
-})
+});
 
 export const setLogInAlert = (alert) => ({
   type: AuthActionTypes.SET_LOGIN_ALERT,
   alert,
-})
+});
 
 export const clearSignUpAlert = () => ({
   type: AuthActionTypes.CLEAR_SIGNUP_ALERT,
-})
+});
 
 export const clearLogInAlert = () => ({
   type: AuthActionTypes.CLEAR_LOGIN_ALERT,
-})
+});

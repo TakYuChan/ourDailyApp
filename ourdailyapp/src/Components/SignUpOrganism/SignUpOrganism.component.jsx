@@ -3,15 +3,17 @@ import S from "./SignUpOrganism.style";
 
 import SignUpForm from "../Forms/SignUpForm/SignUpForm.component";
 import OauthBtn from "../Molecules/Buttons/OauthBtn/OauthBtn.component";
-import OauthBtnRounded from "../Molecules/Buttons/OauthBtnRounded/OauthBtnRounded.component";
+import OauthBtnContainer from "../Molecules/Buttons/OauthBtn/OauthBtn.container";
 
-import { ReactComponent as GoogleSvg } from "../../assets/svg/google.svg";
+import OauthBtnRounded from "../Molecules/Buttons/OauthBtnRounded/OauthBtnRounded.component";
+import OauthBtnRoundedContainer from "../Molecules/Buttons/OauthBtnRounded/OauthBtnRounded.container";
+
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";
 import { ReactComponent as AppleSvg } from "../../assets/svg/apple.svg";
 
 import PropTypes from "prop-types";
 
-const SignUpPage = ({ mq_IsTallScreen }) => {
+const SignUpOrganism = ({ mq_IsTallScreen }) => {
   return (
     <React.Fragment>
       {/* // ============== Log In Form wrapper==============  */}
@@ -24,12 +26,7 @@ const SignUpPage = ({ mq_IsTallScreen }) => {
       <S.OauthBtnsWrapper mq_IsTallScreen={mq_IsTallScreen}>
         {mq_IsTallScreen ? (
           <React.Fragment>
-            <OauthBtn
-              SvgComponent={GoogleSvg}
-              mq_IsTallScreen={mq_IsTallScreen}
-            >
-              Google
-            </OauthBtn>
+            <OauthBtnContainer provider="google" />
             <OauthBtn
               SvgComponent={FacebookSvg}
               mq_IsTallScreen={mq_IsTallScreen}
@@ -42,12 +39,7 @@ const SignUpPage = ({ mq_IsTallScreen }) => {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <OauthBtnRounded
-              SvgComponent={GoogleSvg}
-              mq_IsTallScreen={mq_IsTallScreen}
-            >
-              Google
-            </OauthBtnRounded>
+            <OauthBtnRoundedContainer provider="google" />
             <OauthBtnRounded
               SvgComponent={FacebookSvg}
               mq_IsTallScreen={mq_IsTallScreen}
@@ -67,8 +59,8 @@ const SignUpPage = ({ mq_IsTallScreen }) => {
   );
 };
 
-SignUpPage.propTypes = {
+SignUpOrganism.propTypes = {
   mq_IsTallScreen: PropTypes.bool.isRequired,
 };
 
-export default SignUpPage;
+export default SignUpOrganism;
