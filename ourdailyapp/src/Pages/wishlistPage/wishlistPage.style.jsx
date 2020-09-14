@@ -41,10 +41,6 @@ S.PageContainer = styled.div`
 S.ContentContainer = styled.div`
   width: 100%;
 
-  ${S.WishlistMAX849} {
-    display: none;
-  }
-
   ${S.WishlistMIN850} {
     display: grid;
     max-width: 1200px;
@@ -63,10 +59,6 @@ S.ContentContainer = styled.div`
     ${S.WishlistMAX849} {
       display: flex;
       flex-direction: column;
-    }
-
-    ${S.WishlistMIN850} {
-      display: none;
     }
   }
 `;

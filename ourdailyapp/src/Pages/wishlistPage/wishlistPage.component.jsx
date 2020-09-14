@@ -9,7 +9,8 @@ import {
   toggleWishListItem,
   moveToCartList,
 } from "../../redux/cart/cart.actions";
-import { withRouter } from "react-router-dom";
+// import RenderRouter from "../../Components/RenderPropsComs/RenderRouter/RenderRouter.renderPropCom";
+import MediaQuery from "../../Components/RenderPropsComs/MediaQuery/MediaQuery.renderPropCom";
 
 import DetailedItemBlock from "../../Components/DetailedItemBlock/DetailedItemBlockcomponent";
 import WishListCard from "../../Components/Cards/WishListCard/WishListCard.component";
@@ -35,28 +36,39 @@ const WishlistPage = ({ wishlist, updateRoutePath }) => {
     <S.PageContainer className="js_PageContainer">
       {/* ========================== content main ========================== */}
       <S.ContentContainer className="wishlist-content-main gs-PageContentContainer">
-        {/* ========================== Render 1: {wishlist.length > 0 && } min-width 850px ========================== */}
-        <S.WishlistMIN850>
-          {wishlist !== null &&
-            wishlist.length > 0 &&
-            wishlist.map((wishlistItem, index) => (
-              <WishListCard wishlistItem={wishlistItem} key={index} />
-            ))}
-        </S.WishlistMIN850>
-        {/* /* ========================== Render 2: {wishlist.length > 0 && } max-width 849px
-      ========================== */}
-        <S.WishlistMAX849 className="wishlist-max849">
-          {wishlist !== null &&
-            wishlist.map((wishlistItem, index) => (
-              <DetailedItemBlock
-                id={wishlistItem.id}
-                cartItem={wishlistItem}
-                itemType="wishlist"
-                animationAppendTo=".js_PageContainer"
-                key={index}
-              />
-            ))}
-        </S.WishlistMAX849>
+        <MediaQuery
+          mediaQueryPx={850}
+          wishlist={wishlist}
+          renderForAbove={({ wishlist }) => {
+            return (
+              <S.WishlistMIN850>
+                {wishlist !== null &&
+                  wishlist.length > 0 &&
+                  wishlist.map((wishlistItem, index) => (
+                    <WishListCard wishlistItem={wishlistItem} key={index} />
+                  ))}
+              </S.WishlistMIN850>
+            );
+          }}
+        >
+          {({ wishlist }) => {
+            console.log({ wishlist });
+            return (
+              <S.WishlistMAX849 className="wishlist-max849">
+                {wishlist !== null &&
+                  wishlist.map((wishlistItem, index) => (
+                    <DetailedItemBlock
+                      id={wishlistItem.id}
+                      cartItem={wishlistItem}
+                      itemType="wishlist"
+                      animationAppendTo=".js_PageContainer"
+                      key={index}
+                    />
+                  ))}
+              </S.WishlistMAX849>
+            );
+          }}
+        </MediaQuery>
       </S.ContentContainer>
       {/* =============== Render 3: EMPTY wishlist ================= */}
       {wishlist.length === 0 && (
@@ -80,6 +92,4 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(updateRoutePath(routePathDetails)),
 });
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(WishlistPage)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(WishlistPage);
