@@ -11,9 +11,14 @@ const sagaMiddleware = createSagaMiddleware();
 
 const middleWares = [sagaMiddleware, thunk];
 
+const composeEnhancers = composeWithDevTools({
+  trace: true,
+  traceLimit: 25,
+});
+
 export const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(...middleWares))
+  composeEnhancers(applyMiddleware(...middleWares))
 );
 
 sagaMiddleware.run(rootSaga);

@@ -81,11 +81,12 @@ const CartPage = ({
           {wishlistItems.length !== 0 && (
             <S.WishlistWrapper className="wishList-wrapper wishlist-wrapper">
               {wishlistItems !== null &&
-                wishlistItems.map((wishlistItem) => (
+                wishlistItems.map((wishlistItem, index) => (
                   <DetailedItemBlock
                     id={wishlistItem.id}
                     cartItem={wishlistItem}
                     itemType="wishlist"
+                    key={index}
                   />
                 ))}
             </S.WishlistWrapper>

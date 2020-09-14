@@ -18,6 +18,10 @@ export const toggleCartPopUp = () => ({
   type: CartActionTypes.TOGGLE_CART_POPUP_HIDDEN,
 });
 
+export const closeCartPopUp = () => ({
+  type: CartActionTypes.CLOSE_CART_POPUP,
+});
+
 export const addItemPriceToTotal = (price) => ({
   type: CartActionTypes.ADD_ITEM_PRICE,
   payload: price,

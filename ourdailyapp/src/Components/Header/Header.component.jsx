@@ -1,25 +1,21 @@
 import React from "react";
 
-import { connect } from "react-redux";
 import RenderRouter from "../RenderPropsComs/RenderRouter/RenderRouter.renderPropCom";
+import { useDispatch, useSelector } from "react-redux";
 
-import { createStructuredSelector } from "reselect";
-import { selectHidden } from "../../redux/nav/nav.selectors";
 import { toggleNavHidden, closeNav } from "../../redux/nav/nav.actions";
-import { toggleCartPopUp } from "../../redux/cart/cart.actions";
-import { selectCartItemsQuantity } from "../../redux/cart/cart.selectors";
+import { toggleCartPopUp, closeCartPopUp } from "../../redux/cart/cart.actions";
 import S from "./Header.style";
 
 import PropTypes from "prop-types";
 
-const Header = ({
-  navHidden,
-  toggleNav,
-  toggleCartPopUp,
-  closeNav,
-  cartItemsQuantity,
-}) => {
+const Header = () => {
   console.log("Header rendered");
+
+  const navHidden = useSelector((state) => state.nav.hidden);
+  const cartItemsQuantity = useSelector((state) => state.cart_P.cartItems)
+    .length;
+  const dispatch = useDispatch();
 
   return (
     <S.HeaderContainer className="header">
@@ -34,7 +30,7 @@ const Header = ({
                 alt=""
                 role="presentation"
                 onClick={() => {
-                  closeNav();
+                  dispatch(closeNav());
                   router.push("/");
                 }}
               />
@@ -49,8 +45,8 @@ const Header = ({
           <S.CartIconWrapper
             className="cart-icon-wrapper"
             onClick={() => {
-              toggleCartPopUp();
-              closeNav();
+              dispatch(toggleCartPopUp());
+              dispatch(closeNav());
             }}
           >
             <S.CartIcon className="iconfont icon-cart1"></S.CartIcon>
@@ -69,15 +65,9 @@ const Header = ({
           <S.NavIconContainer
             className={`${navHidden ? "" : "active"} svg-wrapper Component`}
             onClick={() => {
-              toggleNav();
+              dispatch(closeCartPopUp());
+              dispatch(toggleNavHidden());
             }}
-            // dataFor="navTip"
-            // withToolTip={true}
-            // toolTipId="navTip"
-            // toolTipPlace="bottom"
-            // toolTipEffect="solid"
-            // toolTipClass="tooltip"
-            // toolTipText="Navigation Menu"
           >
             <S.NavIcon className="svg" />
           </S.NavIconContainer>
@@ -89,20 +79,9 @@ const Header = ({
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  navHidden: selectHidden,
-  cartItemsQuantity: selectCartItemsQuantity,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  toggleNav: () => dispatch(toggleNavHidden()),
-  toggleCartPopUp: () => dispatch(toggleCartPopUp()),
-  closeNav: () => dispatch(closeNav()),
-});
-
 Header.propTypes = {
   navHidden: PropTypes.bool.isRequired,
   cartItemsQuantity: PropTypes.number.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

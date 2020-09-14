@@ -2,7 +2,8 @@ import React from "react";
 import S from "./cartPreview.style";
 
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import RenderRouter from "../RenderPropsComs/RenderRouter/RenderRouter.renderPropCom";
+
 import {
   removeItem,
   toggleCartPopUp,
@@ -27,7 +28,6 @@ const CartPreview = ({
   toggleCartPopUp,
   cartItemsTotalPrice,
   minusItemPrice,
-  history,
 }) => {
   console.log("CartPreview rendered");
   return (
@@ -101,15 +101,19 @@ const CartPreview = ({
         </S.TotalPriceText>,
         //   ======================= btns--wrapper =======================
         <S.ButtonsContainer key="4" className="buttons-wrapper">
-          <S.BtnToCart
-            className="btn--toCart"
-            onClick={() => {
-              history.push("/cart");
-              toggleCartPopUp();
-            }}
-          >
-            Go To Cart
-          </S.BtnToCart>
+          <RenderRouter>
+            {(router) => (
+              <S.BtnToCart
+                className="btn--toCart"
+                onClick={() => {
+                  router.push("/cart");
+                  toggleCartPopUp();
+                }}
+              >
+                Go To Cart
+              </S.BtnToCart>
+            )}
+          </RenderRouter>
           <S.BtnClosePreview
             className="btn--closePreview"
             onClick={toggleCartPopUp}
@@ -136,6 +140,4 @@ const mapDispatchToProps = (dispatch) => ({
   minusItemPrice: (price) => dispatch(minusItemPriceToTotal(price)),
 });
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CartPreview)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(CartPreview);

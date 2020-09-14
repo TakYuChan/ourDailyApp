@@ -11,6 +11,11 @@ const cartReducer = (state = INITIATE_STATE, action) => {
         ...state,
         cartPopUpHidden: !state.cartPopUpHidden,
       };
+    case CartActionTypes.CLOSE_CART_POPUP:
+      return {
+        ...state,
+        cartPopUpHidden: true,
+      };
     default:
       return state;
   }
