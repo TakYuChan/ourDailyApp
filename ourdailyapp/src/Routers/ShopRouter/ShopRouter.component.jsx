@@ -5,9 +5,6 @@ import { connect } from "react-redux";
 import RenderRouter from "../../Components/RenderPropsComs/RenderRouter/RenderRouter.renderPropCom";
 import { fetchApplicationsStart } from "../../redux/app/app.actions";
 
-// import ApplicationOverview from "../../Pages/ApplicationOverview/ApplicationOverview.component";
-// import ApplicationDetailTemplateWithPreloader from "../../Pages/Templates/ApplicationDetailTemplate/ApplicationDetailTemplateWithPreloader.component";
-
 import PropTypes from "prop-types";
 
 const ShopRouter = ({ fetchApplicationsStart }) => {

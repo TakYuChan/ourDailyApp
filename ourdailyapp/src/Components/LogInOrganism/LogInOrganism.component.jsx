@@ -7,7 +7,6 @@ import GoogleAuthBtn from "../Molecules/Buttons/GoogleAuthBtn.component";
 
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";
 import { ReactComponent as AppleSvg } from "../../assets/svg/apple.svg";
-import { isCompositeComponent } from "react-dom/test-utils";
 
 const LogInOrganism = () => {
   useEffect(() => {

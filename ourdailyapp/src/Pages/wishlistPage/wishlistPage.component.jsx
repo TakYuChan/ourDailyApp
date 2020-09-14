@@ -9,7 +9,6 @@ import {
   toggleWishListItem,
   moveToCartList,
 } from "../../redux/cart/cart.actions";
-// import RenderRouter from "../../Components/RenderPropsComs/RenderRouter/RenderRouter.renderPropCom";
 import MediaQuery from "../../Components/RenderPropsComs/MediaQuery/MediaQuery.renderPropCom";
 
 import DetailedItemBlock from "../../Components/DetailedItemBlock/DetailedItemBlockcomponent";
