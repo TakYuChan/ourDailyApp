@@ -28,13 +28,6 @@ S.ApplicationItemContainer = styled.div`
   height: 100%;
   width: 100%;
 
-  // &:hover {
-  //   background: ${(props) => props.theme.mainPage.app_Hover};
-  //   .link-text {
-  //     text-decoration: none;
-  //   }
-  // }
-
   animation: 600ms ${appear} backwards ${(props) => props.stagger}s;
 `;
 

@@ -25,8 +25,12 @@ S.MainPageContainer = styled.div`
   font-size: clamp(0.8rem, 2vw, 1.7rem);
 
   display: grid;
-  grid-template-rows: minmax(1em, 16em) minmax(1em, 1fr);
+  grid-template-rows: minmax(1em, 18em) minmax(1em, 1fr);
   grid-template-columns: 1fr 1fr 1fr;
+
+  @media screen and (min-width: 680px) {
+    grid-template-rows: minmax(1em, 16em) minmax(1em, 1fr);
+  }
 
   grid-template-areas:
     ". imageFrame ."

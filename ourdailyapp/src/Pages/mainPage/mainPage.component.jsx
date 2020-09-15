@@ -27,15 +27,7 @@ const MainPage = () => {
         <ImageFrame src={profilePic} halo={true} withExtraText={true} />
       </S.ImageFrameWrapper>
       <S.AccessAppBtnWrapper>
-        <Loader SpinnerComponent={RippleSpinner} isLoading={!!!accessAppBtns}>
-          {() => {
-            return (
-              <MainPageAccessAppWrapper
-                accessAppBtns={accessAppBtns ? accessAppBtns : []}
-              />
-            );
-          }}
-        </Loader>
+        <MainPageAccessAppWrapper />
       </S.AccessAppBtnWrapper>
     </S.MainPageContainer>
   );
