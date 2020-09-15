@@ -1,7 +1,7 @@
 import React from "react";
 import S from "./WishListCard.style.jsx";
 
-import useRouter from "../../../customHooks/useRouter.hooks";
+import useRouter from "../../../hooks/useRouter.hooks";
 import { connect } from "react-redux";
 
 import {

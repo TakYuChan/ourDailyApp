@@ -1,6 +1,6 @@
 import React from "react";
 
-import useRouter from "../../customHooks/useRouter.hooks";
+import useRouter from "../../hooks/useRouter.hooks";
 import { useDispatch, useSelector } from "react-redux";
 
 import { toggleNavHidden, closeNav } from "../../redux/nav/nav.actions";

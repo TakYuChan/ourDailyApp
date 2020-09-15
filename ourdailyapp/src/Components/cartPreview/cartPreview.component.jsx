@@ -2,7 +2,7 @@ import React from "react";
 import S from "./cartPreview.style";
 
 import { connect } from "react-redux";
-import useRouter from "../../customHooks/useRouter.hooks";
+import useRouter from "../../hooks/useRouter.hooks";
 
 import {
   removeItem,

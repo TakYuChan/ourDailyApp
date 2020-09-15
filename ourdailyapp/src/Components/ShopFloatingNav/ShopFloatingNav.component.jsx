@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useCallback } from "react";
 import S from "./ShopFloatingNav.style";
 
-import useRouter from "../../customHooks/useRouter.hooks";
+import useRouter from "../../hooks/useRouter.hooks";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";

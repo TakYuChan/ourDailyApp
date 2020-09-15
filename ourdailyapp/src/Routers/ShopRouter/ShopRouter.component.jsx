@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import useRouter from "../../customHooks/useRouter.hooks";
+import useRouter from "../../hooks/useRouter.hooks";
 import { fetchApplicationsStart } from "../../redux/app/app.actions";
 
 const ShopRouter = () => {
