@@ -24,3 +24,5 @@ We have multiple ways to define the consumer, such as using render prop style, h
 @props: reusability UP complexity GOOD
 It is perfect to be used to group things to build a more readable and flexible app.
 @cons: It can also be used to provide functionality to the component like renderProp and others, but unlike renderProp, we are can not decide how to component to be rendered inside of the customHook file, since it is used to export important "DATA" to component and let them to decide how to render. But actually it only about the way you like to structure your codebase. It doesn't matter.
+
+NOTES: custom Context and custom Hooks can be built to act like a reducer
