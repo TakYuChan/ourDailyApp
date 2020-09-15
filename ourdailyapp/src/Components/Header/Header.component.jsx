@@ -1,13 +1,11 @@
 import React from "react";
 
-import RenderRouter from "../RenderPropsComs/RenderRouter/RenderRouter.renderPropCom";
+import useRouter from "../../customHooks/useRouter.hooks";
 import { useDispatch, useSelector } from "react-redux";
 
 import { toggleNavHidden, closeNav } from "../../redux/nav/nav.actions";
 import { toggleCartPopUp, closeCartPopUp } from "../../redux/cart/cart.actions";
 import S from "./Header.style";
-
-import PropTypes from "prop-types";
 
 const Header = () => {
   console.log("Header rendered");
@@ -17,26 +15,25 @@ const Header = () => {
     .length;
   const dispatch = useDispatch();
 
+  const router = useRouter();
+  console.log({ router });
+
   return (
     <S.HeaderContainer className="header">
       <S.HeaderNavContainer>
         {/* ====================== Logo ====================== */}
-        <RenderRouter>
-          {(router) => (
-            <S.LogoWrapper>
-              <img
-                className="logo"
-                src={"/images/assets/logo_white_small.png"}
-                alt=""
-                role="presentation"
-                onClick={() => {
-                  dispatch(closeNav());
-                  router.push("/");
-                }}
-              />
-            </S.LogoWrapper>
-          )}
-        </RenderRouter>
+        <S.LogoWrapper>
+          <img
+            className="logo"
+            src={"/images/assets/logo_white_small.png"}
+            alt=""
+            role="presentation"
+            onClick={() => {
+              dispatch(closeNav());
+              router.push("/");
+            }}
+          />
+        </S.LogoWrapper>
 
         {/* ============================== Nav List ================================= */}
 
@@ -77,11 +74,6 @@ const Header = () => {
       </S.HeaderNavContainer>
     </S.HeaderContainer>
   );
-};
-
-Header.propTypes = {
-  navHidden: PropTypes.bool.isRequired,
-  cartItemsQuantity: PropTypes.number.isRequired,
 };
 
 export default Header;

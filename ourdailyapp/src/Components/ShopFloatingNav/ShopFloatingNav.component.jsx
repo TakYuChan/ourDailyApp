@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useCallback } from "react";
-// import { useHistory } from "react-router-dom";
-import RenderRouter from "../RenderPropsComs/RenderRouter/RenderRouter.renderPropCom";
 import S from "./ShopFloatingNav.style";
+
+import useRouter from "../../customHooks/useRouter.hooks";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -41,7 +41,7 @@ const ShopNav = ({
     };
   }, [hidden, handleCloseShopNav]);
 
-  console.log("ShopNav rendered");
+  const router = useRouter();
 
   return (
     <S.ShopNavWrapper className="shopNav" ref={node}>
@@ -65,20 +65,17 @@ const ShopNav = ({
             </S.Icon>
             <S.Text className="option-text">Cart</S.Text>
           </S.OptionCart>
-          <RenderRouter>
-            {(router) => (
-              <S.OptionCheckout
-                className="option option--checkout"
-                onClick={() => {
-                  toggleHidden();
-                  router.push("/wishlist");
-                }}
-              >
-                <S.Icon className="iconfont icon-wish"></S.Icon>
-                <S.Text className="option-text">Wishlist</S.Text>
-              </S.OptionCheckout>
-            )}
-          </RenderRouter>
+
+          <S.OptionCheckout
+            className="option option--checkout"
+            onClick={() => {
+              toggleHidden();
+              router.push("/wishlist");
+            }}
+          >
+            <S.Icon className="iconfont icon-wish"></S.Icon>
+            <S.Text className="option-text">Wishlist</S.Text>
+          </S.OptionCheckout>
         </S.MenuWrapper>
       </S.MenuContainer>
     </S.ShopNavWrapper>

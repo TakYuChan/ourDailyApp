@@ -2,7 +2,7 @@ import React from "react";
 import S from "./cartPreview.style";
 
 import { connect } from "react-redux";
-import RenderRouter from "../RenderPropsComs/RenderRouter/RenderRouter.renderPropCom";
+import useRouter from "../../customHooks/useRouter.hooks";
 
 import {
   removeItem,
@@ -29,7 +29,8 @@ const CartPreview = ({
   cartItemsTotalPrice,
   minusItemPrice,
 }) => {
-  console.log("CartPreview rendered");
+  const router = useRouter();
+
   return (
     <S.CartPreviewContainer
       className={`${!cartPopUpHidden && "active"} cart-preview`}
@@ -101,19 +102,16 @@ const CartPreview = ({
         </S.TotalPriceText>,
         //   ======================= btns--wrapper =======================
         <S.ButtonsContainer key="4" className="buttons-wrapper">
-          <RenderRouter>
-            {(router) => (
-              <S.BtnToCart
-                className="btn--toCart"
-                onClick={() => {
-                  router.push("/cart");
-                  toggleCartPopUp();
-                }}
-              >
-                Go To Cart
-              </S.BtnToCart>
-            )}
-          </RenderRouter>
+          <S.BtnToCart
+            className="btn--toCart"
+            onClick={() => {
+              router.push("/cart");
+              toggleCartPopUp();
+            }}
+          >
+            Go To Cart
+          </S.BtnToCart>
+
           <S.BtnClosePreview
             className="btn--closePreview"
             onClick={toggleCartPopUp}

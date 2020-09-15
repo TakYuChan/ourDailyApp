@@ -63,6 +63,10 @@ S.AccessAppBtnWrapper = styled.div`
   align-self: flex-start;
 
   margin-top: 3.5em;
+
+  @media (orientation: landscape) {
+    margin-bottom: 2em;
+  }
 `;
 
 export default S;

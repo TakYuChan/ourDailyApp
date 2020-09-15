@@ -2,10 +2,8 @@ import React, { useEffect } from "react";
 
 import { Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import RenderRouter from "../../Components/RenderPropsComs/RenderRouter/RenderRouter.renderPropCom";
+import useRouter from "../../customHooks/useRouter.hooks";
 import { fetchApplicationsStart } from "../../redux/app/app.actions";
-
-import PropTypes from "prop-types";
 
 const ShopRouter = () => {
   const ApplicationOverview = React.lazy(() =>
@@ -22,30 +20,22 @@ const ShopRouter = () => {
     dispatch(fetchApplicationsStart());
   }, [dispatch]);
 
-  console.log("Shop Router mounted");
+  const router = useRouter();
 
   return (
-    <RenderRouter>
-      {(router) => (
-        <div className="shop-page">
-          <Route
-            exact
-            path={`${router.matchPath}`}
-            component={ApplicationOverview}
-          />
-          <Route
-            exact
-            path={`${router.matchPath}/:applicationId`}
-            component={ApplicationDetailTemplateWithPreloader}
-          />
-        </div>
-      )}
-    </RenderRouter>
+    <div className="shop-page">
+      <Route
+        exact
+        path={`${router.matchPath}`}
+        component={ApplicationOverview}
+      />
+      <Route
+        exact
+        path={`${router.matchPath}/:applicationId`}
+        component={ApplicationDetailTemplateWithPreloader}
+      />
+    </div>
   );
-};
-
-ShopRouter.propTypes = {
-  fetchApplicationsStart: PropTypes.func.isRequired,
 };
 
 export default ShopRouter;
