@@ -8,7 +8,6 @@ import Loader from "../../Components/RenderPropsComs/Loader/Loader.renderPropCom
 import RippleSpinner from "../../Components/Molecules/Spinners/RippleSpinner/RippleSpinner.component";
 
 import PropTypes from "prop-types";
-// import APPLICATIONS_DATA from "../../data/application.data.jsx";
 
 const MainPageAccessAppWrapper = () => {
   const accessAppBtns = useSelector((state) => state.app.accessAppBtns);
@@ -30,6 +29,3 @@ MainPageAccessAppWrapper.propTypes = {
 };
 
 export default MainPageAccessAppWrapper;
-{
-  /* <Loader SpinnerComponent={RippleSpinner} isLoading={!!!accessAppBtns}></Loader> */
-}

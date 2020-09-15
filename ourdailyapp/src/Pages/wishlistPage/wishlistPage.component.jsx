@@ -9,7 +9,7 @@ import {
   toggleWishListItem,
   moveToCartList,
 } from "../../redux/cart/cart.actions";
-import MediaQuery from "../../Components/RenderPropsComs/MediaQuery/MediaQuery.renderPropCom";
+import { useMediaQuery } from "react-responsive";
 
 import DetailedItemBlock from "../../Components/DetailedItemBlock/DetailedItemBlockcomponent";
 import WishListCard from "../../Components/Cards/WishListCard/WishListCard.component";
@@ -29,45 +29,34 @@ const WishlistPage = ({ wishlist, updateRoutePath }) => {
     };
   }, [updateRoutePath]);
 
-  console.log("Wishlist rendered");
+  const widthMin850 = useMediaQuery({ query: `(min-device-width: 850px)` });
 
   return (
     <S.PageContainer className="js_PageContainer">
       {/* ========================== content main ========================== */}
       <S.ContentContainer className="wishlist-content-main gs-PageContentContainer">
-        <MediaQuery
-          mediaQueryPx={850}
-          wishlist={wishlist}
-          renderForAbove={({ wishlist }) => {
-            return (
-              <S.WishlistMIN850>
-                {wishlist !== null &&
-                  wishlist.length > 0 &&
-                  wishlist.map((wishlistItem, index) => (
-                    <WishListCard wishlistItem={wishlistItem} key={index} />
-                  ))}
-              </S.WishlistMIN850>
-            );
-          }}
-        >
-          {({ wishlist }) => {
-            console.log({ wishlist });
-            return (
-              <S.WishlistMAX849 className="wishlist-max849">
-                {wishlist !== null &&
-                  wishlist.map((wishlistItem, index) => (
-                    <DetailedItemBlock
-                      id={wishlistItem.id}
-                      cartItem={wishlistItem}
-                      itemType="wishlist"
-                      animationAppendTo=".js_PageContainer"
-                      key={index}
-                    />
-                  ))}
-              </S.WishlistMAX849>
-            );
-          }}
-        </MediaQuery>
+        {widthMin850 ? (
+          <S.WishlistMIN850>
+            {wishlist !== null &&
+              wishlist.length > 0 &&
+              wishlist.map((wishlistItem, index) => (
+                <WishListCard wishlistItem={wishlistItem} key={index} />
+              ))}
+          </S.WishlistMIN850>
+        ) : (
+          <S.WishlistMAX849 className="wishlist-max849">
+            {wishlist !== null &&
+              wishlist.map((wishlistItem, index) => (
+                <DetailedItemBlock
+                  id={wishlistItem.id}
+                  cartItem={wishlistItem}
+                  itemType="wishlist"
+                  animationAppendTo=".js_PageContainer"
+                  key={index}
+                />
+              ))}
+          </S.WishlistMAX849>
+        )}
       </S.ContentContainer>
       {/* =============== Render 3: EMPTY wishlist ================= */}
       {wishlist.length === 0 && (

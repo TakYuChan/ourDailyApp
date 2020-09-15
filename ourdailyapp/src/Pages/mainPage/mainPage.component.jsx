@@ -5,8 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchAccessAppBtnsStart } from "../../redux/app/app.actions";
 
 import MainPageAccessAppWrapper from "../../Components/MainPageAccessAppWrapper/MainPageAccessAppWrapper.component";
-import Loader from "../../Components/RenderPropsComs/Loader/Loader.renderPropCom";
-import RippleSpinner from "../../Components/Molecules/Spinners/RippleSpinner/RippleSpinner.component";
 import ImageFrame from "../../Components/ImageFrames/ImageFrame/ImageFrame.component";
 
 import profilePic from "../../assets/UIFace.png";

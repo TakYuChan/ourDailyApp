@@ -8,8 +8,6 @@ import { toggleCartPopUp, closeCartPopUp } from "../../redux/cart/cart.actions";
 import S from "./Header.style";
 
 const Header = () => {
-  console.log("Header rendered");
-
   const navHidden = useSelector((state) => state.nav.hidden);
   const cartItemsQuantity = useSelector((state) => state.cart_P.cartItems)
     .length;
