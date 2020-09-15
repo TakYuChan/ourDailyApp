@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 
 import { Route } from "react-router-dom";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import RenderRouter from "../../Components/RenderPropsComs/RenderRouter/RenderRouter.renderPropCom";
 import { fetchApplicationsStart } from "../../redux/app/app.actions";
 
 import PropTypes from "prop-types";
 
-const ShopRouter = ({ fetchApplicationsStart }) => {
+const ShopRouter = () => {
   const ApplicationOverview = React.lazy(() =>
     import("../../Pages/ApplicationOverview/ApplicationOverview.component")
   );
@@ -17,9 +17,10 @@ const ShopRouter = ({ fetchApplicationsStart }) => {
     )
   );
 
+  const dispatch = useDispatch();
   useEffect(() => {
-    fetchApplicationsStart();
-  }, [fetchApplicationsStart]);
+    dispatch(fetchApplicationsStart());
+  }, [dispatch]);
 
   console.log("Shop Router mounted");
 
@@ -43,12 +44,8 @@ const ShopRouter = ({ fetchApplicationsStart }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchApplicationsStart: () => dispatch(fetchApplicationsStart()),
-});
-
 ShopRouter.propTypes = {
   fetchApplicationsStart: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(ShopRouter);
+export default ShopRouter;

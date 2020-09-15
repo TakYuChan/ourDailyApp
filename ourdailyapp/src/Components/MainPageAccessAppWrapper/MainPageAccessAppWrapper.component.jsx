@@ -8,11 +8,11 @@ import PropTypes from "prop-types";
 
 const MainPageAccessAppWrapper = ({ accessAppBtns }) => {
   return (
-    <S.ApplicationsContainer className="application-container">
+    <S.MainPageAccessAppWrapper className="application-container">
       {accessAppBtns.map((app, index) => (
         <MainPageAccessAppBtn key={index} app={app} index={index} />
       ))}
-    </S.ApplicationsContainer>
+    </S.MainPageAccessAppWrapper>
   );
 };
 

@@ -2,27 +2,12 @@ import styled from "styled-components";
 
 const S = {};
 
-// Animation
-// const appear = keyframes`
-//   from {
-//     transform: scale(.5);
-//   },
-//   to {
-//     transform: scale(1);
-//   }
-// `;
-
 // ========== Container =========
 
-S.ApplicationsContainer = styled.div`
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, 0);
+S.MainPageAccessAppWrapper = styled.div`
   display: grid;
-  width: 80%;
-  max-width: 600px;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
 
   --app-size: 120px;
 

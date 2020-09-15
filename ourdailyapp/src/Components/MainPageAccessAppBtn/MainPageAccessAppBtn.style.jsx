@@ -21,7 +21,6 @@ S.ApplicationItemContainer = styled.div`
 
   display: grid;
   place-items: center;
-  // font-family: "Roboto", sans-serif;
 
   font-size: 0.8rem;
   font-weight: 700;

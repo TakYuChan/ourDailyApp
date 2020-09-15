@@ -136,7 +136,7 @@ a {
 .gs-page {
   background: ${(props) => props.theme.body};
   // min-height: calc(100vh - var(--nav-height));
-  min-height: calc(100vh - var(--nav-height));
+  // min-height: calc(100vh - var(--nav-height));
   width: 100%;
 
   overflow: hidden;

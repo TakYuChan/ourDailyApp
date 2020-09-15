@@ -22,75 +22,43 @@ S.MainPageContainer = styled.div`
 
   overflow: hidden;
 
-  position: relative;
+  font-size: clamp(0.8rem, 2vw, 1.7rem);
+
+  display: grid;
+  grid-template-rows: minmax(1em, 16em) minmax(1em, 1fr);
+  grid-template-columns: 1fr 1fr 1fr;
+
+  grid-template-areas:
+    ". imageFrame ."
+    "accessAppWrapperBtn accessAppWrapperBtn accessAppWrapperBtn";
 `;
 
 // ======================= profile Pic and name ===========================
-S.picNameWrapper = styled.div`
-  position: absolute;
-  top: 20%;
+S.ImageFrameWrapper = styled.div`
+  grid-area: imageFrame;
+
+  align-self: flex-end;
+
+  display: grid;
+  place-items: center;
 
   animation: ${appear} 350ms;
-
-  text-align: center;
-`;
-
-S.ImgWrapper = styled.div`
-  font-size: clamp(0.8rem, 1.5vw, 1.5rem);
-  position: relative;
-  --size: 10em;
-  width: var(--size);
-  height: var(--size);
-  border: 5px solid white;
-
-  border-radius: 100%;
-  background-position: center;
-  background-size: cover;
-
-  margin-bottom: 3vh;
-
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
-`;
-
-S.Img = styled.img`
-  object-fit: cover;
-  border-radius: 100%;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  cursor: pointer;
-
-  transition: filter 250ms ease-in-out;
-
-  &:hover {
-    filter: blur(3px) brightness(0.5);
-  }
-  &:hover + .styled_editProfileSpan {
-    opacity: 1;
-    transform: translate(-50%, -20%);
-  }
-`;
-
-S.EditProfileText = styled.span`
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  transform: translate(-50%, 10%);
-  font-size: 0.7em;
-  font-weight: 300;
-  opacity: 0;
-  pointer-events: none;
-
-  transition: opacity 250ms ease-in-out, transform 250ms;
-
-  color: ${(props) => props.theme.mainPage.editProfileText};
 `;
 
 S.username = styled.h2`
   color: ${(props) => props.theme.mainPage.username};
   font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+`;
+
+S.AccessAppBtnWrapper = styled.div`
+  grid-area: accessAppWrapperBtn;
+  width: 100%;
+
+  max-width: 1000px;
+  justify-self: center;
+  align-self: flex-start;
+
+  margin-top: 3.5em;
 `;
 
 export default S;
