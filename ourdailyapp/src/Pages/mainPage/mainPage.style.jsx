@@ -22,14 +22,14 @@ S.MainPageContainer = styled.div`
 
   overflow: hidden;
 
-  font-size: clamp(0.8rem, 2vw, 1.7rem);
+  font-size: clamp(0.8rem, 1.7vw, 1.7rem);
 
   display: grid;
   grid-template-rows: minmax(1em, 18em) minmax(1em, 1fr);
   grid-template-columns: 1fr 1fr 1fr;
 
   @media screen and (min-width: 680px) {
-    grid-template-rows: minmax(1em, 16em) minmax(1em, 1fr);
+    grid-template-rows: minmax(1em, 15em) minmax(1em, 1fr);
   }
 
   grid-template-areas:
@@ -62,7 +62,7 @@ S.AccessAppBtnWrapper = styled.div`
   justify-self: center;
   align-self: flex-start;
 
-  margin-top: 3.5em;
+  margin-top: 3em;
 
   @media (orientation: landscape) {
     margin-bottom: 2em;
