@@ -18,7 +18,7 @@ I have tried to use different ways to improve the code reusability, flexibility 
 @props: reusability UP scope UP
 We have multiple ways to define the consumer, such as using render prop style, hook style.
 @cons: Abusing context API can make the code complexity and readability DOWN, because as to define the context.provider, we have to use composition which will nest the children inside of the provider.
-@Suggested use cases: Use for Super huge implicit prop passing, like themeing or language settings. Also good use case for Compound Component Design Pattern to pass props for a component.
+@Suggested use cases: Use for Super huge implicit prop passing, like themeing or language settings. Due to it's incapability of high update rate.
 
 4. customHooks
 @Use case: useDispatch useSelector useState useMemo useCallback useContext etc.
