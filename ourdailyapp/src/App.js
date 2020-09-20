@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import "./App.css";
 
 import { Switch, Route, Redirect } from "react-router-dom";
+import { IsUserRedirect, ProtectedRoute } from "./helpers/routes.helper";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -19,6 +20,7 @@ import NavUIComponents from "./Components/NavUIComponents/NavUIComponents.compon
 import ProfilePage from "./Pages/ProfilePage/ProfilePage.component";
 import CommentsConverterPage from "./Pages/CommentsConverterPage/CommentsConverterPage.component";
 import NoMatch from "./Pages/NoMatchPage/NoMatchPage.component";
+import HomePage from "./Pages/Home/Home.page";
 
 import "./App.scss";
 
@@ -59,7 +61,6 @@ const App = ({ checkAuthSession, isUserLogged }) => {
   return (
     <ThemeProvider theme={lightTheme}>
       <GlobalStyle />
-      {isUserLogged && <NavUIComponents />}{" "}
       <React.Suspense
         fallback={
           <PixelSpinner
@@ -74,60 +75,43 @@ const App = ({ checkAuthSession, isUserLogged }) => {
           />
         }
       >
+        {/* {isUserLogged && <NavUIComponents />} */}
         <Switch>
-          <Route
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <IsUserRedirect
+            isLogged={isUserLogged}
+            path={"/auth"}
+            loggedInPath={"/main"}
+          >
+            <AuthPage />
+          </IsUserRedirect>
+          <ProtectedRoute exact isLogged={isUserLogged} path="/main">
+            <MainPage />
+          </ProtectedRoute>
+          <ProtectedRoute exact isLogged={isUserLogged} path="/shop">
+            <ShopRouter />
+          </ProtectedRoute>
+          <ProtectedRoute
             exact
-            path="/auth"
-            render={() => (!isUserLogged ? <AuthPage /> : <Redirect to="/" />)}
-          />
-          <Route
-            exact
-            path="/"
-            render={() =>
-              isUserLogged ? <MainPage /> : <Redirect to="/auth" />
-            }
-          />{" "}
-          <Route
-            path="/shop"
-            render={() =>
-              isUserLogged ? <ShopRouter /> : <Redirect to="/auth" />
-            }
-            // component={ShopRouter}
-          />{" "}
-          <Route
+            isLogged={isUserLogged}
             path="/commentsConverter"
-            render={() =>
-              isUserLogged ? <CommentsConverterPage /> : <Redirect to="/auth" />
-            }
-          />{" "}
-          <Route
-            path="/pigGame"
-            render={() =>
-              isUserLogged ? (
-                <PigGamePageWithSpinner />
-              ) : (
-                <Redirect to="/auth" />
-              )
-            }
-          />{" "}
-          <Route
-            path="/profile"
-            render={() =>
-              isUserLogged ? <ProfilePage /> : <Redirect to="/auth/login" />
-            }
-          />{" "}
-          <Route
-            path="/cart"
-            render={() =>
-              isUserLogged ? <CartPage /> : <Redirect to="/auth/login" />
-            }
-          />{" "}
-          <Route
-            path="/wishlist"
-            render={() =>
-              isUserLogged ? <WishListPage /> : <Redirect to="/auth/login" />
-            }
-          />{" "}
+          >
+            <CommentsConverterPage />
+          </ProtectedRoute>
+          <ProtectedRoute exact isLogged={isUserLogged} path="/pigGame">
+            <PigGamePageWithSpinner />
+          </ProtectedRoute>
+          <ProtectedRoute exact isLogged={isUserLogged} path="/profile">
+            <ProfilePage />
+          </ProtectedRoute>
+          <ProtectedRoute exact isLogged={isUserLogged} path="/cart">
+            <CartPage />
+          </ProtectedRoute>
+          <ProtectedRoute exact isLogged={isUserLogged} path="/wishlist">
+            <WishListPage />
+          </ProtectedRoute>
           <Route
             // render={() => (isUserLogged ? <NoMatch /> : <Redirect to="/login" />)}
             component={NoMatch}

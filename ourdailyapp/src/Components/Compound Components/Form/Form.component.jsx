@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react";
 
 import useDismiss from "../../../hooks/useDismiss.hooks";
-import { setClickedAlertSvg_loginForm } from "../../../redux/logInForm/logInForm.actions";
 
 import S from "./styles/Form.style";
 

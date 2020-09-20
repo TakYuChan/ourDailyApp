@@ -29,6 +29,8 @@ S.ApplicationItemContainer = styled.div`
   width: 100%;
 
   animation: 600ms ${appear} backwards ${(props) => props.stagger}s;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
 `;
 
 S.Image = styled.img`

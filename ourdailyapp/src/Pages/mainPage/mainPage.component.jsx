@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import S from "./mainPage.style";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchAccessAppBtnsStart } from "../../redux/app/app.actions";
 
 import MainPageAccessAppWrapper from "../../Components/MainPageAccessAppWrapper/MainPageAccessAppWrapper.component";
@@ -10,7 +10,6 @@ import ImageFrame from "../../Components/ImageFrames/ImageFrame/ImageFrame.compo
 import profilePic from "../../assets/UIFace.png";
 
 const MainPage = () => {
-  const accessAppBtns = useSelector((state) => state.app.accessAppBtns);
   const dispatch = useDispatch();
 
   // ============= Life Cycle Hooks =============
