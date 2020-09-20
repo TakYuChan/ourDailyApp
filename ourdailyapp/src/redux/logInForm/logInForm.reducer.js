@@ -1,7 +1,6 @@
 import LogInFormActionTypes from "./logInForm.types";
 
 const INITIATE_STATE = {
-  clickedAlertSvg: null,
   isSigningUp: false,
 };
 

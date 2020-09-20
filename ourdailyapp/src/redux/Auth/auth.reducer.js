@@ -36,6 +36,11 @@ const authReducer = (state = INITIATE_STATE, action) => {
         signUpAlert: INITIATE_STATE.signUpAlert,
         logInAlert: INITIATE_STATE.logInAlert,
       };
+    case AuthActionTypes.SET_ISLOGGED_TRUE:
+      return {
+        ...state,
+        isLogged: true,
+      };
     default:
       return state;
   }

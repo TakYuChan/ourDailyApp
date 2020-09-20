@@ -45,7 +45,6 @@ const LogInForm = () => {
           !(clickedAlertSvg === "email") && (
             <Form.AlertSvg
               onClick={() => {
-                console.log("clicked alert svg");
                 setClickedAlertSvg("email");
               }}
             >

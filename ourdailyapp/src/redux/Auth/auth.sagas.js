@@ -2,24 +2,19 @@ import { takeLatest, call, put, all } from "redux-saga/effects";
 
 import AuthActionTypes from "./auth.types";
 import {
-  // signOutSuccess,
-  // signOutFailure,
-  // signInSuccess,
   signInFailure,
   signInSuccess,
   signUpFailure,
   signUpSuccess,
   clearSignUpAlert,
   clearLogInAlert,
+  setIsLoggedTrue,
 } from "./auth.actions";
 
 import {
-  clearClickedAlertSvg,
   setIsSigningUpTRUE,
   setIsSigningUpFALSE,
 } from "../signUpForm/signUpform.actions";
-
-import { setClickedAlertSvg_loginForm } from "../logInForm/logInForm.actions";
 
 import globalErrHandler from "../../utils/globalErrHandler";
 
@@ -37,9 +32,9 @@ function* onEmailSignInStart() {
   yield takeLatest(AuthActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
 
-function* onCheckAuthSession() {
-  yield takeLatest(AuthActionTypes.CHECK_AUTH_SESSION, isUserAuthenticated);
-}
+// function* onCheckAuthSession() {
+//   yield takeLatest(AuthActionTypes.CHECK_AUTH_SESSION, isUserAuthenticated);
+// }
 
 function* onSignOutStart() {
   yield takeLatest(AuthActionTypes.SIGN_OUT_START, signOut);
@@ -69,7 +64,7 @@ export default function* authSaga() {
   yield all([
     call(onGoogleAuthorizationSuccess),
     call(onEmailSignInStart),
-    call(onCheckAuthSession),
+    // call(onCheckAuthSession),
     call(onSignOutStart),
     call(onSignUpStart),
     call(onSignUpSuccess),
@@ -80,18 +75,6 @@ export default function* authSaga() {
 }
 
 // ================= other generator functions ==================
-
-function* isUserAuthenticated() {
-  // try {
-  //   const userAuth = yield call(getCurrentUser);
-  //   if (userAuth === null) return;
-  //   const userRef = yield call(createUserProfileDocument, userAuth);
-  //   const snapshot = yield userRef.get();
-  //   yield put(signInSuccess({ id: snapshot.id, ...snapshot.data() }));
-  // } catch (error) {
-  //   yield put(signInFailure(error));
-  // }
-}
 
 function* signOut() {}
 
@@ -152,13 +135,14 @@ function* signInFailHandler({ error, targetComponent }) {
 function* afterSignUp() {
   try {
     yield put(clearSignUpAlert());
-    yield put(clearClickedAlertSvg());
+    // yield put(clearClickedAlertSvg());
   } catch (error) {}
 }
 
 function* afterSignIn() {
   try {
     yield put(clearLogInAlert());
-    yield put(clearClickedAlertSvg());
+    yield put(setIsLoggedTrue());
+    // yield put(clearClickedAlertSvg());
   } catch (error) {}
 }

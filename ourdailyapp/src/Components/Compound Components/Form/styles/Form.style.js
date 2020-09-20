@@ -137,6 +137,7 @@ S.DatePickerInput = styled.input`
 
 S.AlertSvg = styled.div`
   cursor: pointer;
+  margin-bottom: 0.5em;
   @keyframes pops {
     from {
       opacity: 0;
@@ -160,6 +161,7 @@ S.LogInBtn = styled.button`
   font-size: 0.6em;
   border: 0;
   padding: 0.5em 2.4em;
+  outline: 0;
   background: ${(props) => props.theme.LogInForm.logInBtn_bg};
   color: ${(props) => props.theme.LogInForm.logInBtn_text};
 
@@ -177,7 +179,7 @@ S.SignUpBtn = styled.button`
   align-self: center;
   background: ${(props) => props.theme.SignUpForm.SignUpButton_bg};
   color: ${(props) => props.theme.SignUpForm.SignUpButton_text};
-
+  outline: 0;
   display: flex;
   justify-content: space-between;
 

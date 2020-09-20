@@ -72,3 +72,7 @@ export const clearSignUpAlert = () => ({
 export const clearLogInAlert = () => ({
   type: AuthActionTypes.CLEAR_LOGIN_ALERT,
 });
+
+export const setIsLoggedTrue = () => ({
+  type: AuthActionTypes.SET_ISLOGGED_TRUE,
+});
