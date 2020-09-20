@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function useLogInForm() {
-  console.log("useLogInForm called!");
   const [logInDetails, setLogInDetails] = useState({ email: "", password: "" });
   const [clickedAlertSvg, setClickedAlertSvg] = useState(null);
 

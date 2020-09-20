@@ -13,6 +13,17 @@ Form.Group = function FormGroup({ children, ...restProps }) {
   return <S.FormGroup {...restProps}>{children}</S.FormGroup>;
 };
 
+Form.Block = function FormBlock({ children, ...restProps }) {
+  return <S.Block {...restProps}>{children}</S.Block>;
+};
+
+Form.RadioInputGroup = function FormRadipInputGroup({
+  children,
+  ...restProps
+}) {
+  return <S.RadioInputGroup {...restProps}>{children}</S.RadioInputGroup>;
+};
+
 Form.InputSvg = function FormInputSvg({ children, ...restProps }) {
   return <S.InputSvg {...restProps}>{children}</S.InputSvg>;
 };
@@ -23,6 +34,18 @@ Form.Input = function FormInput({ children, ...restProps }) {
 
 Form.Label = function FormLabel({ ...restProps }) {
   return <S.FormLabel {...restProps} />;
+};
+
+Form.RadioInput = function FormRadioInput({ ...restProps }) {
+  return <S.RadioInput {...restProps} />;
+};
+
+Form.RadioLabel = function FormRadioSpan({ children, ...restProps }) {
+  return <S.RadioLabel {...restProps}>{children}</S.RadioLabel>;
+};
+
+Form.DatePickerInput = function FormDatePickerInput({ ...restProps }) {
+  return <S.DatePickerInput {...restProps} />;
 };
 
 Form.AlertSvg = function FormAlertSvg({ children, ...restProps }) {

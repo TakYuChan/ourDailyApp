@@ -1,8 +1,6 @@
 import { useCallback } from "react";
-import { useDispatch } from "react-redux";
 
 export default function useDismiss(refNode, callBackAction) {
-  const dispatch = useDispatch();
   return useCallback(
     (e) => {
       // If we click inside of our ref, nothing happens
@@ -12,6 +10,6 @@ export default function useDismiss(refNode, callBackAction) {
       // Otherwise close the alertTooltip
       callBackAction("");
     },
-    [callBackAction, refNode, dispatch]
+    [callBackAction, refNode]
   );
 }

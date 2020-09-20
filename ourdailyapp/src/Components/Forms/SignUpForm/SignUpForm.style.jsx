@@ -98,7 +98,6 @@ S.CustomSpan = styled.span`
   font-size: 0.4em;
   padding: 0.3em 1em;
   border: 0.2em solid white;
-  em solid white;
   display: inline-block;
   color: white;
   text-transform: uppercase;

@@ -26,6 +26,18 @@ S.FormGroup = styled.div`
   }
 `;
 
+S.Block = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 100%;
+`;
+
+S.RadioInputGroup = styled.div`
+  flex-basis: 100%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
 S.InputSvg = styled.div`
   & svg {
     --size: 1.2em;
@@ -49,11 +61,10 @@ S.FormInput = styled.input`
   color: ${(props) => props.theme.FormInput.text};
 
   &:focus + .styled_label,
-  // &:valid + .styled_label,
   &.active + .styled_label {
     font-size: 0.6em;
-    ${(props) => props.hasSvgComponent && "padding: 0.7em 0;"};
-    padding-left: 1em;
+    padding-left: 0em;
+    ${(props) => props.hasSvgComponent && "padding-left: 1em;"};
     transform: translateY(-1.4em);
   }
 
@@ -74,6 +85,54 @@ S.FormLabel = styled.label`
   font-size: ${(props) => (props.hasSvgComponent ? "0.9em;" : "0.6em;")};
 
   pointer-events: none;
+`;
+
+S.RadioInput = styled.input`
+  display: none;
+
+  &:checked + .S_CustomSpan {
+    border-color: ${(props) => props.theme.SignUpPage.genderRadiusBtn_hover};
+    background: ${(props) => props.theme.SignUpPage.genderRadiusBtn_hover};
+  }
+`;
+
+S.RadioLabel = styled.label`
+font-size: 0.4em;
+padding: 0.3em 1em;
+border: 0.2em solid white;
+em solid white;
+display: inline-block;
+color: white;
+text-transform: uppercase;
+cursor: pointer;
+
+
+margin-bottom: 0.5em;
+
+--radius: 6px;
+
+&.styled_female {
+  border-right: 0.1em solid white;
+  border-top-left-radius: var(--radius);
+  border-bottom-left-radius: var(--radius);
+}
+
+&.styled_male {
+  border-left: 0.1em solid white;
+  border-top-right-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}`;
+
+S.DatePickerInput = styled.input`
+  border: 0;
+  background: 0;
+  outline: 0;
+
+  font-size: 0.6em;
+  color: ${(props) => props.theme.FormInput.text};
+
+  font-weight: 700;
+  text-transform: uppercase;
 `;
 
 S.AlertSvg = styled.div`
@@ -112,14 +171,31 @@ S.LogInBtn = styled.button`
 `;
 
 S.SignUpBtn = styled.button`
-  border: 0;
+  font-size: 0.6em;
+  border: 2px solid ${(props) => props.theme.SignUpForm.SignUpButton_border};
   padding: 0.5em 2.4em;
-  background: ${(props) => props.theme.LogInForm.logInBtn_bg};
-  color: ${(props) => props.theme.LogInForm.logInBtn_text};
+  align-self: center;
+  background: ${(props) => props.theme.SignUpForm.SignUpButton_bg};
+  color: ${(props) => props.theme.SignUpForm.SignUpButton_text};
+
+  display: flex;
+  justify-content: space-between;
+
+  transition: opacity 250ms ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  margin-top: 2em;
 
   font-weight: 700;
 
   cursor: pointer;
+
+  & > * {
+    margin-left: 0.5em;
+  }
 `;
 
 S.AlertTooltip = styled.div`
