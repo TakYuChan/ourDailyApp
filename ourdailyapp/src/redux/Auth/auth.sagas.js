@@ -5,10 +5,12 @@ import {
   // signOutSuccess,
   // signOutFailure,
   // signInSuccess,
-  // signInFailure,
+  signInFailure,
+  signInSuccess,
   signUpFailure,
   signUpSuccess,
   clearSignUpAlert,
+  clearLogInAlert,
 } from "./auth.actions";
 
 import {
@@ -17,9 +19,11 @@ import {
   setIsSigningUpFALSE,
 } from "../signUpForm/signUpform.actions";
 
+import { setClickedAlertSvg_loginForm } from "../logInForm/logInForm.actions";
+
 import globalErrHandler from "../../utils/globalErrHandler";
 
-import { signUpUser, checkAuthInfoFromDB } from "./auth.requests";
+import { signUpUser, checkAuthInfoFromDB, logInUser } from "./auth.requests";
 
 // ================= Sagas ==================
 function* onGoogleAuthorizationSuccess() {
@@ -29,9 +33,10 @@ function* onGoogleAuthorizationSuccess() {
   );
 }
 
-// function* onEmailSignInStart() {
-//   yield takeLatest(AuthActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
-// }
+function* onEmailSignInStart() {
+  yield takeLatest(AuthActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
+}
+
 function* onCheckAuthSession() {
   yield takeLatest(AuthActionTypes.CHECK_AUTH_SESSION, isUserAuthenticated);
 }
@@ -52,15 +57,25 @@ function* onSignUpFailure() {
   yield takeLatest(AuthActionTypes.SIGN_UP_FAILURE, signUpFailHandler);
 }
 
+function* onLogInFailure() {
+  yield takeLatest(AuthActionTypes.SIGN_IN_FAILURE, signInFailHandler);
+}
+
+function* onLogInSuccess() {
+  yield takeLatest(AuthActionTypes.SIGN_IN_SUCCESS, afterSignIn);
+}
+
 export default function* authSaga() {
   yield all([
     call(onGoogleAuthorizationSuccess),
-    // call(onEmailSignInStart),
+    call(onEmailSignInStart),
     call(onCheckAuthSession),
     call(onSignOutStart),
     call(onSignUpStart),
     call(onSignUpSuccess),
     call(onSignUpFailure),
+    call(onLogInFailure),
+    call(onLogInSuccess),
   ]);
 }
 
@@ -97,6 +112,19 @@ function* signUp({ signUpDetails }) {
   }
 }
 
+function* signInWithEmail({ logInDetails }) {
+  try {
+    console.log("signInWithEmail");
+    // Start spinner
+    yield call(logInUser, logInDetails);
+    yield put(signInSuccess());
+    // Stop spinner
+  } catch (error) {
+    yield put(signInFailure(error, "logInAlert"));
+    // Stop spinner
+  }
+}
+
 function* signInWithGoogle({ authorizeServerRes }) {
   try {
     // Start spinner
@@ -117,9 +145,20 @@ function* signUpFailHandler({ error, targetComponent }) {
   yield globalErrHandler(error, targetComponent);
 }
 
+function* signInFailHandler({ error, targetComponent }) {
+  yield globalErrHandler(error, targetComponent);
+}
+
 function* afterSignUp() {
   try {
     yield put(clearSignUpAlert());
+    yield put(clearClickedAlertSvg());
+  } catch (error) {}
+}
+
+function* afterSignIn() {
+  try {
+    yield put(clearLogInAlert());
     yield put(clearClickedAlertSvg());
   } catch (error) {}
 }

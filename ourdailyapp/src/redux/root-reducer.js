@@ -12,6 +12,7 @@ import cartReducer from "./cart/cart.reducer";
 import routePathReducer from "./routePath/routePath.reducer";
 import authPageReducer from "./AuthPage/AuthPage.reducer";
 import signUpFormReducer from "./signUpForm/signUpForm.reducer";
+import logInFormReducer from "./logInForm/logInForm.reducer";
 
 // =========== Applications ===========
 import pigGameReducer from "./pigGame/pigGame.reducer";
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
   routePath: routePathReducer,
   authPage: authPageReducer,
   signUpForm: signUpFormReducer,
+  logInForm: logInFormReducer,
   // =========== Applications ===========
   pigGame: pigGameReducer,
   pigGameModals: pigGameModalsReducer,

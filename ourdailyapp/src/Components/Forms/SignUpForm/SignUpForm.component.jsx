@@ -125,7 +125,6 @@ const SignUpForm = ({
       </S.GenderAndDateWrapper>
       <S.SignUpButton
         type="submit"
-        name="birthday"
         onClick={(event) => {
           event.preventDefault();
           console.log("submit btn clicked!");

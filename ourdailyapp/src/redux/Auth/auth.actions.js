@@ -5,9 +5,9 @@ export const googleAuthorizationSuccess = (authorizeServerRes) => ({
   authorizeServerRes,
 });
 
-export const emailSignInStart = (signUpDetails) => ({
+export const emailSignInStart = (logInDetails) => ({
   type: AuthActionTypes.EMAIL_SIGN_IN_START,
-  payload: signUpDetails,
+  logInDetails,
 });
 
 export const signInSuccess = (user) => ({
@@ -15,9 +15,10 @@ export const signInSuccess = (user) => ({
   payload: user,
 });
 
-export const signInFailure = (error) => ({
+export const signInFailure = (error, targetComponent) => ({
   type: AuthActionTypes.SIGN_IN_FAILURE,
-  payload: error,
+  error,
+  targetComponent,
 });
 
 export const checkAuthSession = () => ({

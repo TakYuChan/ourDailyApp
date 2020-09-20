@@ -7,7 +7,6 @@ S.FormInputBlock = styled.div`
   display: flex;
   align-items: center;
   padding: 0.4em 0.2em;
-  // padding-bottom: 0.4em;
   position: relative;
 
   transition: all 250ms linear background 0;

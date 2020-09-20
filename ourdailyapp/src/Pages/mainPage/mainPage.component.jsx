@@ -18,7 +18,6 @@ const MainPage = () => {
   useEffect(() => {
     dispatch(fetchAccessAppBtnsStart());
   }, [dispatch]);
-
   return (
     <S.MainPageContainer className="MainPage gs-page ">
       <S.ImageFrameWrapper>

@@ -18,6 +18,7 @@ S.MainPageAccessAppWrapper = styled.div`
   grid-template-columns: repeat(auto-fit, var(--btn-size));
   grid-auto-rows: var(--btn-size);
   row-gap: 1em;
+  column-gap: 0.6em;
 `;
 
 export default S;

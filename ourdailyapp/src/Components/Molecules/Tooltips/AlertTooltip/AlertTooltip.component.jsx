@@ -1,24 +1,23 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef } from "react";
 import S from "./AlertTooltip.style";
+
+import useDismiss from "../../../../hooks/useDismiss.hooks";
 
 import { connect } from "react-redux";
 import { setClickedAlertSvg } from "../../../../redux/signUpForm/signUpform.actions";
+import { setClickedAlertSvg_loginForm } from "../../../../redux/logInForm/logInForm.actions";
 
-const AlertTooltip = ({ alerts, place, setClickedAlertSvg }) => {
+const AlertTooltip = ({
+  alerts,
+  place,
+  setClickedAlertSvg,
+  setClickedAlertSvg_loginForm,
+  from,
+}) => {
   const node = useRef();
-
-  const dismissAlertTooltip = useCallback(
-    (e) => {
-      // If we click inside of our ref, nothing happens
-      if (node.current.contains(e.target)) {
-        return;
-      }
-      // Otherwise close the alertTooltip
-      setClickedAlertSvg("");
-    },
-    [setClickedAlertSvg]
-  );
-
+  const action =
+    from === "logInForm" ? setClickedAlertSvg_loginForm : setClickedAlertSvg;
+  const dismissAlertTooltip = useDismiss(node, action);
   useEffect(() => {
     // add eventListener to document when mounted
     document.addEventListener("mousedown", dismissAlertTooltip);
@@ -27,10 +26,6 @@ const AlertTooltip = ({ alerts, place, setClickedAlertSvg }) => {
       document.removeEventListener("mousedown", dismissAlertTooltip);
     };
   }, [dismissAlertTooltip]);
-
-  useEffect(() => {
-    console.log("AlertTooltip rerendered!");
-  });
 
   // place: indicate the direction of the tooltip [top | right]
   return (
@@ -42,6 +37,8 @@ const AlertTooltip = ({ alerts, place, setClickedAlertSvg }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   setClickedAlertSvg: (target) => dispatch(setClickedAlertSvg(target)),
+  setClickedAlertSvg_loginForm: (target) =>
+    dispatch(setClickedAlertSvg_loginForm(target)),
 });
 
 export default connect(null, mapDispatchToProps)(AlertTooltip);

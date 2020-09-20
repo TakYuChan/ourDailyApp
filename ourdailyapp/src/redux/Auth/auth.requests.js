@@ -6,6 +6,13 @@ export const signUpUser = async (signUpDetails) => {
   });
 };
 
+export const logInUser = async (logInDetails) => {
+  console.log("post request sent");
+  await axios.post(`${process.env.REACT_APP_URL}/users/login`, {
+    ...logInDetails,
+  });
+};
+
 export const checkAuthInfoFromDB = async (authorizeServerRes, url) => {
   const backEndResponse = await axios({
     method: "POST",

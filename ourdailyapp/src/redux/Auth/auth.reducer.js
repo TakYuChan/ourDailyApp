@@ -1,9 +1,9 @@
 import AuthActionTypes from "./auth.types";
 
-import { allocateSignUpAlerts } from "./auth.utils";
+import { allocateSignUpAlerts, allocateLogInAlerts } from "./auth.utils";
 
 const INITIATE_STATE = {
-  isLogged: true,
+  isLogged: false,
   signUpAlert: {
     nameAlerts: [],
     emailAlerts: [],
@@ -11,7 +11,10 @@ const INITIATE_STATE = {
     genderAlerts: [],
     birthdayAlerts: [],
   },
-  logInAlert: [],
+  logInAlert: {
+    emailAlerts: [],
+    formAlerts: [],
+  },
 };
 
 const authReducer = (state = INITIATE_STATE, action) => {
@@ -21,11 +24,11 @@ const authReducer = (state = INITIATE_STATE, action) => {
         ...state,
         signUpAlert: allocateSignUpAlerts(action.alert),
       };
-    // case AuthActionTypes.SET_LOGIN_ALERT:
-    //   return {
-    //     ...state,
-    //     logInAlert: action.alert,
-    //   }
+    case AuthActionTypes.SET_LOGIN_ALERT:
+      return {
+        ...state,
+        logInAlert: allocateLogInAlerts(action.alert),
+      };
     case AuthActionTypes.CLEAR_LOGIN_ALERT:
     case AuthActionTypes.CLEAR_SIGNUP_ALERT:
       return {
