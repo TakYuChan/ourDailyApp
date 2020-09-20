@@ -10,7 +10,7 @@ export default function useDismiss(refNode, callBackAction) {
         return;
       }
       // Otherwise close the alertTooltip
-      dispatch(callBackAction(""));
+      callBackAction("");
     },
     [callBackAction, refNode, dispatch]
   );

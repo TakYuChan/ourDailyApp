@@ -7,16 +7,6 @@ const INITIATE_STATE = {
 
 const logInFormReducer = (state = INITIATE_STATE, action) => {
   switch (action.type) {
-    case LogInFormActionTypes.SET_CLICKED_ALERTSVG_LOGIN:
-      return {
-        ...state,
-        clickedAlertSvg: action.target,
-      };
-    case LogInFormActionTypes.CLEAR_CLICKED_ALERTSVG_LOGIN:
-      return {
-        ...state,
-        clickedAlertSvg: INITIATE_STATE.clickedAlertSvg,
-      };
     case LogInFormActionTypes.SET_IS_LOGGINGIN_TRUE:
       return {
         ...state,

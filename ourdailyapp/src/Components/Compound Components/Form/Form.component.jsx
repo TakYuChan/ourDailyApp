@@ -37,10 +37,14 @@ Form.SignUpBtn = function FormSignUpBtn({ children, ...restProps }) {
   return <S.SignUpBtn {...restProps}>{children}</S.SignUpBtn>;
 };
 
-Form.AlertTooltip = function FormAlertTooltip({ children, ...restProps }) {
+Form.AlertTooltip = function FormAlertTooltip({
+  setClickedAlertSvg,
+  children,
+  ...restProps
+}) {
   const node = useRef();
 
-  const dismissAlertTooltip = useDismiss(node, setClickedAlertSvg_loginForm);
+  const dismissAlertTooltip = useDismiss(node, setClickedAlertSvg);
 
   useEffect(() => {
     // add eventListener to document when mounted

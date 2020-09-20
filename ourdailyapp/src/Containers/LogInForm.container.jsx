@@ -1,31 +1,26 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Form } from "../Components/Compound Components";
 
 import useLogInForm from "../hooks/useLogInForm.hooks";
 import { emailSignInStart } from "../redux/Auth/auth.actions";
-import { setClickedAlertSvg_loginForm } from "../redux/logInForm/logInForm.actions";
+// import { setClickedAlertSvg_loginForm } from "../redux/logInForm/logInForm.actions";
 
 import { ReactComponent as UserSvg } from "../assets/svg/user.svg";
 import { ReactComponent as LockSvg } from "../assets/svg/password.svg";
 import { ReactComponent as AlertSvg } from "../assets/svg/alert.svg";
 
 const LogInForm = () => {
-  const [logInDetails, setLogInDetails] = useState({ email: "", password: "" });
-
-  const { logInAlertObj, clickedAlertSvg } = useLogInForm();
-
-  const dispatch = useDispatch();
+  const {
+    logInAlertObj,
+    clickedAlertSvg,
+    setClickedAlertSvg,
+    logInDetails,
+    handleInputChange,
+  } = useLogInForm();
 
   const { email, password } = logInDetails;
-
-  const handleInputChange = useCallback((event) => {
-    const { name, value } = event.target;
-    setLogInDetails((prevLogInDetails) => ({
-      ...prevLogInDetails,
-      [name]: value,
-    }));
-  }, []);
+  const dispatch = useDispatch();
 
   return (
     <Form>
@@ -51,14 +46,17 @@ const LogInForm = () => {
             <Form.AlertSvg
               onClick={() => {
                 console.log("clicked alert svg");
-                dispatch(setClickedAlertSvg_loginForm("email"));
+                setClickedAlertSvg("email");
               }}
             >
               <AlertSvg />
             </Form.AlertSvg>
           )}
         {clickedAlertSvg === "email" && (
-          <Form.AlertTooltip className="top">
+          <Form.AlertTooltip
+            className="top"
+            setClickedAlertSvg={setClickedAlertSvg}
+          >
             {logInAlertObj.emailAlerts.map((alertMsg) => `${alertMsg}${"\n"}`)}
           </Form.AlertTooltip>
         )}
@@ -86,7 +84,7 @@ const LogInForm = () => {
             <Form.AlertSvg
               onClick={() => {
                 console.log("clicked alert svg");
-                dispatch(setClickedAlertSvg_loginForm("password"));
+                setClickedAlertSvg("password");
               }}
             >
               <AlertSvg />
@@ -95,7 +93,10 @@ const LogInForm = () => {
 
         <Form.ForgotPassBtn>Forgot Password?</Form.ForgotPassBtn>
         {clickedAlertSvg === "password" && (
-          <Form.AlertTooltip className="top">
+          <Form.AlertTooltip
+            className="top"
+            setClickedAlertSvg={setClickedAlertSvg}
+          >
             {logInAlertObj.formAlerts.map((alertMsg) => `${alertMsg}${"\n"}`)}
           </Form.AlertTooltip>
         )}
@@ -114,4 +115,4 @@ const LogInForm = () => {
   );
 };
 
-export default LogInForm;
+export default React.memo(LogInForm);

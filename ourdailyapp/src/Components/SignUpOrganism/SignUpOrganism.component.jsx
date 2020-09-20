@@ -1,11 +1,12 @@
 import React from "react";
 import S from "./SignUpOrganism.style";
 
-import SignUpForm from "../Forms/SignUpForm/SignUpForm.component";
+// import SignUpForm from "../Forms/SignUpForm/SignUpForm.component";
 import OauthBtn from "../Molecules/Buttons/OauthBtn/OauthBtn.component";
 
 import OauthBtnRounded from "../Molecules/Buttons/OauthBtnRounded/OauthBtnRounded.component";
 import GoogleAuthBtn from "../Molecules/Buttons/GoogleAuthBtn.component";
+import SignUpForm from "../../Containers/SignUpForm.container";
 
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";
 import { ReactComponent as AppleSvg } from "../../assets/svg/apple.svg";

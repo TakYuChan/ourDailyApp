@@ -3,7 +3,6 @@ import S from "./FormInput.style";
 
 import { connect, useDispatch } from "react-redux";
 import { setClickedAlertSvg } from "../../../../redux/signUpForm/signUpform.actions";
-import { setClickedAlertSvg_loginForm } from "../../../../redux/logInForm/logInForm.actions";
 
 import AlertTooltip from "../../../Molecules/Tooltips/AlertTooltip/AlertTooltip.component";
 
@@ -52,9 +51,7 @@ const FormInput = ({
         <AlertSvg
           className="S_AlertSvg"
           onClick={() => {
-            from === "logInForm"
-              ? dispatch(setClickedAlertSvg_loginForm(otherProps.name))
-              : setClickedAlertSvg(otherProps.name);
+            setClickedAlertSvg(otherProps.name);
           }}
         />
       )}

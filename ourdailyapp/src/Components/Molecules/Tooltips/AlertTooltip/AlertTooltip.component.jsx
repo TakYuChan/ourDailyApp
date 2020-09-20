@@ -5,18 +5,10 @@ import useDismiss from "../../../../hooks/useDismiss.hooks";
 
 import { connect } from "react-redux";
 import { setClickedAlertSvg } from "../../../../redux/signUpForm/signUpform.actions";
-import { setClickedAlertSvg_loginForm } from "../../../../redux/logInForm/logInForm.actions";
 
-const AlertTooltip = ({
-  alerts,
-  place,
-  setClickedAlertSvg,
-  setClickedAlertSvg_loginForm,
-  from,
-}) => {
+const AlertTooltip = ({ alerts, place, setClickedAlertSvg, from }) => {
   const node = useRef();
-  const action =
-    from === "logInForm" ? setClickedAlertSvg_loginForm : setClickedAlertSvg;
+  const action = setClickedAlertSvg;
   const dismissAlertTooltip = useDismiss(node, action);
   useEffect(() => {
     // add eventListener to document when mounted
@@ -37,8 +29,6 @@ const AlertTooltip = ({
 
 const mapDispatchToProps = (dispatch) => ({
   setClickedAlertSvg: (target) => dispatch(setClickedAlertSvg(target)),
-  setClickedAlertSvg_loginForm: (target) =>
-    dispatch(setClickedAlertSvg_loginForm(target)),
 });
 
 export default connect(null, mapDispatchToProps)(AlertTooltip);
