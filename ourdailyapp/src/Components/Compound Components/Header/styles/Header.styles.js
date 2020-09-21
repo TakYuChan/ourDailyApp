@@ -1,11 +1,26 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { NavLink } from "react-router-dom";
+
+const buttonStyle = css`
+  color: white;
+  border-radius: 50px;
+  background: 0;
+  outline: 0;
+  border: 2px solid white;
+  font-weight: bold;
+  cursor: pointer;
+`;
+
+const groupStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+`;
 
 const S = {};
 
 S.Background = styled.section`
-  height: 100vh;
-  width: 100vw;
   background: black;
   background: url(${({ src }) =>
       src ? `${src}` : "../images/misc/home-bg.jpg"})
@@ -13,15 +28,43 @@ S.Background = styled.section`
 `;
 S.Frame = styled.div`
   display: grid;
-  grid-template-columns: 1fr minmax(400px, 1300px) 1fr;
+  grid-template-columns: 1fr minmax(200px, 1300px) 1fr;
+  padding-bottom: 300px;
+  max-height: 650px;
+
+  @media screen and (min-width: 851px) {
+    max-height: 898px;
+  }
 `;
 S.Group = styled.div`
-  //   border: 1px solid white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
+  ${groupStyle}
 `;
+
+S.HeroGroup = styled.div`
+  ${groupStyle}
+  font-size: clamp(0.5rem, 1vw, 1rem);
+  padding: 6em 25px 15px;
+`;
+
+S.HeroTextWrapper = styled.div`
+  flex-basis: 100%;
+  align-self: center;
+
+  @media screen and (min-width: 550px) {
+    padding: 0 15%;
+  }
+
+  @media screen and (min-width: 650px) {
+    flex-basis: 65%;
+    padding: 0;
+  }
+  @media screen and (min-width: 851px) {
+    align-self: center;
+    padding: 0;
+    flex-basis: 48%;
+  }
+`;
+
 S.Logo = styled.img`
   width: 80px;
   height: 80px;
@@ -30,21 +73,65 @@ S.Logo = styled.img`
 S.Link = styled(NavLink)`
   text-transform: capitalize;
   color: #f8f8f8;
+  font-size: 1rem;
+  margin-left: 5em;
+  white-space: nowrap;
 `;
 S.Button = styled.button`
-  background: 0;
-  outline: 0;
-  border: 2px solid white;
-  border-radius: 25px;
-  color: white;
-  font-weight: bold;
+  ${buttonStyle}
   padding: 0.5em 2em;
   margin-left: 2em;
-  cursor: pointer;
+  font-size: 0.9rem;
 `;
 
-S.Title = styled.h1``;
-S.Subtitle = styled.h2``;
+S.HeroButton = styled.button`
+  ${buttonStyle}
+  padding: 1em 2.2em;
+  letter-spacing: 1px;
+  font-size: 1rem;
+`;
+
+S.HeroImage = styled.img`
+  object-fit: cover;
+
+  position: absolute;
+  bottom: -18em;
+  @media screen and (min-width: 650px) {
+    opacity: 0.2;
+    right: 0;
+    width: 50em;
+    height: auto;
+  }
+
+  @media screen and (min-width: 851px) {
+    opacity: 0.4;
+    width: 30em;
+    font-size: clamp(1rem, 1.6vw, 1.3rem);
+    bottom: -13em;
+  }
+  @media screen and (min-width: 1000px) {
+    opacity: 1;
+  }
+`;
+
+S.Title = styled.h1`
+  color: #f8f8f8;
+  margin: 0 0 0.6rem;
+  font-size: clamp(2rem, 5.3vw, 3.5rem);
+`;
+S.Subtitle = styled.h2`
+  color: #f8f8f8;
+  font-size: clamp(1.2rem, 4.5vw, 2.8rem);
+  font-weight: 300;
+  margin: 0 0 0.6rem;
+`;
+
+S.Text = styled.p`
+  color: #f8f8f8;
+  margin: 0 0 2rem;
+  line-height: 1.6rem;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+`;
 
 S.DropDownTogglerWrapper = styled.div`
   width: 26px;
@@ -104,11 +191,13 @@ S.DropDownMenu = styled.nav`
   top: 100%;
   left: 0;
   width: 100%;
-  background: black;
-  opacity: 0.5;
+  background: #848484;
+
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
 
-  transition: all 550ms ease-in-out;
+  transition: all 350ms ease-in-out;
+
+  z-index: 10;
 
   &.active {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
@@ -123,16 +212,16 @@ S.ul = styled.ul`
 S.DropDownItem = styled.li`
   text-transform: capitalize;
   color: white;
-  border-bottom: 1px solid #848484;
+  border-bottom: 1px solid #dbe1e8;
   padding: 1em 1em;
   cursor: pointer;
 
   position: relative;
 
   &:hover {
-    color: #849dc5;
+    // color: #849dc5;
     // outline: 1px solid #f8f8f8;
-    // background: #dbe1e8;
+    background: #849dc5;
   }
 `;
 
