@@ -4,7 +4,6 @@ import { useMediaQuery } from "react-responsive";
 
 const HomeHeader = () => {
   const width_under_850 = useMediaQuery({ query: "(max-device-width: 850px" });
-  const width_under_650 = useMediaQuery({ query: "(max-device-width: 650px" });
 
   const [dropDownHidden, toggleDropDownHidden] = useState(true);
 
@@ -63,35 +62,7 @@ const HomeHeader = () => {
 
         {/* ============ Hero ============ */}
 
-        <Header.HeroGroup
-          style={{
-            gridColumn: "2",
-          }}
-        >
-          <Header.HeroTextWrapper>
-            <Header.Title>Land A Coding Job with Skillsme Rating</Header.Title>
-            <Header.Subtitle>Referral 10K+ Companies</Header.Subtitle>
-            <Header.Text>
-              Receive your Skillsme rating by completing real projects and get
-              validated by the world's top 5% coders.
-            </Header.Text>
-            <Header.HeroButton>Get Started</Header.HeroButton>
-          </Header.HeroTextWrapper>
-          {!width_under_650 && (
-            <Header.Group
-              style={{
-                flexBasis: "35%",
-                position: "relative",
-              }}
-            >
-              <Header.HeroImage
-                src="/images/assets/hero.png"
-                alt="a woman using mobile"
-                className={`${width_under_850 ? "translucent" : ""}`}
-              />
-            </Header.Group>
-          )}
-        </Header.HeroGroup>
+        <Header.Hero />
       </Header.Frame>
     </Header>
   );

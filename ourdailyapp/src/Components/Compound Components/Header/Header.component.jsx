@@ -1,5 +1,6 @@
 import React from "react";
 import S from "./styles/Header.styles";
+import { useMediaQuery } from "react-responsive";
 
 export default function Header({ children, ...restProps }) {
   return <S.Background {...restProps}>{children}</S.Background>;
@@ -13,15 +14,43 @@ Header.Group = function HeaderGroup({ children, ...restProps }) {
   return <S.Group {...restProps}>{children}</S.Group>;
 };
 
-Header.HeroGroup = function HeaderHeroGroup({ children, ...restProps }) {
-  return <S.HeroGroup {...restProps}>{children}</S.HeroGroup>;
-};
+Header.Hero = function HeaderHero({ children, ...restProps }) {
+  const width_under_850 = useMediaQuery({ query: "(max-device-width: 850px" });
+  const width_under_650 = useMediaQuery({ query: "(max-device-width: 650px" });
+  return (
+    <S.Hero
+      {...restProps}
+      style={{
+        gridColumn: "2",
+      }}
+    >
+      <S.HeroTextWrapper>
+        <S.Title>Land A Coding Job with Skillsme Rating</S.Title>
+        <S.Subtitle>Referral 10K+ Companies</S.Subtitle>
+        <S.Text>
+          Receive your Skillsme rating by completing real projects and get
+          validated by the world's top 5% coders.
+        </S.Text>
+        <S.HeroButton>Get Started</S.HeroButton>
+      </S.HeroTextWrapper>
+      {!width_under_650 && (
+        <S.Group
+          style={{
+            flexBasis: "35%",
+            position: "relative",
+          }}
+        >
+          <S.HeroImage
+            src="/images/assets/hero.png"
+            alt="a woman using mobile"
+            className={`${width_under_850 ? "translucent" : ""}`}
+          />
+        </S.Group>
+      )}
 
-Header.HeroTextWrapper = function HeaderHeroTextWrapper({
-  children,
-  ...restProps
-}) {
-  return <S.HeroTextWrapper {...restProps}>{children}</S.HeroTextWrapper>;
+      {children}
+    </S.Hero>
+  );
 };
 
 Header.Logo = function HeaderFrame({ ...restProps }) {
@@ -34,26 +63,6 @@ Header.Link = function HeaderLink({ children, ...restProps }) {
 
 Header.Button = function HeaderButton({ children, ...restProps }) {
   return <S.Button {...restProps}>{children}</S.Button>;
-};
-
-Header.HeroButton = function HeaderHeroButton({ children, ...restProps }) {
-  return <S.HeroButton {...restProps}>{children}</S.HeroButton>;
-};
-
-Header.Title = function HeaderTitle({ children, ...restProps }) {
-  return <S.Title {...restProps}>{children}</S.Title>;
-};
-
-Header.Subtitle = function HeaderSubtitle({ children, ...restProps }) {
-  return <S.Subtitle {...restProps}>{children}</S.Subtitle>;
-};
-
-Header.Text = function HeaderText({ children, ...restProps }) {
-  return <S.Text {...restProps}>{children}</S.Text>;
-};
-
-Header.HeroImage = function HeaderImage({ children, ...restProps }) {
-  return <S.HeroImage {...restProps}>{children}</S.HeroImage>;
 };
 
 Header.DropDownTogglerWrapper = function HeaderDropDownTogglerWrapper({

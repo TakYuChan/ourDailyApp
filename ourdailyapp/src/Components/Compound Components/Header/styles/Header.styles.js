@@ -30,7 +30,11 @@ S.Frame = styled.div`
   display: grid;
   grid-template-columns: 1fr minmax(200px, 1300px) 1fr;
   padding-bottom: 300px;
-  max-height: 650px;
+  max-height: 750px;
+
+  @media screen and (min-width: 320px) {
+    max-height: 650px;
+  }
 
   @media screen and (min-width: 851px) {
     max-height: 898px;
@@ -40,7 +44,7 @@ S.Group = styled.div`
   ${groupStyle}
 `;
 
-S.HeroGroup = styled.div`
+S.Hero = styled.div`
   ${groupStyle}
   font-size: clamp(0.5rem, 1vw, 1rem);
   padding: 6em 25px 15px;
@@ -96,6 +100,9 @@ S.HeroImage = styled.img`
 
   position: absolute;
   bottom: -18em;
+
+  animation: imgInit 2s ease-in-out;
+
   @media screen and (min-width: 650px) {
     opacity: 0.2;
     right: 0;
@@ -111,6 +118,26 @@ S.HeroImage = styled.img`
   }
   @media screen and (min-width: 1000px) {
     opacity: 1;
+  }
+
+  @keyframes imgInit {
+    0% {
+      transform: translateY(100%) scale(0.6);
+      opacity: 0;
+    }
+
+    40% {
+      transform: translateY(10%) rotate(-10deg) scale(1);
+      opacity: 0.2;
+    }
+
+    70% {
+      transform: translateY(0%) rotate(10deg);
+    }
+
+    100% {
+      transform: translateY(0%) rotate(0deg);
+    }
   }
 `;
 
