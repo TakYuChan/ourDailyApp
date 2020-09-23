@@ -1,15 +1,22 @@
 import React from "react";
 // import Jumbotron from "../components/Compound Components/Jumbotron/Jumbotron.component";
 import { Jumbotron } from "../Components/Compound Components";
+import { Typography } from "../Components/Compound Components";
 import jumboData from "../fixtures/jumbo.json";
 
 export default function JumbotronContainer() {
   return (
     <>
+      <Typography.SectionSubtitle
+        style={{
+          display: "block",
+          textAlign: "center",
+          marginBottom: "4rem",
+        }}
+      >
+        View my other projects
+      </Typography.SectionSubtitle>
       <Jumbotron.Container className="gridCenterContent homeSectionPadding">
-        {/* <Typography.SectionSubtitle>
-          View my other projects
-        </Typography.SectionSubtitle> */}
         {jumboData.map((item) => (
           <Jumbotron
             className="Jumbotron"

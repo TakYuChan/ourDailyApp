@@ -28,6 +28,10 @@ S.sectionSubtitle = styled.h2`
   font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.8rem;
+
+  @media screen and (min-width: 1180px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export default S;

@@ -9,3 +9,4 @@ export { default as WebsiteIntroVideo } from "./WebsiteIntroVideo/WebsiteIntroVi
 export { default as Player } from "./Player/Player.component";
 export { default as AboutMe } from "./AboutMe/AboutMe.component";
 export { default as Accordion } from "./Accordion/Accordion.component";
+export { default as Decoration } from "./Decoration/Decoration.component";

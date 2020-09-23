@@ -6,11 +6,11 @@ S.Inner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: ${({ direction }) => direction};
+  flex-direction: column;
   width: 100%;
 
-  @media (max-width: 1000px) {
-    flex-direction: column;
+  @media (min-width: 1000px) {
+    flex-direction: ${({ direction }) => direction};
   }
 `;
 
@@ -44,10 +44,12 @@ S.Item = styled.div`
 
 S.Container = styled.section`
   // background: #303030;
-
-  @media (max-width: 1000px) {
+  ${S.Item}:last-of-type h2 {
+    margin-bottom: 50px;
+  }
+  @media (min-width: 1000px) {
     ${S.Item}:last-of-type h2 {
-      margin-bottom: 50px;
+      margin-bottom: 0;
     }
   }
 `;
