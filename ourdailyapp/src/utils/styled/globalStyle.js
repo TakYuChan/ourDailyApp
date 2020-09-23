@@ -139,15 +139,20 @@ a {
   margin: 50px auto;
 }
 
-.homeSectionPadding {
-  padding: 0 25px 0;
-}
+
 
 .gridCenterContent {
   display: grid;
   grid-template-columns: 1fr minmax(200px, 1300px) 1fr;
 }
 
+.relative {
+  position: relative;
+}
+
+.overflowHidden {
+  overflow: hidden;
+}
 
 /* ================ animations ================ */
 

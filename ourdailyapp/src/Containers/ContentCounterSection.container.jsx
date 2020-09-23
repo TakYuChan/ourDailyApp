@@ -8,7 +8,10 @@ export default function CounterCounterSection() {
   const width_above_550 = useMediaQuery({ query: "(min-width: 550px" });
   const width_above_1180 = useMediaQuery({ query: "(min-width: 1180px" });
   return (
-    <section className="gridCenterContent homeSectionPadding">
+    <section
+      className="gridCenterContent"
+      style={{ padding: "106px 25px 90px" }}
+    >
       <ContentCounter
         style={{
           gridColumn: "2",

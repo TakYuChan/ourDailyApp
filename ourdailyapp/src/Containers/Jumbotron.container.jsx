@@ -7,6 +7,9 @@ export default function JumbotronContainer() {
   return (
     <>
       <Jumbotron.Container className="gridCenterContent homeSectionPadding">
+        {/* <Typography.SectionSubtitle>
+          View my other projects
+        </Typography.SectionSubtitle> */}
         {jumboData.map((item) => (
           <Jumbotron
             className="Jumbotron"

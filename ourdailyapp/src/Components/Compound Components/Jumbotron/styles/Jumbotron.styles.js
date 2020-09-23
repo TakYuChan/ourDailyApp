@@ -43,7 +43,7 @@ S.Item = styled.div`
 `;
 
 S.Container = styled.section`
-  background: #303030;
+  // background: #303030;
 
   @media (max-width: 1000px) {
     ${S.Item}:last-of-type h2 {
@@ -58,7 +58,7 @@ S.Title = styled.h1`
   margin-bottom: 8px;
 
   @media (max-width: 600px) {
-    font-size: 35px;
+    font-size: 2rem;
   }
 `;
 
@@ -68,7 +68,7 @@ S.SubTitle = styled.h2`
   line-height: normal;
 
   @media (max-width: 600px) {
-    font-size: 18px;
+    font-size: 1rem;
   }
 `;
 
@@ -90,11 +90,9 @@ S.EndingSpan = styled.span`
 `;
 
 S.LinkBtn = styled.button`
-  background: 0;
   outline: 0;
   border: 0;
   padding: 0.4em 1.5em;
-  color: #0059a6;
   border-radius: 50px;
   border: 2px solid #0059a6;
   font-weight: bold;
@@ -102,11 +100,18 @@ S.LinkBtn = styled.button`
   cursor: pointer;
   margin-top: 3rem;
 
+  background: #0059a6;
+  color: white;
+
   transition: all 250ms ease-in;
 
   &:hover {
-    background: #0059a6;
-    color: white;
+    background: 0;
+    color: #0059a6;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.8rem;
   }
 `;
 

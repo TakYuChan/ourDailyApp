@@ -4,7 +4,7 @@ const S = {};
 
 S.Container = styled.div`
   @media screen and (min-width: 1180px) {
-    height: 475px;
+    height: auto;
     display: flex;
   }
 `;
