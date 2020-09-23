@@ -167,14 +167,16 @@ S.DropDownTogglerWrapper = styled.div`
   position: relative;
   cursor: pointer;
 
+  visibility: visible;
+
   &.active > span {
     & {
-      height: 0;
+      visibility: hidden;
     }
 
     &::before,
     &::after {
-      opacity: 1;
+      visibility: visible;
     }
 
     &:before {
@@ -218,6 +220,8 @@ S.DropDownMenu = styled.nav`
   left: 0;
   width: 100%;
   background: #848484;
+  // max-height: 0;
+  overflow: hidden;
 
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
 
@@ -227,6 +231,7 @@ S.DropDownMenu = styled.nav`
 
   &.active {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    // max-height: 600px;
   }
 `;
 

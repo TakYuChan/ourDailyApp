@@ -21,12 +21,15 @@ S.CardContainer = styled.div`
   user-select: none;
   display: flex;
   flex-direction: column;
-  min-width: 280px;
+  width: 100%;
   box-shadow: 0 5px 15px 0px rgba(256, 256, 256, 0.2);
   position: relative;
 
+  max-width: 320px;
+
   margin-bottom: 3rem;
   align-self: center;
+  align-items: flex-start;
 
   @media screen and (min-width: 730px) {
     max-width: 332px;
@@ -40,6 +43,7 @@ S.CardContainer = styled.div`
 
 S.TopPart = styled.div`
   height: 150px;
+  width: 100%;
   position: relative;
   border-radius: 5px 5px 0 0;
   display: flex;
@@ -69,6 +73,7 @@ S.CardName = styled.h1`
   margin-bottom: 0.6rem;
   font-size: 1.1rem;
   transform: translateX(7.5rem);
+  display: inline-block;
   color: #848484;
 
   @media screen and (min-width: 1300px) {
@@ -78,6 +83,7 @@ S.CardName = styled.h1`
 
 S.BottomPart = styled.div`
   height: 180px;
+  width: 100%;
   border-radius: 0 0 5px 5px;
   background: #f8f8f8;
 

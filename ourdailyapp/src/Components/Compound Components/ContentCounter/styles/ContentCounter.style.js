@@ -19,15 +19,15 @@ S.TextAndCardWrapper = styled.div`
 // ================== Company Wall =================
 
 S.WallContainer = styled.div`
-  width: 600px;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
+  width: 600px;
 
   user-select: none;
 
   @media screen and (min-width: 515px) {
-    width: 600px;
+    width: 568px;
   }
   @media screen and (min-width: 1180px) {
     position: initial;
@@ -53,11 +53,13 @@ S.WallRowTwo = styled.div`
 `;
 
 S.WallImage = styled.img`
-  max-width: 84px;
+  width: 84px;
+  height: 94.2px;
+  background: transparent;
 `;
 
 S.WallPlaceHolderDiv = styled.div`
-  width: 320px;
+  width: 200px;
   height: 330px;
 
   @media screen and (min-width: 550px) {
@@ -74,9 +76,9 @@ S.CardContainer = styled.div`
     display: flex;
   }
 
-  @media screen and (min-width: 990px) {
-    // width: 500px;
-  }
+  // @media screen and (min-width: 990px) {
+  //   // width: 500px;
+  // }
 `;
 
 S.CardPane = styled.div`

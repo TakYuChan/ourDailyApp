@@ -28,9 +28,12 @@ ContentCounter.WallImage = function CompanyWallImage({ ...otherProps }) {
 };
 
 ContentCounter.WallPlaceHolderDiv = function CompanyPlaceHolderDiv({
+  children,
   ...otherProps
 }) {
-  return <S.WallPlaceHolderDiv {...otherProps} />;
+  return (
+    <S.WallPlaceHolderDiv {...otherProps}>{children}</S.WallPlaceHolderDiv>
+  );
 };
 
 ContentCounter.Card = function ContentCounter({ children, ...restProps }) {

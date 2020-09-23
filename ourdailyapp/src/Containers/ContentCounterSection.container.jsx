@@ -9,7 +9,11 @@ export default function CounterCounterSection() {
   return (
     <section
       className="gridCenterContent"
-      style={{ padding: "106px 25px 90px" }}
+      style={{
+        padding: "106px 25px 90px",
+        overflow: "hidden",
+        position: "relative",
+      }}
     >
       <ContentCounter
         style={{
