@@ -11,11 +11,9 @@ const HomeHeader = () => {
     <Header src="/images/assets/homeBg.png">
       <Header.Frame className="gridCenterContent">
         <Header.Group
-          className="homeSectionPadding"
           style={{
             gridColumn: "2",
-            paddingTop: "15px",
-            paddingBottom: "15px",
+            padding: "15px 25px 15px",
           }}
         >
           <Header.Group>

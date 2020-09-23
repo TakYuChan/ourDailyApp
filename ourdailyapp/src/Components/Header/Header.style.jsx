@@ -118,7 +118,6 @@ S.NavIcon = styled(NavIcon)`
 // ============================= ToolTips =========================
 S.LanguageToolTip = styled(ReactToolTip)`
   background: var(--gray4) !important;
-  // font-family: "Roboto", sans-serif;
 `;
 
 export default S;

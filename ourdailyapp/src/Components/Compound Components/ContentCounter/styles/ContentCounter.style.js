@@ -6,6 +6,7 @@ S.Container = styled.div`
   @media screen and (min-width: 1180px) {
     height: auto;
     display: flex;
+    justify-content: space-between;
   }
 `;
 
@@ -19,7 +20,6 @@ S.TextAndCardWrapper = styled.div`
 
 S.WallContainer = styled.div`
   width: 600px;
-  margin: 0 auto;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);

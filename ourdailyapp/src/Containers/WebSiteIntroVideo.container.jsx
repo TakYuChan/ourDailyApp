@@ -1,6 +1,6 @@
 import React from "react";
 import { WebsiteIntroVideo } from "../Components/Compound Components";
-import { Typography } from "../Components/Compound Components";
+import { Player } from "../Components/Compound Components";
 
 export default function WebSiteIntroVideoContainer() {
   return (
@@ -15,7 +15,10 @@ export default function WebSiteIntroVideoContainer() {
       >
         <WebsiteIntroVideo.PreviewVideoFrame>
           <WebsiteIntroVideo.PreviewVideoImg src="/images/assets/introVideoPreview.png" />
-          <WebsiteIntroVideo.PlayVideoBtn />
+          <Player>
+            <Player.PlayVideoBtn />
+            <Player.Video />
+          </Player>
         </WebsiteIntroVideo.PreviewVideoFrame>
 
         <WebsiteIntroVideo.TextAndBtnWrapper>

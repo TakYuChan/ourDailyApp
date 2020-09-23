@@ -79,6 +79,7 @@ S.Image = styled.img`
   transition: all 250ms ease-in;
   &:hover {
     transform: translateY(-10px);
+    box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.5);
   }
 `;
 

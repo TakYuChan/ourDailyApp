@@ -30,14 +30,6 @@ WebsiteIntroVideo.PreviewVideoImg = function Video({
   return <S.PreviewVideoImg {...otherProps}>{children}</S.PreviewVideoImg>;
 };
 
-WebsiteIntroVideo.PlayVideoBtn = function PlayVideoBtn({ ...otherProps }) {
-  return (
-    <S.PlayVideoBtn {...otherProps}>
-      <S.PlayVideoBtnIcon className="iconfont icon-play" />
-    </S.PlayVideoBtn>
-  );
-};
-
 WebsiteIntroVideo.TextAndBtnWrapper = function TextAndBtnWrapper({
   children,
   ...otherProps

@@ -5,6 +5,8 @@ import HomeHeaderContainer from "../../Containers/HomeHeader.container";
 import JumbotronContainer from "../../Containers/Jumbotron.container";
 import CounterCounterSection from "../../Containers/ContentCounterSection.container";
 import WebSiteIntroVideoContainer from "../../Containers/WebSiteIntroVideo.container";
+import AboutMeContainer from "../../Containers/AboutMe.container";
+import FaqsContainer from "../../Containers/faqs.container";
 
 export default function HomePage() {
   return (
@@ -12,6 +14,8 @@ export default function HomePage() {
       <HomeHeaderContainer />
       <CounterCounterSection />
       <WebSiteIntroVideoContainer />
+      <AboutMeContainer />
+      <FaqsContainer />
       <section
         className="relative"
         style={{

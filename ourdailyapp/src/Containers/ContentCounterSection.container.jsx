@@ -1,7 +1,6 @@
 import React from "react";
 import { ContentCounter } from "../Components/Compound Components";
 import { Typography } from "../Components/Compound Components";
-// import { CompanyWall } from "../Components/Compound Components";
 import { useMediaQuery } from "react-responsive";
 
 export default function CounterCounterSection() {

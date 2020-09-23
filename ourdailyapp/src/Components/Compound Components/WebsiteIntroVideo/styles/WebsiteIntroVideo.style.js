@@ -16,16 +16,17 @@ const S = {};
 
 S.Background = styled.div`
   background: linear-gradient(90deg, #6ca0fc 0%, rgba(117, 38, 215, 1) 100%);
-  //   background: gray;
 `;
 
 S.Container = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 5rem 0;
 
   @media screen and (min-width: 990px) {
     justify-content: space-between;
     flex-direction: row;
+    padding: 0;
   }
 `;
 
@@ -35,6 +36,11 @@ S.PreviewVideoFrame = styled.div`
   margin-bottom: 2rem;
 
   @media screen and (min-width: 990px) {
+    max-width: 520px;
+    transform: translateY(152px);
+  }
+
+  @media screen and (min-width: 1080px) {
     max-width: 600px;
     transform: translateY(152px);
   }
@@ -44,23 +50,6 @@ S.Video = styled.video``;
 
 S.PreviewVideoImg = styled.img`
   border-radius: 6px;
-`;
-
-S.PlayVideoBtn = styled.div`
-  position: absolute;
-  display: grid;
-  place-items: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  --size: 4rem;
-  width: var(--size);
-  height: var(--size);
-  background: #849dc5;
-  border-radius: 100%;
-  z-index: 2;
-
-  cursor: pointer;
 `;
 
 S.AnimateCircle = styled.span`
@@ -76,12 +65,6 @@ S.AnimateCircle = styled.span`
   border-radius: 100%;
 
   animation: ${scaleOut} 3s infinite ${({ delay }) => delay}ms;
-`;
-
-S.PlayVideoBtnIcon = styled.span`
-  font-size: 1.5rem;
-  color: white;
-  margin-left: 5px;
 `;
 
 S.TextAndBtnWrapper = styled.div`

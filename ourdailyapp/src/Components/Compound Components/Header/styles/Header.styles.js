@@ -97,7 +97,7 @@ S.HeroImage = styled.img`
   object-fit: cover;
 
   position: absolute;
-  bottom: -18em;
+  bottom: -22em;
 
   animation: imgInit 2s ease-in-out;
 
@@ -110,12 +110,13 @@ S.HeroImage = styled.img`
 
   @media screen and (min-width: 851px) {
     opacity: 0.4;
-    width: 30em;
+    width: 35em;
     font-size: clamp(1rem, 1.6vw, 1.3rem);
-    bottom: -13em;
+    bottom: -18em;
   }
   @media screen and (min-width: 1000px) {
     opacity: 1;
+    width: 30em;
   }
 
   @keyframes imgInit {

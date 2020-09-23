@@ -6,3 +6,6 @@ export { default as CompanyWall } from "./CompanyWall/CompanyWall.component";
 export { default as Typography } from "./Typography/Typography.component";
 export { default as ContentCounter } from "./ContentCounter/ContentCounter.component";
 export { default as WebsiteIntroVideo } from "./WebsiteIntroVideo/WebsiteIntroVideo.component";
+export { default as Player } from "./Player/Player.component";
+export { default as AboutMe } from "./AboutMe/AboutMe.component";
+export { default as Accordion } from "./Accordion/Accordion.component";

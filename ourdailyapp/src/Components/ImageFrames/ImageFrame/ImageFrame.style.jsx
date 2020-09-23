@@ -14,8 +14,7 @@ S.ImageFrame = styled.div`
   background-size: cover;
 
   ${(props) =>
-    props.styled_halo &&
-    `filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));`}
+    props.styled_halo && `box-shadow: 0 0 10px rgba(255, 255, 255, 1);`}
 
   margin-bottom: 1em;
 `;

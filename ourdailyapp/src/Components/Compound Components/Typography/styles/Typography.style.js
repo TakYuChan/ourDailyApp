@@ -24,7 +24,7 @@ S.sectionTitle = styled.h1`
   }
 `;
 S.sectionSubtitle = styled.h2`
-  color: #849dc5;
+  color: #6ca0fc;
   font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.8rem;

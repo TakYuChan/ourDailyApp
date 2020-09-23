@@ -43,7 +43,7 @@ S.Image = styled.img`
 
   &:hover {
     border: 1px solid white;
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
+    box-shadow: 0 0 10px rgba(255, 255, 255, 1);
   }
 `;
 
