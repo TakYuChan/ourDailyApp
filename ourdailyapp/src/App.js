@@ -90,7 +90,7 @@ const App = ({ checkAuthSession, isUserLogged }) => {
           <ProtectedRoute exact isLogged={isUserLogged} path="/main">
             <MainPage />
           </ProtectedRoute>
-          <ProtectedRoute exact isLogged={isUserLogged} path="/shop">
+          <ProtectedRoute isLogged={isUserLogged} path="/shop">
             <ShopRouter />
           </ProtectedRoute>
           <ProtectedRoute

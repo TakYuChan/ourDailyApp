@@ -6,7 +6,7 @@ import jumboData from "../fixtures/jumbo.json";
 export default function JumbotronContainer() {
   return (
     <>
-      <Jumbotron.Container>
+      <Jumbotron.Container className="gridCenterContent homeSectionPadding">
         {jumboData.map((item) => (
           <Jumbotron
             className="Jumbotron"
@@ -14,7 +14,7 @@ export default function JumbotronContainer() {
             direction={item.direction}
             style={{
               gridColumn: "2",
-              padding: "15px 25px 15px",
+              // padding: "15px 25px 15px",
               zIndex: "2",
               position: "relative",
             }}

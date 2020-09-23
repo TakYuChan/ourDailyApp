@@ -27,8 +27,6 @@ S.Background = styled.section`
     top left / cover no-repeat;
 `;
 S.Frame = styled.div`
-  display: grid;
-  grid-template-columns: 1fr minmax(200px, 1300px) 1fr;
   padding-bottom: 300px;
   max-height: 750px;
 

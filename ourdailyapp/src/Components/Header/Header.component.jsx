@@ -14,7 +14,6 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const router = useRouter();
-  console.log({ router });
 
   return (
     <S.HeaderContainer className="header">

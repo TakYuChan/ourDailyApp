@@ -44,8 +44,6 @@ S.Item = styled.div`
 
 S.Container = styled.section`
   background: #303030;
-  display: grid;
-  grid-template-columns: 1fr minmax(200px, 1300px) 1fr;
 
   @media (max-width: 1000px) {
     ${S.Item}:last-of-type h2 {

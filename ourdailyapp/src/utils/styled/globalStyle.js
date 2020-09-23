@@ -5,11 +5,6 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    //   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    //   sans-serif;
-    // -webkit-font-smoothing: antialiased;
-    // -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
     background-color: ${(props) => props.theme.body};
 
@@ -135,8 +130,6 @@ a {
   /* ========================== Pages ========================== */
 .gs-page {
   background: ${(props) => props.theme.body};
-  // min-height: calc(100vh - var(--nav-height));
-  // min-height: calc(100vh - var(--nav-height));
   width: 100%;
 
   overflow: hidden;
@@ -144,6 +137,15 @@ a {
 
 .gs-PageContentContainer {
   margin: 50px auto;
+}
+
+.homeSectionPadding {
+  padding: 0 25px 0;
+}
+
+.gridCenterContent {
+  display: grid;
+  grid-template-columns: 1fr minmax(200px, 1300px) 1fr;
 }
 
 

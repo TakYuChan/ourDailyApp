@@ -15,8 +15,8 @@ Header.Group = function HeaderGroup({ children, ...restProps }) {
 };
 
 Header.Hero = function HeaderHero({ children, ...restProps }) {
-  const width_under_850 = useMediaQuery({ query: "(max-device-width: 850px" });
-  const width_under_650 = useMediaQuery({ query: "(max-device-width: 650px" });
+  const width_under_850 = useMediaQuery({ query: "(max-width: 850px)" });
+  const width_under_650 = useMediaQuery({ query: "(max-width: 650px)" });
   return (
     <S.Hero
       {...restProps}

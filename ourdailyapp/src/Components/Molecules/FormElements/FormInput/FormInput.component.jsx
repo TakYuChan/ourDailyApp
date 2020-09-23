@@ -26,7 +26,6 @@ const FormInput = ({
   //@importedBy   LogInForm SignUpForm
   //@styledProps  Size / Position of label
 
-  const dispatch = useDispatch();
   return (
     <S.FormInputBlock className={`${alerts.length > 0 ? "alert" : ""}`}>
       {SvgComponent !== undefined && <SvgComponent className="S_svg" />}

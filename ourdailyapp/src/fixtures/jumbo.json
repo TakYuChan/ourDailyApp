@@ -19,16 +19,16 @@
     "id": 3,
     "title": "Ecommerce demo",
     "subTitle": "Stream unlimited films and TV programmes on your phone, tablet, laptop and TV without paying more.",
-    "image": "/images/assets/ecommerceDemo.jpg",
-    "alt": "Money Heist on Netflix",
+    "image": "/images/assets/ecommerce.jpg",
+    "alt": "Ecommerce demo",
     "direction": "row"
   },
   {
     "id": 4,
     "title": "Franky Venus Auckland Trip",
     "subTitle": "Stream unlimited films and TV programmes on your phone, tablet, laptop and TV without paying more.",
-    "image": "/images/assets/storeDemo.jpg",
-    "alt": "Money Heist on Netflix",
+    "image": "/images/assets/ourTrip.jpg",
+    "alt": "Franky Venus Auckland Trip",
     "direction": "row-reverse"
   }
 ]

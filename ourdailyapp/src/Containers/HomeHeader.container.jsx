@@ -3,17 +3,19 @@ import { Header } from "../Components/Compound Components/";
 import { useMediaQuery } from "react-responsive";
 
 const HomeHeader = () => {
-  const width_under_850 = useMediaQuery({ query: "(max-device-width: 850px" });
+  const width_under_850 = useMediaQuery({ query: "(max-width: 850px)" });
 
   const [dropDownHidden, toggleDropDownHidden] = useState(true);
 
   return (
     <Header src="/images/assets/homeBg.png">
-      <Header.Frame>
+      <Header.Frame className="gridCenterContent">
         <Header.Group
+          className="homeSectionPadding"
           style={{
             gridColumn: "2",
-            padding: "15px 25px 15px",
+            paddingTop: "15px",
+            paddingBottom: "15px",
           }}
         >
           <Header.Group>
