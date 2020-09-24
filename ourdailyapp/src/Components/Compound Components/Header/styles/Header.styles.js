@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { NavLink } from "react-router-dom";
 
 const buttonStyle = css`
   color: white;
@@ -9,6 +8,14 @@ const buttonStyle = css`
   border: 2px solid white;
   font-weight: bold;
   cursor: pointer;
+
+  transition: all 250ms ease-in;
+
+  &:hover {
+    color: #white;
+    background: #5678af;
+    border: 2px solid #5678af;
+  }
 `;
 
 const groupStyle = css`
@@ -72,12 +79,13 @@ S.Logo = styled.img`
   height: 80px;
   object-fit: cover;
 `;
-S.Link = styled(NavLink)`
+S.LinkBtn = styled.span`
   text-transform: capitalize;
   color: #f8f8f8;
   font-size: 1rem;
   margin-left: 5em;
   white-space: nowrap;
+  cursor: pointer;
 `;
 S.Button = styled.button`
   ${buttonStyle}
@@ -130,7 +138,7 @@ S.HeroImage = styled.img`
       opacity: 0.2;
     }
 
-    70% {
+    60% {
       transform: translateY(0%) rotate(10deg);
     }
 
@@ -220,7 +228,6 @@ S.DropDownMenu = styled.nav`
   left: 0;
   width: 100%;
   background: #848484;
-  // max-height: 0;
   overflow: hidden;
 
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);

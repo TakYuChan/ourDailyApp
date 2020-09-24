@@ -5,7 +5,7 @@ import { Decoration } from "../Components/Compound Components/";
 
 const AboutMeContainer = () => {
   return (
-    <>
+    <div style={{ position: "relative" }}>
       <AboutMe
         className="gridCenterContent"
         style={{ padding: "106px 25px 90px" }}
@@ -30,12 +30,8 @@ const AboutMeContainer = () => {
           </AboutMe.Card>
         </AboutMe.Container>
       </AboutMe>
-      <Decoration.DividerDivSkew
-        direction={"to right top"}
-        firstColor={"#303030"}
-        secodColor={"#848484"}
-      />
-    </>
+      <Decoration.EditorialDivider bottomWaveColor={"#303030"} />
+    </div>
   );
 };
 

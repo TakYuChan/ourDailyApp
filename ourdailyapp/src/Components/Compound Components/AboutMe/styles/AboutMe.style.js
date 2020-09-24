@@ -117,16 +117,34 @@ S.SocialMediaBtn = styled.div`
   border-radius: 100%;
   display: grid;
   place-items: center;
-  box-shadow: -4px -4px 3px 0 rgba(256, 256, 256, 0.5),
-    inset 2px 2px 8px 0 rgba(0, 0, 0, 0.2), 2px 2px 10px 0 rgba(0, 0, 0, 0.2);
+
+  box-shadow: -3px -3px 2px 0px rgba(256, 256, 256, 1),
+    inset -4px -4px 2px 0px rgba(256, 256, 256, 0.8),
+    1px 1px 2px 0px rgba(256, 256, 256, 0.5),
+    1px 1px 5px -2px rgba(0, 0, 0, 0.4);
+  background: #f8f8f8;
 
   cursor: pointer;
+
+  transition: all 200ms ease-in-out;
+
+  &:hover {
+    box-shadow: -4px -4px 3px 0 rgba(256, 256, 256, 0.5),
+      inset 2px 2px 4px 0 rgba(0, 0, 0, 0.2), 1px 1px 5px 0 rgba(0, 0, 0, 0.2);
+
+    span {
+      transform: scale(0.96);
+    }
+  }
+
   &:last-of-type {
     margin-left: 2rem;
   }
 
   span {
     font-size: 1.2rem;
+    transition: all 200ms ease-in-out;
+    transform: scale(1);
   }
 `;
 

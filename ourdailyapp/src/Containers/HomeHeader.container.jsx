@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Header } from "../Components/Compound Components/";
 import { useMediaQuery } from "react-responsive";
+
+import { HomePageContext } from "../context/homePage.context";
 
 const HomeHeader = () => {
   const width_under_850 = useMediaQuery({ query: "(max-width: 850px)" });
 
   const [dropDownHidden, toggleDropDownHidden] = useState(true);
+
+  const { aboutMeNode } = useContext(HomePageContext);
 
   return (
     <Header src="/images/assets/homeBg.png">
@@ -20,16 +24,25 @@ const HomeHeader = () => {
             <Header.Logo src="/images/assets/logo_white.png" />
             {width_under_850 ? null : (
               <>
-                <Header.Link
+                <Header.LinkBtn
                   activeStyle={{
                     color: "#849DC5",
                   }}
-                  to="/"
                 >
                   home
-                </Header.Link>
-                <Header.Link to="/aboutCreator">about me</Header.Link>
-                <Header.Link to="/contact">contact</Header.Link>
+                </Header.LinkBtn>
+                <Header.LinkBtn
+                  onClick={() => {
+                    aboutMeNode.current.scrollIntoView({
+                      behavior: "smooth",
+                      block: "center",
+                      inline: "nearest",
+                    });
+                  }}
+                >
+                  about me
+                </Header.LinkBtn>
+                <Header.LinkBtn>contact</Header.LinkBtn>
               </>
             )}
           </Header.Group>

@@ -4,7 +4,7 @@ import S from "./styles/Accordion.style";
 import {
   ToggleContextProvider,
   ToggleContext,
-} from "../../../context/toggleContext";
+} from "../../../context/toggle.context";
 
 // const ToggleContext = createContext();
 

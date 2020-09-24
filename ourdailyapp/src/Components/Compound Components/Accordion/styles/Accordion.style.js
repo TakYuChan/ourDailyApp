@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 const S = {};
 
-S.Container = styled.section``;
+S.Container = styled.section`
+  padding: 106px 25px 90px;
+`;
 
 S.Frame = styled.div`
   margin-bottom: 40px;
@@ -11,7 +13,6 @@ S.Frame = styled.div`
 
 S.Inner = styled.div`
   display: flex;
-  padding: 106px 25px 90px;
   flex-direction: column;
   max-width: 815px;
   margin: auto;

@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import S from "./styles/AboutMe.style";
+import { HomePageContext } from "../../../context/homePage.context";
 
 export default function AboutMe({ children, ...restProps }) {
   return <S.Background {...restProps}>{children}</S.Background>;
 }
 
 AboutMe.Container = function AboutMeContainer({ children, ...restProps }) {
-  return <S.Container {...restProps}>{children}</S.Container>;
+  const { aboutMeNode } = useContext(HomePageContext);
+  console.log({ aboutMeNode });
+  return (
+    <S.Container {...restProps} ref={aboutMeNode}>
+      {children}
+    </S.Container>
+  );
 };
 
 AboutMe.Card = function AboutMeCard({ children, ...restProps }) {

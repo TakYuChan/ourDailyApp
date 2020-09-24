@@ -5,7 +5,7 @@ import faqsData from "../fixtures/faqs.json";
 
 export default function faqsContainer() {
   return (
-    <>
+    <div style={{ position: "relative", padding: "0 0 90px" }}>
       <Accordion>
         <Accordion.Title>Fequently Asked Questions</Accordion.Title>
         <Accordion.Frame>
@@ -21,11 +21,12 @@ export default function faqsContainer() {
 
         <img src="/images/assets/accordionImg.png" alt="discussing" />
       </Accordion>
-      <Decoration.DividerDivSkew
+      {/* <Decoration.DividerDivSkew
         direction={"to right bottom"}
         firstColor={"#303030"}
         secodColor={"#5e5e5e"}
-      />
-    </>
+      /> */}
+      <Decoration.EditorialDivider bottomWaveColor={"#5E5E5E"} />
+    </div>
   );
 }
