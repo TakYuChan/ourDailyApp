@@ -22,7 +22,7 @@ Inside src folder
 
 - helpers: Help to do Conditional Routing, IsUserRedirect or ProtectedRoute
 
-- utils: Custom JavaScript only files e.g. selectionMap.js (Maybe used for doing data allocation.)
+- utils: Custom JavaScript only files e.g. selectionMap.js (Maybe used for doing data allocation.), also including the utils files relating to styled-components
 
 - fixtures: json files used to drain data to the database or static data
 
