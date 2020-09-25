@@ -99,7 +99,7 @@ function* signInWithEmail({ logInDetails }) {
   try {
     console.log("signInWithEmail");
     // Start spinner
-    yield call(logInUser, logInDetails);
+    // yield call(logInUser, logInDetails);
     yield put(signInSuccess());
     // Stop spinner
   } catch (error) {

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import "./App.css";
 
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { IsUserRedirect, ProtectedRoute } from "./helpers/routes.helper";
 
 import { connect } from "react-redux";
@@ -75,11 +75,16 @@ const App = ({ checkAuthSession, isUserLogged }) => {
           />
         }
       >
-        {/* {isUserLogged && <NavUIComponents />} */}
+        {isUserLogged && <NavUIComponents />}
         <Switch>
-          <Route exact path="/">
+          <IsUserRedirect
+            exact
+            path="/"
+            isLogged={isUserLogged}
+            loggedInPath={"/main"}
+          >
             <HomePage />
-          </Route>
+          </IsUserRedirect>
           <IsUserRedirect
             isLogged={isUserLogged}
             path={"/auth"}

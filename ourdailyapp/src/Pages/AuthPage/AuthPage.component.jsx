@@ -6,7 +6,7 @@ import { createStructuredSelector } from "reselect";
 import { useMediaQuery } from "react-responsive";
 
 import { selectAuthPage } from "../../redux/AuthPage/AuthPage.selectors";
-import { changePage } from "../../redux/AuthPage/AuthPage.actions";
+import { changeAuthPage } from "../../redux/AuthPage/AuthPage.actions";
 
 import LogInOrganism from "../../Components/LogInOrganism/LogInOrganism.component";
 import SignUpOrganism from "../../Components/SignUpOrganism/SignUpOrganism.component";
@@ -93,7 +93,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeAuthPage: (pageName) => dispatch(changePage(pageName)),
+  changeAuthPage: (pageName) => dispatch(changeAuthPage(pageName)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthPage);

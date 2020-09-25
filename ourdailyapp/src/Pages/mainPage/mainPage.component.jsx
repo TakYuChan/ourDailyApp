@@ -18,7 +18,7 @@ const MainPage = () => {
     dispatch(fetchAccessAppBtnsStart());
   }, [dispatch]);
   return (
-    <S.MainPageContainer className="MainPage gs-page ">
+    <S.MainPageContainer className="MainPage gs-page">
       <S.ImageFrameWrapper>
         <ImageFrame src={profilePic} halo={true} withExtraText={true} />
       </S.ImageFrameWrapper>

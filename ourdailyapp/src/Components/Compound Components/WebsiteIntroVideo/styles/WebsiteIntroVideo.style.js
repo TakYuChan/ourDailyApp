@@ -1,4 +1,7 @@
 import styled, { keyframes } from "styled-components";
+import { Link } from "react-router-dom";
+
+import { fadeInAnimation } from "../../../../utils/styled/styleKeyframes";
 
 const scaleOut = keyframes`
     from {
@@ -97,12 +100,10 @@ S.Title = styled.h1`
     font-size: 2.5rem;
   }
 
-  //   @media screen and (min-width: 990px) {
-  //     text-align: center;
-  //   }
+  ${fadeInAnimation.fadeInStyle}
 `;
 
-S.SignUpBtn = styled.button`
+S.SignUpBtn = styled(Link)`
   border: 0;
   outline: 0;
   padding: 1.4rem 2.8rem;
@@ -126,6 +127,8 @@ S.SignUpBtn = styled.button`
   &:hover {
     background-position: right;
   }
+
+  ${fadeInAnimation.fadeInStyle}
 `;
 
 export default S;

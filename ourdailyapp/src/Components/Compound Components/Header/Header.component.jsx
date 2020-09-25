@@ -1,6 +1,9 @@
 import React from "react";
 import S from "./styles/Header.styles";
 import { useMediaQuery } from "react-responsive";
+import { useDispatch } from "react-redux";
+
+import { changeAuthPage } from "../../../redux/AuthPage/AuthPage.actions";
 
 export default function Header({ children, ...restProps }) {
   return <S.Background {...restProps}>{children}</S.Background>;
@@ -17,6 +20,9 @@ Header.Group = function HeaderGroup({ children, ...restProps }) {
 Header.Hero = function HeaderHero({ children, ...restProps }) {
   const width_under_850 = useMediaQuery({ query: "(max-width: 850px)" });
   const width_under_650 = useMediaQuery({ query: "(max-width: 650px)" });
+
+  const dispatch = useDispatch();
+
   return (
     <S.Hero
       {...restProps}
@@ -31,7 +37,14 @@ Header.Hero = function HeaderHero({ children, ...restProps }) {
           Receive your Skillsme rating by completing real projects and get
           validated by the world's top 5% coders.
         </S.Text>
-        <S.HeroButton>Get Started</S.HeroButton>
+        <S.HeroButton
+          to="/auth"
+          onClick={() => {
+            dispatch(changeAuthPage("login"));
+          }}
+        >
+          Get Started
+        </S.HeroButton>
       </S.HeroTextWrapper>
       {!width_under_650 && (
         <S.Group
@@ -57,12 +70,15 @@ Header.Logo = function HeaderFrame({ ...restProps }) {
   return <S.Logo {...restProps} />;
 };
 
-Header.LinkBtn = function HeaderLink({ children, ...restProps }) {
-  return <S.LinkBtn {...restProps}>{children}</S.LinkBtn>;
+Header.ToSectionSpan = function HeaderToSectionSpan({
+  children,
+  ...restProps
+}) {
+  return <S.ToSectionSpan {...restProps}>{children}</S.ToSectionSpan>;
 };
 
-Header.Button = function HeaderButton({ children, ...restProps }) {
-  return <S.Button {...restProps}>{children}</S.Button>;
+Header.LinkButton = function HeaderLinkButton({ children, ...restProps }) {
+  return <S.LinkButton {...restProps}>{children}</S.LinkButton>;
 };
 
 Header.DropDownTogglerWrapper = function HeaderDropDownTogglerWrapper({

@@ -97,12 +97,12 @@ S.LogInPageContent = styled.div`
             "footer footer footer footer footer";
 
             @media only screen and (min-width: 700px) {
-              grid-template-rows: 1em minmax(5em, 8em) 2em minmax(24em, 1fr) minmax(1em, 1fr);
+              grid-template-rows: 1em minmax(5em, 8em) 2em minmax(24em, 1fr) 1fr;
               grid-template-columns: minmax(40px, 1fr) minmax(50px, 1fr) minmax(8em, 300px) minmax(50px, 1fr)  minmax(40px, 1fr);
             }
 
             @media only screen and (min-width: 1000px) {
-              grid-template-rows: 1em minmax(9em, 1fr) 1em minmax(20em, 1fr) minmax(1em, 1fr);
+              grid-template-rows: 1em minmax(9em, 1fr) 1em minmax(20em, 1fr) 1fr;
               grid-template-columns: minmax(40px, 1fr) minmax(50px, 1fr) minmax(8em, 250px) minmax(50px, 1fr)  minmax(40px, 1fr);
             }
             `;

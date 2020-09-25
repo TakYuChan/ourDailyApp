@@ -75,13 +75,15 @@ S.Body = styled.div`
   overflow: hidden;
 
   transition: max-height 350ms ease-in-out;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: normal;
   line-height: 1.7em;
-  background: #848484;
+  // background: #848484;
   user-select: none;
   align-items: center;
   margin: 0 auto;
+
+  color: #f6f6f6;
 
   position: relative;
 
@@ -105,7 +107,7 @@ S.Body = styled.div`
   }
 
   @media (min-width: 600px) {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   &.active {

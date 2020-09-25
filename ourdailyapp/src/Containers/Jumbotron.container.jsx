@@ -1,12 +1,14 @@
 import React from "react";
-// import Jumbotron from "../components/Compound Components/Jumbotron/Jumbotron.component";
 import { Jumbotron } from "../Components/Compound Components";
 import { Typography } from "../Components/Compound Components";
 import jumboData from "../fixtures/jumbo.json";
 
+import useOnScreen from "../hooks/useShowScreen.hooks";
+
 export default function JumbotronContainer() {
+  const [setNode, startAnimate] = useOnScreen({ threshold: 0.2 });
   return (
-    <>
+    <div ref={setNode}>
       <Typography.SectionSubtitle
         style={{
           display: "block",
@@ -30,17 +32,47 @@ export default function JumbotronContainer() {
             }}
           >
             <Jumbotron.TextPane>
-              <Jumbotron.Title>{item.title}</Jumbotron.Title>
-              <Jumbotron.SubTitle>{item.subTitle}</Jumbotron.SubTitle>
-              <Jumbotron.linkBtn>To Website</Jumbotron.linkBtn>
+              <Jumbotron.Title
+                className={`${startAnimate ? "fadeIn" : ""}`}
+                fadeinfrom="Y"
+                fadedistance="-20"
+                delay={600}
+                style={{ opacity: "0" }}
+              >
+                {item.title}
+              </Jumbotron.Title>
+              <Jumbotron.SubTitle
+                className={`${startAnimate ? "fadeIn" : ""}`}
+                fadeinfrom="Y"
+                fadedistance="-20"
+                delay={600}
+                style={{ opacity: "0" }}
+              >
+                {item.subTitle}
+              </Jumbotron.SubTitle>
+              <Jumbotron.linkBtn
+                className={`${startAnimate ? "fadeIn" : ""}`}
+                fadeinfrom="X"
+                fadedistance="20"
+                delay={1000}
+                style={{ opacity: "0" }}
+              >
+                To Website
+              </Jumbotron.linkBtn>
             </Jumbotron.TextPane>
-            <Jumbotron.ImagePane>
+            <Jumbotron.ImagePane
+              className={`${startAnimate ? "fadeIn" : ""}`}
+              fadeinfrom="Y"
+              fadedistance="20"
+              delay={0}
+              style={{ opacity: "0" }}
+            >
               <Jumbotron.Image src={item.image} alt={item.alt} />
             </Jumbotron.ImagePane>
           </Jumbotron>
         ))}
       </Jumbotron.Container>
       <Jumbotron.EndingSpan>And More...</Jumbotron.EndingSpan>
-    </>
+    </div>
   );
 }

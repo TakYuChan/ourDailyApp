@@ -33,8 +33,8 @@ Footer.Logo = function Logo({ children, ...otherProps }) {
   return <S.Logo {...otherProps}>{children}</S.Logo>;
 };
 
-Footer.LogoSpan = function LogoSpan({ children, ...otherProps }) {
-  return <S.LogoSpan {...otherProps}>{children}</S.LogoSpan>;
+Footer.LogoLink = function LogoSpan({ children, ...otherProps }) {
+  return <S.LogoLink {...otherProps}>{children}</S.LogoLink>;
 };
 
 Footer.ColumnTitle = function ColumnTitle({ children, ...otherProps }) {

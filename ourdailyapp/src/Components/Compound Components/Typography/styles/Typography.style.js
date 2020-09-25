@@ -1,8 +1,5 @@
 import styled, { css } from "styled-components";
-
-const fontStyle = css`
-  color: white;
-`;
+import { fadeInAnimation } from "../../../../utils/styled/styleKeyframes";
 
 const S = {};
 
@@ -10,9 +7,9 @@ S.SectionText = styled.p`
   color: rgba(256, 256, 256, 0.5);
   font-size: 0.9rem;
   line-height: 1.5rem;
+  ${fadeInAnimation.fadeInStyle}
 `;
 S.sectionTitle = styled.h1`
-  ${fontStyle}
   font-size: 1.4rem;
   margin-bottom: 0.8rem;
 
@@ -22,6 +19,8 @@ S.sectionTitle = styled.h1`
   @media screen and (min-width: 1180px) {
     font-size: 2.5rem;
   }
+  color: white;
+  ${fadeInAnimation.fadeInStyle}
 `;
 S.sectionSubtitle = styled.h2`
   color: #6ca0fc;
@@ -32,6 +31,8 @@ S.sectionSubtitle = styled.h2`
   @media screen and (min-width: 1180px) {
     font-size: 1.5rem;
   }
+
+  ${fadeInAnimation.fadeInStyle}
 `;
 
 export default S;

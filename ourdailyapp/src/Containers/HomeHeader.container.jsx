@@ -1,10 +1,14 @@
 import React, { useState, useContext } from "react";
+import { useDispatch } from "react-redux";
 import { Header } from "../Components/Compound Components/";
 import { useMediaQuery } from "react-responsive";
 
+import { changeAuthPage } from "../redux/AuthPage/AuthPage.actions";
 import { HomePageContext } from "../context/homePage.context";
 
 const HomeHeader = () => {
+  const dispatch = useDispatch();
+
   const width_under_850 = useMediaQuery({ query: "(max-width: 850px)" });
 
   const [dropDownHidden, toggleDropDownHidden] = useState(true);
@@ -24,14 +28,14 @@ const HomeHeader = () => {
             <Header.Logo src="/images/assets/logo_white.png" />
             {width_under_850 ? null : (
               <>
-                <Header.LinkBtn
+                <Header.ToSectionSpan
                   activeStyle={{
                     color: "#849DC5",
                   }}
                 >
                   home
-                </Header.LinkBtn>
-                <Header.LinkBtn
+                </Header.ToSectionSpan>
+                <Header.ToSectionSpan
                   onClick={() => {
                     aboutMeNode.current.scrollIntoView({
                       behavior: "smooth",
@@ -41,8 +45,8 @@ const HomeHeader = () => {
                   }}
                 >
                   about me
-                </Header.LinkBtn>
-                <Header.LinkBtn>contact</Header.LinkBtn>
+                </Header.ToSectionSpan>
+                <Header.ToSectionSpan>contact</Header.ToSectionSpan>
               </>
             )}
           </Header.Group>
@@ -58,8 +62,22 @@ const HomeHeader = () => {
               </Header.DropDownTogglerWrapper>
             ) : (
               <>
-                <Header.Button>Log In</Header.Button>
-                <Header.Button>Sign Up</Header.Button>
+                <Header.LinkButton
+                  to="/auth"
+                  onClick={() => {
+                    dispatch(changeAuthPage("login"));
+                  }}
+                >
+                  Log In
+                </Header.LinkButton>
+                <Header.LinkButton
+                  to="/auth"
+                  onClick={() => {
+                    dispatch(changeAuthPage("signup"));
+                  }}
+                >
+                  Sign Up
+                </Header.LinkButton>
               </>
             )}
           </Header.Group>

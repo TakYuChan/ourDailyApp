@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { fadeInAnimation } from "../../../../utils/styled/styleKeyframes";
 
 const S = {};
 
@@ -39,6 +40,8 @@ S.CardContainer = styled.div`
     width: 50%;
     max-width: 400px;
   }
+
+  ${fadeInAnimation.fadeInStyle}
 `;
 
 S.TopPart = styled.div`
@@ -109,7 +112,7 @@ S.SocialMediaWrapper = styled.div`
   transform: translateX(-50%);
 `;
 
-S.SocialMediaBtn = styled.div`
+S.SocialMediaBtn = styled.a`
   --size: 2.5rem;
   width: var(--size);
   height: var(--size);
@@ -142,6 +145,7 @@ S.SocialMediaBtn = styled.div`
   }
 
   span {
+    color: black;
     font-size: 1.2rem;
     transition: all 200ms ease-in-out;
     transform: scale(1);
@@ -165,6 +169,8 @@ S.Text = styled.p`
   @media screen and (min-width: 730px) {
     font-size: 1rem;
   }
+
+  ${fadeInAnimation.fadeInStyle}
 `;
 
 S.WorkingManImg = styled.img`

@@ -13,6 +13,8 @@ S.ImageFrame = styled.div`
   background-position: center;
   background-size: cover;
 
+  position: relative;
+
   ${(props) =>
     props.styled_halo && `box-shadow: 0 0 10px rgba(255, 255, 255, 1);`}
 

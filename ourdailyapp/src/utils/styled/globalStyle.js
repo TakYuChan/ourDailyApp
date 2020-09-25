@@ -1,14 +1,33 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+html {
+  height: 100%;
+}
+
 body {
+  min-height: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
     background-color: ${(props) => props.theme.body};
-
   }
+
+body::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  border-radius: 10px;
+  outline: 0;
+}
   
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -159,6 +178,8 @@ a {
 .overflowHidden {
   overflow: hidden;
 }
+
+/* ================ Scroll bar ================ */
 
 /* ================ animations ================ */
 

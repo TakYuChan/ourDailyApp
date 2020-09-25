@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 const S = {};
 
@@ -90,7 +89,7 @@ S.Logo = styled.div`
   }
 `;
 
-S.LogoSpan = styled.span`
+S.LogoLink = styled.a`
   margin-right: 1rem;
   color: white;
   opacity: 0.6;
@@ -124,7 +123,7 @@ S.ColumnTitle = styled.span`
   }
 `;
 
-S.Link = styled(Link)`
+S.Link = styled.a`
   background: 0;
   outline: 0;
   border: 0;
@@ -132,6 +131,7 @@ S.Link = styled(Link)`
   opacity: 0.6;
   font-size: 0.8em;
   margin-top: 0.8rem;
+  cursor: pointer;
 
   @media screen and (min-width: 500px) {
     font-size: 0.9rem;

@@ -112,7 +112,6 @@ S.NavIconContainer = styled.div`
 
 S.NavIcon = styled(NavIcon)`
   fill: var(--gray1);
-  // transform: translateY(15%);
 `;
 
 // ============================= ToolTips =========================

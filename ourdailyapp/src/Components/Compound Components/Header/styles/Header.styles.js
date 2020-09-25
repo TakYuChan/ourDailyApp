@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 
 const buttonStyle = css`
   color: white;
@@ -79,7 +80,7 @@ S.Logo = styled.img`
   height: 80px;
   object-fit: cover;
 `;
-S.LinkBtn = styled.span`
+S.ToSectionSpan = styled.span`
   text-transform: capitalize;
   color: #f8f8f8;
   font-size: 1rem;
@@ -87,14 +88,14 @@ S.LinkBtn = styled.span`
   white-space: nowrap;
   cursor: pointer;
 `;
-S.Button = styled.button`
+S.LinkButton = styled(Link)`
   ${buttonStyle}
   padding: 0.5em 2em;
   margin-left: 2em;
   font-size: 0.9rem;
 `;
 
-S.HeroButton = styled.button`
+S.HeroButton = styled(Link)`
   ${buttonStyle}
   padding: 1em 2.2em;
   letter-spacing: 1px;

@@ -32,9 +32,18 @@ const HomeFooterContainer = () => {
             <Footer.Column>
               <Footer.ColumnTitle>Social Media</Footer.ColumnTitle>
               <Footer.Group>
-                <Footer.LogoSpan className="iconfont icon-github"></Footer.LogoSpan>
-                <Footer.LogoSpan className="iconfont icon-linkedin"></Footer.LogoSpan>
-                <Footer.LogoSpan className="iconfont icon-facebook"></Footer.LogoSpan>
+                <Footer.LogoLink
+                  className="iconfont icon-github"
+                  href="https://github.com/TakYuChan"
+                ></Footer.LogoLink>
+                <Footer.LogoLink
+                  className="iconfont icon-linkedin"
+                  href="https://www.linkedin.com/in/franky-tak-yu-chan-18b51518b/"
+                ></Footer.LogoLink>
+                <Footer.LogoLink
+                  className="iconfont icon-facebook"
+                  href="https://www.facebook.com/takyu.chan.9/"
+                ></Footer.LogoLink>
               </Footer.Group>
             </Footer.Column>
             <Footer.Column>

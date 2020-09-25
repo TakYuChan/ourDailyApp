@@ -1,6 +1,6 @@
 import AuthPageActionTypes from "./AuthPage.types";
 
-export const changePage = (pageName) => ({
+export const changeAuthPage = (pageName) => ({
   type: AuthPageActionTypes.AUTH_PAGE_CHANGE,
   payload: pageName,
 });

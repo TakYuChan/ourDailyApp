@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { fadeInAnimation } from "../../../../utils/styled/styleKeyframes";
 
 const S = {};
 
@@ -21,6 +22,7 @@ S.ImagePane = styled.div`
   @media (min-width: 1000px) {
     width: 50%;
   }
+  ${fadeInAnimation.fadeInStyle}
 `;
 
 S.TextPane = styled.div`
@@ -43,10 +45,6 @@ S.Item = styled.div`
 `;
 
 S.Container = styled.section`
-  // background: #303030;
-  ${S.Item}:last-of-type h2 {
-    margin-bottom: 50px;
-  }
   @media (min-width: 1000px) {
     ${S.Item}:last-of-type h2 {
       margin-bottom: 0;
@@ -62,6 +60,7 @@ S.Title = styled.h1`
   @media (max-width: 600px) {
     font-size: 2rem;
   }
+  ${fadeInAnimation.fadeInStyle}
 `;
 
 S.SubTitle = styled.h2`
@@ -72,6 +71,7 @@ S.SubTitle = styled.h2`
   @media (max-width: 600px) {
     font-size: 1rem;
   }
+  ${fadeInAnimation.fadeInStyle}
 `;
 
 S.Image = styled.img`
@@ -116,6 +116,7 @@ S.LinkBtn = styled.button`
   @media (max-width: 600px) {
     font-size: 0.8rem;
   }
+  ${fadeInAnimation.fadeInStyle}
 `;
 
 export default S;
