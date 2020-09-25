@@ -6,7 +6,7 @@ import { Decoration } from "../Components/Compound Components/";
 import useOnScreen from "../hooks/useShowScreen.hooks";
 
 const AboutMeContainer = () => {
-  const [setNode, startAnimate] = useOnScreen({ threshold: 0.5 });
+  const [setNode, startAnimate] = useOnScreen({ threshold: 0.2 });
 
   return (
     <div style={{ position: "relative" }} ref={setNode}>
@@ -17,26 +17,29 @@ const AboutMeContainer = () => {
         <AboutMe.Container style={{ gridColumn: "2", marginTop: "80px" }}>
           <AboutMe.TextWrapper>
             <Typography.SectionSubtitle
-              className={`${startAnimate ? "fadeIn" : ""}`}
+              startAnimate={startAnimate}
               fadeinfrom="Y"
               fadedistance="20"
-              delay={600}
+              delay={400}
+              style={{ opacity: 0 }}
             >
               Find a Job worldwide without a resume.
             </Typography.SectionSubtitle>
             <Typography.SectionTitle
-              className={`${startAnimate ? "fadeIn" : ""}`}
+              startAnimate={startAnimate}
               fadeinfrom="Y"
               fadedistance="20"
-              delay={600}
+              delay={400}
+              style={{ opacity: 0 }}
             >
               Get referred to over 10K
             </Typography.SectionTitle>
             <AboutMe.Text
-              className={`${startAnimate ? "fadeIn" : ""}`}
+              startAnimate={startAnimate}
               fadeinfrom="Y"
               fadedistance="20"
-              delay={600}
+              delay={400}
+              style={{ opacity: 0 }}
             >
               With Skillsme, your projects has the potential to reach over
               10,000 companies worldwide that is interested in recruiting tech
@@ -45,9 +48,10 @@ const AboutMeContainer = () => {
             </AboutMe.Text>
           </AboutMe.TextWrapper>
           <AboutMe.Card
-            className={`${startAnimate ? "fadeIn" : ""}`}
+            startAnimate={startAnimate}
             fadeinfrom="Y"
             fadedistance="20"
+            style={{ opacity: 0 }}
           >
             <AboutMe.WorkingManImg />
           </AboutMe.Card>

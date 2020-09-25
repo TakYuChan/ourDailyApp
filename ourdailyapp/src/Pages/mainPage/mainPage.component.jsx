@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import S from "./mainPage.style";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchAccessAppBtnsStart } from "../../redux/app/app.actions";
 
 import MainPageAccessAppWrapper from "../../Components/MainPageAccessAppWrapper/MainPageAccessAppWrapper.component";
@@ -12,6 +12,8 @@ import profilePic from "../../assets/UIFace.png";
 const MainPage = () => {
   const dispatch = useDispatch();
 
+  const userDetails = useSelector((state) => state.auth_P.user);
+
   // ============= Life Cycle Hooks =============
 
   useEffect(() => {
@@ -20,7 +22,9 @@ const MainPage = () => {
   return (
     <S.MainPageContainer className="MainPage gs-page">
       <S.ImageFrameWrapper>
-        <ImageFrame src={profilePic} halo={true} withExtraText={true} />
+        <ImageFrame src={profilePic} halo={true} withExtraText={true}>
+          {userDetails.name}
+        </ImageFrame>
       </S.ImageFrameWrapper>
       <S.AccessAppBtnWrapper>
         <MainPageAccessAppWrapper />

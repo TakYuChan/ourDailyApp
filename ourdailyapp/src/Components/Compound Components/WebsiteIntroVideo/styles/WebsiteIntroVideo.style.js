@@ -100,7 +100,9 @@ S.Title = styled.h1`
     font-size: 2.5rem;
   }
 
-  ${fadeInAnimation.fadeInStyle}
+  ${({ startAnimate }) => {
+    return startAnimate && fadeInAnimation.fadeInStyle;
+  }}
 `;
 
 S.SignUpBtn = styled(Link)`
@@ -128,7 +130,9 @@ S.SignUpBtn = styled(Link)`
     background-position: right;
   }
 
-  ${fadeInAnimation.fadeInStyle}
+  ${({ startAnimate }) => {
+    return startAnimate && fadeInAnimation.fadeInStyle;
+  }}
 `;
 
 export default S;

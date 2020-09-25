@@ -33,39 +33,38 @@ export default function JumbotronContainer() {
           >
             <Jumbotron.TextPane>
               <Jumbotron.Title
-                className={`${startAnimate ? "fadeIn" : ""}`}
+                startAnimate={startAnimate}
                 fadeinfrom="Y"
                 fadedistance="-20"
-                delay={600}
-                style={{ opacity: "0" }}
+                delay={400}
+                style={{ opacity: 0 }}
               >
                 {item.title}
               </Jumbotron.Title>
               <Jumbotron.SubTitle
-                className={`${startAnimate ? "fadeIn" : ""}`}
+                startAnimate={startAnimate}
                 fadeinfrom="Y"
                 fadedistance="-20"
-                delay={600}
-                style={{ opacity: "0" }}
+                delay={400}
+                style={{ opacity: 0 }}
               >
                 {item.subTitle}
               </Jumbotron.SubTitle>
               <Jumbotron.linkBtn
-                className={`${startAnimate ? "fadeIn" : ""}`}
+                style={{ opacity: 0 }}
                 fadeinfrom="X"
                 fadedistance="20"
-                delay={1000}
-                style={{ opacity: "0" }}
+                delay={600}
+                startAnimate={startAnimate}
               >
                 To Website
               </Jumbotron.linkBtn>
             </Jumbotron.TextPane>
             <Jumbotron.ImagePane
-              className={`${startAnimate ? "fadeIn" : ""}`}
+              startAnimate={startAnimate}
+              style={{ opacity: 0 }}
               fadeinfrom="Y"
               fadedistance="20"
-              delay={0}
-              style={{ opacity: "0" }}
             >
               <Jumbotron.Image src={item.image} alt={item.alt} />
             </Jumbotron.ImagePane>

@@ -3,12 +3,30 @@ import { Accordion } from "../Components/Compound Components";
 import { Decoration } from "../Components/Compound Components";
 import faqsData from "../fixtures/faqs.json";
 
-export default function faqsContainer() {
+import useOnScreen from "../hooks/useShowScreen.hooks";
+
+const FaqsContainer = () => {
+  const [setNode, startAnimate] = useOnScreen({ threshold: 0.2 });
+
   return (
-    <div style={{ position: "relative", padding: "0 0 90px" }}>
+    <div style={{ position: "relative", padding: "0 0 90px" }} ref={setNode}>
       <Accordion>
-        <Accordion.Title>Fequently Asked Questions</Accordion.Title>
-        <Accordion.Frame>
+        <Accordion.Title
+          startAnimate={startAnimate}
+          fadeinfrom="Y"
+          fadedistance="-20"
+          delay={0}
+          style={{ opacity: 0 }}
+        >
+          Fequently Asked Questions
+        </Accordion.Title>
+        <Accordion.Frame
+          startAnimate={startAnimate}
+          fadeinfrom="X"
+          fadedistance="20"
+          delay={400}
+          style={{ opacity: 0 }}
+        >
           {faqsData.map((item) => (
             <Accordion.Item key={item.id}>
               <Accordion.Header>{item.header}</Accordion.Header>
@@ -19,7 +37,15 @@ export default function faqsContainer() {
           ))}
         </Accordion.Frame>
 
-        <img src="/images/assets/accordionImg.png" alt="discussing" />
+        <Accordion.Img
+          src="/images/assets/accordionImg.png"
+          alt="discussing"
+          startAnimate={startAnimate}
+          fadeinfrom="X"
+          fadedistance="-20"
+          delay={600}
+          style={{ opacity: 0 }}
+        />
       </Accordion>
       {/* <Decoration.DividerDivSkew
         direction={"to right bottom"}
@@ -29,4 +55,6 @@ export default function faqsContainer() {
       <Decoration.EditorialDivider bottomWaveColor={"#5E5E5E"} />
     </div>
   );
-}
+};
+
+export default FaqsContainer;

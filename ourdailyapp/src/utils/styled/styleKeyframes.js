@@ -16,11 +16,7 @@ fadeInAnimation.fadeIn = (fadeinfrom, fadedistance) => {
 };
 
 fadeInAnimation.fadeInStyle = css`
-  // Actual Animation
-  ${({ fadedistance }) => fadedistance && "opacity: 0;"}
-  &.fadeIn {
-    animation: ${({ fadeinfrom, fadedistance }) =>
-        fadeInAnimation.fadeIn(fadeinfrom, fadedistance)}
-      1.6s ease-in-out ${({ delay }) => (delay ? `${delay}ms` : "")} forwards;
-  }
+  animation: ${({ fadeinfrom, fadedistance }) =>
+      fadeInAnimation.fadeIn(fadeinfrom, fadedistance)}
+    1.6s ease-in-out ${({ delay }) => (delay ? `${delay}ms` : "")} forwards;
 `;

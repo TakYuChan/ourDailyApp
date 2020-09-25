@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import navReducer from "./nav/nav.reducer";
 import shopNavReducer from "./shopNav/shopNav.reducer";
 import authReducer from "./Auth/auth.reducer";
+import authReducer_P from "./Auth/auth_P.reducer";
 import appReducer from "./app/app.reducer";
 import commentsConverterReducer from "./commentsConverter/commentsConverter.reducer";
 import cart_P_Reducer from "./cart/cart_P.reducer";
@@ -22,13 +23,14 @@ import pigGamePlayer2Reducer from "./pigGamePlayer2/pigGamePlayer2.reducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["cart_P", "user"],
+  whitelist: ["cart_P", "auth_P"],
   // whitelist: ["cart_P", "pigGame"],
 };
 
 const rootReducer = combineReducers({
   nav: navReducer,
   auth: authReducer,
+  auth_P: authReducer_P,
   app: appReducer,
   commentsConverter: commentsConverterReducer,
   shopNav: shopNavReducer,

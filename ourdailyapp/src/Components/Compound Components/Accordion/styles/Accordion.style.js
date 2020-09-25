@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { fadeInAnimation } from "../../../../utils/styled/styleKeyframes";
 
 const S = {};
 
@@ -9,6 +10,9 @@ S.Container = styled.section`
 S.Frame = styled.div`
   margin-bottom: 40px;
   max-width: 1200px;
+  ${({ startAnimate }) => {
+    return startAnimate && fadeInAnimation.fadeInStyle;
+  }}
 `;
 
 S.Inner = styled.div`
@@ -40,6 +44,10 @@ S.Title = styled.h1`
   @media (min-width: 600px) {
     font-size: 2.5rem;
   }
+
+  ${({ startAnimate }) => {
+    return startAnimate && fadeInAnimation.fadeInStyle;
+  }}
 `;
 
 S.Header = styled.div`
@@ -118,6 +126,12 @@ S.Body = styled.div`
 S.BodyWrapper = styled.div`
   max-width: 1200px;
   background: #849dc5;
+`;
+
+S.Image = styled.img`
+  ${({ startAnimate }) => {
+    return startAnimate && fadeInAnimation.fadeInStyle;
+  }}
 `;
 
 export default S;

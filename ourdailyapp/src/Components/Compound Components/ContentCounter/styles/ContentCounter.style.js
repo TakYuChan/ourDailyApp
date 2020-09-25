@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { fadeInAnimation } from "../../../../utils/styled/styleKeyframes";
 
 const S = {};
@@ -22,7 +22,7 @@ S.TextAndCardWrapper = styled.div`
 S.WallContainer = styled.div`
   position: absolute;
   left: 50%;
-  transform: translate(-50%, 0) translateX(-150px);
+  transform: translate(-50%, 0);
   width: 600px;
 
   user-select: none;
@@ -35,7 +35,9 @@ S.WallContainer = styled.div`
     transform: none;
   }
 
-  ${fadeInAnimation.fadeInStyle}
+  ${({ startAnimate }) => {
+    return startAnimate && fadeInAnimation.fadeInStyle;
+  }}
 `;
 
 S.WallRowOne = styled.div`
@@ -78,7 +80,9 @@ S.CardContainer = styled.div`
     align-items: center;
     display: flex;
   }
-  ${fadeInAnimation.fadeInStyle}
+  ${({ startAnimate }) => {
+    return startAnimate && fadeInAnimation.fadeInStyle;
+  }}
 `;
 
 S.CardPane = styled.div`

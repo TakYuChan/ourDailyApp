@@ -7,10 +7,14 @@ export const signUpUser = async (signUpDetails) => {
 };
 
 export const logInUser = async (logInDetails) => {
-  console.log("post request sent");
-  await axios.post(`${process.env.REACT_APP_URL}/users/login`, {
-    ...logInDetails,
-  });
+  const response = await axios.post(
+    `${process.env.REACT_APP_URL}/users/login`,
+    {
+      ...logInDetails,
+    }
+  );
+
+  return response;
 };
 
 export const checkAuthInfoFromDB = async (authorizeServerRes, url) => {

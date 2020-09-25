@@ -76,3 +76,8 @@ export const clearLogInAlert = () => ({
 export const setIsLoggedTrue = () => ({
   type: AuthActionTypes.SET_ISLOGGED_TRUE,
 });
+
+export const setUserDetails = (userDetails) => ({
+  type: AuthActionTypes.SET_USER_DETAILS,
+  user: userDetails,
+});

@@ -22,7 +22,9 @@ S.ImagePane = styled.div`
   @media (min-width: 1000px) {
     width: 50%;
   }
-  ${fadeInAnimation.fadeInStyle}
+  ${({ startAnimate }) => {
+    return startAnimate && fadeInAnimation.fadeInStyle;
+  }}
 `;
 
 S.TextPane = styled.div`
@@ -60,7 +62,9 @@ S.Title = styled.h1`
   @media (max-width: 600px) {
     font-size: 2rem;
   }
-  ${fadeInAnimation.fadeInStyle}
+  ${({ startAnimate }) => {
+    return startAnimate && fadeInAnimation.fadeInStyle;
+  }}
 `;
 
 S.SubTitle = styled.h2`
@@ -71,7 +75,9 @@ S.SubTitle = styled.h2`
   @media (max-width: 600px) {
     font-size: 1rem;
   }
-  ${fadeInAnimation.fadeInStyle}
+  ${({ startAnimate }) => {
+    return startAnimate && fadeInAnimation.fadeInStyle;
+  }}
 `;
 
 S.Image = styled.img`
@@ -116,7 +122,9 @@ S.LinkBtn = styled.button`
   @media (max-width: 600px) {
     font-size: 0.8rem;
   }
-  ${fadeInAnimation.fadeInStyle}
+  ${({ startAnimate }) => {
+    return startAnimate && fadeInAnimation.fadeInStyle;
+  }}
 `;
 
 export default S;

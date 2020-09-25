@@ -9,6 +9,7 @@ import {
   clearSignUpAlert,
   clearLogInAlert,
   setIsLoggedTrue,
+  setUserDetails,
 } from "./auth.actions";
 
 import {
@@ -97,9 +98,9 @@ function* signUp({ signUpDetails }) {
 
 function* signInWithEmail({ logInDetails }) {
   try {
-    console.log("signInWithEmail");
     // Start spinner
-    // yield call(logInUser, logInDetails);
+    const response = yield call(logInUser, logInDetails);
+    yield put(setUserDetails(response.data.data.user));
     yield put(signInSuccess());
     // Stop spinner
   } catch (error) {
@@ -143,6 +144,7 @@ function* afterSignIn() {
   try {
     yield put(clearLogInAlert());
     yield put(setIsLoggedTrue());
+
     // yield put(clearClickedAlertSvg());
   } catch (error) {}
 }

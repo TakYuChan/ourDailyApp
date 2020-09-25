@@ -31,9 +31,10 @@ export default function WebSiteIntroVideoContainer() {
 
           <WebsiteIntroVideo.TextAndBtnWrapper>
             <WebsiteIntroVideo.Title
-              className={`${startAnimate ? "fadeIn" : ""}`}
+              startAnimate={startAnimate}
               fadeinfrom="X"
               fadedistance="20"
+              style={{ opacity: 0 }}
             >
               We let coders land their dream jobs without a resume
             </WebsiteIntroVideo.Title>
@@ -42,10 +43,11 @@ export default function WebSiteIntroVideoContainer() {
               onClick={() => {
                 dispatch(changeAuthPage("signup"));
               }}
-              className={`${startAnimate ? "fadeIn" : ""}`}
+              startAnimate={startAnimate}
               fadeinfrom="Y"
               fadedistance="20"
-              delay={600}
+              delay={400}
+              style={{ opacity: 0 }}
             >
               Sign Up Now
             </WebsiteIntroVideo.SignUpBtn>

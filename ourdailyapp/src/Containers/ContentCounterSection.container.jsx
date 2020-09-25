@@ -8,7 +8,9 @@ import useOnScreen from "../hooks/useShowScreen.hooks";
 export default function CounterCounterSection() {
   const { countUp } = useCountUp({ end: 10 });
 
-  const [setNode, startAnimate] = useOnScreen({ threshold: 0.5 });
+  const [setNode, startAnimate] = useOnScreen({
+    threshold: 0.2,
+  });
 
   const width_above_550 = useMediaQuery({ query: "(min-width: 550px" });
   const width_above_1180 = useMediaQuery({ query: "(min-width: 1180px" });
@@ -28,10 +30,10 @@ export default function CounterCounterSection() {
         }}
       >
         <ContentCounter.CompanyWall
-          className={`${startAnimate ? "fadeIn" : ""}`}
-          fadeInFrom="X"
-          fadeDistance="-20"
-          style={{ opacity: "0" }}
+          fadeinFrom="X"
+          fadedistance="-20"
+          startAnimate={startAnimate}
+          style={{ opacity: 0 }}
         >
           <ContentCounter.WallRowOne>
             <ContentCounter.WallImage src="/images/assets/linkedin.png" />
@@ -76,36 +78,41 @@ export default function CounterCounterSection() {
 
         <ContentCounter.TextAndCardWrapper>
           <Typography.SectionSubtitle
-            className={`${startAnimate ? "fadeIn" : ""}`}
             fadeinfrom="Y"
             fadedistance="-20"
-            delay={600}
+            delay={200}
+            startAnimate={startAnimate}
+            style={{ opacity: 0 }}
           >
             Find a Job worldwide without a resume.
           </Typography.SectionSubtitle>
           <Typography.SectionTitle
-            className={`${startAnimate ? "fadeIn" : ""}`}
             fadeinfrom="Y"
             fadedistance="-20"
-            delay={600}
+            delay={200}
+            startAnimate={startAnimate}
+            style={{ opacity: 0 }}
           >
-            Get referred to over {countUp}K companies with your ratings
+            > Get referred to over {countUp}K companies with your ratings
           </Typography.SectionTitle>
           <Typography.SectionText
-            className={`${startAnimate ? "fadeIn" : ""}`}
+            startAnimate={startAnimate}
             fadeinfrom="X"
             fadedistance="20"
-            delay={1000}
+            delay={400}
+            style={{ opacity: 0 }}
           >
-            With Skillsme, your projects has the potential to reach over 10,000
-            companies worldwide that is interested in recruiting tech talents
-            like you. Validate your projects with ratings only on Skillsme.
+            > With Skillsme, your projects has the potential to reach over
+            10,000 companies worldwide that is interested in recruiting tech
+            talents like you. Validate your projects with ratings only on
+            Skillsme.
           </Typography.SectionText>
           <ContentCounter.Card
-            className={`${startAnimate ? "fadeIn" : ""}`}
+            startAnimate={startAnimate}
             fadeinfrom="X"
             fadedistance="20"
-            delay={1000}
+            delay={400}
+            style={{ opacity: 0 }}
           >
             <ContentCounter.CardPane>
               <ContentCounter.CardIcon className="iconfont icon-users" />

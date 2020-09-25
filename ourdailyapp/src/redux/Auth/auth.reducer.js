@@ -3,7 +3,6 @@ import AuthActionTypes from "./auth.types";
 import { allocateSignUpAlerts, allocateLogInAlerts } from "./auth.utils";
 
 const INITIATE_STATE = {
-  isLogged: false,
   signUpAlert: {
     nameAlerts: [],
     emailAlerts: [],
@@ -40,6 +39,12 @@ const authReducer = (state = INITIATE_STATE, action) => {
       return {
         ...state,
         isLogged: true,
+      };
+    case AuthActionTypes.SET_USER_DETAILS:
+      return {
+        ...state,
+        isLogged: true,
+        user: action.user,
       };
     default:
       return state;

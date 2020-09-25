@@ -13,7 +13,6 @@ import {
   selectPlayer2Obj,
   selectWinner,
   selectFinalScore,
-  // selectPlayer2UserInfo,
   selectStrikes,
 } from "../../redux/pigGame/pigGame.selectors";
 import {
@@ -27,7 +26,7 @@ import {
 } from "../../redux/pigGameModals/pigGameModals.actions";
 import {
   selectCurrentUser,
-  selectIsUserLogged,
+  // selectIsUserLogged,
 } from "../../redux/Auth/auth.selectors";
 import {
   rollDice,
@@ -216,7 +215,7 @@ const mapStateToProps = createStructuredSelector({
   strikesNum: selectStrikes,
   displayName: selectPlayer2DisplayName,
   photoURL: selectPlayer2PhotoURL,
-  isMainUserLogged: selectIsUserLogged,
+  // isMainUserLogged: selectIsUserLogged,
 });
 
 const mapDispatchToProps = (dispatch) => ({

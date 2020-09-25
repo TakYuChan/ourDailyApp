@@ -41,7 +41,9 @@ S.CardContainer = styled.div`
     max-width: 400px;
   }
 
-  ${fadeInAnimation.fadeInStyle}
+  ${({ startAnimate }) => {
+    return startAnimate && fadeInAnimation.fadeInStyle;
+  }}
 `;
 
 S.TopPart = styled.div`
@@ -170,7 +172,9 @@ S.Text = styled.p`
     font-size: 1rem;
   }
 
-  ${fadeInAnimation.fadeInStyle}
+  ${({ startAnimate }) => {
+    return startAnimate && fadeInAnimation.fadeInStyle;
+  }}
 `;
 
 S.WorkingManImg = styled.img`

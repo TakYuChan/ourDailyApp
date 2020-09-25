@@ -3,7 +3,7 @@ import S from "./ImageFrame.style";
 
 import PropTypes from "prop-types";
 
-const ImageFrame = ({ src, halo, withExtraText }) => {
+const ImageFrame = ({ children, src, halo, withExtraText }) => {
   return (
     <React.Fragment>
       <S.ImageFrame styled_halo={halo}>
@@ -12,7 +12,7 @@ const ImageFrame = ({ src, halo, withExtraText }) => {
           Edit Profile
         </S.EditProfileText>
       </S.ImageFrame>
-      {withExtraText && <S.ExtraImgSpan>name</S.ExtraImgSpan>}
+      {withExtraText && <S.ExtraImgSpan>{children}</S.ExtraImgSpan>}
     </React.Fragment>
   );
 };

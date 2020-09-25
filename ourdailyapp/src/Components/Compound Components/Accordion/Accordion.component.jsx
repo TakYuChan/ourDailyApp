@@ -6,8 +6,6 @@ import {
   ToggleContext,
 } from "../../../context/toggle.context";
 
-// const ToggleContext = createContext();
-
 export default function Accordion({ children, ...restProps }) {
   return (
     <S.Container {...restProps}>
@@ -64,4 +62,8 @@ Accordion.BodyWrapper = function BodyWrapper({ children, ...restProps }) {
       {children}
     </S.BodyWrapper>
   );
+};
+
+Accordion.Img = function Image({ ...restProps }) {
+  return <S.Image {...restProps} />;
 };

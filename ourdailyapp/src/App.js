@@ -5,14 +5,13 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import { IsUserRedirect, ProtectedRoute } from "./helpers/routes.helper";
 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./utils/styled/globalStyle";
 import { lightTheme, darkTheme } from "./utils/styled/theme";
-import { checkAuthSession } from "./redux/Auth/auth.actions";
-import { selectIsUserLogged } from "./redux/Auth/auth.selectors";
+// import { checkAuthSession } from "./redux/Auth/auth.actions";
 import componentWithPreload from "./utils/lazyLoading/componentWithPreload";
 import PixelSpinner from "./Components/Molecules/Spinners/PixelSpinner/PixelSpinner.component";
 
@@ -52,11 +51,13 @@ export const routes = [
   },
 ];
 
-const App = ({ checkAuthSession, isUserLogged }) => {
+const App = () => {
   //=============== Life Cycle Hooks ===============
-  useEffect(() => {
-    checkAuthSession();
-  }, [checkAuthSession]);
+  // useEffect(() => {
+  //   checkAuthSession();
+  // }, [checkAuthSession]);
+
+  const isUserLogged = useSelector((state) => state.auth_P.isLogged);
 
   return (
     <ThemeProvider theme={lightTheme}>
@@ -127,12 +128,8 @@ const App = ({ checkAuthSession, isUserLogged }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  isUserLogged: selectIsUserLogged,
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   checkAuthSession: () => dispatch(checkAuthSession()),
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  checkAuthSession: () => dispatch(checkAuthSession()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
