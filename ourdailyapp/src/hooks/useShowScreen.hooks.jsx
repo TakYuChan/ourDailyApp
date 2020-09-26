@@ -6,7 +6,11 @@ export default function useOnScreen(options) {
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
-      !startAnimate && setStartAnimate(entry.isIntersecting);
+      setStartAnimate(entry.isIntersecting);
+
+      if (node && entry.isIntersecting) {
+        observer.unobserve(node);
+      }
     }, options);
 
     if (node) {
@@ -15,7 +19,8 @@ export default function useOnScreen(options) {
 
     return () => {
       if (node) {
-        observer.unobserve(node);
+        // observer.unobserve(node);
+        observer.disconnect();
       }
     };
   }, [node, options, startAnimate]);

@@ -6,7 +6,7 @@ import faqsData from "../fixtures/faqs.json";
 import useOnScreen from "../hooks/useShowScreen.hooks";
 
 const FaqsContainer = () => {
-  const [setNode, startAnimate] = useOnScreen({ threshold: 0.2 });
+  const [setNode, startAnimate] = useOnScreen({ threshold: [0.2, 0.8] });
 
   return (
     <div style={{ position: "relative", padding: "0 0 90px" }} ref={setNode}>

@@ -257,4 +257,16 @@ S.ForgotPassBtn = styled.button`
   }
 `;
 
+S.FileInputBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+S.FileInputLabel = styled.label`
+  color: white;
+  margin-bottom: 4em;
+`;
+
+S.FormFileInput = styled.input``;
+
 export default S;

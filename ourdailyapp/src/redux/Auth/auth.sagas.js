@@ -12,6 +12,8 @@ import {
   setUserDetails,
 } from "./auth.actions";
 
+import { changeAuthPage } from "../AuthPage/AuthPage.actions";
+
 import {
   setIsSigningUpTRUE,
   setIsSigningUpFALSE,
@@ -136,7 +138,7 @@ function* signInFailHandler({ error, targetComponent }) {
 function* afterSignUp() {
   try {
     yield put(clearSignUpAlert());
-    // yield put(clearClickedAlertSvg());
+    yield put(changeAuthPage("uploadAvatar"));
   } catch (error) {}
 }
 

@@ -6,7 +6,7 @@ import jumboData from "../fixtures/jumbo.json";
 import useOnScreen from "../hooks/useShowScreen.hooks";
 
 export default function JumbotronContainer() {
-  const [setNode, startAnimate] = useOnScreen({ threshold: 0.2 });
+  const [setNode, startAnimate] = useOnScreen({ threshold: [0.2, 0.8] });
   return (
     <div ref={setNode}>
       <Typography.SectionSubtitle

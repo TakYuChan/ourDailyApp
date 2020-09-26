@@ -64,7 +64,10 @@ S.LogInPageContent = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  display: grid;
+  ${(props) => {
+    if (props.styled_authPage !== "uploadAvatar") return "display: grid;";
+  }}
+
   font-size: clamp(0.9rem, 1.4vw, 1.5rem);
 
   ${(props) => {

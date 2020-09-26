@@ -6,7 +6,7 @@ import { Decoration } from "../Components/Compound Components/";
 import useOnScreen from "../hooks/useShowScreen.hooks";
 
 const AboutMeContainer = () => {
-  const [setNode, startAnimate] = useOnScreen({ threshold: 0.2 });
+  const [setNode, startAnimate] = useOnScreen({ threshold: [0.2, 0.8] });
 
   return (
     <div style={{ position: "relative" }} ref={setNode}>

@@ -9,7 +9,7 @@ export default function CounterCounterSection() {
   const { countUp } = useCountUp({ end: 10 });
 
   const [setNode, startAnimate] = useOnScreen({
-    threshold: 0.2,
+    threshold: [0.2, 0.8],
   });
 
   const width_above_550 = useMediaQuery({ query: "(min-width: 550px" });

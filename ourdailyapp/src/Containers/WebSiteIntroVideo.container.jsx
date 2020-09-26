@@ -8,7 +8,7 @@ import useOnScreen from "../hooks/useShowScreen.hooks";
 
 export default function WebSiteIntroVideoContainer() {
   const dispatch = useDispatch();
-  const [setNode, startAnimate] = useOnScreen({ threshold: 0.5 });
+  const [setNode, startAnimate] = useOnScreen({ threshold: [0.2, 0.8] });
 
   return (
     <div ref={setNode}>

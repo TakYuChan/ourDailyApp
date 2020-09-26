@@ -10,6 +10,7 @@ import { changeAuthPage } from "../../redux/AuthPage/AuthPage.actions";
 
 import LogInOrganism from "../../Components/LogInOrganism/LogInOrganism.component";
 import SignUpOrganism from "../../Components/SignUpOrganism/SignUpOrganism.component";
+import UploadAvatarContainer from "../../Containers/UploadAvatar.container";
 import SocialContactPair from "../../Components/SocialContact/SocialContactPair.component";
 
 import logo from "../../assets/logo_new.png";
@@ -31,11 +32,13 @@ const AuthPage = ({ authPage, changeAuthPage }) => {
         styled_authPage={authPage}
         mq_IsTallScreen={mq_IsTallScreen}
       >
-        <S.LogoWrapper
-          className={authPage === "signup" && "styled_smallerLogo"}
-        >
-          <img className="logo" src={logo} alt="" role="presentation" />
-        </S.LogoWrapper>
+        {authPage !== "uploadAvatar" && (
+          <S.LogoWrapper
+            className={authPage === "signup" && "styled_smallerLogo"}
+          >
+            <img className="logo" src={logo} alt="" role="presentation" />
+          </S.LogoWrapper>
+        )}
 
         <S.LogInWrapper>
           {authPage === "login" && <LogInOrganism />}
@@ -46,38 +49,42 @@ const AuthPage = ({ authPage, changeAuthPage }) => {
           )}
         </S.SignUpWrapper>
 
-        <S.FooterWrapper>
-          {/* // ============== Create Account Btn ==============  */}
-          {authPage === "login" && (
-            <S.ToSignUpPage onClick={() => changeAuthPage("signup")}>
-              Create Account
-            </S.ToSignUpPage>
-          )}
-          {authPage === "signup" && (
-            <S.ToLogInPage onClick={() => changeAuthPage("login")}>
-              Log In Now
-            </S.ToLogInPage>
-          )}
-          {/* // ============== My Social Media Contact ==============  */}
-          <S.SocialContactAndCopyRightWrapper>
-            <S.SocialContactWrapper>
-              <SocialContactPair
-                SvgComponent={LinkedInSvg}
-                link="https://www.linkedin.com/in/franky-tak-yu-chan-18b51518b/"
-              >
-                LinkedIn
-              </SocialContactPair>
-              <SocialContactPair
-                SvgComponent={GithubSvg}
-                link="https://github.com/TakYuChan"
-              >
-                Github
-              </SocialContactPair>
-            </S.SocialContactWrapper>
-            {/* // ============== Copy Right Text ==============  */}
-            <S.CopyRightText>© 2020 by Franky Chan</S.CopyRightText>
-          </S.SocialContactAndCopyRightWrapper>
-        </S.FooterWrapper>
+        {authPage === "uploadAvatar" && <UploadAvatarContainer />}
+
+        {authPage !== "uploadAvatar" && (
+          <S.FooterWrapper>
+            {/* // ============== Create Account Btn ==============  */}
+            {authPage === "login" && (
+              <S.ToSignUpPage onClick={() => changeAuthPage("signup")}>
+                Create Account
+              </S.ToSignUpPage>
+            )}
+            {authPage === "signup" && (
+              <S.ToLogInPage onClick={() => changeAuthPage("login")}>
+                Log In Now
+              </S.ToLogInPage>
+            )}
+            {/* // ============== My Social Media Contact ==============  */}
+            <S.SocialContactAndCopyRightWrapper>
+              <S.SocialContactWrapper>
+                <SocialContactPair
+                  SvgComponent={LinkedInSvg}
+                  link="https://www.linkedin.com/in/franky-tak-yu-chan-18b51518b/"
+                >
+                  LinkedIn
+                </SocialContactPair>
+                <SocialContactPair
+                  SvgComponent={GithubSvg}
+                  link="https://github.com/TakYuChan"
+                >
+                  Github
+                </SocialContactPair>
+              </S.SocialContactWrapper>
+              {/* // ============== Copy Right Text ==============  */}
+              <S.CopyRightText>© 2020 by Franky Chan</S.CopyRightText>
+            </S.SocialContactAndCopyRightWrapper>
+          </S.FooterWrapper>
+        )}
       </S.LogInPageContent>
     </React.Fragment>
   );
