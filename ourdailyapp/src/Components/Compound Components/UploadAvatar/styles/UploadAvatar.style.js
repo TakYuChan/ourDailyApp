@@ -55,11 +55,18 @@ S.TextGroup = styled.div`
   width: 90%;
   margin: 0 auto;
 
-  margin-top: 5rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
 
-  @media screen and (orientation: landscape) {
+  @media screen and (min-width: 700px) {
     margin-bottom: 4rem;
+  }
+
+  @media screen and (min-width: 1000px) {
+    margin-top: 2rem;
+  }
+  @media screen and (min-width: 1400px) {
+    margin-top: 4rem;
   }
 `;
 
@@ -101,8 +108,9 @@ S.AvatarDisplay = styled.div`
   margin: 0 auto;
   margin-bottom: 1rem;
 
-  @media screen and (orientation: landscape) {
+  @media screen and (min-width: 700px) {
     margin-bottom: 4rem;
+    --size: 5rem;
   }
 `;
 
@@ -111,11 +119,19 @@ S.Title = styled.h1`
   font-weight: 300;
   font-size: 1.2em;
   margin-bottom: 0.5rem;
+
+  @media screen and (min-width: 1000px) {
+    font-size: 1.5rem;
+  }
 `;
 
 S.Text = styled.span`
   font-size: 0.8rem;
-  color: #e5e5e5;
+  color: white;
+
+  @media screen and (min-width: 1000px) {
+    font-size: 1rem;
+  }
 `;
 
 export default S;
