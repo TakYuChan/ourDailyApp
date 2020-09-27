@@ -15,7 +15,7 @@ import PropTypes from "prop-types";
 
 const SignUpOrganism = ({ mq_IsTallScreen }) => {
   return (
-    <React.Fragment>
+    <>
       {/* // ============== Log In Form wrapper==============  */}
       <S.SignUpFormWrapper mq_IsTallScreen={mq_IsTallScreen}>
         <SignUpForm />
@@ -58,7 +58,7 @@ const SignUpOrganism = ({ mq_IsTallScreen }) => {
                   onClick={onClick}
                   disabled={disabled}
                 >
-                  {children}
+                  google
                 </OauthBtnRounded>
               )}
             />
@@ -77,7 +77,7 @@ const SignUpOrganism = ({ mq_IsTallScreen }) => {
           </React.Fragment>
         )}
       </S.OauthBtnsWrapper>
-    </React.Fragment>
+    </>
   );
 };
 

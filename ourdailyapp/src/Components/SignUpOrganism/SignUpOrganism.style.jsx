@@ -5,16 +5,10 @@ const S = {};
 // ============== Log in form wrapper ================
 
 S.SignUpFormWrapper = styled.div`
-
   flex-basis: 45%;
   width: 100%;
-  ${(props) => {
-    if (!props.mq_IsTallScreen)
-      return `
-    flex-basis: 100%;
-    `;
-  }}}
-  height: 70%;
+
+  height: 100% !important;
   position: relative;
 
   &::before {

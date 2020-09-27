@@ -42,6 +42,13 @@ const AuthPage = React.lazy(() =>
 const PigGamePageWithSpinner = React.lazy(() =>
   import("./games/Pig_game/pigGamePageWithSpinner.component")
 );
+const ForgotPasswordPage = React.lazy(() =>
+  import("./Pages/ForgotPasswordPage/ForgotPassword.page")
+);
+
+const AuthRouter = React.lazy(() =>
+  import("./Routers/AuthRouter/AuthRouter.component")
+);
 
 export const routes = [
   {
@@ -91,7 +98,14 @@ const App = () => {
             path={"/auth"}
             loggedInPath={"/main"}
           >
-            <AuthPage />
+            <AuthRouter />
+          </IsUserRedirect>
+          <IsUserRedirect
+            isLogged={isUserLogged}
+            path={"/forgotPassword"}
+            loggedInPath={"/main"}
+          >
+            <ForgotPasswordPage />
           </IsUserRedirect>
           <ProtectedRoute exact isLogged={isUserLogged} path="/main">
             <MainPage />
