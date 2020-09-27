@@ -23,7 +23,7 @@ const LogInForm = () => {
   const dispatch = useDispatch();
 
   return (
-    <Form>
+    <Form.LogInFormContainer>
       <Form.Group>
         <Form.InputSvg>
           <UserSvg />
@@ -82,7 +82,6 @@ const LogInForm = () => {
           !(clickedAlertSvg === "password") && (
             <Form.AlertSvg
               onClick={() => {
-                console.log("clicked alert svg");
                 setClickedAlertSvg("password");
               }}
             >
@@ -110,7 +109,7 @@ const LogInForm = () => {
       >
         Log In
       </Form.LogInBtn>
-    </Form>
+    </Form.LogInFormContainer>
   );
 };
 

@@ -8,6 +8,22 @@ export default function Form({ children, ...restProps }) {
   return <S.FormContainer {...restProps}>{children}</S.FormContainer>;
 }
 
+Form.SignUpFormContainer = function SignUpFormContainer({
+  children,
+  ...restProps
+}) {
+  return (
+    <S.SignUpFormContainer {...restProps}>{children}</S.SignUpFormContainer>
+  );
+};
+
+Form.LogInFormContainer = function LogInFormContainer({
+  children,
+  ...restProps
+}) {
+  return <S.LogInFormContainer {...restProps}>{children}</S.LogInFormContainer>;
+};
+
 Form.Group = function FormGroup({ children, ...restProps }) {
   return <S.FormGroup {...restProps}>{children}</S.FormGroup>;
 };

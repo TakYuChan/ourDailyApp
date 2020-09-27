@@ -20,38 +20,6 @@ const switchPageBtnStyle = css`
 
 const S = {};
 
-// ============= Logo ==============
-S.LogoWrapper = styled.div`
-  grid-area: logo;
-  transition: transform 800ms linear;
-  transform: scale(1);
-  width: 8rem;
-
-  border: 2px solid steelblue;
-  margin-bottom: 2rem;
-
-  //   animation: shrink 800ms linear;
-
-  & img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-  }
-  &.styled_smallerLogo {
-    transform: scale(0.8);
-  }
-
-  @keyframes shrink {
-    from {
-      transform: scale(1);
-    }
-
-    to {
-      transform: scale(0.8);
-    }
-  }
-`;
-
 S.AuthPageContainer = styled.div`
   height: 100vh;
 `;
@@ -105,8 +73,28 @@ S.LogInPageContent = styled.div`
   align-items: center;
 `;
 
+// ============= Logo ==============
+S.LogoWrapper = styled.div`
+  // grid-area: logo;
+  transition: transform 800ms linear;
+  transform: scale(1);
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  width: 8em;
+
+  margin-bottom: 2rem;
+
+  & img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+  &.shrink {
+    transform: scale(0.8);
+  }
+`;
+
 /* // ============== Create Account Btn ==============  */
-S.ToLogInPage = styled(Link)`
+S.ChangeAuthPageLink = styled(Link)`
   ${switchPageBtnStyle}
   color: ${(props) => props.theme.AuthPage.ToLogInPageBtn};
 `;
@@ -121,6 +109,14 @@ S.FooterWrapper = styled.div`
   margin-bottom: 0.2em;
 
   margin-top: auto;
+
+  @media screen and (min-width: 900px) {
+    font-size: 1.2rem;
+  }
+
+  @media screen and (min-width: 1400px) {
+    font-size: 1.4rem;
+  }
 `;
 /* // ============== S.SocialContactAndCopyRightWrapper ==============  */
 

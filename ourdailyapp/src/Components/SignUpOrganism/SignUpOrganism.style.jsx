@@ -6,21 +6,7 @@ const S = {};
 
 S.SignUpFormWrapper = styled.div`
   flex-basis: 45%;
-  width: 100%;
-
-  height: 100% !important;
-  position: relative;
-
-  &::before {
-    content: "Sign Up";
-
-    color: ${(props) => props.theme.SignUpPage.SignUpTitle};
-    font-weight: 500;
-
-    position: absolute;
-    left: -1em;
-    top: -3em;
-  }
+  // width: 100%;
 
   @media screen and (max-width: 750px) {
     justify-self: center;

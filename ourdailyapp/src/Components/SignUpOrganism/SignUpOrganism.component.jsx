@@ -17,9 +17,7 @@ const SignUpOrganism = ({ mq_IsTallScreen }) => {
   return (
     <>
       {/* // ============== Log In Form wrapper==============  */}
-      <S.SignUpFormWrapper mq_IsTallScreen={mq_IsTallScreen}>
-        <SignUpForm />
-      </S.SignUpFormWrapper>
+      <SignUpForm />
       {/* // =================== OR Seperate Line ====================== */}
       <S.Or mq_IsTallScreen={mq_IsTallScreen}>OR</S.Or>
       {/* // ============== Oauth Buttons wrapper==============  */}

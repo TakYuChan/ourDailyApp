@@ -3,6 +3,8 @@ import S from "./AuthRouter.style";
 
 import { Route } from "react-router-dom";
 import useRouter from "../../hooks/useRouter.hooks";
+import { useDispatch, useSelector } from "react-redux";
+import { changeAuthPage } from "../../redux/AuthPage/AuthPage.actions";
 
 import LogInPage from "../../Pages/LogInPage/LogIn.page";
 import SignUpPage from "../../Pages/SignUpPage/SignUp.page";
@@ -15,12 +17,16 @@ import logo from "../../assets/logo_new.png";
 
 const AuthRouter = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const currentAuthPage = useSelector((state) => state.authPage.authPage);
 
   return (
     <S.AuthPageContainer className="AuthRouter-page">
       <S.LogInPageHazyBg className="S_LogInPageHazyBg"></S.LogInPageHazyBg>
       <S.LogInPageContent>
-        <S.LogoWrapper className="styled_smallerLogo">
+        <S.LogoWrapper
+          className={`${currentAuthPage === "signup" ? "shrink" : ""}`}
+        >
           <img className="logo" src={logo} alt="" role="presentation" />
         </S.LogoWrapper>
 
@@ -32,7 +38,22 @@ const AuthRouter = () => {
         </Route>
         <S.FooterWrapper>
           {/* // ============== Create Account Btn ==============  */}
-          <S.ToLogInPage to="/auth/login">Log In Now</S.ToLogInPage>
+          {currentAuthPage === "signup" && (
+            <S.ChangeAuthPageLink
+              to="/auth/login"
+              onClick={() => dispatch(changeAuthPage("login"))}
+            >
+              Log In Now
+            </S.ChangeAuthPageLink>
+          )}
+          {currentAuthPage === "login" && (
+            <S.ChangeAuthPageLink
+              to="/auth/signup"
+              onClick={() => dispatch(changeAuthPage("signup"))}
+            >
+              Create Account
+            </S.ChangeAuthPageLink>
+          )}
           {/* // ============== My Social Media Contact ==============  */}
           <S.SocialContactAndCopyRightWrapper>
             <S.SocialContactWrapper>

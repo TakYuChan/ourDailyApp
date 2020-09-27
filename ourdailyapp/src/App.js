@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import "./App.css";
 
@@ -6,7 +6,6 @@ import { Switch, Route } from "react-router-dom";
 import { IsUserRedirect, ProtectedRoute } from "./helpers/routes.helper";
 
 import { useSelector } from "react-redux";
-import { createStructuredSelector } from "reselect";
 
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./utils/styled/globalStyle";
@@ -35,9 +34,6 @@ const CartPage = React.lazy(() =>
 );
 const MainPage = React.lazy(() =>
   import("./Pages/mainPage/mainPage.component")
-);
-const AuthPage = React.lazy(() =>
-  import("./Pages/AuthPage/AuthPage.component")
 );
 const PigGamePageWithSpinner = React.lazy(() =>
   import("./games/Pig_game/pigGamePageWithSpinner.component")

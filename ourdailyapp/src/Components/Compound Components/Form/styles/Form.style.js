@@ -3,12 +3,56 @@ import styled from "styled-components";
 const S = {};
 
 S.FormContainer = styled.form`
-  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
 
   justify-content: space-between;
+`;
+
+S.LogInFormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  margin-bottom: 1rem;
+
+  @media screen and (min-width: 750px) {
+    font-size: 1.2rem;
+  }
+  @media screen and (min-width: 1200px) {
+    font-size: 1.4rem;
+  }
+`;
+
+S.SignUpFormContainer = styled.form`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  justify-content: space-between;
+  &::before {
+    content: "Sign Up";
+
+    color: ${(props) => props.theme.SignUpPage.SignUpTitle};
+    font-weight: 500;
+
+    position: absolute;
+    left: 0em;
+    top: -3em;
+
+    font-size: 0.8em;
+  }
+
+  @media screen and (min-width: 750px) {
+    font-size: 1.2rem;
+  }
+  @media screen and (min-width: 1200px) {
+    font-size: 1.4rem;
+  }
 `;
 
 S.FormGroup = styled.div`
@@ -21,7 +65,7 @@ S.FormGroup = styled.div`
 
   transition: all 250ms linear background 0;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 1000px) and (orientation: landscape) {
+  @media screen and (min-width: 700px) {
     margin-bottom: 1.2rem;
   }
 `;
@@ -170,6 +214,8 @@ S.LogInBtn = styled.button`
   font-weight: 700;
 
   cursor: pointer;
+
+  margin-top: 2rem;
 `;
 
 S.SignUpBtn = styled.button`

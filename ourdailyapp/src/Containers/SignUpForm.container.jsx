@@ -22,7 +22,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   return (
-    <Form>
+    <Form.SignUpFormContainer>
       <Form.Group>
         <Form.Input
           onChange={handleInputChange}
@@ -179,7 +179,7 @@ const SignUpForm = () => {
         Sign Up
         {isSigningUp && <PixelSpinner size={1.2} animationDuration={1500} />}
       </Form.SignUpBtn>
-    </Form>
+    </Form.SignUpFormContainer>
   );
 };
 
