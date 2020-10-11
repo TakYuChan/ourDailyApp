@@ -23,7 +23,7 @@ const AboutMeContainer = () => {
               delay={400}
               style={{ opacity: 0 }}
             >
-              Find a Job worldwide without a resume.
+              A business card about me.
             </Typography.SectionSubtitle>
             <Typography.SectionTitle
               startAnimate={startAnimate}
@@ -32,7 +32,7 @@ const AboutMeContainer = () => {
               delay={400}
               style={{ opacity: 0 }}
             >
-              Get referred to over 10K
+              Click the buttons on the card
             </Typography.SectionTitle>
             <AboutMe.Text
               startAnimate={startAnimate}
@@ -41,10 +41,7 @@ const AboutMeContainer = () => {
               delay={400}
               style={{ opacity: 0 }}
             >
-              With Skillsme, your projects has the potential to reach over
-              10,000 companies worldwide that is interested in recruiting tech
-              talents like you. Validate your projects with ratings only on
-              Skillsme.
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. 
             </AboutMe.Text>
           </AboutMe.TextWrapper>
           <AboutMe.Card

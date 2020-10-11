@@ -14,6 +14,7 @@ const INITIATE_STATE = {
     emailAlerts: [],
     formAlerts: [],
   },
+  updateUserAlert: {}
 };
 
 const authReducer = (state = INITIATE_STATE, action) => {

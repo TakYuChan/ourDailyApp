@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 // import TooltipWrapper from "../TooltipWrapper/TooltipWrapper.component";
 import ReactToolTip from "react-tooltip";
@@ -6,6 +6,17 @@ import { ReactComponent as NavIcon } from "../../assets/nav.svg";
 
 import { rgba } from "polished";
 const S = {};
+
+const iconStyles = css`
+color: ${(props) => props.theme.cartIcon};
+opacity: 0.8;
+font-size: 1.4rem;
+cursor: pointer;
+transition: all 250ms ease;
+&:hover {
+  opacity: .5;
+}
+`;
 
 /* ============================== Header ================================= */
 
@@ -40,7 +51,7 @@ S.LogoWrapper = styled.div`
 /* ============================== Nav List ================================= */
 
 S.NavListContainer = styled.div`
-  width: 4.5em;
+  width: 6em;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -54,10 +65,7 @@ S.CartIconWrapper = styled.div`
 `;
 
 S.CartIcon = styled.i`
-  color: ${(props) => props.theme.cartIcon};
-  opacity: 0.8;
-  font-size: 1.4rem;
-  cursor: pointer;
+  ${iconStyles}
 `;
 
 /* ====================== Cart Icon -- > 1 notification ====================== */
@@ -113,6 +121,11 @@ S.NavIconContainer = styled.div`
 S.NavIcon = styled(NavIcon)`
   fill: var(--gray1);
 `;
+
+S.LogoutBtnContainer = styled.div``;
+
+S.LogoutIcon = styled.i`
+${iconStyles}`;
 
 // ============================= ToolTips =========================
 S.LanguageToolTip = styled(ReactToolTip)`

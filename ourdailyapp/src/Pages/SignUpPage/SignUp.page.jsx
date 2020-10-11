@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import S from "./SignUp.style";
 
 import OauthBtn from "../../Components/Molecules/Buttons/OauthBtn/OauthBtn.component";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeAuthPage } from "../../redux/AuthPage/AuthPage.actions";
 
 import OauthBtnRounded from "../../Components/Molecules/Buttons/OauthBtnRounded/OauthBtnRounded.component";
 import GoogleAuthBtn from "../../Components/Molecules/Buttons/GoogleAuthBtn.component";
 import SignUpForm from "../../Containers/SignUpForm.container";
+import UploadAvatarContainer from "../../Containers/UploadAvatar.container";
 
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";
 import { ReactComponent as AppleSvg } from "../../assets/svg/apple.svg";
@@ -16,14 +17,17 @@ import { useMediaQuery } from "react-responsive";
 
 const SignUpPage = () => {
   const dispatch = useDispatch();
+  const currentAuthPage = useSelector((state) => state.authPage.authPage);
 
   const mq_IsTallScreen = useMediaQuery({ query: "(min-device-height: 740px" });
 
-  useEffect(() => {
-    dispatch(changeAuthPage("signup"));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(changeAuthPage("signup"));
+  // }, [dispatch]);
 
-  return (
+  return currentAuthPage === "uploadAvatar" ? (
+    <UploadAvatarContainer />
+  ) : (
     <S.SignUpPageContainer
       className={`signup ${
         mq_IsTallScreen ? "mq_IsTallScreen" : ""

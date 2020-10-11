@@ -149,8 +149,14 @@ body::-webkit-scrollbar-thumb {
   
   /* ========================== General style ========================== */
 a {
-  text-decoration: none;
+  text-decoration: none !important;
+  &:hover {
+    color: white !important;
+  }
 }
+
+
+
 
   /* ========================== Pages ========================== */
 .gs-page {

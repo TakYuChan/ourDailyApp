@@ -13,7 +13,7 @@ const buttonStyle = css`
   transition: all 250ms ease-in;
 
   &:hover {
-    color: #white;
+    color: white;
     background: #5678af;
     border: 2px solid #5678af;
   }

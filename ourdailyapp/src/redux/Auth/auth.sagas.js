@@ -10,6 +10,8 @@ import {
   clearLogInAlert,
   setIsLoggedTrue,
   setUserDetails,
+  updateUserDetailsSuccess,
+  updateUserDetailsFailure,
 } from "./auth.actions";
 
 import { changeAuthPage } from "../AuthPage/AuthPage.actions";
@@ -21,7 +23,7 @@ import {
 
 import globalErrHandler from "../../utils/globalErrHandler";
 
-import { signUpUser, checkAuthInfoFromDB, logInUser } from "./auth.requests";
+import { signUpUser, checkAuthInfoFromDB, logInUser, updateUserInfo } from "./auth.requests";
 
 // ================= Sagas ==================
 function* onGoogleAuthorizationSuccess() {
@@ -35,13 +37,10 @@ function* onEmailSignInStart() {
   yield takeLatest(AuthActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
 
-// function* onCheckAuthSession() {
-//   yield takeLatest(AuthActionTypes.CHECK_AUTH_SESSION, isUserAuthenticated);
-// }
-
-function* onSignOutStart() {
-  yield takeLatest(AuthActionTypes.SIGN_OUT_START, signOut);
+function* onUpdateUserDetailsStart() {
+  yield takeLatest(AuthActionTypes.UPDATE_USER_DETAILS_START, updateUserDetailsStart);
 }
+
 
 function* onSignUpStart() {
   yield takeLatest(AuthActionTypes.SIGN_UP_START, signUp);
@@ -67,8 +66,7 @@ export default function* authSaga() {
   yield all([
     call(onGoogleAuthorizationSuccess),
     call(onEmailSignInStart),
-    // call(onCheckAuthSession),
-    call(onSignOutStart),
+    call(onUpdateUserDetailsStart),
     call(onSignUpStart),
     call(onSignUpSuccess),
     call(onSignUpFailure),
@@ -79,15 +77,13 @@ export default function* authSaga() {
 
 // ================= other generator functions ==================
 
-function* signOut() {}
-
 function* signUp({ signUpDetails }) {
   try {
     // Start spinner
     yield put(setIsSigningUpTRUE());
 
     yield call(signUpUser, signUpDetails);
-    yield put(signUpSuccess());
+    yield put(signUpSuccess(signUpDetails.email, signUpDetails.password));
 
     // Stop spinner
     yield put(setIsSigningUpFALSE());
@@ -149,4 +145,18 @@ function* afterSignIn() {
 
     // yield put(clearClickedAlertSvg());
   } catch (error) {}
+}
+
+
+// =========== Update User Details ===========
+
+function* updateUserDetailsStart({userDetails}) {
+  try {
+    // request back end to update user details
+    yield call(updateUserInfo,userDetails);
+    console.log("update user")
+    yield put(updateUserDetailsSuccess());
+  } catch (error) {
+    yield put(updateUserDetailsFailure());
+  }
 }

@@ -31,14 +31,13 @@ Header.Hero = function HeaderHero({ children, ...restProps }) {
       }}
     >
       <S.HeroTextWrapper>
-        <S.Title>Land A Coding Job with Skillsme Rating</S.Title>
-        <S.Subtitle>Referral 10K+ Companies</S.Subtitle>
+        <S.Title>Explore the applications we have for you</S.Title>
+        <S.Subtitle>Make your life easier</S.Subtitle>
         <S.Text>
-          Receive your Skillsme rating by completing real projects and get
-          validated by the world's top 5% coders.
+          Have fun with the games and reduce your workload with our applications.
         </S.Text>
         <S.HeroButton
-          to="/auth"
+          to="/auth/login"
           onClick={() => {
             dispatch(changeAuthPage("login"));
           }}

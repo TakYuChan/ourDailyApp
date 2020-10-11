@@ -23,24 +23,43 @@ S.PanelContainer = styled.div`
   flex-direction: column;
 
   max-width: 600px;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 `;
 
 S.TabsWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  position: relative;
+
 `;
 
-S.Tab = styled.button`
+S.TabsWrapperBorder = styled.div`
+position: absolute;
+width: 50%;
+bottom: 0;
+border-bottom: 2px solid #0059A6;
+transition: all 100ms linear;
+&.right {
+  transform: translateX(100%);
+}
+`;
+
+S.Tab = styled.div`
   background: 0;
   outline: 0;
   border: 0;
   color: white;
-  //   border: 1px solid red;
   flex-basis: 50%;
   cursor: pointer;
   padding: 0.4rem 0;
+  text-align: center;
+  font-size: .7rem;
+
+  @media screen and (min-width: 550px) {
+    font-size: 0.9rem;
+  }
+
 `;
 
 S.Group = styled.div`
@@ -99,7 +118,6 @@ S.FileInput = styled.input`
 `;
 
 S.AvatarDisplay = styled.div`
-  background: pink;
   --size: 4rem;
   width: var(--size);
   height: var(--size);
@@ -112,6 +130,12 @@ S.AvatarDisplay = styled.div`
     margin-bottom: 4rem;
     --size: 5rem;
   }
+`;
+S.AvatarImg = styled.img`
+object-fit: cover;
+height: 100%;
+width: 100%;
+border-radius: inherit;
 `;
 
 S.Title = styled.h1`
@@ -132,6 +156,38 @@ S.Text = styled.span`
   @media screen and (min-width: 1000px) {
     font-size: 1rem;
   }
+`;
+
+S.UploadBtn = styled.button`
+font-size: 0.6em;
+border: 2px solid ${(props) => props.theme.SignUpForm.SignUpButton_border};
+padding: 0.5em 2.4em;
+align-self: center;
+background: ${(props) => props.theme.SignUpForm.SignUpButton_bg};
+color: ${(props) => props.theme.SignUpForm.SignUpButton_text};
+outline: 0;
+display: flex;
+justify-content: space-between;
+
+transition: opacity 250ms ease-in-out;
+
+&:hover {
+  opacity: 0.8;
+}
+
+margin-top: 2em;
+
+font-weight: 700;
+
+cursor: pointer;
+
+& > * {
+  margin-left: 0.5em;
+}
+
+@media screen and (min-width: 800px) {
+  font-size: 0.9em;
+}
 `;
 
 export default S;

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import S from "./LogIn.style";
 
 import { useMediaQuery } from "react-responsive";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeAuthPage } from "../../redux/AuthPage/AuthPage.actions";
 
 import OauthBtn from "../../Components/Molecules/Buttons/OauthBtn/OauthBtn.component";
@@ -15,13 +15,14 @@ import GoogleAuthBtn from "../../Components/Molecules/Buttons/GoogleAuthBtn.comp
 
 const LogInPage = () => {
   const dispatch = useDispatch();
+  const currentAuthPage = useSelector((state) => state.authPage.authPage);
 
   const mq_IsTallScreen = useMediaQuery({ query: "(min-device-height: 629px" });
 
   useEffect(() => {
     dispatch(changeAuthPage("login"));
   }, [dispatch]);
-
+  console.log({ true: currentAuthPage === "uploadAvatar" });
   return (
     <S.LogInPageContainer
       className={`login ${
@@ -31,10 +32,8 @@ const LogInPage = () => {
       mq_IsTallScreen={mq_IsTallScreen}
     >
       <LogInForm />
-
-      {/* // ============== Oauth Buttons wrapper==============  */}
+      {/* // ============== Oauth Buttons wrapper============== */}
       <S.OauthBtnsWrapper>
-        {/* <OauthBtnWithAuth provider="google" /> */}
         <GoogleAuthBtn
           renderBtn={(onClick, disabled, SvgComponent, children) => (
             <OauthBtn

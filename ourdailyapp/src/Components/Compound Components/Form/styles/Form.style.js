@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const S = {};
 
@@ -8,6 +9,14 @@ S.FormContainer = styled.form`
   flex-direction: column;
 
   justify-content: space-between;
+  align-items: center;
+
+  @media screen and (min-width: 750px) {
+    font-size: 1.2rem;
+  }
+  @media screen and (min-width: 1200px) {
+    font-size: 1.4rem;
+  }
 `;
 
 S.LogInFormContainer = styled.form`
@@ -282,7 +291,7 @@ S.AlertTooltip = styled.div`
   }
 `;
 
-S.ForgotPassBtn = styled.button`
+S.ForgotPassBtn = styled(Link)`
   background: 0;
   border: 0;
   outline: 0;
@@ -314,5 +323,37 @@ S.FileInputLabel = styled.label`
 `;
 
 S.FormFileInput = styled.input``;
+
+S.FormTitle = styled.h1`
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+
+  @media screen and (min-width: 800px) {
+    font-size: 1.5rem;
+  }
+`;
+
+S.FormText = styled.span`
+  color: white;
+  font-size: 0.8rem;
+
+  @media screen and (min-width: 800px) {
+    font-size: 1rem;
+  }
+`;
+
+S.FormTextGroup = styled.span`
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  width: 230px;
+
+  @media screen and (min-width: 800px) {
+    width: initial;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+`;
 
 export default S;

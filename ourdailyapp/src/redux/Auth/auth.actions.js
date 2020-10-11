@@ -25,19 +25,9 @@ export const checkAuthSession = () => ({
   type: AuthActionTypes.CHECK_AUTH_SESSION,
 });
 
-// export const signOutStart = (error, targetComponent) => ({
-//   type: AuthActionTypes.SIGN_OUT_START,
-//   error,
-//   targetComponent,
-// });
 
-export const signOutSuccess = () => ({
-  type: AuthActionTypes.SIGN_OUT_SUCCESS,
-});
-
-export const signOutFailure = (error) => ({
-  type: AuthActionTypes.SIGN_OUT_FAILURE,
-  payload: error,
+export const signOut = () => ({
+  type: AuthActionTypes.SIGN_OUT,
 });
 
 export const signUpStart = (signUpDetails) => ({
@@ -45,8 +35,10 @@ export const signUpStart = (signUpDetails) => ({
   signUpDetails,
 });
 
-export const signUpSuccess = () => ({
+export const signUpSuccess = (email, password) => ({
   type: AuthActionTypes.SIGN_UP_SUCCESS,
+  email,
+  password,
 });
 
 export const signUpFailure = (error, targetComponent) => ({
@@ -81,3 +73,15 @@ export const setUserDetails = (userDetails) => ({
   type: AuthActionTypes.SET_USER_DETAILS,
   user: userDetails,
 });
+
+export const updateUserDetailsStart = (userDetails) => ({
+  type: AuthActionTypes.UPDATE_USER_DETAILS_START,
+  user: userDetails,
+})
+export const updateUserDetailsSuccess = () => ({
+  type: AuthActionTypes.UPDATE_USER_DETAILS_SUCCESS,
+})
+export const updateUserDetailsFailure = () => ({
+  type: AuthActionTypes.UPDATE_USER_DETAILS_FAILURE,
+})
+

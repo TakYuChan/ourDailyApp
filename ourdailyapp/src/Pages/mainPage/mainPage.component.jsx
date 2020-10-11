@@ -21,7 +21,7 @@ const MainPage = () => {
   }, [dispatch]);
   return (
     <S.MainPageContainer className="MainPage gs-page">
-      <S.ImageFrameWrapper>
+      <S.ImageFrameWrapper >
         <ImageFrame src={profilePic} halo={true} withExtraText={true}>
           {userDetails.name}
         </ImageFrame>

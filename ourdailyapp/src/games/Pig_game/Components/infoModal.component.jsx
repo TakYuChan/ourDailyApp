@@ -10,7 +10,6 @@ import {
 } from "../../../redux/pigGameModals/pigGameModals.actions";
 import { selectShowInfoModal } from "../../../redux/pigGameModals/pigGameModals.selectors";
 
-// import { Modal } from "react-bootstrap";
 
 const InfoModal = ({ showInfoModal, toggleInfoModal, turnInfoModalOff }) => {
   return (

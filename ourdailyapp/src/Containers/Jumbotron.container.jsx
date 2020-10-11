@@ -9,7 +9,7 @@ export default function JumbotronContainer() {
   const [setNode, startAnimate] = useOnScreen({ threshold: [0.2, 0.8] });
   return (
     <div ref={setNode}>
-      <Typography.SectionSubtitle
+      <Typography.SectionSubtitle className=""
         style={{
           display: "block",
           textAlign: "center",

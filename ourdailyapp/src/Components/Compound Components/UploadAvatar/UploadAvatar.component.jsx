@@ -1,9 +1,11 @@
-import React from "react";
-
+import React, {useContext} from "react";
+import {useDispatch} from "react-redux";
+import {updateUserDetailsStart} from "../../../redux/Auth/auth.actions"
+import {UploadAvatarProvider, UploadAvatarContext} from "../../../context/uploadAvatar.context";
 import S from "./styles/UploadAvatar.style";
 
 export default function UploadAvatar({ children, ...restProps }) {
-  return <S.Container {...restProps}>{children}</S.Container>;
+  return <UploadAvatarProvider><S.Container {...restProps}>{children}</S.Container></UploadAvatarProvider>;
 }
 
 UploadAvatar.Frame = function Frame({ children, ...restProps }) {
@@ -25,9 +27,10 @@ UploadAvatar.PanelContainer = function PanelContainer({
   return <S.PanelContainer {...restProps}>{children}</S.PanelContainer>;
 };
 
-UploadAvatar.TabsWrapper = function TabsWrapper({ children, ...restProps }) {
-  return <S.TabsWrapper {...restProps}>{children}</S.TabsWrapper>;
+UploadAvatar.TabsWrapper = function TabsWrapper({ tabBorderOnLeft, children, ...restProps }) {
+  return <S.TabsWrapper {...restProps}><S.TabsWrapperBorder className={tabBorderOnLeft ? "left": "right"}/>{children}</S.TabsWrapper>;
 };
+
 
 UploadAvatar.Tab = function Tab({ children, ...restProps }) {
   return <S.Tab {...restProps}>{children}</S.Tab>;
@@ -41,20 +44,23 @@ UploadAvatar.FileInputLabel = function FileInputLabel({
 };
 
 UploadAvatar.FileInput = function FileInput({ children, ...restProps }) {
+  const { uploadImgHandler } = useContext(UploadAvatarContext);
+
   return (
-    <S.FileInput {...restProps} type="file">
+    <S.FileInput {...restProps} onChange={uploadImgHandler} type="file">
       {children}
     </S.FileInput>
   );
 };
 
 UploadAvatar.AvatarDisplay = function AvatarDisplay({
-  src,
   children,
   ...restProps
 }) {
-  return <S.AvatarDisplay {...restProps}>{children}</S.AvatarDisplay>;
+  const { imgUploaded } = useContext(UploadAvatarContext);
+  return <S.AvatarDisplay {...restProps}><S.AvatarImg src={imgUploaded}></S.AvatarImg>{children}</S.AvatarDisplay>;
 };
+
 
 UploadAvatar.Title = function Title({ children, ...restProps }) {
   return <S.Title {...restProps}>{children}</S.Title>;
@@ -63,3 +69,10 @@ UploadAvatar.Title = function Title({ children, ...restProps }) {
 UploadAvatar.Text = function Text({ children, ...restProps }) {
   return <S.Text {...restProps}>{children}</S.Text>;
 };
+
+UploadAvatar.UploadBtn = function UploadBtn({children, ...restProps}) {
+  const dispatch = useDispatch();
+  return <S.UploadBtn {...restProps} onClick={() => {
+    dispatch(updateUserDetailsStart());
+  }}>{children}</S.UploadBtn>
+}

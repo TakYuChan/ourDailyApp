@@ -48,6 +48,8 @@ S.LogInPageContent = styled.div`
   user-select: none;
   border-radius: 20px;
 
+  padding-top: 1rem;
+
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     url(${bgJpgMobile});
 
@@ -81,7 +83,7 @@ S.LogoWrapper = styled.div`
   font-size: clamp(1rem, 1.5vw, 1.5rem);
   width: 8em;
 
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   & img {
     height: 100%;

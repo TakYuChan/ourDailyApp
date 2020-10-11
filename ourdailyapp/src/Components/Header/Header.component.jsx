@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { toggleNavHidden, closeNav } from "../../redux/nav/nav.actions";
 import { toggleCartPopUp, closeCartPopUp } from "../../redux/cart/cart.actions";
+import {signOut} from "../../redux/Auth/auth.actions";
 import S from "./Header.style";
 
 const Header = () => {
@@ -66,7 +67,13 @@ const Header = () => {
             <S.NavIcon className="svg" />
           </S.NavIconContainer>
 
-          {/* ====================== Profile Drop Down ====================== */}
+          {/* ====================== Logout btn ====================== */}
+            <S.LogoutBtnContainer onClick={() => {
+              dispatch(signOut());
+            }}>
+              <S.LogoutIcon className="iconfont icon-log-out"></S.LogoutIcon>
+            </S.LogoutBtnContainer>
+
         </S.NavListContainer>
       </S.HeaderNavContainer>
     </S.HeaderContainer>

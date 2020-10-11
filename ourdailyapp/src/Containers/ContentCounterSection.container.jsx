@@ -84,7 +84,7 @@ export default function CounterCounterSection() {
             startAnimate={startAnimate}
             style={{ opacity: 0 }}
           >
-            Find a Job worldwide without a resume.
+            This is my portfolio.
           </Typography.SectionSubtitle>
           <Typography.SectionTitle
             fadeinfrom="Y"
@@ -93,7 +93,7 @@ export default function CounterCounterSection() {
             startAnimate={startAnimate}
             style={{ opacity: 0 }}
           >
-            > Get referred to over {countUp}K companies with your ratings
+            Scroll down to view more details of me
           </Typography.SectionTitle>
           <Typography.SectionText
             startAnimate={startAnimate}
@@ -102,10 +102,7 @@ export default function CounterCounterSection() {
             delay={400}
             style={{ opacity: 0 }}
           >
-            > With Skillsme, your projects has the potential to reach over
-            10,000 companies worldwide that is interested in recruiting tech
-            talents like you. Validate your projects with ratings only on
-            Skillsme.
+            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
           </Typography.SectionText>
           <ContentCounter.Card
             startAnimate={startAnimate}
@@ -117,12 +114,12 @@ export default function CounterCounterSection() {
             <ContentCounter.CardPane>
               <ContentCounter.CardIcon className="iconfont icon-users" />
               <ContentCounter.CardNumber>2K+</ContentCounter.CardNumber>
-              <ContentCounter.CardName>Skillsme Users</ContentCounter.CardName>
+              <ContentCounter.CardName>DailyApp Users</ContentCounter.CardName>
             </ContentCounter.CardPane>
             <ContentCounter.CardPane>
               <ContentCounter.CardIcon className="iconfont icon-company" />
               <ContentCounter.CardNumber>10K+</ContentCounter.CardNumber>
-              <ContentCounter.CardName>Companies</ContentCounter.CardName>
+              <ContentCounter.CardName>Efforts</ContentCounter.CardName>
             </ContentCounter.CardPane>
           </ContentCounter.Card>
         </ContentCounter.TextAndCardWrapper>

@@ -4,7 +4,7 @@ import { Form } from "../Components/Compound Components";
 
 import useLogInForm from "../hooks/useLogInForm.hooks";
 import { emailSignInStart } from "../redux/Auth/auth.actions";
-// import { setClickedAlertSvg_loginForm } from "../redux/logInForm/logInForm.actions";
+import { changeAuthPage } from "../redux/AuthPage/AuthPage.actions";
 
 import { ReactComponent as UserSvg } from "../assets/svg/user.svg";
 import { ReactComponent as LockSvg } from "../assets/svg/password.svg";
@@ -61,7 +61,7 @@ const LogInForm = () => {
         )}
       </Form.Group>
 
-      <Form.Group>
+      <Form.Group className="mt-2">
         <Form.InputSvg>
           <LockSvg />
         </Form.InputSvg>
@@ -89,7 +89,12 @@ const LogInForm = () => {
             </Form.AlertSvg>
           )}
 
-        <Form.ForgotPassBtn>Forgot Password?</Form.ForgotPassBtn>
+        <Form.ForgotPassBtn
+          to={"/auth/forgotPassword"}
+          onClick={() => dispatch(changeAuthPage("forgotPassword"))}
+        >
+          Forgot Password?
+        </Form.ForgotPassBtn>
         {clickedAlertSvg === "password" && (
           <Form.AlertTooltip
             className="top"

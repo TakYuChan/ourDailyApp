@@ -63,7 +63,7 @@ const HomeHeader = () => {
             ) : (
               <>
                 <Header.LinkButton
-                  to="/auth"
+                  to="/auth/login"
                   onClick={() => {
                     dispatch(changeAuthPage("login"));
                   }}
@@ -71,7 +71,7 @@ const HomeHeader = () => {
                   Log In
                 </Header.LinkButton>
                 <Header.LinkButton
-                  to="/auth"
+                  to="/auth/signup"
                   onClick={() => {
                     dispatch(changeAuthPage("signup"));
                   }}

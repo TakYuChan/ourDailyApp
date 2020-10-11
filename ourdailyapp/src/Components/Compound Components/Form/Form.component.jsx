@@ -106,3 +106,15 @@ Form.ForgotPassBtn = function FormForgitPassBtn({ children, ...restProps }) {
     </S.ForgotPassBtn>
   );
 };
+
+Form.Title = function FormTitle({ children, ...restProps }) {
+  return <S.FormTitle {...restProps}>{children}</S.FormTitle>;
+};
+
+Form.Text = function FormText({ children, ...restProps }) {
+  return <S.FormText {...restProps}>{children}</S.FormText>;
+};
+
+Form.TextGroup = function FormTextGroup({ children, ...restProps }) {
+  return <S.FormTextGroup {...restProps}>{children}</S.FormTextGroup>;
+};

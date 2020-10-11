@@ -18,6 +18,11 @@ const authReducer_P = (state = INITIATE_STATE, action) => {
         isLogged: true,
         user: action.user,
       };
+      case AuthActionTypes.SIGN_OUT:
+        return {
+          ...state,
+          isLogged: false,
+        }
     default:
       return state;
   }

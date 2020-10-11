@@ -7,16 +7,12 @@ export default function useLogInForm() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log("handle");
     setLogInDetails((prevLogInDetails) => ({
       ...prevLogInDetails,
       [name]: value,
     }));
   };
   const logInAlertObj = useSelector((state) => state.auth.logInAlert);
-  // const clickedAlertSvg = useSelector(
-  //   (state) => state.logInForm.clickedAlertSvg
-  // );
 
   return {
     logInAlertObj,

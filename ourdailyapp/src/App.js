@@ -1,6 +1,7 @@
 import React from "react";
 
-import "./App.css";
+// import "../node_modules/bootstrap/dist/css/bootstrap.css"
+import './App.css';
 
 import { Switch, Route } from "react-router-dom";
 import { IsUserRedirect, ProtectedRoute } from "./helpers/routes.helper";
@@ -10,7 +11,6 @@ import { useSelector } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./utils/styled/globalStyle";
 import { lightTheme, darkTheme } from "./utils/styled/theme";
-// import { checkAuthSession } from "./redux/Auth/auth.actions";
 import componentWithPreload from "./utils/lazyLoading/componentWithPreload";
 import PixelSpinner from "./Components/Molecules/Spinners/PixelSpinner/PixelSpinner.component";
 
@@ -38,9 +38,6 @@ const MainPage = React.lazy(() =>
 const PigGamePageWithSpinner = React.lazy(() =>
   import("./games/Pig_game/pigGamePageWithSpinner.component")
 );
-const ForgotPasswordPage = React.lazy(() =>
-  import("./Pages/ForgotPasswordPage/ForgotPassword.page")
-);
 
 const AuthRouter = React.lazy(() =>
   import("./Routers/AuthRouter/AuthRouter.component")
@@ -55,11 +52,6 @@ export const routes = [
 ];
 
 const App = () => {
-  //=============== Life Cycle Hooks ===============
-  // useEffect(() => {
-  //   checkAuthSession();
-  // }, [checkAuthSession]);
-
   const isUserLogged = useSelector((state) => state.auth_P.isLogged);
 
   return (
@@ -96,13 +88,6 @@ const App = () => {
           >
             <AuthRouter />
           </IsUserRedirect>
-          <IsUserRedirect
-            isLogged={isUserLogged}
-            path={"/forgotPassword"}
-            loggedInPath={"/main"}
-          >
-            <ForgotPasswordPage />
-          </IsUserRedirect>
           <ProtectedRoute exact isLogged={isUserLogged} path="/main">
             <MainPage />
           </ProtectedRoute>
@@ -131,15 +116,11 @@ const App = () => {
           <Route
             // render={() => (isUserLogged ? <NoMatch /> : <Redirect to="/login" />)}
             component={NoMatch}
-          />{" "}
+          />
         </Switch>
       </React.Suspense>
     </ThemeProvider>
   );
 };
-
-// const mapDispatchToProps = (dispatch) => ({
-//   checkAuthSession: () => dispatch(checkAuthSession()),
-// });
 
 export default App;

@@ -36,7 +36,7 @@ export default function WebSiteIntroVideoContainer() {
               fadedistance="20"
               style={{ opacity: 0 }}
             >
-              We let coders land their dream jobs without a resume
+              Check out this video now to learn more
             </WebsiteIntroVideo.Title>
             <WebsiteIntroVideo.SignUpBtn
               to="/auth"

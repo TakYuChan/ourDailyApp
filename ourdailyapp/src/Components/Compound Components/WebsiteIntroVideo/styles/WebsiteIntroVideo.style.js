@@ -128,6 +128,7 @@ S.SignUpBtn = styled(Link)`
 
   &:hover {
     background-position: right;
+    color: white;
   }
 
   ${({ startAnimate }) => {
