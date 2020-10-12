@@ -14,6 +14,7 @@ import routePathReducer from "./routePath/routePath.reducer";
 import authPageReducer from "./AuthPage/AuthPage.reducer";
 import signUpFormReducer from "./signUpForm/signUpForm.reducer";
 import logInFormReducer from "./logInForm/logInForm.reducer";
+import UIComponentsReducer from "./UIComponents/uiComponents.reducer";
 
 // =========== Applications ===========
 import pigGameReducer from "./pigGame/pigGame.reducer";
@@ -28,6 +29,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+  UIComponents: UIComponentsReducer,
   nav: navReducer,
   auth: authReducer,
   auth_P: authReducer_P,
@@ -44,6 +46,7 @@ const rootReducer = combineReducers({
   pigGame: pigGameReducer,
   pigGameModals: pigGameModalsReducer,
   pigGamePlayer2: pigGamePlayer2Reducer,
+  
 });
 
 // export default rootReducer;

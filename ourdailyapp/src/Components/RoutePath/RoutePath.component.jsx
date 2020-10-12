@@ -13,9 +13,7 @@ import {
 
 const RoutePath = ({ selectPage, selectDetails, history }) => {
   useEffect(() => {
-    console.log("RoutePath is being mounted!");
   }, []);
-  console.log("RoutePath rerendered");
   const routerTextRender = (
     prevRoute,
     currentRoute,
@@ -50,13 +48,13 @@ const RoutePath = ({ selectPage, selectDetails, history }) => {
         routerTextRender(
           "HOME",
           "SHOP",
-          "/",
+          "/main",
           "iconfont icon-icon_yingyongguanli"
         )}
       {selectPage === "wishlist" &&
-        routerTextRender("HOME", "WISHLIST", "/", "iconfont icon-wish")}
+        routerTextRender("HOME", "WISHLIST", "/main", "iconfont icon-wish")}
       {selectPage === "cart" &&
-        routerTextRender("HOME", "WISHLIST", "/", "iconfont icon-cart")}
+        routerTextRender("HOME", "WISHLIST", "/main", "iconfont icon-cart")}
       {selectPage === "applicationDetails" &&
         routerTextRender("SHOP", selectDetails.title.toUpperCase(), "/shop")}
     </S.RouteContainer>

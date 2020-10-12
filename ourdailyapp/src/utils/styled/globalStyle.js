@@ -12,6 +12,7 @@ body {
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
     background-color: ${(props) => props.theme.body};
+    text-rendering: optimizeLegibility;
   }
 
 body::-webkit-scrollbar {

@@ -74,7 +74,7 @@ const WishListCard = ({
         {/* ====================== element - absolute ====================== */}
 
         <S.IconHeart
-          className={`fas fa-heart`}
+          className={`iconfont icon-heart`}
           onClick={(event) => {
             event.stopPropagation();
             toggleWishListItem({

@@ -12,3 +12,4 @@ export { default as Accordion } from "./Accordion/Accordion.component";
 export { default as Decoration } from "./Decoration/Decoration.component";
 export { default as Footer } from "./Footer/Footer.component";
 export { default as UploadAvatar } from "./UploadAvatar/UploadAvatar.component";
+export { default as PageNotFound } from "./PageNotFound/PageNotFound.component";

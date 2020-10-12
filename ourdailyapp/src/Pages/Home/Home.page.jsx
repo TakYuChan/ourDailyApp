@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./Home.style.scss";
 
+import { useDispatch } from "react-redux";
 import HomeHeaderContainer from "../../Containers/HomeHeader.container";
 import JumbotronContainer from "../../Containers/Jumbotron.container";
 import CounterCounterSection from "../../Containers/ContentCounterSection.container";
@@ -9,9 +10,18 @@ import AboutMeContainer from "../../Containers/AboutMe.container";
 import FaqsContainer from "../../Containers/faqs.container";
 import HomeFooterContainer from "../../Containers/HomeFooter.container";
 
+import {hideNavUIComponents} from "../../redux/UIComponents/uiComponents.actions"
+
 import { HomePageProvider } from "../../context/homePage.context";
 
 export default function HomePage() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(hideNavUIComponents());
+  }, [dispatch]);
+
   return (
     <>
       <HomePageProvider>

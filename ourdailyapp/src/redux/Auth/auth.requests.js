@@ -2,15 +2,14 @@ import axios from "axios";
 // import Cookies from "universal-cookie";
 
 export const signUpUser = async (signUpDetails) => {
-  const res = await axios.post(`${process.env.REACT_APP_URL}/users/signup`, {
-    ...signUpDetails,
-});
-
-// const cookies = new Cookies();
-// cookies.set('jwt', res.data.token, { path: '/' });
-
-
-  console.log({res});
+  const res = await axios({
+    method: "POST",
+    url: `${process.env.REACT_APP_URL}/users/signup`,
+    data: {
+      ...signUpDetails,
+    },
+    withCredentials: true,
+  })
 };
 
 export const logInUser = async (logInDetails) => {
@@ -37,14 +36,10 @@ export const checkAuthInfoFromDB = async (authorizeServerRes, url) => {
 };
 
 //userDetails: avatar: string, name: string, email: string, password: string
-export const updateUserInfo = async(userDetails) => {
-  const backEndResponse = await axios({
-    method: "PATCH",
-    url: `${process.env.REACT_APP_URL}/users/updateMe`,
-    data: {
-      ...userDetails,
-    },
-  })
+export const updateUserInfo = async(formData) => {
 
-  return backEndResponse;
+  axios
+  .patch("http://localhost:5000/api/v1/users/updateMe", formData, {withCredentials: true})
+  .then(res => console.log(res.data))
+  .catch(err => console.error(err));
 }

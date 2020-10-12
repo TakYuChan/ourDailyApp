@@ -1,6 +1,30 @@
 // Required
 @import "~bootstrap/scss/bootstrap";
 
+.text-xxs {
+  font-size: 0.65rem !important;
+  &-sm {
+    @media only screen and (min-width: 576px) {
+      font-size: 0.65rem !important;
+    }
+  }
+  &-md {
+    @media only screen and (min-width: 720px) {
+      font-size: 0.65rem !important;
+    }
+  }
+  &-lg {
+    @media only screen and (min-width: 960px) {
+      font-size: 0.65rem !important;
+    }
+  }
+  &-xl {
+    @media only screen and (min-width: 1140px) {
+      font-size: 0.65rem !important;
+    }
+  }
+}
+
 .text-xs {
   font-size: 0.75rem !important;
   &-sm {

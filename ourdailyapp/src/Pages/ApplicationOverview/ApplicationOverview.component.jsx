@@ -21,7 +21,7 @@ const ApplicationOverview = ({
 }) => {
   useEffect(() => {
     updateRoutePath({
-      page: "shop",
+    page: "shop",
       details: {},
     });
 
@@ -32,8 +32,6 @@ const ApplicationOverview = ({
       });
     };
   }, [updateRoutePath]);
-
-  console.log("App Overview rendered");
 
   return (
     <S.ApplicationOverviewContainer className="application-overview">

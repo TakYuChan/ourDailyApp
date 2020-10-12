@@ -1,6 +1,5 @@
 import React, {useContext} from "react";
 import {useDispatch} from "react-redux";
-import {updateUserDetailsStart} from "../../../redux/Auth/auth.actions"
 import {UploadAvatarProvider, UploadAvatarContext} from "../../../context/uploadAvatar.context";
 import S from "./styles/UploadAvatar.style";
 
@@ -44,10 +43,10 @@ UploadAvatar.FileInputLabel = function FileInputLabel({
 };
 
 UploadAvatar.FileInput = function FileInput({ children, ...restProps }) {
-  const { uploadImgHandler } = useContext(UploadAvatarContext);
+  const { onUploadImgHandler } = useContext(UploadAvatarContext);
 
   return (
-    <S.FileInput {...restProps} onChange={uploadImgHandler} type="file">
+    <S.FileInput {...restProps} onChange={onUploadImgHandler} name="avatar" type="file">
       {children}
     </S.FileInput>
   );
@@ -71,8 +70,7 @@ UploadAvatar.Text = function Text({ children, ...restProps }) {
 };
 
 UploadAvatar.UploadBtn = function UploadBtn({children, ...restProps}) {
-  const dispatch = useDispatch();
-  return <S.UploadBtn {...restProps} onClick={() => {
-    dispatch(updateUserDetailsStart());
-  }}>{children}</S.UploadBtn>
+  const { onSubmit } = useContext(UploadAvatarContext);
+  // const dispatch = useDispatch();
+  return <S.UploadBtn {...restProps} onClick={onSubmit}>{children}</S.UploadBtn>
 }

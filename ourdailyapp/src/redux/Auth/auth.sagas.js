@@ -41,6 +41,10 @@ function* onUpdateUserDetailsStart() {
   yield takeLatest(AuthActionTypes.UPDATE_USER_DETAILS_START, updateUserDetailsStart);
 }
 
+function* onUpdateUserDetailsSuccess() {
+  yield takeLatest(AuthActionTypes.UPDATE_USER_DETAILS_SUCCESS, afterUpdateUserDetailsSuccess);
+}
+
 
 function* onSignUpStart() {
   yield takeLatest(AuthActionTypes.SIGN_UP_START, signUp);
@@ -67,6 +71,7 @@ export default function* authSaga() {
     call(onGoogleAuthorizationSuccess),
     call(onEmailSignInStart),
     call(onUpdateUserDetailsStart),
+    call(onUpdateUserDetailsSuccess),
     call(onSignUpStart),
     call(onSignUpSuccess),
     call(onSignUpFailure),
@@ -150,13 +155,15 @@ function* afterSignIn() {
 
 // =========== Update User Details ===========
 
-function* updateUserDetailsStart({userDetails}) {
+function* updateUserDetailsStart({formData}) {
   try {
     // request back end to update user details
-    yield call(updateUserInfo,userDetails);
-    console.log("update user")
+    yield call(updateUserInfo, formData);
     yield put(updateUserDetailsSuccess());
   } catch (error) {
     yield put(updateUserDetailsFailure());
   }
+}
+function* afterUpdateUserDetailsSuccess() {
+  yield put(setIsLoggedTrue());
 }

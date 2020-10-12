@@ -23,7 +23,7 @@ const MainPage = () => {
     <S.MainPageContainer className="MainPage gs-page">
       <S.ImageFrameWrapper >
         <ImageFrame src={profilePic} halo={true} withExtraText={true}>
-          {userDetails.name}
+          {/* {userDetails.name} */}
         </ImageFrame>
       </S.ImageFrameWrapper>
       <S.AccessAppBtnWrapper>

@@ -1,10 +1,11 @@
 import React from "react";
 import S from "./AuthRouter.style";
 
-import { Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import useRouter from "../../hooks/useRouter.hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { changeAuthPage } from "../../redux/AuthPage/AuthPage.actions";
+import NoMatch from "../../Pages/NoMatchPage/NoMatchPage.component";
 
 import LogInPage from "../../Pages/LogInPage/LogIn.page";
 import SignUpPage from "../../Pages/SignUpPage/SignUp.page";
@@ -34,19 +35,24 @@ const AuthRouter = () => {
         )}
 
         {/* Redirect user in Auth Page to Log in page */}
-        <Route exact path={`${router.matchPath}`}>
-          <Redirect to={{pathname: `${router.matchPath}/login`}}></Redirect>
-        </Route>
+        <Switch>
+          <Route exact path={`${router.matchPath}`}>
+            <Redirect to={{pathname: `${router.matchPath}/login`}}></Redirect>
+          </Route>
 
-        <Route exact path={`${router.matchPath}/login`}>
-          <LogInPage />
-        </Route>
-        <Route exact path={`${router.matchPath}/signup`}>
-          <SignUpPage />
-        </Route>
-        <Route exact path={"/auth/forgotPassword"}>
-          <ForgotPasswordPage />
-        </Route>
+          <Route exact path={`${router.matchPath}/login`}>
+            <LogInPage />
+          </Route>
+          <Route exact path={`${router.matchPath}/signup`}>
+            <SignUpPage />
+          </Route>
+          <Route exact path={"/auth/forgotPassword"}>
+            <ForgotPasswordPage />
+          </Route>
+          <Route
+              component={NoMatch}
+            />
+        </Switch>
         {currentAuthPage && (
           <S.FooterWrapper>
             {/* // ============== Create Account Btn ==============  */}

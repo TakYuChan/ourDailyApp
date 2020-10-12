@@ -74,9 +74,9 @@ export const setUserDetails = (userDetails) => ({
   user: userDetails,
 });
 
-export const updateUserDetailsStart = (userDetails) => ({
+export const updateUserDetailsStart = (formData) => ({
   type: AuthActionTypes.UPDATE_USER_DETAILS_START,
-  user: userDetails,
+  formData,
 })
 export const updateUserDetailsSuccess = () => ({
   type: AuthActionTypes.UPDATE_USER_DETAILS_SUCCESS,

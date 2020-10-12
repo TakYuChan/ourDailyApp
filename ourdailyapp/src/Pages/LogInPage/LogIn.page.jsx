@@ -22,7 +22,7 @@ const LogInPage = () => {
   useEffect(() => {
     dispatch(changeAuthPage("login"));
   }, [dispatch]);
-  console.log({ true: currentAuthPage === "uploadAvatar" });
+  
   return (
     <S.LogInPageContainer
       className={`login ${

@@ -1,5 +1,5 @@
 import { matchPath } from "react-router-dom";
-import { routes } from "../../../../App";
+import { routes } from "../../../../Routers/LoggedInRouter/LoggedInRouter.component";
 
 export const preloadComponent = (toPath) => {
   const routeObj = routes.find((route) =>
