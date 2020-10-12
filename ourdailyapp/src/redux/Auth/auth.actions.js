@@ -74,14 +74,7 @@ export const setUserDetails = (userDetails) => ({
   user: userDetails,
 });
 
-export const updateUserDetailsStart = (formData) => ({
-  type: AuthActionTypes.UPDATE_USER_DETAILS_START,
-  formData,
+export const setUserAvatar = (imgBuffer) => ({
+  type: AuthActionTypes.SET_USER_AVATAR,
+  imgBuffer,
 })
-export const updateUserDetailsSuccess = () => ({
-  type: AuthActionTypes.UPDATE_USER_DETAILS_SUCCESS,
-})
-export const updateUserDetailsFailure = () => ({
-  type: AuthActionTypes.UPDATE_USER_DETAILS_FAILURE,
-})
-

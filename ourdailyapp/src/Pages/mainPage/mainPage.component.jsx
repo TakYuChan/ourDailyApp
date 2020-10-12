@@ -6,13 +6,13 @@ import { fetchAccessAppBtnsStart } from "../../redux/app/app.actions";
 
 import MainPageAccessAppWrapper from "../../Components/MainPageAccessAppWrapper/MainPageAccessAppWrapper.component";
 import ImageFrame from "../../Components/ImageFrames/ImageFrame/ImageFrame.component";
-
-import profilePic from "../../assets/UIFace.png";
+import _arrayBufferToBase64 from "../../utils/bufferArrayToBase64";
 
 const MainPage = () => {
   const dispatch = useDispatch();
 
   const userDetails = useSelector((state) => state.auth_P.user);
+  const userAvatar = useSelector(state => state.auth_P.userAvatar);
 
   // ============= Life Cycle Hooks =============
 
@@ -22,8 +22,8 @@ const MainPage = () => {
   return (
     <S.MainPageContainer className="MainPage gs-page">
       <S.ImageFrameWrapper >
-        <ImageFrame src={profilePic} halo={true} withExtraText={true}>
-          {/* {userDetails.name} */}
+        <ImageFrame src={`data:image/jpg;base64,${_arrayBufferToBase64(userAvatar)}`} halo={true} withExtraText={true}>
+          {userDetails.name}
         </ImageFrame>
       </S.ImageFrameWrapper>
       <S.AccessAppBtnWrapper>

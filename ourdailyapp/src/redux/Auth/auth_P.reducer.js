@@ -1,8 +1,10 @@
+import { PageNotFound } from "../../Components/Compound Components";
 import AuthActionTypes from "./auth.types";
 
 const INITIATE_STATE = {
   isLogged: false,
   user: null,
+  userAvatar: null,
 };
 
 const authReducer_P = (state = INITIATE_STATE, action) => {
@@ -23,6 +25,11 @@ const authReducer_P = (state = INITIATE_STATE, action) => {
           ...state,
           isLogged: false,
         }
+        case AuthActionTypes.SET_USER_AVATAR:
+          return {
+            ...state,
+            userAvatar: action.imgBuffer
+          }
     default:
       return state;
   }

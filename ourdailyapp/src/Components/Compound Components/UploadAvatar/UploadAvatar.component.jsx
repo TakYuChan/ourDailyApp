@@ -1,5 +1,7 @@
 import React, {useContext} from "react";
-import {useDispatch} from "react-redux";
+import PixelSpinner from "../../Molecules/Spinners/PixelSpinner/PixelSpinner.component";
+import {useSelector} from "react-redux";
+
 import {UploadAvatarProvider, UploadAvatarContext} from "../../../context/uploadAvatar.context";
 import S from "./styles/UploadAvatar.style";
 
@@ -70,7 +72,8 @@ UploadAvatar.Text = function Text({ children, ...restProps }) {
 };
 
 UploadAvatar.UploadBtn = function UploadBtn({children, ...restProps}) {
+  const isUploadingAvatar = useSelector((state) => state.user.isUploadingAvatar);
   const { onSubmit } = useContext(UploadAvatarContext);
   // const dispatch = useDispatch();
-  return <S.UploadBtn {...restProps} onClick={onSubmit}>{children}</S.UploadBtn>
+  return <S.UploadBtn {...restProps} onClick={onSubmit}>{children}{isUploadingAvatar && <PixelSpinner size={1.2} animationDuration={1500}  style={{transform: "translateY(2px)"}}/>}</S.UploadBtn>
 }

@@ -15,6 +15,7 @@ import authPageReducer from "./AuthPage/AuthPage.reducer";
 import signUpFormReducer from "./signUpForm/signUpForm.reducer";
 import logInFormReducer from "./logInForm/logInForm.reducer";
 import UIComponentsReducer from "./UIComponents/uiComponents.reducer";
+import UserReducer from "./User/user.reducer";
 
 // =========== Applications ===========
 import pigGameReducer from "./pigGame/pigGame.reducer";
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   nav: navReducer,
   auth: authReducer,
   auth_P: authReducer_P,
+  user: UserReducer,
   app: appReducer,
   commentsConverter: commentsConverterReducer,
   shopNav: shopNavReducer,

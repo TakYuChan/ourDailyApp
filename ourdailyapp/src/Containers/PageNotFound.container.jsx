@@ -25,6 +25,8 @@ const PageNotFoundContainer = () => {
                     router.push("/main");
                 }}>Back To Main Page</PageNotFound.Button>
 
+
+                {/* @planToImplement Report Problem functionality (may be report via email) */}
                 <PageNotFound.Button variant="contained" color="secondary">Report this Problem</PageNotFound.Button>
             </PageNotFound.Group>
 

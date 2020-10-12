@@ -36,7 +36,7 @@ function UploadAvatarContainer() {
           </UploadAvatar.Group>
         </UploadAvatar.PanelContainer>
 
-        <UploadAvatar.UploadBtn >Next</UploadAvatar.UploadBtn>
+        <UploadAvatar.UploadBtn>Next</UploadAvatar.UploadBtn>
       </UploadAvatar.Frame>
     </UploadAvatar>
   );

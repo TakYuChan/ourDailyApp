@@ -4,7 +4,8 @@ import S from "./AuthRouter.style";
 import { Switch, Route, Redirect } from "react-router-dom";
 import useRouter from "../../hooks/useRouter.hooks";
 import { useDispatch, useSelector } from "react-redux";
-import { changeAuthPage } from "../../redux/AuthPage/AuthPage.actions";
+import { changeAuthPage} from "../../redux/AuthPage/AuthPage.actions";
+import {setIsLoggedTrue} from "../../redux/Auth/auth.actions";
 import NoMatch from "../../Pages/NoMatchPage/NoMatchPage.component";
 
 import LogInPage from "../../Pages/LogInPage/LogIn.page";
@@ -56,7 +57,16 @@ const AuthRouter = () => {
         {currentAuthPage && (
           <S.FooterWrapper>
             {/* // ============== Create Account Btn ==============  */}
-            {currentAuthPage !== "login" && (
+            {currentAuthPage === "uploadAvatar" && <S.ChangeAuthPageLink
+                to="/main"
+                onClick={() => {
+                  dispatch(setIsLoggedTrue());
+                  dispatch(changeAuthPage("login"));
+                }}
+              >
+                Set avatar later
+              </S.ChangeAuthPageLink>}
+            {(currentAuthPage !== "login" && currentAuthPage !== "uploadAvatar") && (
               <S.ChangeAuthPageLink
                 to="/auth/login"
                 onClick={() => dispatch(changeAuthPage("login"))}

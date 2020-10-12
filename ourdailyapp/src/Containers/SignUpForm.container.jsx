@@ -177,7 +177,7 @@ const SignUpForm = () => {
         }}
       >
         Sign Up
-        {isSigningUp && <PixelSpinner size={1.2} animationDuration={1500} />}
+        {isSigningUp && <PixelSpinner size={1.2} animationDuration={1500} style={{transform: "translateY(2px)"}}/>}
       </Form.SignUpBtn>
     </Form.SignUpFormContainer>
   );

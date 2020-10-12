@@ -49,7 +49,7 @@ const AuthPage = ({ authPage, changeAuthPage }) => {
           )}
         </S.SignUpWrapper>
 
-        {authPage === "uploadAvatar" && <UploadAvatarContainer />}
+        {/* {authPage === "uploadAvatar" && <UploadAvatarContainer />} */}
 
         {authPage !== "uploadAvatar" && (
           <S.FooterWrapper>

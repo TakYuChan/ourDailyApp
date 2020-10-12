@@ -10,8 +10,7 @@ import {
   clearLogInAlert,
   setIsLoggedTrue,
   setUserDetails,
-  updateUserDetailsSuccess,
-  updateUserDetailsFailure,
+  setUserAvatar,
 } from "./auth.actions";
 
 import { changeAuthPage } from "../AuthPage/AuthPage.actions";
@@ -23,7 +22,7 @@ import {
 
 import globalErrHandler from "../../utils/globalErrHandler";
 
-import { signUpUser, checkAuthInfoFromDB, logInUser, updateUserInfo } from "./auth.requests";
+import { signUpUser, checkAuthInfoFromDB, logInUser, getAvatar } from "./auth.requests";
 
 // ================= Sagas ==================
 function* onGoogleAuthorizationSuccess() {
@@ -35,14 +34,6 @@ function* onGoogleAuthorizationSuccess() {
 
 function* onEmailSignInStart() {
   yield takeLatest(AuthActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
-}
-
-function* onUpdateUserDetailsStart() {
-  yield takeLatest(AuthActionTypes.UPDATE_USER_DETAILS_START, updateUserDetailsStart);
-}
-
-function* onUpdateUserDetailsSuccess() {
-  yield takeLatest(AuthActionTypes.UPDATE_USER_DETAILS_SUCCESS, afterUpdateUserDetailsSuccess);
 }
 
 
@@ -70,8 +61,6 @@ export default function* authSaga() {
   yield all([
     call(onGoogleAuthorizationSuccess),
     call(onEmailSignInStart),
-    call(onUpdateUserDetailsStart),
-    call(onUpdateUserDetailsSuccess),
     call(onSignUpStart),
     call(onSignUpSuccess),
     call(onSignUpFailure),
@@ -87,7 +76,8 @@ function* signUp({ signUpDetails }) {
     // Start spinner
     yield put(setIsSigningUpTRUE());
 
-    yield call(signUpUser, signUpDetails);
+    const response = yield call(signUpUser, signUpDetails);
+    yield put(setUserDetails(response.data.data.user));
     yield put(signUpSuccess(signUpDetails.email, signUpDetails.password));
 
     // Stop spinner
@@ -104,6 +94,9 @@ function* signInWithEmail({ logInDetails }) {
     // Start spinner
     const response = yield call(logInUser, logInDetails);
     yield put(setUserDetails(response.data.data.user));
+    const getAvatarResponse = yield call(getAvatar, response.data.data.user.photo);
+    console.log(getAvatarResponse);
+    yield put(setUserAvatar(getAvatarResponse.data.data.image.data));
     yield put(signInSuccess());
     // Stop spinner
   } catch (error) {
@@ -153,17 +146,4 @@ function* afterSignIn() {
 }
 
 
-// =========== Update User Details ===========
 
-function* updateUserDetailsStart({formData}) {
-  try {
-    // request back end to update user details
-    yield call(updateUserInfo, formData);
-    yield put(updateUserDetailsSuccess());
-  } catch (error) {
-    yield put(updateUserDetailsFailure());
-  }
-}
-function* afterUpdateUserDetailsSuccess() {
-  yield put(setIsLoggedTrue());
-}

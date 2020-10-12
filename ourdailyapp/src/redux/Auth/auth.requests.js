@@ -1,5 +1,4 @@
 import axios from "axios";
-// import Cookies from "universal-cookie";
 
 export const signUpUser = async (signUpDetails) => {
   const res = await axios({
@@ -10,17 +9,18 @@ export const signUpUser = async (signUpDetails) => {
     },
     withCredentials: true,
   })
+
+  return res;
 };
 
 export const logInUser = async (logInDetails) => {
-  const response = await axios.post(
+  const res = await axios.post(
     `${process.env.REACT_APP_URL}/users/login`,
     {
       ...logInDetails,
     }
   );
-
-  return response;
+  return res;
 };
 
 export const checkAuthInfoFromDB = async (authorizeServerRes, url) => {
@@ -35,11 +35,14 @@ export const checkAuthInfoFromDB = async (authorizeServerRes, url) => {
   return backEndResponse;
 };
 
-//userDetails: avatar: string, name: string, email: string, password: string
-export const updateUserInfo = async(formData) => {
+export const getAvatar = async (photoName) => {
+  const backEndResponse = await axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_URL}/users/images/${photoName}`,
+    withCredentials: true,
+  })
 
-  axios
-  .patch("http://localhost:5000/api/v1/users/updateMe", formData, {withCredentials: true})
-  .then(res => console.log(res.data))
-  .catch(err => console.error(err));
+  return backEndResponse;
 }
+
+
