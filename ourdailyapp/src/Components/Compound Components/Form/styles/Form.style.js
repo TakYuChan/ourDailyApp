@@ -217,14 +217,21 @@ S.LogInBtn = styled.button`
   outline: 0;
   background: ${(props) => props.theme.LogInForm.logInBtn_bg};
   color: ${(props) => props.theme.LogInForm.logInBtn_text};
-
   align-self: center;
+
+  display: flex;
+  align-items: center;
+
 
   font-weight: 700;
 
   cursor: pointer;
 
   margin-top: 2rem;
+
+  &:disabled {
+    background: gray;
+  }
 `;
 
 S.SignUpBtn = styled.button`

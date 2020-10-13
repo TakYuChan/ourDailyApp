@@ -1,10 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Form } from "../Components/Compound Components";
 
 import useLogInForm from "../hooks/useLogInForm.hooks";
 import { emailSignInStart } from "../redux/Auth/auth.actions";
 import { changeAuthPage } from "../redux/AuthPage/AuthPage.actions";
+
+import PixelSpinner from "../Components/Molecules/Spinners/PixelSpinner/PixelSpinner.component";
 
 import { ReactComponent as UserSvg } from "../assets/svg/user.svg";
 import { ReactComponent as LockSvg } from "../assets/svg/password.svg";
@@ -21,6 +23,8 @@ const LogInForm = () => {
 
   const { email, password } = logInDetails;
   const dispatch = useDispatch();
+
+  const isLoggingIn = useSelector(state => state.logInForm.isLoggingIn);
 
   return (
     <Form.LogInFormContainer>
@@ -111,8 +115,9 @@ const LogInForm = () => {
           event.preventDefault();
           dispatch(emailSignInStart(logInDetails));
         }}
+        disabled={isLoggingIn}
       >
-        Log In
+        Log In {isLoggingIn && <PixelSpinner size={1.2} animationDuration={1500} style={{marginLeft: "4px"}}/>}
       </Form.LogInBtn>
     </Form.LogInFormContainer>
   );

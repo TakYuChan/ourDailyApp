@@ -18,7 +18,8 @@ export const logInUser = async (logInDetails) => {
     `${process.env.REACT_APP_URL}/users/login`,
     {
       ...logInDetails,
-    }
+    },
+    {withCredentials: true},
   );
   return res;
 };
@@ -45,4 +46,10 @@ export const getAvatar = async (photoName) => {
   return backEndResponse;
 }
 
-
+export const signOutAndCleanCookie = async () => {
+  await axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_URL}/users/logout`,
+    withCredentials: true,
+  })
+}

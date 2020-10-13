@@ -23,6 +23,7 @@ export const updateUserAvatarStart = (formData) => ({
 type: UserActionTypes.UPDATE_USER_AVATAR_START,
 formData,
 })
+
 export const updateUserAvatarSuccess = () => ({
 type: UserActionTypes.UPDATE_USER_AVATAR_SUCCESS,
 })

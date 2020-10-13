@@ -5,9 +5,8 @@ import { connect } from "react-redux";
 import useRouter from "../../hooks/useRouter.hooks";
 
 import {
-  removeItem,
   toggleCartPopUp,
-  minusItemPriceToTotal,
+  removeAppFromCartStart,
 } from "../../redux/cart/cart.actions";
 import {
   selectCartItemsQuantity,
@@ -23,11 +22,10 @@ const CartPreview = ({
   itemsQuantity,
   cartItems,
   moreItemText,
-  removeItem,
   cartPopUpHidden,
   toggleCartPopUp,
   cartItemsTotalPrice,
-  minusItemPrice,
+  removeAppFromCartStart,
 }) => {
   const router = useRouter();
 
@@ -60,13 +58,13 @@ const CartPreview = ({
                     <S.LeftContainer className="left-side">
                       <S.ImageWrapper className="img-wrapper">
                         <S.CartItemImage
-                          src={`${cartItem.imageSrc}.jpeg`}
+                          src={`${cartItem.imgSrc}.jpeg`}
                           alt="cart item"
                           className="cartItem-img"
                         />
                       </S.ImageWrapper>
                       <S.ItemNameText className="item-name">
-                        {cartItem.title}
+                        {cartItem.name}
                       </S.ItemNameText>
                     </S.LeftContainer>
                     <div className="right-side">
@@ -74,8 +72,7 @@ const CartPreview = ({
                       <S.IconRemoveItem
                         className="iconfont icon-chax"
                         onClick={() => {
-                          removeItem(cartItem);
-                          minusItemPrice(cartItem.price);
+                          removeAppFromCartStart(cartItem._id, cartItem.price);
                         }}
                       ></S.IconRemoveItem>
                     </div>
@@ -133,9 +130,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  removeItem: (item) => dispatch(removeItem(item)),
+  removeAppFromCartStart: (appId, appPrice) => dispatch(removeAppFromCartStart(appId, appPrice)),
   toggleCartPopUp: () => dispatch(toggleCartPopUp()),
-  minusItemPrice: (price) => dispatch(minusItemPriceToTotal(price)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPreview);

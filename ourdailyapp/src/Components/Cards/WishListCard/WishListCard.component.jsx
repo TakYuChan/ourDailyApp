@@ -29,8 +29,8 @@ const WishListCard = ({
         {/* ========== wishlist item image =========== */}
         <S.ImageWrapper className="img-wrapper">
           <S.Image
-            src={`${wishlistItem.imageSrc}.jpeg`}
-            alt={`${wishlistItem.title}`}
+            src={`${wishlistItem.imgSrc}.jpeg`}
+            alt={`${wishlistItem.name}`}
             className="img-app"
           />
         </S.ImageWrapper>
@@ -38,7 +38,7 @@ const WishListCard = ({
         <S.CardBottomWrapper className="card-bottom-part">
           {/* ========== wishlist item info text =========== */}
           <S.ItemTitleText className="wishlistItem-title">
-            {wishlistItem.title}
+            {wishlistItem.name}
           </S.ItemTitleText>
           <S.ItemCreatorText className="wishlistItem-creator">
             {wishlistItem.creator}
@@ -52,10 +52,9 @@ const WishListCard = ({
                 event.stopPropagation();
                 moveItemToCartList(wishlistItem);
 
-                console.log({ src: wishlistItem.imageSrc });
 
                 /* ================ animations ================ */
-                addCartAnimation(wishlistItem.imageSrc, ".js_PageContainer");
+                addCartAnimation(wishlistItem.imgSrc, ".js_PageContainer");
               }}
             >
               Add to cart
@@ -79,9 +78,9 @@ const WishListCard = ({
             event.stopPropagation();
             toggleWishListItem({
               id: wishlistItem.id,
-              title: wishlistItem.title,
+              name: wishlistItem.name,
               creator: wishlistItem.creator,
-              imageSrc: wishlistItem.imageSrc,
+              imgSrc: wishlistItem.imgSrc,
               price: wishlistItem.price,
               route: wishlistItem.route,
             });

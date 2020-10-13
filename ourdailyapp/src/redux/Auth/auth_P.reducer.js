@@ -1,4 +1,3 @@
-import { PageNotFound } from "../../Components/Compound Components";
 import AuthActionTypes from "./auth.types";
 
 const INITIATE_STATE = {
@@ -17,7 +16,6 @@ const authReducer_P = (state = INITIATE_STATE, action) => {
     case AuthActionTypes.SET_USER_DETAILS:
       return {
         ...state,
-        isLogged: true,
         user: action.user,
       };
       case AuthActionTypes.SIGN_OUT:

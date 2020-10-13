@@ -10,9 +10,10 @@ const useRouter = () => {
     return {
       push: history.push,
       matchPath: match.path,
+      param: match.params,
       pathName: location.pathname,
     };
-  }, [history.push, match.path, location.pathname]);
+  }, [history.push, match.path, match.params, location.pathname]);
 };
 
 export default useRouter;

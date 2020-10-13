@@ -1,7 +1,7 @@
 import React from "react";
 import S from "./CartPageItemsBoard.styled";
 
-import DetailedItemBlock from "../../DetailedItemBlock/DetailedItemBlockcomponent";
+import DetailedItemBlock from "../../DetailedItemBlock/DetailedItemBlock.component";
 
 const CartPageItemsBoard = ({
   cartItems,

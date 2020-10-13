@@ -14,7 +14,16 @@ S.CustomTagWrapper = styled.div`
 
   margin-right: 0.8em;
   margin-top: 0.6em;
-  background: ${(props) => props.background};
+  background: ${({tagContent}) => {
+    switch(tagContent) {
+      case "javascript":
+        return "orangered";
+        case "html":
+        return "limegreen";
+        default: 
+        return "orange"
+    }
+  }};
 `;
 
 export default S;

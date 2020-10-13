@@ -7,7 +7,7 @@ import {
   selectWishListItemExist,
   selectCartItemExist,
 } from "../../../redux/cart/cart.selectors";
-import { addItem, toggleWishListItem } from "../../../redux/cart/cart.actions";
+import { addAppToCartStart, toggleWishListItem } from "../../../redux/cart/cart.actions";
 import { updateRoutePath } from "../../../redux/routePath/routePath.actions";
 import addCartAnimation from "../../../utils/animations/addCardAnimation";
 import PropTypes from "prop-types";
@@ -16,7 +16,7 @@ import CustomTag from "../../../Components/Molecules/customTag/customTag.compone
 
 const ApplicationDetailPage = ({
   appData,
-  addItem,
+  addAppToCartStart,
   wishListed,
   toggleWishListItem,
   cartItemExist,
@@ -24,17 +24,14 @@ const ApplicationDetailPage = ({
 }) => {
   //=========================== Life Cycle Hooks =========================
 
-  useEffect(() => {
-    console.log("Application Detail Page Mounted");
 
+  useEffect(() => {
     updateRoutePath({
       page: "applicationDetails",
       details: {
-        title: appData.title,
+        title: appData.name,
       },
     });
-
-    console.log("Application Detail Template rendered");
 
     return () => {
       updateRoutePath({
@@ -42,13 +39,10 @@ const ApplicationDetailPage = ({
         details: {},
       });
     };
-  }, [updateRoutePath, appData.title]);
+  }, [updateRoutePath, appData.name]);
 
-  useEffect(() => {
-    console.log("detail template rerendered");
-  });
 
-  const { videoSrc, tags, intros, features, tagsColor } = appData.appDetails;
+  const { videoSrc, tags, intro, features } = appData;
 
   return (
     <S.PageContentContainer className="app-content-main">
@@ -64,13 +58,13 @@ const ApplicationDetailPage = ({
 
       <S.Intro
         className="intro"
-        dangerouslySetInnerHTML={{ __html: intros }}
+        dangerouslySetInnerHTML={{ __html: intro }}
       ></S.Intro>
 
       <S.TagsWrapper className="tags">
         {tags !== null &&
           tags.map((tag, index) => (
-            <CustomTag key={index} background={tagsColor[index]}>
+            <CustomTag tagContent={tag} key={index}>
               {tag}
             </CustomTag>
           ))}
@@ -95,9 +89,9 @@ const ApplicationDetailPage = ({
         onClick={() => {
           toggleWishListItem({
             id: appData.id,
-            title: appData.title,
+            name: appData.name,
             creator: appData.creator,
-            imageSrc: appData.imageSrc,
+            imgSrc: appData.imgSrc,
             price: appData.price,
             route: appData.route,
           });
@@ -116,17 +110,10 @@ const ApplicationDetailPage = ({
         className="btn--addToCart"
         onClick={() => {
           /* ================ animations ================ */
-          if (!cartItemExist(appData.id)) {
-            addCartAnimation(appData.imageSrc, ".application-detail-page");
+          if (!cartItemExist(appData._id)) {
+            addCartAnimation(appData.imgSrc, ".application-detail-page");
           }
-          addItem({
-            id: appData.id,
-            title: appData.title,
-            creator: appData.creator,
-            imageSrc: appData.imageSrc,
-            price: appData.price,
-            route: appData.route,
-          });
+          addAppToCartStart(appData._id);
         }}
       >
         Add to cart
@@ -143,14 +130,13 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
+  addAppToCartStart: (appId) => dispatch(addAppToCartStart(appId)),
   toggleWishListItem: (item) => dispatch(toggleWishListItem(item)),
   updateRoutePath: (routePathDetails) =>
     dispatch(updateRoutePath(routePathDetails)),
 });
 
 ApplicationDetailPage.propTypes = {
-  appData: PropTypes.object.isRequired,
   wishListed: PropTypes.func.isRequired,
   cartItemExist: PropTypes.func.isRequired,
 };

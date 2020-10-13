@@ -1,8 +1,8 @@
 import React from "react";
 import S from "./customTag.style";
 
-const CustomTag = ({ children, background }) => (
-  <S.CustomTagWrapper className="custom-tag" background={background}>
+const CustomTag = ({ tagContent, children }) => (
+  <S.CustomTagWrapper tagContent={tagContent} className="custom-tag">
     {children}
   </S.CustomTagWrapper>
 );

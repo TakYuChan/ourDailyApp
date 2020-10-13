@@ -1,9 +1,9 @@
 import LogInFormActionTypes from "./logInForm.types";
 
-export const setIsSigningUpTRUE = () => ({
+export const setIsLoggingInTRUE = () => ({
   type: LogInFormActionTypes.SET_IS_LOGGINGIN_TRUE,
 });
 
-export const setIsSigningUpFALSE = () => ({
+export const setIsLoggingInFALSE = () => ({
   type: LogInFormActionTypes.SET_IS_LOGGINGIN_FALSE,
 });

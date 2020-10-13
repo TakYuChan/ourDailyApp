@@ -1,4 +1,4 @@
-import { takeLatest, call, put, all } from "redux-saga/effects";
+import { takeLeading, takeLatest, call, put, all } from "redux-saga/effects";
 
 import AuthActionTypes from "./auth.types";
 import {
@@ -11,6 +11,9 @@ import {
   setIsLoggedTrue,
   setUserDetails,
   setUserAvatar,
+  signOutSuccess,
+  signOutFailure,
+  signOut,
 } from "./auth.actions";
 
 import { changeAuthPage } from "../AuthPage/AuthPage.actions";
@@ -20,9 +23,11 @@ import {
   setIsSigningUpFALSE,
 } from "../signUpForm/signUpform.actions";
 
+import {setIsLoggingInTRUE, setIsLoggingInFALSE} from "../logInForm/logInForm.actions";
+
 import globalErrHandler from "../../utils/globalErrHandler";
 
-import { signUpUser, checkAuthInfoFromDB, logInUser, getAvatar } from "./auth.requests";
+import { signUpUser, checkAuthInfoFromDB, logInUser, getAvatar, signOutAndCleanCookie } from "./auth.requests";
 
 // ================= Sagas ==================
 function* onGoogleAuthorizationSuccess() {
@@ -33,20 +38,20 @@ function* onGoogleAuthorizationSuccess() {
 }
 
 function* onEmailSignInStart() {
-  yield takeLatest(AuthActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
+  yield takeLeading(AuthActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
 }
 
 
 function* onSignUpStart() {
-  yield takeLatest(AuthActionTypes.SIGN_UP_START, signUp);
+  yield takeLeading(AuthActionTypes.SIGN_UP_START, signUp);
 }
 
 function* onSignUpSuccess() {
-  yield takeLatest(AuthActionTypes.SIGN_UP_SUCCESS, afterSignUp);
+  yield takeLeading(AuthActionTypes.SIGN_UP_SUCCESS, afterSignUp);
 }
 
 function* onSignUpFailure() {
-  yield takeLatest(AuthActionTypes.SIGN_UP_FAILURE, signUpFailHandler);
+  yield takeLeading(AuthActionTypes.SIGN_UP_FAILURE, signUpFailHandler);
 }
 
 function* onLogInFailure() {
@@ -55,6 +60,10 @@ function* onLogInFailure() {
 
 function* onLogInSuccess() {
   yield takeLatest(AuthActionTypes.SIGN_IN_SUCCESS, afterSignIn);
+}
+
+function* onSignOutStart() {
+  yield takeLeading(AuthActionTypes.SIGN_OUT_START, signOutStart);
 }
 
 export default function* authSaga() {
@@ -66,6 +75,7 @@ export default function* authSaga() {
     call(onSignUpFailure),
     call(onLogInFailure),
     call(onLogInSuccess),
+    call(onSignOutStart),
   ]);
 }
 
@@ -76,12 +86,22 @@ function* signUp({ signUpDetails }) {
     // Start spinner
     yield put(setIsSigningUpTRUE());
 
+    // 1) Sign up user and set user details
     const response = yield call(signUpUser, signUpDetails);
     yield put(setUserDetails(response.data.data.user));
+
+    // 2) Get default avatar for new user
+    const getAvatarResponse = yield call(getAvatar, "default.jpeg");
+    // get avatar image from s3 via backend
+    yield put(setUserAvatar(getAvatarResponse.data.data.image.data));
+
     yield put(signUpSuccess(signUpDetails.email, signUpDetails.password));
 
     // Stop spinner
     yield put(setIsSigningUpFALSE());
+
+    yield put(clearSignUpAlert());
+    yield put(changeAuthPage("uploadAvatar"));
   } catch (error) {
     yield put(signUpFailure(error, "signUpAlert"));
     // Stop spinner
@@ -92,16 +112,22 @@ function* signUp({ signUpDetails }) {
 function* signInWithEmail({ logInDetails }) {
   try {
     // Start spinner
+    yield put(setIsLoggingInTRUE());
+    
+    // 1) Log in user
     const response = yield call(logInUser, logInDetails);
     yield put(setUserDetails(response.data.data.user));
+    // 2) Get avatar from backend and aws
     const getAvatarResponse = yield call(getAvatar, response.data.data.user.photo);
-    console.log(getAvatarResponse);
+    // get avatar image from s3 via backend
     yield put(setUserAvatar(getAvatarResponse.data.data.image.data));
     yield put(signInSuccess());
     // Stop spinner
+    yield put(setIsLoggingInFALSE());
   } catch (error) {
     yield put(signInFailure(error, "logInAlert"));
     // Stop spinner
+    yield put(setIsLoggingInFALSE());
   }
 }
 
@@ -131,8 +157,8 @@ function* signInFailHandler({ error, targetComponent }) {
 
 function* afterSignUp() {
   try {
-    yield put(clearSignUpAlert());
-    yield put(changeAuthPage("uploadAvatar"));
+    // yield put(clearSignUpAlert());
+    // yield put(changeAuthPage("uploadAvatar"));
   } catch (error) {}
 }
 
@@ -143,6 +169,20 @@ function* afterSignIn() {
 
     // yield put(clearClickedAlertSvg());
   } catch (error) {}
+}
+
+function* signOutStart() {
+  try {
+    // 1) clean up user from react state
+    yield put(signOut());
+
+    // 2) Clean up cookie via backend
+    yield call(signOutAndCleanCookie);
+
+    yield put(signUpSuccess());
+  } catch (error) {
+    yield put(signUpFailure());
+  }
 }
 
 

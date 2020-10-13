@@ -14,6 +14,7 @@ to {
 
 S.AppStoreCardWrapper = styled.div`
   animation: ${cardPopsUp} 300ms ease-in-out forwards;
+  max-width: 400px;
   &:hover .card-app {
     transform: translateY(-10px);
   }

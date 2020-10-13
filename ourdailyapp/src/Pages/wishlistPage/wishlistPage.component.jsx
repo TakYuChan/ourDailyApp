@@ -11,7 +11,7 @@ import {
 } from "../../redux/cart/cart.actions";
 import { useMediaQuery } from "react-responsive";
 
-import DetailedItemBlock from "../../Components/DetailedItemBlock/DetailedItemBlockcomponent";
+import DetailedItemBlock from "../../Components/DetailedItemBlock/DetailedItemBlock.component";
 import WishListCard from "../../Components/Cards/WishListCard/WishListCard.component";
 
 const WishlistPage = ({ wishlist, updateRoutePath }) => {

@@ -5,7 +5,7 @@ import { withRouter, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const AppStoreCard = ({ match, app }) => {
-  const { title, description, imageSrc, route } = app;
+  const { name, description, imgSrc, route } = app;
 
   return (
     <S.AppStoreCardWrapper className="custom-card">
@@ -16,17 +16,17 @@ const AppStoreCard = ({ match, app }) => {
               <source
                 type="image/webp"
                 media="(min-width: 1000px)"
-                srcSet={`${imageSrc}.webp`}
+                srcSet={`${imgSrc}.webp`}
               />
               <img
-                src={`${imageSrc}.jpeg`}
+                src={`${imgSrc}.jpeg`}
                 loading="lazy"
-                alt={`${title} img`}
+                alt={`${name} img`}
                 className="app-img"
               />
             </picture>
           </S.ImgWrapper>
-          <S.TitleText className="app-title">{title}</S.TitleText>
+          <S.TitleText className="app-title">{name}</S.TitleText>
           <S.DescriptionText className="app-description">
             {description}
           </S.DescriptionText>

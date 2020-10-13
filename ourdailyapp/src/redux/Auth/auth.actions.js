@@ -29,6 +29,15 @@ export const checkAuthSession = () => ({
 export const signOut = () => ({
   type: AuthActionTypes.SIGN_OUT,
 });
+export const signOutStart = () => ({
+  type: AuthActionTypes.SIGN_OUT_START,
+});
+export const signOutSuccess = () => ({
+  type: AuthActionTypes.SIGN_OUT_SUCCESS,
+});
+export const signOutFailure = () => ({
+  type: AuthActionTypes.SIGN_OUT_FAILURE,
+});
 
 export const signUpStart = (signUpDetails) => ({
   type: AuthActionTypes.SIGN_UP_START,

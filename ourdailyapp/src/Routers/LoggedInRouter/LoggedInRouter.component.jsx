@@ -5,10 +5,10 @@ import ProfilePage from "../../Pages/ProfilePage/ProfilePage.component";
 import CommentsConverterPage from "../../Pages/CommentsConverterPage/CommentsConverterPage.component";
 import NoMatch from "../../Pages/NoMatchPage/NoMatchPage.component";
 // import { Route } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import useRouter from "../../hooks/useRouter.hooks";
+import {  useDispatch, useSelector } from "react-redux";
+import {getAppsInCartStart} from "../../redux/cart/cart.actions";
 
-import { IsUserRedirect, ProtectedRoute } from "../../helpers/routes.helper";
+import {  ProtectedRoute } from "../../helpers/routes.helper";
 import componentWithPreload from "../../utils/lazyLoading/componentWithPreload";
 import NavUIComponents from "../../Components/NavUIComponents/NavUIComponents.component";
 
@@ -28,6 +28,12 @@ export const routes = [
 
 
 const LoggedInRouter = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAppsInCartStart());
+  }, [dispatch]);
 
   const WishListPage = React.lazy(() =>
     import("../../Pages/wishlistPage/wishlistPage.component")

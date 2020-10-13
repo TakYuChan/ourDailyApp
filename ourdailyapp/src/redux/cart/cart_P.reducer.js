@@ -21,7 +21,7 @@ const cartReducer_P = (state = INITIATE_STATE, action) => {
     case CartActionTypes.REMOVE_ITEM_CART:
       return {
         ...state,
-        cartItems: removeItemFromCart(state.cartItems, action.payload),
+        cartItems: removeItemFromCart(state.cartItems, action.appId),
       };
     case CartActionTypes.ADD_ITEM_PRICE:
       return {
@@ -47,6 +47,11 @@ const cartReducer_P = (state = INITIATE_STATE, action) => {
       return toggleWishListItems(state, action.payload);
     case CartActionTypes.MOVE_TO_CARTLIST:
       return moveItemToCartList(state, action.payload);
+      case CartActionTypes.POPULATE_CART_APPS:
+        return {
+          ...state,
+          cartItems: action.apps
+        }
     default:
       return state;
   }

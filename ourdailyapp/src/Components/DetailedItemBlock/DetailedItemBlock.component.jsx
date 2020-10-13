@@ -4,8 +4,7 @@ import S from "./DetailedItemBlock.style";
 import { useDispatch } from "react-redux";
 import useRouter from "../../hooks/useRouter.hooks";
 import {
-  removeItem,
-  minusItemPriceToTotal,
+  removeAppFromCartStart,
   removeWishListItem,
   moveToWishList,
   moveToCartList,
@@ -23,7 +22,7 @@ const DetailedItemBlock = ({ cartItem, itemType, animationAppendTo }) => {
         onClick={() => router.push(`/shop/${cartItem.route}`)}
       >
         <img
-          src={`${cartItem.imageSrc}.jpeg`}
+          src={`${cartItem.imgSrc}.jpeg`}
           alt="cart item"
           className="img--item"
         />
@@ -34,7 +33,7 @@ const DetailedItemBlock = ({ cartItem, itemType, animationAppendTo }) => {
           className="item-title"
           onClick={() => router.push(`/shop/${cartItem.route}`)}
         >
-          {cartItem.title}
+          {cartItem.name}
         </S.TitleText>
         <S.CreatorText
           className="item-creator"
@@ -50,8 +49,7 @@ const DetailedItemBlock = ({ cartItem, itemType, animationAppendTo }) => {
           className="btn--remove"
           onClick={() => {
             if (itemType === "cart") {
-              dispatch(removeItem(cartItem));
-              dispatch(minusItemPriceToTotal(cartItem.price));
+              dispatch(removeAppFromCartStart(cartItem._id, cartItem.price));
             } else {
               dispatch(removeWishListItem(cartItem));
             }

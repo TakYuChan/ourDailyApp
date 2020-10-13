@@ -15,7 +15,6 @@ import GoogleAuthBtn from "../../Components/Molecules/Buttons/GoogleAuthBtn.comp
 
 const LogInPage = () => {
   const dispatch = useDispatch();
-  const currentAuthPage = useSelector((state) => state.authPage.authPage);
 
   const mq_IsTallScreen = useMediaQuery({ query: "(min-device-height: 629px" });
 

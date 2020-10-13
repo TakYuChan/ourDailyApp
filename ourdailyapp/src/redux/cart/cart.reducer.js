@@ -2,6 +2,7 @@ import CartActionTypes from "./cart.types";
 
 const INITIATE_STATE = {
   cartPopUpHidden: true,
+  isGettingCartApps: false,
 };
 
 const cartReducer = (state = INITIATE_STATE, action) => {
@@ -16,6 +17,16 @@ const cartReducer = (state = INITIATE_STATE, action) => {
         ...state,
         cartPopUpHidden: true,
       };
+    case CartActionTypes.SET_GETTING_CART_APPS_TRUE:
+      return {
+        ...state,
+        isGettingCartApps: true,
+      }
+    case CartActionTypes.SET_GETTING_CART_APPS_FALSE:
+      return {
+        ...state,
+        isGettingCartApps: false,
+      }
     default:
       return state;
   }

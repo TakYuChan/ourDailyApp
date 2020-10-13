@@ -27,7 +27,6 @@ export const selectCartItemsTotalPrice = createSelector(
 
 export const selectCartItemExist = (itemIdToCheck) =>
   createSelector([selectCartItems], (cartItems) => {
-    console.log(itemIdToCheck);
     if (cartItems.find((item) => item.id === itemIdToCheck) === undefined) {
       return false;
     } else {

@@ -1,7 +1,7 @@
 import LogInFormActionTypes from "./logInForm.types";
 
 const INITIATE_STATE = {
-  isSigningUp: false,
+  isLoggingIn: false,
 };
 
 const logInFormReducer = (state = INITIATE_STATE, action) => {
@@ -9,12 +9,12 @@ const logInFormReducer = (state = INITIATE_STATE, action) => {
     case LogInFormActionTypes.SET_IS_LOGGINGIN_TRUE:
       return {
         ...state,
-        isSigningUp: true,
+        isLoggingIn: true,
       };
     case LogInFormActionTypes.SET_IS_LOGGINGIN_FALSE:
       return {
         ...state,
-        isSigningUp: false,
+        isLoggingIn: false,
       };
     default:
       return state;

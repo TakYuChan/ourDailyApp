@@ -3,7 +3,7 @@ import S from "./ApplicationOverview.style";
 
 import { updateRoutePath } from "../../redux/routePath/routePath.actions";
 import { createStructuredSelector } from "reselect";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import AppStoreCard from "../../Components/Cards/AppStoreCard/AppStoreCard.component";
 import AppStoreCardPreloader from "../../Components/Cards/AppStoreCard/AppStoreCardPreloader.component";
@@ -16,7 +16,7 @@ import {
 const ApplicationOverview = ({
   updateRoutePath,
   isLoading,
-  applications,
+  // applications,
   // ...otherProps
 }) => {
   useEffect(() => {
@@ -32,6 +32,8 @@ const ApplicationOverview = ({
       });
     };
   }, [updateRoutePath]);
+
+  const applications = useSelector(state => state.app.applications);
 
   return (
     <S.ApplicationOverviewContainer className="application-overview">

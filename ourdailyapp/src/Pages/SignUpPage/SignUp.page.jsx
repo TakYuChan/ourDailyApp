@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import S from "./SignUp.style";
 
 import OauthBtn from "../../Components/Molecules/Buttons/OauthBtn/OauthBtn.component";
-import { useDispatch, useSelector } from "react-redux";
-import { changeAuthPage } from "../../redux/AuthPage/AuthPage.actions";
+import { useSelector } from "react-redux";
 
 import OauthBtnRounded from "../../Components/Molecules/Buttons/OauthBtnRounded/OauthBtnRounded.component";
 import GoogleAuthBtn from "../../Components/Molecules/Buttons/GoogleAuthBtn.component";
@@ -16,7 +15,6 @@ import { ReactComponent as AppleSvg } from "../../assets/svg/apple.svg";
 import { useMediaQuery } from "react-responsive";
 
 const SignUpPage = () => {
-  const dispatch = useDispatch();
   const currentAuthPage = useSelector((state) => state.authPage.authPage);
 
   const mq_IsTallScreen = useMediaQuery({ query: "(min-device-height: 740px" });

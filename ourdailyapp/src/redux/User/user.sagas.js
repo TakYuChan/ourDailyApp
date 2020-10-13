@@ -1,4 +1,4 @@
-import { takeLatest, call, put, all } from "redux-saga/effects";
+import { takeLeading, takeLatest, call, put, all } from "redux-saga/effects";
 
 import UserActionTypes from "./user.types";
 
@@ -11,15 +11,19 @@ import {
     setIsUploadingAvatarFalse
 } from "./user.actions";
 
+import {changeAuthPage} from "../AuthPage/AuthPage.actions";
+
 import {
     setIsLoggedTrue,
+    setUserAvatar,
 } from "../Auth/auth.actions";
 
+import {getAvatar} from "../Auth/auth.requests";
 import {updateUserInfo} from "./user.requests";
 
 // ================= Sagas ==================
 function* onUpdateUserDetailsStart() {
-    yield takeLatest(UserActionTypes.UPDATE_USER_DETAILS_START, updateUserDetailsStart);
+    yield takeLeading(UserActionTypes.UPDATE_USER_DETAILS_START, updateUserDetailsStart);
   }
   
   function* onUpdateUserDetailsSuccess() {
@@ -27,7 +31,7 @@ function* onUpdateUserDetailsStart() {
   }
   
   function* onUpdateUserAvatarStart() {
-    yield takeLatest(UserActionTypes.UPDATE_USER_AVATAR_START, updateUserAvatarStart);
+    yield takeLeading(UserActionTypes.UPDATE_USER_AVATAR_START, updateUserAvatarStart);
   }
   
   function* onUpdateUserAvatarSuccess() {
@@ -61,15 +65,19 @@ function* updateUserDetailsStart({formData}) {
     try {
       // Loading -> true
       yield put(setIsUploadingAvatarTrue());
-      // request back end to update user avatar
-      yield call(updateUserInfo, formData);
+      // 1) request back end to update user avatar
+      const updatedAvatarName = yield call(updateUserInfo, formData);
+      // 2) Upload user avatar in state for display
+      const getAvatarResponse = yield call(getAvatar, updatedAvatarName);
+      // 3) get avatar image from s3 via backend
+      yield put(setUserAvatar(getAvatarResponse.data.data.image.data));
       yield put(updateUserAvatarSuccess());
-
+      
     } catch (error) {
-        
-        // Loading -> false
-        yield put(setIsUploadingAvatarFalse());
-        yield put(updateUserAvatarFailure());
+      
+      // Loading -> false
+      yield put(setIsUploadingAvatarFalse());
+      yield put(updateUserAvatarFailure());
     }
   }
   
@@ -77,4 +85,6 @@ function* updateUserDetailsStart({formData}) {
     // Loading -> false
     yield put(setIsUploadingAvatarFalse());
     yield put(setIsLoggedTrue());
+    yield put(changeAuthPage("logIn"));
+
   }

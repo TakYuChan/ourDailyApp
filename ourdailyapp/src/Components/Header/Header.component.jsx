@@ -1,17 +1,19 @@
 import React from "react";
 
 import useRouter from "../../hooks/useRouter.hooks";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
 import { toggleNavHidden, closeNav } from "../../redux/nav/nav.actions";
 import { toggleCartPopUp, closeCartPopUp } from "../../redux/cart/cart.actions";
-import {signOut} from "../../redux/Auth/auth.actions";
+import {signOutStart} from "../../redux/Auth/auth.actions";
 import S from "./Header.style";
 
 const Header = () => {
   const navHidden = useSelector((state) => state.nav.hidden);
-  const cartItemsQuantity = useSelector((state) => state.cart_P.cartItems)
+  const cartItemsQuantity = useSelector((state) => state.cart_P.cartItems, shallowEqual)
     .length;
+  // const cartItems = useSelector((state) => state.cart_P.cartItems);
+
   const dispatch = useDispatch();
 
   const router = useRouter();
@@ -28,13 +30,13 @@ const Header = () => {
             role="presentation"
             onClick={() => {
               dispatch(closeNav());
-              router.push("/");
+              router.push("/main");
             }}
           />
         </S.LogoWrapper>
 
         {/* ============================== Nav List ================================= */}
-
+          
         <S.NavListContainer className="list">
           {/* ====================== Cart Icon ====================== */}
           <S.CartIconWrapper
@@ -69,7 +71,9 @@ const Header = () => {
 
           {/* ====================== Logout btn ====================== */}
             <S.LogoutBtnContainer onClick={() => {
-              dispatch(signOut());
+              dispatch(closeCartPopUp());
+              dispatch(closeNav());
+              dispatch(signOutStart());
             }}>
               <S.LogoutIcon className="iconfont icon-log-out"></S.LogoutIcon>
             </S.LogoutBtnContainer>

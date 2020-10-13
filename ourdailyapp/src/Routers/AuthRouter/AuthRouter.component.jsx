@@ -22,6 +22,7 @@ const AuthRouter = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const currentAuthPage = useSelector((state) => state.authPage.authPage);
+  const isUserLogged = useSelector((state) => state.auth_P.isLogged);
 
   return (
     <S.AuthPageContainer className="AuthRouter-page">
@@ -57,7 +58,7 @@ const AuthRouter = () => {
         {currentAuthPage && (
           <S.FooterWrapper>
             {/* // ============== Create Account Btn ==============  */}
-            {currentAuthPage === "uploadAvatar" && <S.ChangeAuthPageLink
+            {(currentAuthPage === "uploadAvatar") &&<S.ChangeAuthPageLink
                 to="/main"
                 onClick={() => {
                   dispatch(setIsLoggedTrue());
