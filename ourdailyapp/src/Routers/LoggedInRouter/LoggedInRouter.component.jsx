@@ -4,9 +4,8 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import ProfilePage from "../../Pages/ProfilePage/ProfilePage.component";
 import CommentsConverterPage from "../../Pages/CommentsConverterPage/CommentsConverterPage.component";
 import NoMatch from "../../Pages/NoMatchPage/NoMatchPage.component";
-// import { Route } from "react-router-dom";
 import {  useDispatch, useSelector } from "react-redux";
-import {getAppsInCartStart} from "../../redux/cart/cart.actions";
+import {getAppsInCartStart, getAppsInWishlistStart} from "../../redux/cart/cart.actions";
 
 import {  ProtectedRoute } from "../../helpers/routes.helper";
 import componentWithPreload from "../../utils/lazyLoading/componentWithPreload";
@@ -33,6 +32,7 @@ const LoggedInRouter = () => {
 
   useEffect(() => {
     dispatch(getAppsInCartStart());
+    dispatch(getAppsInWishlistStart());
   }, [dispatch]);
 
   const WishListPage = React.lazy(() =>

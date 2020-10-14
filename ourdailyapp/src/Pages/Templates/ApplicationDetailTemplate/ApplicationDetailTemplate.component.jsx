@@ -3,6 +3,7 @@ import S from "./ApplicationDetailTemplate.style";
 
 import { connect } from "react-redux";
 import { selectApp } from "../../../redux/app/app.selector";
+import useRouter from "../../../hooks/useRouter.hooks";
 import {
   selectWishListItemExist,
   selectCartItemExist,
@@ -11,7 +12,7 @@ import {
 import { addAppToCartStart, addAppToWishListStart, removeAppToWishListStart } from "../../../redux/cart/cart.actions";
 import { updateRoutePath } from "../../../redux/routePath/routePath.actions";
 import addCartAnimation from "../../../utils/animations/addCardAnimation";
-import RippleSpinner from "../../../Components/Molecules/Spinners/RippleSpinner/RippleSpinner.component";
+import ClassicLoader from "../../../Components/Molecules/Spinners/ClassicSpinner/ClassicSpinner.component";
 import PropTypes from "prop-types";
 
 import CustomTag from "../../../Components/Molecules/customTag/customTag.component";
@@ -28,8 +29,6 @@ const ApplicationDetailPage = ({
   isTogglingWishlistApp,
 }) => {
   //=========================== Life Cycle Hooks =========================
-
-
   useEffect(() => {
     updateRoutePath({
       page: "applicationDetails",
@@ -48,6 +47,7 @@ const ApplicationDetailPage = ({
 
 
   const { videoSrc, tags, intro, features } = appData;
+  const router = useRouter();
 
   return (
     <S.PageContentContainer className="app-content-main">
@@ -91,6 +91,7 @@ const ApplicationDetailPage = ({
       {/* ================ wishlist part ================ */}
       <S.BtnAddToWishlist
         className="btn--addWishList"
+        disabled={isTogglingWishlistApp}
         onClick={() => {
           if(wishListed(appData._id)) {
             removeAppToWishListStart(appData._id);
@@ -99,8 +100,8 @@ const ApplicationDetailPage = ({
           }
         }}
       >
-        Wishlist
-        {isTogglingWishlistApp ? <RippleSpinner/> :
+        {!isTogglingWishlistApp && "Wishlist"}
+        {isTogglingWishlistApp ? <ClassicLoader/> :
         (<S.IconSvg
           className={`iconfont icon-heart ${
             wishListed(appData._id) ? "active" : ""
@@ -113,13 +114,15 @@ const ApplicationDetailPage = ({
         className="btn--addToCart"
         onClick={() => {
           /* ================ animations ================ */
-          if (!cartItemExist(appData._id)) {
+          if (cartItemExist(appData._id)) {
+            router.push("/cart");
+          } else {
             addCartAnimation(appData.imgSrc, ".application-detail-page");
+            addAppToCartStart(appData._id);
           }
-          addAppToCartStart(appData._id);
         }}
       >
-        Add to cart
+        {cartItemExist(appData._id) ? "Go to cart" : "Add to cart"}
         <S.IconSvg className={`iconfont icon-cart1`}></S.IconSvg>
       </S.BtnAddToCart>
     </S.PageContentContainer>

@@ -53,23 +53,24 @@ export const moveItemToWishlist = (state, cartItemToMove) => {
 // ================= WishList Utils =================
 export const addWishListItem = (state, itemToAdd) => {
   const itemExist = state.wishListItems.find(
-    (item) => item.id === itemToAdd.id
+    (item) => item._id === itemToAdd._id
   );
 
+  console.log("comparing", state.cartItems, "--------", itemToAdd._id)
   if (itemExist === undefined) {
     let newCartItems = state.cartItems;
     //====== If the itemToAdd already exist in the cartItemsList ======
     if (
-      state.cartItems.find((cartItem) => cartItem.id === itemToAdd.id) !==
+      state.cartItems.find((cartItem) => cartItem._id === itemToAdd._id) !==
       undefined
-    ) {
-      //CHECK 1: IF cartItemList has the wishListItemToAdd then
-      //remove the wishListItemToAdd from the cartItemList
-
-      newCartItems = state.cartItems.filter(
-        (cartItem) => cartItem.id !== itemToAdd.id
-      );
-
+      ) {
+        //CHECK 1: IF cartItemList has the wishListItemToAdd then
+        //remove the wishListItemToAdd from the cartItemList
+        
+        newCartItems = state.cartItems.filter(
+          (cartItem) => cartItem._id !== itemToAdd._id
+        );
+          
       //CHECK 2: Also need to deduct the itemTotalPrice for the cartItems total price
       state.itemTotalPrice -= itemToAdd.price;
     }

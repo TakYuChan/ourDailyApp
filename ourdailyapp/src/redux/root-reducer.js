@@ -2,6 +2,8 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+import AuthActionTypes from "./Auth/auth.types";
+
 import navReducer from "./nav/nav.reducer";
 import shopNavReducer from "./shopNav/shopNav.reducer";
 import authReducer from "./Auth/auth.reducer";
@@ -25,11 +27,12 @@ import pigGamePlayer2Reducer from "./pigGamePlayer2/pigGamePlayer2.reducer";
 const persistConfig = {
   key: "root",
   storage,
+  // whitelist: ["auth_P"]
   whitelist: ["cart_P", "auth_P"],
   // whitelist: ["cart_P", "pigGame"],
 };
 
-const rootReducer = combineReducers({
+const topLevelReducers = combineReducers({
   UIComponents: UIComponentsReducer,
   nav: navReducer,
   auth: authReducer,
@@ -50,6 +53,17 @@ const rootReducer = combineReducers({
   pigGamePlayer2: pigGamePlayer2Reducer,
   
 });
+
+const rootReducer = (state, action) => {
+  
+  if(action.type === AuthActionTypes.SIGN_OUT_START) {
+    console.log("sign out")
+    storage.removeItem('persist:root');
+    state = undefined;
+  }
+
+  return topLevelReducers(state, action);
+}
 
 // export default rootReducer;
 

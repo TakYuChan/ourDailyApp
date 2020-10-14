@@ -11,8 +11,8 @@ import {
   setIsLoggedTrue,
   setUserDetails,
   setUserAvatar,
-  signOutSuccess,
-  signOutFailure,
+  // signOutSuccess,
+  // signOutFailure,
   signOut,
 } from "./auth.actions";
 
@@ -157,7 +157,7 @@ function* signInFailHandler({ error, targetComponent }) {
 
 function* afterSignUp() {
   try {
-    // yield put(clearSignUpAlert());
+    yield put(clearSignUpAlert());
     // yield put(changeAuthPage("uploadAvatar"));
   } catch (error) {}
 }

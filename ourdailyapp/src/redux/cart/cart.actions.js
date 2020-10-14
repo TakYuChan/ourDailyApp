@@ -78,6 +78,22 @@ export const moveToWishList = (item) => ({
   payload: item,
 });
 
+export const updateCartTotalPrice = (newTotalPrice) => ({
+  type: CartActionTypes.UPDATE_TOTALPRICE_CART,
+  newTotalPrice
+})
+
+export const updateAllAppsInCartStart = (apps) => ({
+  type: CartActionTypes.UPDATE_CART_ALL_APPS_START,
+  apps
+}) 
+export const updateAllAppsInCartSuccess = () => ({
+  type: CartActionTypes.UPDATE_CART_ALL_APPS_SUCCESS,
+}) 
+export const updateAllAppsInCartFailure = () => ({
+  type: CartActionTypes.UPDATE_CART_ALL_APPS_FAILURE,
+}) 
+
 // ================= WishList Actions =================
 export const addWishListItem = (item) => ({
   type: CartActionTypes.ADD_ITEM_WISHLIST,
@@ -140,3 +156,27 @@ export const setIsTogglingWishlistAppTrue = () => ({
 export const setIsTogglingWishlistAppFalse = () => ({
   type: CartActionTypes.SET_TOGGLING_WISHLIST_APP_FALSE,
 })
+
+export const getAppsInWishlistStart = () => ({
+  type: CartActionTypes.GET_WISHLIST_APPS_START,
+})
+export const getAppsInWishlistSuccess = () => ({
+  type: CartActionTypes.GET_WISHLIST_APPS_SUCCESS,
+})
+export const getAppsInWishlistFailure = () => ({
+  type: CartActionTypes.GET_WISHLIST_APPS_FAILURE,
+})
+export const populateWishlistApps = (apps) => ({
+  type: CartActionTypes.POPULATE_WISHLIST_APPS,
+  apps
+})
+export const updateAllAppsInWishlistStart = (apps) => ({
+  type: CartActionTypes.UPDATE_WISHLIST_ALL_APPS_START,
+  apps
+}) 
+export const updateAllAppsInWishlistSuccess = () => ({
+  type: CartActionTypes.UPDATE_WISHLIST_ALL_APPS_SUCCESS,
+}) 
+export const updateAllAppsInWishlistFailure = () => ({
+  type: CartActionTypes.UPDATE_WISHLIST_ALL_APPS_FAILURE,
+}) 

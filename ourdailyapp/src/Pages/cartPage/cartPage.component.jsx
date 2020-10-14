@@ -35,8 +35,6 @@ const CartPage = ({
     };
   }, [updateRoutePath]);
 
-  console.log("CartPage rendered");
-
   return (
     <S.CartPageContainer>
       {/* ========================== content main ========================== */}

@@ -1,19 +1,18 @@
 import React from "react";
 import S from "./DetailedItemBlock.style";
 
-import { useDispatch } from "react-redux";
-import useRouter from "../../hooks/useRouter.hooks";
+import { useDispatch, connect } from "react-redux";
 import {
-  removeAppFromCartStart,
-  removeWishListItem,
-  moveToWishList,
-  moveToCartList,
-} from "../../redux/cart/cart.actions";
+  selectWishListItemExist,
+} from "../../redux/cart/cart.selectors";
+import { addAppToCartStart, addAppToWishListStart, removeAppToWishListStart,   removeAppFromCartStart,  } from "../../redux/cart/cart.actions";
+import useRouter from "../../hooks/useRouter.hooks";
 import addCartAnimation from "../../utils/animations/addCardAnimation";
 
-const DetailedItemBlock = ({ cartItem, itemType, animationAppendTo }) => {
+const DetailedItemBlock = ({ cartItem, itemType, animationAppendTo, wishListed }) => {
   const dispatch = useDispatch();
   const router = useRouter();
+
   return (
     <S.CartItemContainer className="cart-item">
       {/* ============= Items - img ============= */}
@@ -51,7 +50,7 @@ const DetailedItemBlock = ({ cartItem, itemType, animationAppendTo }) => {
             if (itemType === "cart") {
               dispatch(removeAppFromCartStart(cartItem._id, cartItem.price));
             } else {
-              dispatch(removeWishListItem(cartItem));
+              dispatch(removeAppToWishListStart(cartItem._id));
             }
           }}
         >
@@ -60,7 +59,14 @@ const DetailedItemBlock = ({ cartItem, itemType, animationAppendTo }) => {
         {itemType === "cart" ? (
           <S.BtnToWishList
             className="btn--toWishList"
-            onClick={() => dispatch(moveToWishList(cartItem))}
+            /* onClick={() => dispatch(moveToWishList(cartItem))} */
+            onClick={() => {
+              if(wishListed(cartItem._id)) {
+                dispatch(removeAppToWishListStart(cartItem._id));
+              } else {
+                dispatch(addAppToWishListStart(cartItem._id));
+              }
+            }}
           >
             Move to Wishlist
           </S.BtnToWishList>
@@ -68,9 +74,9 @@ const DetailedItemBlock = ({ cartItem, itemType, animationAppendTo }) => {
           <S.BtnToCartList
             className="btn--toCartList"
             onClick={() => {
-              dispatch(moveToCartList(cartItem));
               /* ================ animations ================ */
-              addCartAnimation(cartItem.imageSrc, animationAppendTo);
+              addCartAnimation(cartItem.imgSrc, animationAppendTo);
+              dispatch(addAppToCartStart(cartItem._id));
             }}
           >
             Add to cart
@@ -81,4 +87,8 @@ const DetailedItemBlock = ({ cartItem, itemType, animationAppendTo }) => {
   );
 };
 
-export default DetailedItemBlock;
+const mapStateToProps = (state) => ({
+  wishListed: (appId) => selectWishListItemExist(appId)(state),
+});
+
+export default connect(mapStateToProps)(DetailedItemBlock);

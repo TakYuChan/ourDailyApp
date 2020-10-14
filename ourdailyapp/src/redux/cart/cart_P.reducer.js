@@ -6,7 +6,6 @@ import {
   moveItemToWishlist,
   moveItemToCartList,
   toggleWishListItems,
-  removeItemFromWishlist,
 } from "./cart.utils";
 
 const INITIATE_STATE = {
@@ -24,11 +23,6 @@ const cartReducer_P = (state = INITIATE_STATE, action) => {
         ...state,
         cartItems: removeItemFromCart(state.cartItems, action.appId),
       };
-    case CartActionTypes.REMOVE_ITEM_WISHLIST:
-      return {
-        ...state,
-        wishListItems: removeItemFromWishlist(state.wishListItems, action.appId),
-      };
     case CartActionTypes.ADD_ITEM_PRICE:
       return {
         ...state,
@@ -41,23 +35,33 @@ const cartReducer_P = (state = INITIATE_STATE, action) => {
       };
     case CartActionTypes.MOVE_TO_WISHLIST:
       return moveItemToWishlist(state, action.payload);
+    case CartActionTypes.POPULATE_CART_APPS:
+      return {
+        ...state,
+        cartItems: action.apps
+      }
+    case CartActionTypes.UPDATE_TOTALPRICE_CART:
+      return {
+        ...state,
+        itemTotalPrice: action.newTotalPrice
+      }
     // ================= WishList Actions =================
     case CartActionTypes.ADD_ITEM_WISHLIST:
       return addWishListItem(state, action.payload);
     case CartActionTypes.REMOVE_ITEM_WISHLIST:
       return {
         ...state,
-        wishListItems: removeItemFromCart(state.wishListItems, action.payload),
+        wishListItems: removeItemFromCart(state.wishListItems, action.appId),
       };
     case CartActionTypes.TOGGLE_ITEM_WISHLIST:
       return toggleWishListItems(state, action.payload);
     case CartActionTypes.MOVE_TO_CARTLIST:
       return moveItemToCartList(state, action.payload);
-      case CartActionTypes.POPULATE_CART_APPS:
-        return {
-          ...state,
-          cartItems: action.apps
-        }
+    case CartActionTypes.POPULATE_WISHLIST_APPS:
+      return {
+        ...state,
+        wishListItems: action.apps
+      }
     default:
       return state;
   }

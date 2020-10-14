@@ -12,7 +12,7 @@ const buttonStyles = css`
   border-radius: 30px;
   color: ${(props) => props.theme.appDetailPage.btn_font_clr};
   font-size: clamp(0.8rem, 1.2vw, 1.4rem);
-  transition: all 300ms ease-in-out;
+  transition: transform 300ms ease-in-out;
   &:hover {
     transform: translateY(-5px);
   }
@@ -90,9 +90,16 @@ S.BtnAddToWishlist = styled.button`
 
   background: ${(props) => props.theme.appDetailPage.addToWishListBtn_bg};
 
-  padding: 0.8em 1.2em;
+  // width: 183px;
+  // height: 69px;
+  width: 9.3em;
+  height: 3.2em;
   display: flex;
+  justify-content: center;
+  align-items: center;
 
+  &:disabled {
+    background: gray;
   }
 `;
 

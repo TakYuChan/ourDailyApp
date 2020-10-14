@@ -2,23 +2,18 @@ import React from "react";
 import S from "./WishListCard.style.jsx";
 
 import useRouter from "../../../hooks/useRouter.hooks";
-import { connect } from "react-redux";
+import {useDispatch} from "react-redux"
 
-import {
-  toggleWishListItem,
-  moveToCartList,
-} from "../../../redux/cart/cart.actions";
-
+import { addAppToCartStart, removeAppToWishListStart  } from "../../../redux/cart/cart.actions";
 import addCartAnimation from "../../../utils/animations/addCardAnimation";
 
 import PropTypes from "prop-types";
 
 const WishListCard = ({
   wishlistItem,
-  toggleWishListItem,
-  moveItemToCartList,
 }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   return (
     <div className="wishlist-min850">
@@ -50,7 +45,7 @@ const WishListCard = ({
               className="btn-addToCart"
               onClick={(event) => {
                 event.stopPropagation();
-                moveItemToCartList(wishlistItem);
+                dispatch(addAppToCartStart(wishlistItem._id));
 
 
                 /* ================ animations ================ */
@@ -75,15 +70,9 @@ const WishListCard = ({
         <S.IconHeart
           className={`iconfont icon-heart`}
           onClick={(event) => {
+            // prevent click on the card body
             event.stopPropagation();
-            toggleWishListItem({
-              id: wishlistItem.id,
-              name: wishlistItem.name,
-              creator: wishlistItem.creator,
-              imgSrc: wishlistItem.imgSrc,
-              price: wishlistItem.price,
-              route: wishlistItem.route,
-            });
+            dispatch(removeAppToWishListStart(wishlistItem._id));
           }}
         ></S.IconHeart>
       </S.CardWrapper>
@@ -91,15 +80,10 @@ const WishListCard = ({
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleWishListItem: (item) => dispatch(toggleWishListItem(item)),
-  moveItemToCartList: (item) => dispatch(moveToCartList(item)),
-});
-
 React.propTypes = {
   wishListItem: PropTypes.object.isRequired,
   toogleWishListItem: PropTypes.func.isRequired,
   moveItemToCartList: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(WishListCard);
+export default WishListCard;
