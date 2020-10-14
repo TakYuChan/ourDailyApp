@@ -2,8 +2,10 @@ export const addItemToCart = (state, cartItemToAdd) => {
   //Check if item is already in the cart
   //!!Each application can be bought once and added once only
   const itemExist = state.cartItems.find(
-    (cartItem) => cartItem.id === cartItemToAdd.id
+    (cartItem) => cartItem._id === cartItemToAdd._id
   );
+
+  console.log("appItem in cart already?", itemExist)
 
   if (itemExist === undefined) {
     //IF wishlist has the cartItemToAdd then
@@ -11,9 +13,10 @@ export const addItemToCart = (state, cartItemToAdd) => {
     let newWishList = [];
     if (state.wishListItems !== null) {
       newWishList = state.wishListItems.filter(
-        (wishListItem) => wishListItem.id !== cartItemToAdd.id
+        (wishListItem) => wishListItem._id !== cartItemToAdd._id
       );
     }
+    console.log({newWishList});
     //Add item
     state.cartItems.unshift(cartItemToAdd);
 
@@ -33,6 +36,13 @@ export const addItemToCart = (state, cartItemToAdd) => {
 export const removeItemFromCart = (cartItems, appId) => {
   return cartItems.filter((cartItem) => cartItem.id !== appId);
 };
+
+export const removeItemFromWishlist = (wishlistItems, appId) => {
+  console.log("removingItemFromWishlist")
+  const newWishlist =  wishlistItems.filter(wishlistItems => wishlistItems._id !== appId);
+  console.log({newWishlist})
+  return newWishlist;
+}
 
 export const moveItemToWishlist = (state, cartItemToMove) => {
   removeItemFromCart(state.cartItems, cartItemToMove);

@@ -91,6 +91,7 @@ S.BtnAddToWishlist = styled.button`
   background: ${(props) => props.theme.appDetailPage.addToWishListBtn_bg};
 
   padding: 0.8em 1.2em;
+  display: flex;
 
   }
 `;

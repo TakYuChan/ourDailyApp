@@ -6,10 +6,12 @@ import { selectApp } from "../../../redux/app/app.selector";
 import {
   selectWishListItemExist,
   selectCartItemExist,
+  selectIsTogglingWishlistApp,
 } from "../../../redux/cart/cart.selectors";
-import { addAppToCartStart, toggleWishListItem } from "../../../redux/cart/cart.actions";
+import { addAppToCartStart, addAppToWishListStart, removeAppToWishListStart } from "../../../redux/cart/cart.actions";
 import { updateRoutePath } from "../../../redux/routePath/routePath.actions";
 import addCartAnimation from "../../../utils/animations/addCardAnimation";
+import RippleSpinner from "../../../Components/Molecules/Spinners/RippleSpinner/RippleSpinner.component";
 import PropTypes from "prop-types";
 
 import CustomTag from "../../../Components/Molecules/customTag/customTag.component";
@@ -18,9 +20,12 @@ const ApplicationDetailPage = ({
   appData,
   addAppToCartStart,
   wishListed,
-  toggleWishListItem,
+  // toggleWishListItem,
+  addAppToWishListStart,
+  removeAppToWishListStart,
   cartItemExist,
   updateRoutePath,
+  isTogglingWishlistApp,
 }) => {
   //=========================== Life Cycle Hooks =========================
 
@@ -87,22 +92,20 @@ const ApplicationDetailPage = ({
       <S.BtnAddToWishlist
         className="btn--addWishList"
         onClick={() => {
-          toggleWishListItem({
-            id: appData.id,
-            name: appData.name,
-            creator: appData.creator,
-            imgSrc: appData.imgSrc,
-            price: appData.price,
-            route: appData.route,
-          });
+          if(wishListed(appData._id)) {
+            removeAppToWishListStart(appData._id);
+          } else {
+            addAppToWishListStart(appData._id);
+          }
         }}
       >
         Wishlist
-        <S.IconSvg
+        {isTogglingWishlistApp ? <RippleSpinner/> :
+        (<S.IconSvg
           className={`iconfont icon-heart ${
-            wishListed(appData.id) ? "active" : ""
+            wishListed(appData._id) ? "active" : ""
           }`}
-        ></S.IconSvg>
+        ></S.IconSvg>)}
       </S.BtnAddToWishlist>
 
       {/* ================ Add to Cart ================ */}
@@ -127,11 +130,14 @@ const mapStateToProps = (state, ownProps) => ({
   appData: selectApp(ownProps.match.params.applicationId)(state),
   wishListed: (appId) => selectWishListItemExist(appId)(state),
   cartItemExist: (appId) => selectCartItemExist(appId)(state),
+  isTogglingWishlistApp: selectIsTogglingWishlistApp(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addAppToCartStart: (appId) => dispatch(addAppToCartStart(appId)),
-  toggleWishListItem: (item) => dispatch(toggleWishListItem(item)),
+  // toggleWishListItem: (item) => dispatch(toggleWishListItem(item)),
+  addAppToWishListStart: (appId) => dispatch(addAppToWishListStart(appId)),
+  removeAppToWishListStart: (appId) => dispatch(removeAppToWishListStart(appId)),
   updateRoutePath: (routePathDetails) =>
     dispatch(updateRoutePath(routePathDetails)),
 });

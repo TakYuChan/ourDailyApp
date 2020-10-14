@@ -9,6 +9,15 @@ export const addAppToCartBackEnd = async (appId) => {
     return res;
 }
 
+export const addAppToWishlistBackEnd = async (appId) => {
+    const res = await axios({
+        method: "PATCH",
+        url: `${process.env.REACT_APP_URL}/applications/${appId}/addAppToWishlist`,
+        withCredentials: true,
+    })
+    return res;
+}
+
 export const getCartApps = async() => {
     const res = await axios({
         method: "GET",
@@ -25,6 +34,15 @@ export const deleteAppFromCart = async(appId) => {
         withCredentials: true,
     })
 
-    console.log(res);
+    return res;
+}
+
+export const deleteAppFromWishlist = async(appId) => {
+    const res = await axios({
+        method: "DELETE",
+        url: `${process.env.REACT_APP_URL}/applications/${appId}/deleteFromWishlist`,
+        withCredentials: true,
+    })
+
     return res;
 }

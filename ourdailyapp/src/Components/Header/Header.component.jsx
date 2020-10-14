@@ -1,18 +1,18 @@
 import React from "react";
 
 import useRouter from "../../hooks/useRouter.hooks";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { useDispatch, useSelector, connect } from "react-redux";
 
 import { toggleNavHidden, closeNav } from "../../redux/nav/nav.actions";
 import { toggleCartPopUp, closeCartPopUp } from "../../redux/cart/cart.actions";
+import { selectCartItemsQuantity } from "../../redux/cart/cart.selectors";
 import {signOutStart} from "../../redux/Auth/auth.actions";
 import S from "./Header.style";
+import { createStructuredSelector } from "reselect";
 
-const Header = () => {
+const Header = ({cartItemsQuantity}) => {
   const navHidden = useSelector((state) => state.nav.hidden);
-  const cartItemsQuantity = useSelector((state) => state.cart_P.cartItems, shallowEqual)
-    .length;
-  // const cartItems = useSelector((state) => state.cart_P.cartItems);
+  // const cartItemsQuantity = useSelector((state) => state.cart_P.cartItems, shallowEqual).length;
 
   const dispatch = useDispatch();
 
@@ -84,4 +84,8 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = createStructuredSelector({
+  cartItemsQuantity: selectCartItemsQuantity
+})
+
+export default connect(mapStateToProps)(Header);

@@ -6,6 +6,7 @@ import {
   moveItemToWishlist,
   moveItemToCartList,
   toggleWishListItems,
+  removeItemFromWishlist,
 } from "./cart.utils";
 
 const INITIATE_STATE = {
@@ -22,6 +23,11 @@ const cartReducer_P = (state = INITIATE_STATE, action) => {
       return {
         ...state,
         cartItems: removeItemFromCart(state.cartItems, action.appId),
+      };
+    case CartActionTypes.REMOVE_ITEM_WISHLIST:
+      return {
+        ...state,
+        wishListItems: removeItemFromWishlist(state.wishListItems, action.appId),
       };
     case CartActionTypes.ADD_ITEM_PRICE:
       return {

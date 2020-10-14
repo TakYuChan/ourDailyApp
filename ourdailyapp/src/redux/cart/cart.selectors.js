@@ -27,7 +27,8 @@ export const selectCartItemsTotalPrice = createSelector(
 
 export const selectCartItemExist = (itemIdToCheck) =>
   createSelector([selectCartItems], (cartItems) => {
-    if (cartItems.find((item) => item.id === itemIdToCheck) === undefined) {
+    console.log("cartItems", cartItems)
+    if (cartItems.some((item) => item._id === itemIdToCheck) === false) {
       return false;
     } else {
       return true;
@@ -53,7 +54,21 @@ export const selectWishListQuantity = createSelector([selectCart_P], (cart) => {
 
 export const selectWishListItemExist = (itemIdToCheck) =>
   createSelector([selectWishListItems], (wishList) => {
-    if (wishList.find((item) => item.id === itemIdToCheck) === undefined) {
+    if (wishList.some((item) => item._id === itemIdToCheck) === false) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+
+export const selectIsTogglingWishlistApp =  createSelector(
+  [selectCart],
+  (cart) => cart.isTogglingWishlistApp
+)
+
+export const selectWishlistItemExist = (itemIdToCheck) =>
+  createSelector([selectWishListItems], (wishlistItems) => {
+    if (wishlistItems.some((item) => item._id === itemIdToCheck) === false) {
       return false;
     } else {
       return true;
