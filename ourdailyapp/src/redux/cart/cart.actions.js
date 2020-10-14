@@ -23,9 +23,9 @@ export const getAppsInCartFailure = () => ({
   type: CartActionTypes.GET_CART_APPS_FAILURE,
 })
 
-export const addAppToCartStart = (appId) => ({
+export const addAppToCartStart = (appObj) => ({
   type: CartActionTypes.ADD_APP_START,
-  appId
+  appObj
 })
 
 export const addAppToCartSuccess = () => ({
@@ -83,9 +83,9 @@ export const updateCartTotalPrice = (newTotalPrice) => ({
   newTotalPrice
 })
 
-export const updateAllAppsInCartStart = (apps) => ({
+export const updateAllAppsInCartStart = (appIds) => ({
   type: CartActionTypes.UPDATE_CART_ALL_APPS_START,
-  apps
+  appIds
 }) 
 export const updateAllAppsInCartSuccess = () => ({
   type: CartActionTypes.UPDATE_CART_ALL_APPS_SUCCESS,
@@ -115,9 +115,9 @@ export const moveToCartList = (item) => ({
   payload: item,
 });
 
-export const addAppToWishListStart = (appId) => ({
+export const addAppToWishListStart = (appObj) => ({
   type: CartActionTypes.ADD_APP_WISHLIST_START,
-  appId,
+  appObj,
 })
 
 export const addAppToWishListSuccess = () => ({
@@ -170,9 +170,9 @@ export const populateWishlistApps = (apps) => ({
   type: CartActionTypes.POPULATE_WISHLIST_APPS,
   apps
 })
-export const updateAllAppsInWishlistStart = (apps) => ({
+export const updateAllAppsInWishlistStart = (appIds) => ({
   type: CartActionTypes.UPDATE_WISHLIST_ALL_APPS_START,
-  apps
+  appIds
 }) 
 export const updateAllAppsInWishlistSuccess = () => ({
   type: CartActionTypes.UPDATE_WISHLIST_ALL_APPS_SUCCESS,

@@ -5,7 +5,7 @@ import { useDispatch, connect } from "react-redux";
 import {
   selectWishListItemExist,
 } from "../../redux/cart/cart.selectors";
-import { addAppToCartStart, addAppToWishListStart, removeAppToWishListStart,   removeAppFromCartStart,  } from "../../redux/cart/cart.actions";
+import { addAppToCartStart, addAppToWishListStart, removeAppToWishListStart,   removeAppFromCartStart } from "../../redux/cart/cart.actions";
 import useRouter from "../../hooks/useRouter.hooks";
 import addCartAnimation from "../../utils/animations/addCardAnimation";
 
@@ -64,7 +64,7 @@ const DetailedItemBlock = ({ cartItem, itemType, animationAppendTo, wishListed }
               if(wishListed(cartItem._id)) {
                 dispatch(removeAppToWishListStart(cartItem._id));
               } else {
-                dispatch(addAppToWishListStart(cartItem._id));
+                dispatch(addAppToWishListStart(cartItem));
               }
             }}
           >
@@ -76,7 +76,7 @@ const DetailedItemBlock = ({ cartItem, itemType, animationAppendTo, wishListed }
             onClick={() => {
               /* ================ animations ================ */
               addCartAnimation(cartItem.imgSrc, animationAppendTo);
-              dispatch(addAppToCartStart(cartItem._id));
+              dispatch(addAppToCartStart(cartItem));
             }}
           >
             Add to cart

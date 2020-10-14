@@ -56,20 +56,26 @@ export const deleteAppFromWishlist = async(appId) => {
     return res;
 }
 
-export const updateAllAppsInCart = async(apps) => {
+export const updateAllAppsInCart = async(appIds) => {
     const res = await axios({
         method: "POST",
         url: `${process.env.REACT_APP_URL}/applications/updateAppsInCart`,
+        data: {
+            appIds
+        },
         withCredentials: true,
     })
 
     return res;
 }
 
-export const updateAllAppsInWishlist = async(apps) => {
+export const updateAllAppsInWishlist = async(appIds) => {
     const res = await axios({
         method: "POST",
         url: `${process.env.REACT_APP_URL}/applications/updateAppsInWishlist`,
+        data: {
+            appIds
+        },
         withCredentials: true,
     })
 

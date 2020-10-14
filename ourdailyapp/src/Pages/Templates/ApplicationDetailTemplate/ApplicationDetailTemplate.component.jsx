@@ -96,7 +96,7 @@ const ApplicationDetailPage = ({
           if(wishListed(appData._id)) {
             removeAppToWishListStart(appData._id);
           } else {
-            addAppToWishListStart(appData._id);
+            addAppToWishListStart(appData);
           }
         }}
       >
@@ -118,7 +118,7 @@ const ApplicationDetailPage = ({
             router.push("/cart");
           } else {
             addCartAnimation(appData.imgSrc, ".application-detail-page");
-            addAppToCartStart(appData._id);
+            addAppToCartStart(appData);
           }
         }}
       >

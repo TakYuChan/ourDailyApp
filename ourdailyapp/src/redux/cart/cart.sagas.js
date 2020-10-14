@@ -39,12 +39,12 @@ import {addAppToCartBackEnd, getCartApps, deleteAppFromCart, addAppToWishlistBac
 function* onAddAppToCartStart() {
     while(true) {
         // 1) wait for add app start
-        const {appId} = yield take(CartActionTypes.ADD_APP_START);
+        const {appObj} = yield take(CartActionTypes.ADD_APP_START);
         
         // 2) implement add app logic
-        const addAppToCartTask = yield fork(addAppToCartStart, {appId});
+        const addAppToCartTask = yield fork(addAppToCartStart, {appObj});
         
-        // 3) check if add app to checklist started
+        // 3) check if add app to wishlist started
         const action = yield take([CartActionTypes.ADD_APP_WISHLIST_START, CartActionTypes.REMOVE_APP_FROM_CART_START]);
         // 4) cancel the add app logic if user clciked add app to checklist
         if(action.type === CartActionTypes.ADD_APP_WISHLIST_START) {
@@ -53,6 +53,32 @@ function* onAddAppToCartStart() {
         }
     }
 }
+
+function* onAddAppToWishlistStart() {
+    while(true) {
+        // 1) wait for add app start
+        const {appObj} = yield take(CartActionTypes.ADD_APP_WISHLIST_START);
+
+        // 2) implement add app to wishlist logic
+        const addAppToWishlistTask = yield fork(addAppToWishlistStart, {appObj});
+
+        // 3) check if add app to cart started
+        const action = yield take([CartActionTypes.ADD_APP_START, CartActionTypes.REMOVE_APP_WISHLIST_START]);
+        // 4) cancel the add app logic if user clciked add app to checklist
+        if(action.type === CartActionTypes.ADD_APP_START) {
+            console.log("cancelling addAppToWishlistTask");
+            yield cancel(addAppToWishlistTask);
+        }
+    }
+}
+
+// function* onAddAppToWishlistStart() {
+//     yield takeLeading(
+//         CartActionTypes.ADD_APP_WISHLIST_START,
+//         addAppToWishlistStart,
+//     )
+// }
+
 
 function* onGetCartAppsStart() {
     yield takeLeading(
@@ -75,12 +101,6 @@ function* onRemoveAppFromCartStart() {
     )
 }
 
-function* onAddAppToWishlistStart() {
-    yield takeLeading(
-        CartActionTypes.ADD_APP_WISHLIST_START,
-        addAppToWishlistStart,
-    )
-}
 
 function* onRemoveAppFromWishlistStart() {
     yield takeLeading(
@@ -102,25 +122,20 @@ function* onUpdateAllAppsInWishlistStart() {
 export default function* cartSaga() {
     yield all([call(onAddAppToCartStart), call(onGetCartAppsStart), 
         call(onRemoveAppFromCartStart), call(onAddAppToWishlistStart),
-    call(onRemoveAppFromWishlistStart), call(onGetWishlistAppsStart),
-    call(onUpdateAllAppsInCartStart), call(onUpdateAllAppsInWishlistStart)]);
+        call(onRemoveAppFromWishlistStart), call(onGetWishlistAppsStart),
+        call(onUpdateAllAppsInCartStart), call(onUpdateAllAppsInWishlistStart)]);
 }
 
 // ================= other generator functions ==================
 
-function* addAppToCartStart({appId}) {
+function* addAppToCartStart({appObj}) {
     try {
-        // 1) Check local wishlist state if target app has been added to the cart b4
-        // then we need to remove that from the state and the database
-        const isAppInWishlist = yield select(selectWishlistItemExist(appId));
-        if(isAppInWishlist) {
-            // remove wishlist app from state and the database
-            yield call(deleteAppFromWishlist, appId);
-        }
-        // 2) add app to user cart via backend
-        const appDetailsRes = yield call(addAppToCartBackEnd, appId);
-        // 3) Add app to cart within react state
-        yield put(addItem(appDetailsRes.data.data.app));
+        // 1) Add app to cart within react state
+        yield put(addItem(appObj));
+        // 2) remove wishlist app from state and the database
+        yield call(deleteAppFromWishlist, appObj._id);
+        // 3) add app to user cart via backend
+        yield call(addAppToCartBackEnd, appObj._id);
         yield put(addAppToCartSuccess());
     } catch (error) {
         yield put(addAppToCartFailure());
@@ -129,9 +144,9 @@ function* addAppToCartStart({appId}) {
         // if this task is cancelled
         if(yield cancelled()) {
             console.log("TASK add app to cart CANCELLED!");
-            yield call(deleteAppFromCart, appId);
+            yield call(deleteAppFromCart, appObj._id);
             // Remove app from react cart state
-            yield put(removeItem(appId));
+            yield put(removeItem(appObj._id));
         }
     }
 }
@@ -164,7 +179,6 @@ function* getWishlistAppsStart() {
         const getWishlistAppsRes = yield call(getWishlistApps);
         // 2) Populate Cart Apps to react state
         yield put(populateWishlistApps(getWishlistAppsRes.data.data.apps));
-        console.log(getWishlistAppsRes)
         // Stop Spinner
         yield put(setIsGettingWishlistAppsFalse());
         yield put(getAppsInCartSuccess());
@@ -190,23 +204,18 @@ function* gf_removeAppFromCartStart({appId, appPrice}) {
     }
 }
 
-function* addAppToWishlistStart({appId}) {
+function* addAppToWishlistStart({appObj}) {
     try {
         
         // START SPINNER
         yield put(setIsTogglingWishlistAppTrue());
-        // 1) Check local cart state if target app has been added to the cart b4
-        // then we need to remove that from the state and the database
-        const isAppInCart = yield select(selectCartItemExist(appId));
-        if(isAppInCart) {
-            // Modify the Database for deleting app from cart
-            yield call(deleteAppFromCart, appId);
-        }
-        // 2) add app to user wishlist via backend
-        const appDetailsRes = yield call(addAppToWishlistBackEnd, appId);
-        // 3) Add app to wishlist within react state and
+        // 1) Add app to wishlist within react state and
         // remove cart app from cart state if it exists
-        yield put(addWishListItem(appDetailsRes.data.data.app));
+        yield put(addWishListItem(appObj));
+        // 2) Modify the Database for deleting app from cart
+        yield call(deleteAppFromCart, appObj._id);
+        // 3) add app to user wishlist via backend
+        yield call(addAppToWishlistBackEnd, appObj._id);
         yield put(addAppToWishListSuccess());
 
         // STOP SPINNER
@@ -215,6 +224,15 @@ function* addAppToWishlistStart({appId}) {
         // STOP SPINNER
         yield put(setIsTogglingWishlistAppFalse());
         yield put(addAppToWishListFailure());
+    } finally {
+        // 4) clear react state and backend for add app to cart
+        // if this task is cancelled
+        if(yield cancelled()) {
+            console.log("TASK add app to wishlist CANCELLED!");
+            yield call(deleteAppFromWishlist, appObj._id);
+            // Remove app from react cart state
+            yield put(removeWishListItem(appObj._id));
+        }
     }
 }
 
@@ -236,12 +254,13 @@ function* deleteAppFromWishlistStart({appId}) {
     }
 }
 
-function* gf_updateAllAppsInCartStart({apps}) {
+function* gf_updateAllAppsInCartStart({appIds}) {
     try {
         // This task will only update the backend
         // since the task updating the react state
         // should be done in advanced
-        yield call(updateAllAppsInCart, apps);
+        console.log({appIds});
+        yield call(updateAllAppsInCart, appIds);
         
         yield put(updateAllAppsInCartSuccess());
     } catch (error) {
@@ -249,13 +268,13 @@ function* gf_updateAllAppsInCartStart({apps}) {
     }
 }
 
-function* gf_updateAllAppsInWishlistStart({apps}) {
+function* gf_updateAllAppsInWishlistStart({appIds}) {
     try {
                 // This task will only update the backend
         // since the task updating the react state
         // should be done in advanced
-        yield call(updateAllAppsInWishlist, apps);
-
+        console.log({appIds});
+        yield call(updateAllAppsInWishlist, appIds);
         yield put(updateAllAppsInWishlistSuccess());
     } catch (error) {
         yield put(updateAllAppsInWishlistFailure());
