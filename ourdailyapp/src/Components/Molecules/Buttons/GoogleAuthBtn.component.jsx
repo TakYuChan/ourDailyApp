@@ -8,7 +8,9 @@ import { ReactComponent as GoogleSvg } from "../../../assets/svg/google.svg";
 import { useDispatch } from "react-redux";
 
 const GoogleAuthBtn = ({ children, renderBtn }) => {
-  const responseError = async (response) => {};
+  const responseError = async (response) => {
+    
+  };
 
   const dispatch = useDispatch();
   return (

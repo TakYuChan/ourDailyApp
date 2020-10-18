@@ -89,11 +89,8 @@ function* signUp({ signUpDetails }) {
     // 1) Sign up user and set user details
     const response = yield call(signUpUser, signUpDetails);
     yield put(setUserDetails(response.data.data.user));
-
-    // 2) Get default avatar for new user
-    const getAvatarResponse = yield call(getAvatar, "default.jpeg");
-    // get avatar image from s3 via backend
-    yield put(setUserAvatar(getAvatarResponse.data.data.image.data));
+    // 2) Also set the default avatar for the user first
+    yield put(setUserAvatar(response.data.data.image.data));
 
     yield put(signUpSuccess(signUpDetails.email, signUpDetails.password));
 
@@ -134,16 +131,32 @@ function* signInWithEmail({ logInDetails }) {
 function* signInWithGoogle({ authorizeServerRes }) {
   try {
     // Start spinner
+    yield put(setIsLoggingInTRUE());
 
-    yield call(
+    // 1) Check if we need to create a new userDoc for google log in user
+    // in the backend DB
+    const googleLogInRes = yield call(
       checkAuthInfoFromDB,
       authorizeServerRes,
       `http://localhost:5000/api/v1/users/googlelogin`
     );
 
+    yield put(setUserDetails(googleLogInRes.data.data.user));
+    // 2) Get avatar from backend and aws
+    const getAvatarResponse = yield call(getAvatar, googleLogInRes.data.data.user.photo);
+    // get avatar image from s3 via backend
+    yield put(setUserAvatar(getAvatarResponse.data.data.image.data));
+
+    yield put(clearSignUpAlert());
+    yield put(clearLogInAlert());
+    // 3) Log In User
+    console.log("now set user logged in")
+    yield put(setIsLoggedTrue());
     // Stop spinner
+    yield put(setIsLoggingInFALSE());
   } catch (error) {
     // Stop spinner
+    yield put(setIsLoggingInFALSE());
   }
 }
 

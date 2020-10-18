@@ -1,6 +1,14 @@
 import React, {useContext} from "react";
+import ReactDOM from "react-dom";
 import PixelSpinner from "../../Molecules/Spinners/PixelSpinner/PixelSpinner.component";
+import Button from '@material-ui/core/Button';
 import {useSelector} from "react-redux";
+
+import Cropper from "react-cropper";
+import "cropperjs/dist/cropper.css";
+
+import b64toBlob from "../../../utils/b64toBlob";
+
 
 import {UploadAvatarProvider, UploadAvatarContext} from "../../../context/uploadAvatar.context";
 import S from "./styles/UploadAvatar.style";
@@ -58,9 +66,71 @@ UploadAvatar.AvatarDisplay = function AvatarDisplay({
   children,
   ...restProps
 }) {
-  const { imgUploaded } = useContext(UploadAvatarContext);
-  return <S.AvatarDisplay {...restProps}><S.AvatarImg src={imgUploaded}></S.AvatarImg>{children}</S.AvatarDisplay>;
+  const { cropData } = useContext(UploadAvatarContext);
+
+  return <S.AvatarDisplay {...restProps}><S.AvatarImg  src={cropData}></S.AvatarImg>{children}</S.AvatarDisplay>;
 };
+
+UploadAvatar.CropImageContainer = function CropImageContainer({
+  children,
+  ...restProps
+}) {
+  const { editAvatar, isEditAvatarPopped, closeEditAvatarPopUp, setCropData, setFile } = useContext(UploadAvatarContext);
+
+  const [cropper, setCropper] = React.useState();
+
+  const getCropData = () => {
+    if (typeof cropper !== "undefined") {
+      setCropData(cropper.getCroppedCanvas().toDataURL());
+      const blob = b64toBlob(cropper.getCroppedCanvas().toDataURL());
+      setFile(blob);
+    }
+  }
+
+
+  return isEditAvatarPopped ? ReactDOM.createPortal(<S.CropImageFrame>
+    <S.CropImageContainer className="con">
+      <S.Title className="text-xl">Edit avatar</S.Title>
+      <S.CropImageDisplay {...restProps}>
+        <Cropper src={editAvatar} initialAspectRatio={1}
+        viewMode={1}
+        guides={true}
+        minCropBoxHeight={10}
+        minCropBoxWidth={10}
+        background={false}
+        responsive={true}
+        autoCropArea={1}
+        checkOrientation={false}
+        onInitialized={(instance) => {
+          setCropper(instance);
+        }} style={{ height: 400, width: "100%" }} />
+      </S.CropImageDisplay>
+      <div className="flex mt-4">
+        <Button variant="contained" className="mr-2 ml-auto text-gray-700" onClick={closeEditAvatarPopUp}>Cancel</Button>
+        <Button variant="contained" className="text-gray-200" style={{background: "#0059A6"}}
+        onClick={() => {
+          getCropData();
+          closeEditAvatarPopUp();
+        }}>Apply</Button>
+      </div>
+    </S.CropImageContainer >
+    <S.Overlay onClick={closeEditAvatarPopUp}/>
+   </S.CropImageFrame>, document.body) : null;
+}
+
+
+UploadAvatar.DefaultAvatarContainer = function DefaultAvatarContainer({
+  children, ...restProps
+}) {
+  return <S.DefaultAvatarContainer {...restProps}>{children}</S.DefaultAvatarContainer>
+}
+
+UploadAvatar.DefaultAvatarImg = function DefaultAvatarImg({
+  name, ...restProps
+}) {
+  const {onClickDefaultAvatar, imgName} = useContext(UploadAvatarContext);
+  return <S.DefaultAvatarImg active={imgName === name} name={name} onClick={onClickDefaultAvatar} {...restProps} />
+}
 
 
 UploadAvatar.Title = function Title({ children, ...restProps }) {
@@ -76,4 +146,22 @@ UploadAvatar.UploadBtn = function UploadBtn({children, ...restProps}) {
   const { onSubmit } = useContext(UploadAvatarContext);
   // const dispatch = useDispatch();
   return <S.UploadBtn {...restProps} onClick={onSubmit}>{children}{isUploadingAvatar && <PixelSpinner size={1.2} animationDuration={1500}  style={{transform: "translateY(2px)"}}/>}</S.UploadBtn>
+}
+
+UploadAvatar.UploadAvatarPanel = function UploadAvatarPanel({children, ...restProps}) {
+
+  const {getRootProps, getInputProps} = useContext(UploadAvatarContext);
+
+  return <div style={{ placeItems: "center" }} {...getRootProps()}>
+        <UploadAvatar.FileInputLabel htmlFor="avatarInput">
+          <span className="iconfont icon-round-add_photo_alte" />
+          Upload Image
+        </UploadAvatar.FileInputLabel>
+        <input
+          {...getInputProps({id: "avatarInput",
+          name: "avatar",
+          accept: "image/png, image/jpeg"})}
+        ></input>
+    </div>
+    
 }

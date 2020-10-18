@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import OauthBtnRounded from "../../Components/Molecules/Buttons/OauthBtnRounded/OauthBtnRounded.component";
 import GoogleAuthBtn from "../../Components/Molecules/Buttons/GoogleAuthBtn.component";
 import SignUpForm from "../../Containers/SignUpForm.container";
-import UploadAvatarContainer from "../../Containers/UploadAvatar.container";
+import UploadAvatarContainer from "../../Containers/UploadAvatar/UploadAvatar.container";
 
 import { ReactComponent as FacebookSvg } from "../../assets/svg/facebook.svg";
 import { ReactComponent as AppleSvg } from "../../assets/svg/apple.svg";

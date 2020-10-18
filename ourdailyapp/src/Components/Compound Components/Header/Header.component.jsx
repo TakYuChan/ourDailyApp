@@ -48,7 +48,7 @@ Header.Hero = function HeaderHero({ children, ...restProps }) {
       {!width_under_650 && (
         <S.Group
           style={{
-            flexBasis: "35%",
+            flexBasis: "50%",
             position: "relative",
           }}
         >

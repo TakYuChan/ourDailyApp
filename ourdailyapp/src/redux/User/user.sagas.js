@@ -49,10 +49,11 @@ function* onUpdateUserDetailsStart() {
 
   // =========== Update User Details ===========
 
-function* updateUserDetailsStart({formData}) {
+function* updateUserDetailsStart({formData, imgName}) {
     try {
+
       // request back end to update user details
-      yield call(updateUserInfo, formData);
+      yield call(updateUserInfo, {formData, imgName});
       yield put(updateUserDetailsSuccess());
     } catch (error) {
       yield put(updateUserDetailsFailure());

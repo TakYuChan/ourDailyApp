@@ -24,6 +24,9 @@ S.PanelContainer = styled.div`
 
   max-width: 600px;
   margin-bottom: 0;
+  position: relative;
+
+  overflow: hidden;
 `;
 
 S.TabsWrapper = styled.div`
@@ -31,7 +34,6 @@ S.TabsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   position: relative;
-
 `;
 
 S.TabsWrapperBorder = styled.div`
@@ -59,12 +61,13 @@ S.Tab = styled.div`
   @media screen and (min-width: 550px) {
     font-size: 0.9rem;
   }
-
 `;
 
 S.Group = styled.div`
   display: grid;
   flex-basis: 100%;
+  width: 100%;
+  height: 100%;
 `;
 
 S.TextGroup = styled.div`
@@ -113,9 +116,9 @@ S.FileInputLabel = styled.label`
   }
 `;
 
-S.FileInput = styled.input`
-  display: none;
-`;
+// S.FileInput = styled.input`
+//   display: none;
+// `;
 
 S.AvatarDisplay = styled.div`
   --size: 4rem;
@@ -136,6 +139,29 @@ object-fit: cover;
 height: 100%;
 width: 100%;
 border-radius: inherit;
+`;
+
+S.DefaultAvatarContainer = styled.div`
+display: flex;
+`;
+
+S.DefaultAvatarImg = styled.img`
+  --size: 5rem;
+  width: var(--size);
+  height: var(--size);
+  background: 0;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:first-of-type {
+    margin-right: 3rem;
+  }
+
+  ${({active}) => {
+    if(active) {
+      return "filter: drop-shadow(0 0 0.75rem white);";
+    }
+  }}
 `;
 
 S.Title = styled.h1`
@@ -189,5 +215,44 @@ cursor: pointer;
   font-size: 0.9em;
 }
 `;
+
+S.CropImageFrame = styled.div`
+position: absolute;
+top: 0;
+left: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100vw;
+height: 100vh;
+`;
+
+S.CropImageContainer = styled.div`
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background: #303030;
+  padding: 1rem;
+`;
+
+S.CropImageDisplay = styled.div`
+border-top: 3px solid #5E5E5E;
+border-bottom: 3px solid #5E5E5E;
+padding: 1rem 0;
+`;
+
+S.EditAvatarImg = styled.img`
+`;
+
+S.Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+`;
+
 
 export default S;

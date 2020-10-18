@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// @response - user, image (avatarBuffer obj)
 export const signUpUser = async (signUpDetails) => {
   const res = await axios({
     method: "POST",
@@ -31,6 +32,7 @@ export const checkAuthInfoFromDB = async (authorizeServerRes, url) => {
     data: {
       tokenId: authorizeServerRes.tokenId,
     },
+    withCredentials: true,
   });
 
   return backEndResponse;

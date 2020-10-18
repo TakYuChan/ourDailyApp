@@ -132,15 +132,13 @@ function* addAppToCartStart({appObj}) {
     try {
         // 1) Add app to cart within react state
         yield put(addItem(appObj));
-        // 2) remove wishlist app from state and the database
-        yield call(deleteAppFromWishlist, appObj._id);
-        // 3) add app to user cart via backend
+        // 2) add app to user cart via backend
         yield call(addAppToCartBackEnd, appObj._id);
         yield put(addAppToCartSuccess());
     } catch (error) {
         yield put(addAppToCartFailure());
     } finally {
-        // 4) clear react state and backend for add app to cart
+        // 3) clear react state and backend for add app to cart
         // if this task is cancelled
         if(yield cancelled()) {
             console.log("TASK add app to cart CANCELLED!");
@@ -212,9 +210,7 @@ function* addAppToWishlistStart({appObj}) {
         // 1) Add app to wishlist within react state and
         // remove cart app from cart state if it exists
         yield put(addWishListItem(appObj));
-        // 2) Modify the Database for deleting app from cart
-        yield call(deleteAppFromCart, appObj._id);
-        // 3) add app to user wishlist via backend
+        // 2) add app to user wishlist via backend (plus delete from cart)
         yield call(addAppToWishlistBackEnd, appObj._id);
         yield put(addAppToWishListSuccess());
 
@@ -225,7 +221,7 @@ function* addAppToWishlistStart({appObj}) {
         yield put(setIsTogglingWishlistAppFalse());
         yield put(addAppToWishListFailure());
     } finally {
-        // 4) clear react state and backend for add app to cart
+        // 3) clear react state and backend for add app to cart
         // if this task is cancelled
         if(yield cancelled()) {
             console.log("TASK add app to wishlist CANCELLED!");
