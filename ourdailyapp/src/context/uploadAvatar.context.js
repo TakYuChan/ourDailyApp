@@ -14,8 +14,8 @@ function UploadAvatarProvider({children}) {
   
   const dispatch = useDispatch();
   
-  const [cropData, setCropData] = useState(bg);
-  const [editAvatar, setEditAvatar] = useState(bg);
+  const [cropData, setCropData] = useState(null);
+  const [editAvatar, setEditAvatar] = useState(null);
   const [imgName, setImgName] = useState("");
   const [file, setFile] = useState('');
   const [isEditAvatarPopped, setIsEditAvatarPopped] = useState(false);
@@ -88,7 +88,7 @@ function UploadAvatarProvider({children}) {
 
 
     return <UploadAvatarContext.Provider value={{cropData, setCropData, 
-      onSubmit, setFile,
+      onSubmit, setFile, file,
       onClickDefaultAvatar, getRootProps,
       getInputProps, isEditAvatarPopped, closeEditAvatarPopUp,
       imgName, setImgName, editAvatar}}>{children}</UploadAvatarContext.Provider>

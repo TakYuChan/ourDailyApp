@@ -8,18 +8,20 @@ import {
     updateUserAvatarSuccess,
     updateUserAvatarFailure,
     setIsUploadingAvatarTrue,
-    setIsUploadingAvatarFalse
+    setIsUploadingAvatarFalse,
+    setIsUpdatingUserDetailsTrue,
+    setIsUpdatingUserDetailsFales,
 } from "./user.actions";
 
 import {changeAuthPage} from "../AuthPage/AuthPage.actions";
 
 import {
     setIsLoggedTrue,
-    setUserAvatar,
+    setUserDetails
 } from "../Auth/auth.actions";
 
-import {getAvatar} from "../Auth/auth.requests";
-import {updateUserInfo} from "./user.requests";
+
+import {requestAndUpdateAvatar} from "./user.generatorFn";
 
 // ================= Sagas ==================
 function* onUpdateUserDetailsStart() {
@@ -52,26 +54,37 @@ function* onUpdateUserDetailsStart() {
 function* updateUserDetailsStart({formData, imgName}) {
     try {
 
-      // request back end to update user details
-      yield call(updateUserInfo, {formData, imgName});
+      // Loading -> true
+      console.log({formData})
+      yield put(setIsUpdatingUserDetailsTrue());
+      
+      // 1) update bkEnd avatar -> get avatar from s3 bucket -> update react state avatar
+      const updatedUser = yield call(requestAndUpdateAvatar, formData);
+      
+      // 2) set react state user details
+      yield put(setUserDetails(updatedUser));
+      // yield 
+      // Loading -> false
       yield put(updateUserDetailsSuccess());
     } catch (error) {
+      // Loading -> false
+      yield put(setIsUpdatingUserDetailsFales());
       yield put(updateUserDetailsFailure());
     }
   }
   function* afterUpdateUserDetailsSuccess() {
+    yield put(setIsUpdatingUserDetailsFales());
   }
   
   function* updateUserAvatarStart({formData}) {
     try {
       // Loading -> true
       yield put(setIsUploadingAvatarTrue());
-      // 1) request back end to update user avatar
-      const updatedAvatarName = yield call(updateUserInfo, formData);
-      // 2) Upload user avatar in state for display
-      const getAvatarResponse = yield call(getAvatar, updatedAvatarName);
-      // 3) get avatar image from s3 via backend
-      yield put(setUserAvatar(getAvatarResponse.data.data.image.data));
+
+
+      // 1) update bkEnd avatar -> get avatar from s3 bucket -> update react state avatar
+      yield call(requestAndUpdateAvatar, formData);
+
       yield put(updateUserAvatarSuccess());
       
     } catch (error) {

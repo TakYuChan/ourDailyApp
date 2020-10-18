@@ -8,6 +8,14 @@ export const setIsUploadingAvatarFalse = () => ({
     type: UserActionTypes.IS_UPLOADING_AVATAR_FALSE,
 })
 
+export const setIsUpdatingUserDetailsTrue = () => ({
+    type: UserActionTypes.IS_UPDATING_USER_DETAILS_TRUE,
+})
+
+export const setIsUpdatingUserDetailsFales = () => ({
+    type: UserActionTypes.IS_UPLOADING_AVATAR_FALSE,
+})
+
 export const updateUserDetailsStart = (formData) => ({
     type: UserActionTypes.UPDATE_USER_DETAILS_START,
     formData,

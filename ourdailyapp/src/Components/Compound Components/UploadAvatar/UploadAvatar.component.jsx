@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import ReactDOM from "react-dom";
 import PixelSpinner from "../../Molecules/Spinners/PixelSpinner/PixelSpinner.component";
 import Button from '@material-ui/core/Button';
+import bg from "../../../assets/images/uploadAvatarPage/default.jpg";
 import {useSelector} from "react-redux";
 
 import Cropper from "react-cropper";
@@ -68,9 +69,10 @@ UploadAvatar.AvatarDisplay = function AvatarDisplay({
 }) {
   const { cropData } = useContext(UploadAvatarContext);
 
-  return <S.AvatarDisplay {...restProps}><S.AvatarImg  src={cropData}></S.AvatarImg>{children}</S.AvatarDisplay>;
+  return <S.AvatarDisplay {...restProps}><S.AvatarImg  src={cropData || bg}></S.AvatarImg>{children}</S.AvatarDisplay>;
 };
 
+// Pop up container
 UploadAvatar.CropImageContainer = function CropImageContainer({
   children,
   ...restProps
@@ -92,7 +94,7 @@ UploadAvatar.CropImageContainer = function CropImageContainer({
     <S.CropImageContainer className="con">
       <S.Title className="text-xl">Edit avatar</S.Title>
       <S.CropImageDisplay {...restProps}>
-        <Cropper src={editAvatar} initialAspectRatio={1}
+        <Cropper src={editAvatar || bg} initialAspectRatio={1}
         viewMode={1}
         guides={true}
         minCropBoxHeight={10}

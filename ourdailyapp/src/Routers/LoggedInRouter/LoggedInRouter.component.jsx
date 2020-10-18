@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import { Switch, Route, Redirect } from "react-router-dom";
-import ProfilePage from "../../Pages/ProfilePage/ProfilePage.component";
+import SettingsPage from "../../Pages/SettingsPage/SettingsPage.component";
 import CommentsConverterPage from "../../Pages/CommentsConverterPage/CommentsConverterPage.component";
 import NoMatch from "../../Pages/NoMatchPage/NoMatchPage.component";
 import {  useDispatch, useSelector } from "react-redux";
@@ -72,8 +72,8 @@ const LoggedInRouter = () => {
         <Route exact isLogged={isUserLogged} path="/pigGame">
         <PigGamePageWithSpinner />
         </Route>
-        <ProtectedRoute exact isLogged={isUserLogged} path="/profile">
-        <ProfilePage />
+        <ProtectedRoute exact isLogged={isUserLogged} path="/settings">
+        <SettingsPage />
         </ProtectedRoute>
         <ProtectedRoute exact isLogged={isUserLogged} path="/cart">
         <CartPage />

@@ -172,6 +172,11 @@ export const lightTheme = {
     svg: rootStyles.primary_old,
     text: rootStyles.primary_old,
   },
+  Notification: {
+    floatContainer_bg: rootStyles.primary_m1,
+    errorText: rootStyles.primary_old,
+    errorIcon: rootStyles.blue_m1,
+  }
 };
 
 export const darkTheme = {};
