@@ -4,22 +4,23 @@ import {Formik, Notification, UploadAvatar} from "../Components/Compound Compone
 import {UploadAvatarProvider,} from "../context/uploadAvatar.context";
 import {useSelector} from "react-redux";
 import {useFormik} from "formik";
+import _arrayBufferToBase64 from "../utils/bufferArrayToBase64";
 
 
 const ProfileFormContainer = () => {
 
     const {name} = useSelector(state => state.auth_P.user);
-    const {userAvatar} = useSelector(state => state.auth_P.userAvatar);
+    const userAvatar = useSelector(state => state.auth_P.userAvatar);
 
     const formik = useFormik({
         initialValues: {
-            name: "",
+            name: name,
         }
     })
 
     return <UploadAvatarProvider>
         <Formik className="border-2">
-            <Formik.AvatarContainer src={bg}/>
+            <Formik.AvatarContainer src={`data:image/jpg;base64,${_arrayBufferToBase64(userAvatar)}`}/>
             <Formik.Label htmlFor="name">Name</Formik.Label>
             <Formik.Input type="text" id="name" name="name" {...formik.getFieldProps("name")}></Formik.Input>
             <Formik.SubmitBtn type="submit" variant="contained" color="primary" formDetails={formik.values}>Save</Formik.SubmitBtn>

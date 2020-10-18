@@ -17,6 +17,5 @@ export const updateUserInfo = async(formData, imgName) => {
         .catch(err => console.error(err));
     }
 
-    console.log({res: await res})
     return res;
 }
