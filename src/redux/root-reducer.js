@@ -29,6 +29,7 @@ const persistConfig = {
   storage,
   // whitelist: ["auth_P"]
   whitelist: ["cart_P", "auth_P"],
+  // whitelist: [],
   // whitelist: ["cart_P", "pigGame"],
 };
 
