@@ -1,6 +1,6 @@
 const APP_DATA = {
   todolist: {
-    title: "To do list",
+    title: "To do list test",
     creator: "Franky Chan",
     description: "Make a note on everything",
     imageSrc: "/images/assets/todolist2.jpg",
