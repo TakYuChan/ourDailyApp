@@ -34,25 +34,21 @@ S.WishlistMAX849 = styled.div``;
 S.WishlistMIN850 = styled.div``;
 
 S.PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  width: 100vw;
 `;
 
 /* ========================== content main ========================== */
 S.ContentContainer = styled.div`
-  width: 70%;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 260px);\
+  width: 100%;
 
-
-  justify-content: center;
-
-  gap: 2rem;
-
-  ${S.WishlistMAX849} {
-    display: none;
+  ${S.WishlistMIN850} {
+    display: grid;
+    max-width: 1200px;
+    width: 90%;
+    justify-content: center;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, 260px);
+    gap: 3em;
   }
 
   @media screen and (max-width: 849px) {
@@ -64,15 +60,12 @@ S.ContentContainer = styled.div`
       display: flex;
       flex-direction: column;
     }
-
-    ${S.WishlistMIN850} {
-      display: none;
-    }
   }
 `;
 
 // =============== Render 3: EMPTY wishlist =================
 S.EmptyWishlistContainer = styled.div`
+  margin: 0 auto;
   height: 50vh;
   width: 100%;
   padding: 2em;

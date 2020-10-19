@@ -1,7 +1,7 @@
 import React from "react";
 import S from "./pigGamePage.style";
 
-import { displayNameLengthFilter } from "../../utils/dataFilter";
+// import { displayNameLengthFilter } from "../../utils/dataFilter";
 import { renderProfilePicture } from "../../utils/conditional";
 import { playerNameFontSize } from "./pigGameUtils";
 import { connect } from "react-redux";
@@ -13,7 +13,6 @@ import {
   selectPlayer2Obj,
   selectWinner,
   selectFinalScore,
-  // selectPlayer2UserInfo,
   selectStrikes,
 } from "../../redux/pigGame/pigGame.selectors";
 import {
@@ -27,8 +26,8 @@ import {
 } from "../../redux/pigGameModals/pigGameModals.actions";
 import {
   selectCurrentUser,
-  selectIsUserLogged,
-} from "../../redux/user/user.selectors";
+  // selectIsUserLogged,
+} from "../../redux/Auth/auth.selectors";
 import {
   rollDice,
   holdDice,
@@ -100,13 +99,13 @@ const PigGamePage = ({
           {/* ================= Player One Info Container ================= */}
           <S.PlayerInfoContainer>
             <S.PlayerPic
-              imgsrc={
-                isMainUserLogged
-                  ? renderProfilePicture(selectCurrentUser.photoURL)
-                  : null
-              }
+            // imgsrc={
+            //   isMainUserLogged
+            //     ? renderProfilePicture(selectCurrentUser.photoURL)
+            //     : null
+            // }
             ></S.PlayerPic>
-            <S.PlayerName
+            {/* <S.PlayerName
               className={`${activePlayer === 1 && "active"} player-name`}
               fontSize={
                 isMainUserLogged
@@ -117,7 +116,7 @@ const PigGamePage = ({
               {isMainUserLogged
                 ? displayNameLengthFilter(selectCurrentUser.displayName, 8)
                 : "Player 1"}
-            </S.PlayerName>
+            </S.PlayerName> */}
           </S.PlayerInfoContainer>
           {selectWinner === "player1" && (
             <S.CrownLeft className="fireworks">
@@ -148,7 +147,7 @@ const PigGamePage = ({
             <S.PlayerPic
               imgsrc={isPlayer2Logged ? renderProfilePicture(photoURL) : null}
             ></S.PlayerPic>
-            <S.PlayerName
+            {/* <S.PlayerName
               className={`${activePlayer === 2 && "active"} player-name`}
               fontSize={
                 isPlayer2Logged ? playerNameFontSize(displayName.length) : 1
@@ -157,7 +156,7 @@ const PigGamePage = ({
               {isPlayer2Logged
                 ? displayNameLengthFilter(displayName, 12)
                 : "Player 2"}
-            </S.PlayerName>
+            </S.PlayerName> */}
           </S.PlayerInfoContainer>
           {selectWinner === "player2" && (
             <S.CrownRight className="fireworks">
@@ -216,7 +215,7 @@ const mapStateToProps = createStructuredSelector({
   strikesNum: selectStrikes,
   displayName: selectPlayer2DisplayName,
   photoURL: selectPlayer2PhotoURL,
-  isMainUserLogged: selectIsUserLogged,
+  // isMainUserLogged: selectIsUserLogged,
 });
 
 const mapDispatchToProps = (dispatch) => ({

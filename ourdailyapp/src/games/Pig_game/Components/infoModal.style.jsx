@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-// import { Modal, Button } from "react-bootstrap";
+
 
 const S = {};
 

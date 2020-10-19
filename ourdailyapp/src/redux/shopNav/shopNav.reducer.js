@@ -11,7 +11,7 @@ const shopNavReducer = (state = INITIAL_STATE, action) => {
         ...state,
         hidden: !state.hidden,
       };
-    case ShopNavTypes.SET_HIDDEN_TRUE:
+    case ShopNavTypes.SET_SHOPNAV_HIDDEN_TRUE:
       return {
         ...state,
         hidden: true,

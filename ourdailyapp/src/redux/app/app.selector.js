@@ -16,9 +16,9 @@ export const selectApplicationsInArray = createSelector(
   }
 );
 
-export const selectApp = (applicationUrlParam) =>
+export const selectApp = (appRoute) =>
   createSelector([selectApplications], (applications) => {
-    return applications ? applications[applicationUrlParam] : null;
+    return applications ? (applications.filter(app => app.route === appRoute))[0] : null;
   });
 
 export const selectIsFetching = createSelector(

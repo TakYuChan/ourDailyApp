@@ -1,34 +1,19 @@
 import React from "react";
 import S from "./WishListCard.style.jsx";
 
-import { connect } from "react-redux";
+import useRouter from "../../../hooks/useRouter.hooks";
+import {useDispatch} from "react-redux"
 
-import {
-  toggleWishListItem,
-  moveToCartList,
-} from "../../../redux/cart/cart.actions";
-// import { withRouter } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-import { addCartAnimation } from "../../../utils/animation";
+import { addAppToCartStart, removeAppToWishListStart  } from "../../../redux/cart/cart.actions";
+import addCartAnimation from "../../../utils/animations/addCardAnimation";
 
 import PropTypes from "prop-types";
 
 const WishListCard = ({
   wishlistItem,
-  toggleWishListItem,
-  moveItemToCartList,
 }) => {
-  function useRouter() {
-    const history = useHistory();
-
-    return React.useMemo(() => {
-      return {
-        push: history.push,
-      };
-    }, [history]);
-  }
-
   const router = useRouter();
+  const dispatch = useDispatch();
 
   return (
     <div className="wishlist-min850">
@@ -39,8 +24,8 @@ const WishListCard = ({
         {/* ========== wishlist item image =========== */}
         <S.ImageWrapper className="img-wrapper">
           <S.Image
-            src={wishlistItem.imageSrc}
-            alt={`${wishlistItem.title}`}
+            src={`${wishlistItem.imgSrc}.jpeg`}
+            alt={`${wishlistItem.name}`}
             className="img-app"
           />
         </S.ImageWrapper>
@@ -48,7 +33,7 @@ const WishListCard = ({
         <S.CardBottomWrapper className="card-bottom-part">
           {/* ========== wishlist item info text =========== */}
           <S.ItemTitleText className="wishlistItem-title">
-            {wishlistItem.title}
+            {wishlistItem.name}
           </S.ItemTitleText>
           <S.ItemCreatorText className="wishlistItem-creator">
             {wishlistItem.creator}
@@ -60,10 +45,11 @@ const WishListCard = ({
               className="btn-addToCart"
               onClick={(event) => {
                 event.stopPropagation();
-                moveItemToCartList(wishlistItem);
+                dispatch(addAppToCartStart(wishlistItem._id));
+
 
                 /* ================ animations ================ */
-                addCartAnimation(wishlistItem.imageSrc, ".Wishlist-page");
+                addCartAnimation(wishlistItem.imgSrc, ".js_PageContainer");
               }}
             >
               Add to cart
@@ -82,17 +68,11 @@ const WishListCard = ({
         {/* ====================== element - absolute ====================== */}
 
         <S.IconHeart
-          className={`fas fa-heart`}
+          className={`iconfont icon-heart`}
           onClick={(event) => {
+            // prevent click on the card body
             event.stopPropagation();
-            toggleWishListItem({
-              id: wishlistItem.id,
-              title: wishlistItem.title,
-              creator: wishlistItem.creator,
-              imageSrc: wishlistItem.imageSrc,
-              price: wishlistItem.price,
-              route: wishlistItem.route,
-            });
+            dispatch(removeAppToWishListStart(wishlistItem._id));
           }}
         ></S.IconHeart>
       </S.CardWrapper>
@@ -100,15 +80,10 @@ const WishListCard = ({
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleWishListItem: (item) => dispatch(toggleWishListItem(item)),
-  moveItemToCartList: (item) => dispatch(moveToCartList(item)),
-});
-
 React.propTypes = {
   wishListItem: PropTypes.object.isRequired,
   toogleWishListItem: PropTypes.func.isRequired,
   moveItemToCartList: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(WishListCard);
+export default WishListCard;

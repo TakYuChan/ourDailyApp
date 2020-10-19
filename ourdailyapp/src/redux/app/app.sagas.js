@@ -7,9 +7,10 @@ import {
   fetchApplicationsSuccess,
 } from "./app.actions";
 import {
-  convertApplicationsArrayToMap,
   transformAccessAppBtnsArray,
 } from "../../firebase/firestore/convertData";
+
+import { getAllApplications } from "./app.requests";
 
 import { firestore } from "../../firebase/firebase.utils";
 
@@ -47,10 +48,10 @@ function* fetchAccessAppBtns() {
 
 function* fetchApplications() {
   try {
-    const collectionRef = firestore.collection("applications");
-    const snapshot = yield collectionRef.get();
-    const applicationsMap = convertApplicationsArrayToMap(snapshot);
-    yield put(fetchApplicationsSuccess(applicationsMap));
+    // 1) Get apps details from backend
+    const getAppsRes = yield call(getAllApplications);
+
+    yield put(fetchApplicationsSuccess(getAppsRes.data.data.apps));
   } catch (error) {
     yield put(fetchApplicationsFailure(error));
   }

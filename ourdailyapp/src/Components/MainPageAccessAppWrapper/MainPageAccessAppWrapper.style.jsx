@@ -2,39 +2,23 @@ import styled from "styled-components";
 
 const S = {};
 
-// Animation
-// const appear = keyframes`
-//   from {
-//     transform: scale(.5);
-//   },
-//   to {
-//     transform: scale(1);
-//   }
-// `;
-
 // ========== Container =========
 
-S.ApplicationsContainer = styled.div`
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, 0);
+S.MainPageAccessAppWrapper = styled.div`
   display: grid;
-  width: 80%;
-  max-width: 600px;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  padding: 0 8%;
 
-  --app-size: 120px;
+  font-size: clamp(0.7rem, 1vw, 1rem);
+  --btn-size: 7em;
 
   justify-content: center;
 
-  grid-template-columns: repeat(auto-fit, var(--app-size));
-  grid-auto-rows: var(--app-size);
-  row-gap: 1rem;
-
-  @media screen and (max-width: 810px) {
-    --app-size: 100px;
-  }
+  grid-template-columns: repeat(auto-fit, var(--btn-size));
+  grid-auto-rows: var(--btn-size);
+  row-gap: 1em;
+  column-gap: 0.6em;
 `;
 
 export default S;

@@ -21,42 +21,29 @@ S.ApplicationItemContainer = styled.div`
 
   display: grid;
   place-items: center;
-  // font-family: "Roboto", sans-serif;
 
-  font-size: 0.8rem;
+  font-size: 0.8em;
   font-weight: 700;
 
   height: 100%;
   width: 100%;
 
-  // &:hover {
-  //   background: ${(props) => props.theme.mainPage.app_Hover};
-  //   .link-text {
-  //     text-decoration: none;
-  //   }
-  // }
-
   animation: 600ms ${appear} backwards ${(props) => props.stagger}s;
+  -webkit-perspective: 1000;
+  -webkit-backface-visibility: hidden;
 `;
 
 S.Image = styled.img`
-  --img-size: 50px;
-  @media screen and (min-width: 810px) {
-    --img-size: 60px;
-  }
-  width: 100%;
+  --img-size: 5em;
+
   border-radius: 100%;
   object-fit: cover;
   height: var(--img-size);
   width: var(--img-size);
 
-  .border {
-    border: 1px solid var(--blue);
-  }
-
   &:hover {
     border: 1px solid white;
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
+    box-shadow: 0 0 10px rgba(255, 255, 255, 1);
   }
 `;
 

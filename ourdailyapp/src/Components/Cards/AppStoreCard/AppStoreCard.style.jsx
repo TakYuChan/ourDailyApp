@@ -14,6 +14,7 @@ to {
 
 S.AppStoreCardWrapper = styled.div`
   animation: ${cardPopsUp} 300ms ease-in-out forwards;
+  max-width: 400px;
   &:hover .card-app {
     transform: translateY(-10px);
   }
@@ -67,6 +68,8 @@ S.BtnStart = styled.button`
   font-size: clamp(0.8rem, 1.6vw, 1rem);
 
   transition: transform 0.5s;
+
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-3px);

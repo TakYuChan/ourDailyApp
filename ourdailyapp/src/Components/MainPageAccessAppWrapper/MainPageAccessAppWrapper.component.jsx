@@ -1,23 +1,31 @@
 import React from "react";
 import S from "./MainPageAccessAppWrapper.style";
 
+import { useSelector } from "react-redux";
+
 import MainPageAccessAppBtn from "../MainPageAccessAppBtn/MainPageAccessAppBtn.component";
+import Loader from "../../Components/RenderPropsComs/Loader/Loader.renderPropCom";
+import RippleSpinner from "../../Components/Molecules/Spinners/RippleSpinner/RippleSpinner.component";
 
 import PropTypes from "prop-types";
-// import APPLICATIONS_DATA from "../../data/application.data.jsx";
 
-const MainPageAccessAppWrapper = ({ accessAppBtns }) => {
+const MainPageAccessAppWrapper = () => {
+  const accessAppBtns = useSelector((state) => state.app.accessAppBtns);
   return (
-    <S.ApplicationsContainer className="application-container">
-      {accessAppBtns.map((app, index) => (
-        <MainPageAccessAppBtn key={index} app={app} index={index} />
-      ))}
-    </S.ApplicationsContainer>
+    <S.MainPageAccessAppWrapper className="application-container">
+      <Loader SpinnerComponent={RippleSpinner} isLoading={!!!accessAppBtns}>
+        {() =>
+          accessAppBtns.map((app, index) => (
+            <MainPageAccessAppBtn key={index} app={app} index={index} />
+          ))
+        }
+      </Loader>
+    </S.MainPageAccessAppWrapper>
   );
 };
 
 MainPageAccessAppWrapper.propTypes = {
-  accessAppBtns: PropTypes.array.isRequired,
+  accessAppBtns: PropTypes.array,
 };
 
 export default MainPageAccessAppWrapper;

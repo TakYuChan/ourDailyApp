@@ -5,5 +5,5 @@ export const toggleShopNavHidden = () => ({
 });
 
 export const closeShopNav = () => ({
-  type: ShopNavActionTypes.SET_HIDDEN_TRUE,
+  type: ShopNavActionTypes.SET_SHOPNAV_HIDDEN_TRUE,
 });

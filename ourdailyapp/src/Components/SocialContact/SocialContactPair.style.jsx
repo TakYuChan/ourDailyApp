@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 const S = {};
 
-S.SocialContactPair = styled.button`
+S.SocialContactPair = styled.a`
   background: 0;
   border: 0;
   display: flex;
   align-items: center;
-  font-size: 0.7em;
+  font-size: 0.6em;
   color: ${(props) => props.theme.SocialContactPair.text};
   margin-right: 0.8em;
   cursor: pointer;

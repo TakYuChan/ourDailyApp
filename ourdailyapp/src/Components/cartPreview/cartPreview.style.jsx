@@ -33,6 +33,10 @@ S.CartPreviewContainer = styled.div`
   opacity: 0;
   transition: opacity 300ms;
   z-index: 3;
+  @media (max-height: 710px) and (orientation: landscape) {
+    z-index: 20;
+  }
+
   border-radius: 10px;
   height: 28em;
   width: 20em;
@@ -42,6 +46,7 @@ S.CartPreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  text-align: center;
 
   padding: 0 1em 1em;
 
