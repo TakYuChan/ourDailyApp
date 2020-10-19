@@ -20,8 +20,6 @@ function UploadAvatarProvider({children}) {
   const [file, setFile] = useState('');
   const [isEditAvatarPopped, setIsEditAvatarPopped] = useState(false);
   
-  // const displayImgRef = React.useRef();
-  
   // # Handle Drag and Drop avatar
   const onDrop = useCallback(files => {
     console.log({file: files[0]}); // e.target.files[0]
@@ -78,6 +76,7 @@ function UploadAvatarProvider({children}) {
       // 1) Check if user uploading his own avatar or using my default avatars
       // It will lead to different work flow in backend
       imgName === "" ? formData.append('avatar', file) : formData.append('imgName', imgName);
+      
       dispatch(updateUserAvatarStart(formData));
     }
 

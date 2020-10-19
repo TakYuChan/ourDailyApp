@@ -45,6 +45,8 @@ const rootStyles = {
   gray_0: `#CECECE`,
   gray_p1: `#E5E5E5`,
 
+  white_p2: `#ced4da`,
+
   header_clr: `#6ca0fc`,
 };
 
@@ -176,6 +178,12 @@ export const lightTheme = {
     floatContainer_bg: rootStyles.primary_m1,
     errorText: rootStyles.primary_old,
     errorIcon: rootStyles.blue_m1,
+  },
+  Formik: {
+    input_border: rootStyles.white_p2,
+    input_background: rootStyles.primary_m1,
+    text_color: rootStyles.gray_m1,
+    label_color: rootStyles.primary_old,
   }
 };
 

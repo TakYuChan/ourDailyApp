@@ -1,10 +1,9 @@
 import React from "react";
 
-// import "../node_modules/bootstrap/dist/css/bootstrap.css"
 import './App.css';
 
-import { Switch, Route, Redirect } from "react-router-dom";
-import { IsUserRedirect, ProtectedRoute } from "./helpers/routes.helper";
+import { Switch, Route } from "react-router-dom";
+import { IsUserRedirect } from "./helpers/routes.helper";
 
 import { useSelector } from "react-redux";
 

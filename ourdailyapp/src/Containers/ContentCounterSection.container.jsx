@@ -2,11 +2,10 @@ import React from "react";
 import { ContentCounter } from "../Components/Compound Components";
 import { Typography } from "../Components/Compound Components";
 import { useMediaQuery } from "react-responsive";
-import { useCountUp } from "react-countup";
+import CountUp from "react-countup";
 import useOnScreen from "../hooks/useShowScreen.hooks";
 
 export default function CounterCounterSection() {
-  const { countUp } = useCountUp({ end: 10 });
 
   const [setNode, startAnimate] = useOnScreen({
     threshold: [0.2, 0.8],
@@ -113,12 +112,12 @@ export default function CounterCounterSection() {
           >
             <ContentCounter.CardPane>
               <ContentCounter.CardIcon className="iconfont icon-users" />
-              <ContentCounter.CardNumber>2K+</ContentCounter.CardNumber>
+              <ContentCounter.CardNumber><CountUp start={0} end={20} delay={1} duration={5}/>K+</ContentCounter.CardNumber>
               <ContentCounter.CardName>DailyApp Users</ContentCounter.CardName>
             </ContentCounter.CardPane>
             <ContentCounter.CardPane>
               <ContentCounter.CardIcon className="iconfont icon-company" />
-              <ContentCounter.CardNumber>10K+</ContentCounter.CardNumber>
+          <ContentCounter.CardNumber><CountUp start={0} end={10} delay={1} duration={5}/>K+</ContentCounter.CardNumber>
               <ContentCounter.CardName>Efforts</ContentCounter.CardName>
             </ContentCounter.CardPane>
           </ContentCounter.Card>

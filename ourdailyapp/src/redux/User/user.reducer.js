@@ -23,7 +23,7 @@ const UserReducer = (state = INITIATE_STATE, action) => {
             ...state,
             isUpdatingUserDetails: true,
         }
-    case UserActionTypes.IS_UPLOADING_AVATAR_FALSE:
+    case UserActionTypes.IS_UPDATING_USER_DETAILS_FALSE:
         return {
             ...state,
             isUpdatingUserDetails: false,

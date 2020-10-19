@@ -51,7 +51,7 @@ function* onUpdateUserDetailsStart() {
 
   // =========== Update User Details ===========
 
-function* updateUserDetailsStart({formData, imgName}) {
+function* updateUserDetailsStart({formData}) {
     try {
 
       // Loading -> true

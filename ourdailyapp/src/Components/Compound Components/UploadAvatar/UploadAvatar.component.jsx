@@ -91,7 +91,7 @@ UploadAvatar.CropImageContainer = function CropImageContainer({
 
 
   return isEditAvatarPopped ? ReactDOM.createPortal(<S.CropImageFrame>
-    <S.CropImageContainer className="con">
+    <S.CropImageContainer>
       <S.Title className="text-xl">Edit avatar</S.Title>
       <S.CropImageDisplay {...restProps}>
         <Cropper src={editAvatar || bg} initialAspectRatio={1}
@@ -146,7 +146,7 @@ UploadAvatar.Text = function Text({ children, ...restProps }) {
 UploadAvatar.UploadBtn = function UploadBtn({children, ...restProps}) {
   const isUploadingAvatar = useSelector((state) => state.user.isUploadingAvatar);
   const { onSubmit } = useContext(UploadAvatarContext);
-  // const dispatch = useDispatch();
+
   return <S.UploadBtn {...restProps} onClick={onSubmit}>{children}{isUploadingAvatar && <PixelSpinner size={1.2} animationDuration={1500}  style={{transform: "translateY(2px)"}}/>}</S.UploadBtn>
 }
 
@@ -154,16 +154,17 @@ UploadAvatar.UploadAvatarPanel = function UploadAvatarPanel({children, ...restPr
 
   const {getRootProps, getInputProps} = useContext(UploadAvatarContext);
 
-  return <div style={{ placeItems: "center" }} {...getRootProps()}>
+  return <UploadAvatar.Group style={{ placeItems: "center" }} {...getRootProps()}>
         <UploadAvatar.FileInputLabel htmlFor="avatarInput">
           <span className="iconfont icon-round-add_photo_alte" />
           Upload Image
         </UploadAvatar.FileInputLabel>
         <input
+          className="hidden"
           {...getInputProps({id: "avatarInput",
           name: "avatar",
           accept: "image/png, image/jpeg"})}
         ></input>
-    </div>
+    </UploadAvatar.Group>
     
 }

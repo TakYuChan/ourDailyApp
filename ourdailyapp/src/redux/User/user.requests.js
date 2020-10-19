@@ -2,7 +2,6 @@ import axios from "axios";
 
 //userDetails: avatar: string, name: string, email: string, password: string
 export const updateUserInfo = async(formData, imgName) => {
-    console.log({formData, imgName});
     let res;
     if(imgName) {
         res =  axios

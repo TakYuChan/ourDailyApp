@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import S from "./styles/Formik.style";
-import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import {UploadAvatarContext} from "../../../context/uploadAvatar.context";
 import {updateUserDetailsStart} from "../../../redux/User/user.actions";
+import { format } from 'date-fns';
 import {useDispatch} from "react-redux";
 
 
@@ -12,30 +13,62 @@ export default function Formik({children, ...restProps}) {
     return <S.FormikForm {...restProps}>{children}</S.FormikForm>
 }
 
-Formik.Input = function FormikInput({children, name, ...restProps}) {
+Formik.Input = function FormikInput({children, ...restProps}) {
 
     return <S.FormikInput {...restProps}>{children}</S.FormikInput>
+}
+
+Formik.Textarea = function FormikTextarea({children, ...restProps}) {
+    return <S.FormikTextarea {...restProps}>{children}</S.FormikTextarea>
+}
+
+Formik.Select = function FormikSelect({children, ...restProps}) {
+    return <S.FormikSelect {...restProps}>{children}</S.FormikSelect>
+}
+
+Formik.DatePicker = function FormikDatePicker({children, ...restProps}) {
+    return <S.FormikDatePicker {...restProps} dateFormat="dd/MM/yyyy">
+        {children}</S.FormikDatePicker>
 }
 
 Formik.Label = function FormikLabel({children, ...restProps}) {
     return <S.FormikLabel {...restProps}>{children}</S.FormikLabel>
 }
 
+Formik.Group = function FormikGroup({children, ...restProps}) {
+    return <S.FormikGroup {...restProps}>{children}</S.FormikGroup>
+}
+
 Formik.SubmitBtn = function FormikSubmitBtn({formDetails, children, ...restProps}) {
 
     const dispatch = useDispatch();
 
-    const {file} = useContext(UploadAvatarContext);
+    const {file, cropData} = useContext(UploadAvatarContext);
 
-    const {name} = formDetails;
+    const {name, email, bio, personalWebsite, gender, birthday, isAvatarChanged} = formDetails;
 
     const onSubmit = (e) => {
        e.preventDefault();
        const formData = new FormData();
 
-       formData.append('avatar', file);
+       // Combine the edited avatar file with the update user details
+       // into formData and send back to bkEnd
+       const newBirthday = format(new Date(birthday), 'dd/MM/yyyy');
+
+       // Update avatar only if user changed it
+       if(cropData) {
+           formData.append('avatar', file);
+           console.log("we have cropped data");
+        }
        formData.append('name', name);
-       console.log({name})
+       formData.append('email', email);
+       formData.append('bio', bio);
+       formData.append('personalWebsite', personalWebsite);
+       formData.append('gender', gender);
+       formData.append('birthday', newBirthday);
+
+       console.log({birthday})
+       console.log({gender})
         dispatch(updateUserDetailsStart(formData));
     }
 
