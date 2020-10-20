@@ -1,9 +1,9 @@
-FROM node:alpine3.10
+FROM node:alpine
 
 WORKDIR '/app'
 
 # no need volumns since it is static not dynamic
-COPY /package.json .
+COPY ./package.json .
 RUN npm install
 
 COPY . .
@@ -13,5 +13,6 @@ RUN npm run build
 
 
 FROM nginx
-EXPOSE 80
+EXPOSE 3000
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=0 /app/build /usr/share/nginx/html
